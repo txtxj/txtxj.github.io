@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>【题解】货币系统 | 仓库</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="txtxj,txtxj's Blog">
+  
+  <meta name="description" content="题目链接 emmm… 考场上看见这个题就只想到了某凯的疑惑 然后就是不会做 写完第三题再回来之后突然就明白了 看样例：3 10 19 6等价于3 10 这是因为19=10+3+3+3 6=3+3 看起来我们要把能够被其他钱凑出来的数给筛掉，这样一来剩下的就是我们必须要保留的面值了 那我们可以建一个数组mon[i]，来存面值为i的钱能不能被其它面值的钱凑出来 最后再把整个mon跑一遍，看看原货币系统">
+<meta name="keywords" content="题解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【题解】货币系统">
+<meta property="og:url" content="https://txtxj.github.io/2019/02/04/【题解】货币系统/index.html">
+<meta property="og:site_name" content="仓库">
+<meta property="og:description" content="题目链接 emmm… 考场上看见这个题就只想到了某凯的疑惑 然后就是不会做 写完第三题再回来之后突然就明白了 看样例：3 10 19 6等价于3 10 这是因为19=10+3+3+3 6=3+3 看起来我们要把能够被其他钱凑出来的数给筛掉，这样一来剩下的就是我们必须要保留的面值了 那我们可以建一个数组mon[i]，来存面值为i的钱能不能被其它面值的钱凑出来 最后再把整个mon跑一遍，看看原货币系统">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-02-04T07:33:46.858Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【题解】货币系统">
+<meta name="twitter:description" content="题目链接 emmm… 考场上看见这个题就只想到了某凯的疑惑 然后就是不会做 写完第三题再回来之后突然就明白了 看样例：3 10 19 6等价于3 10 这是因为19=10+3+3+3 6=3+3 看起来我们要把能够被其他钱凑出来的数给筛掉，这样一来剩下的就是我们必须要保留的面值了 那我们可以建一个数组mon[i]，来存面值为i的钱能不能被其它面值的钱凑出来 最后再把整个mon跑一遍，看看原货币系统">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">txtxj&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/">
+                        <i class="fa fa-home"></i>
+                        <span>主页</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>按时间检索</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>关于</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        txtxj&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        txtxj的仓库
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="MinHow" target="_blank" href="//minhow.com">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/txtxj">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="河南省实验" target="_blank" href="http://218.28.19.228:8080">
+                            <i class="fa fa-cogs fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-【题解】货币系统" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      【题解】货币系统
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-02-04
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <p><strong><a href="https://www.luogu.org/problemnew/show/P5020" target="_blank" rel="noopener">题目链接</a></strong></p>
+<p>emmm…</p>
+<p>考场上看见这个题就只想到了某凯的疑惑</p>
+<p>然后就是不会做</p>
+<p>写完第三题再回来之后突然就明白了</p>
+<p>看样例：<strong>3 10 19 6等价于3 10</strong></p>
+<p>这是因为<strong>19=10+3+3+3 6=3+3</strong></p>
+<p>看起来我们要把能够被其他钱<strong>凑</strong>出来的数给筛掉，这样一来剩下的就是我们必须要保留的面值了</p>
+<p>那我们可以建一个数组mon[i]，来存<strong>面值为i的钱能不能被其它面值的钱凑出来</strong></p>
+<p>最后再把整个mon跑一遍，看看原货币系统中剩下几个不能被凑出来的钱，这就是答案了</p>
+<p>代码如下</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> mon[<span class="number">25001</span>]=&#123;&#125;;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">mon[i]=0 表示i面值的钱不能被凑出来</span></span><br><span class="line"><span class="comment">mon[i]=1 表示i面值的钱可以被凑出来</span></span><br><span class="line"><span class="comment">mon[i]=2 表示i面值的钱是货币系统中本来就有的钱</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">int</span> coins[<span class="number">101</span>]=&#123;&#125;;<span class="comment">//存钱的面值</span></span><br><span class="line"><span class="keyword">int</span> T,n,ans=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d "</span>,&amp;T);</span><br><span class="line">	<span class="keyword">while</span> (T--)</span><br><span class="line">	&#123;</span><br><span class="line">		ans=<span class="number">0</span>;</span><br><span class="line">		<span class="built_in">memset</span>(mon,<span class="number">0</span>,<span class="keyword">sizeof</span>(mon));</span><br><span class="line">		<span class="built_in">memset</span>(coins,<span class="number">0</span>,<span class="keyword">sizeof</span>(coins));</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;coins[i]);</span><br><span class="line">			mon[coins[i]]=<span class="number">2</span>;</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="comment">//把货币系统中的钱标好</span></span><br><span class="line">		sort(coins+<span class="number">1</span>,coins+<span class="number">1</span>+n);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=coins[n];i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (mon[i]&gt;<span class="number">0</span>)</span><br><span class="line">            <span class="comment">//如果mon[i]能被凑出来</span></span><br><span class="line">            <span class="comment">//那么mon[i+coins[j]]也能被凑出来</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">				    <span class="keyword">if</span> (i+coins[j]&lt;=coins[n])</span><br><span class="line">                    <span class="comment">//防止数组越界</span></span><br><span class="line">					    mon[i+coins[j]]=<span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">break</span>; </span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=coins[n];i++)</span><br><span class="line">			<span class="keyword">if</span> (mon[i]==<span class="number">2</span>) ans++;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年02月04日 15:33</p>
+        <p>原始链接： <a class="post-url" href="/2019/02/04/【题解】货币系统/" title="【题解】货币系统">https://txtxj.github.io/2019/02/04/【题解】货币系统/</a></p>
+        <footer>
+            <a href="https://txtxj.github.io">
+                <img src="/images/logo.png" alt="txtxj">
+                txtxj
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://txtxj.github.io/2019/02/04/【题解】货币系统/&title=《【题解】货币系统》 — 仓库&pic=./images/【题解】货币系统-1.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://txtxj.github.io/2019/02/04/【题解】货币系统/&title=《【题解】货币系统》 — 仓库&source=堆放各种奇奇怪怪的东西的地方" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://txtxj.github.io/2019/02/04/【题解】货币系统/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【题解】货币系统》 — 仓库&url=https://txtxj.github.io/2019/02/04/【题解】货币系统/&via=https://txtxj.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://txtxj.github.io/2019/02/04/【题解】货币系统/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://txtxj.github.io/2019/02/04/【题解】货币系统/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/题解/" class="color3">题解</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2019/02/04/CCF-WC/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">CCF-WC</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 txtxj<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://txtxj.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 0
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/题解/" style="font-size: 10px;">题解</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i><span>主页</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>按时间检索</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>关于</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/题解/" style="font-size: 10px;">题解</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hibiki.model.json"},"display":{"position":"right","width":100,"height":230},"mobile":{"show":true},"log":false});</script></body>
+</html>
