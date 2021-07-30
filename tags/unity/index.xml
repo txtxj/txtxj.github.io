@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Unity on Txtxj ΦωΦ</title>
+    <link>https://txtxj.github.io/tags/unity/</link>
+    <description>Recent content in Unity on Txtxj ΦωΦ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
+    <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
+    <lastBuildDate>Mon, 03 May 2021 01:46:19 +0800</lastBuildDate><atom:link href="https://txtxj.github.io/tags/unity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unity笔记02</title>
+      <link>https://txtxj.github.io/posts/unityself02/</link>
+      <pubDate>Mon, 03 May 2021 01:46:19 +0800</pubDate>
+      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <guid>https://txtxj.github.io/posts/unityself02/</guid>
+      <description>本篇笔记记录了后座力的实现。
+ 后座力（AddForce）与移动（velocity）不兼容 用 AddForce 给玩家添加一个反向的作用力后，
+如果玩家正在进行移动，
+由于移动是直接对刚体的 velocity 进行操作，
+所以玩家受到的反作用力会在一瞬间消失。
+实现的效果就是看到玩家向后闪了一小段距离。
+ 解决方案 考虑角色的移动也用 AddForce 实现，
+当方向键按下的时候判断该方向的速度是否达到最大速度，
+如果没有达到最大速度就给玩家加一个对应的力。
+private float speed = 2f; private void FixedUpdate() { float rh = Input.GetAxisRaw(&amp;#34;Horizontal&amp;#34;); float rv = Input.GetAxisRaw(&amp;#34;Vertical&amp;#34;); if (rh &amp;gt; 0f &amp;amp;&amp;amp; GetComponent&amp;lt;Rigidbody2D&amp;gt;().velocity.x &amp;lt; speed) { GetComponent&amp;lt;Rigidbody2D&amp;gt;().AddForce(new Vector2(speed, 0f) * 10f); } else if (rh &amp;lt; 0f &amp;amp;&amp;amp; GetComponent&amp;lt;Rigidbody2D&amp;gt;().velocity.x &amp;gt; -speed) { GetComponent&amp;lt;Rigidbody2D&amp;gt;().AddForce(new Vector2(-speed, 0f) * 10f); } if (rv &amp;gt; 0f &amp;amp;&amp;amp; GetComponent&amp;lt;Rigidbody2D&amp;gt;().</description>
+    </item>
+    
+    <item>
+      <title>Unity笔记01</title>
+      <link>https://txtxj.github.io/posts/unityself01/</link>
+      <pubDate>Sat, 02 Jan 2021 18:08:34 +0800</pubDate>
+      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <guid>https://txtxj.github.io/posts/unityself01/</guid>
+      <description>本篇笔记记录了瞬移魔法的穿墙问题的解决问题。
+ 瞬移魔法穿墙问题 在 2021.1.1 的版本中，
+如果玩家贴墙向墙内发射瞬移魔法，
+由于发射口与玩家人物中心之间有一定的距离，
+所以瞬移魔法发射的一瞬间，就已经位于墙内，
+接着魔法立刻消失，玩家被传送至墙内。
+网上查找解决方案，
+关于防止子弹穿墙问题的解决方案大多是
+发射射线，
+然后在射线命中碰撞体时做出命中效果，
+再发射一个物体作为子弹。
+但在我的游戏中，魔法的移动速度并不快，
+不能用射线这种瞬间判断是否命中的方式。
+ 解决方案 给发射口加一个刚体组件和一个碰撞体组件，
+且将碰撞体设置为触发器，
+加入如下代码：
+private void OnTriggerStay2D(Collider2D target) { if (target.tag != &amp;#34;Player&amp;#34;) { isfence = true; } } 并在攻击时加入如下判断：
+if (fr == 1f &amp;amp;&amp;amp; isfire == false &amp;amp;&amp;amp; isinterval == false &amp;amp;&amp;amp; isfence == false) { isfire = true; timeCounter = 0; } 经测试，
+当玩家面朝墙的时候，
+按下攻击键不能使用魔法。
+问题解决。
+ 还是瞬移魔法穿墙问题 远距离发射瞬移魔法的时候，
+可能由于角度问题，导致魔法仍然会卡进墙内，使得玩家瞬移入墙。</description>
+    </item>
+    
+  </channel>
+</rss>

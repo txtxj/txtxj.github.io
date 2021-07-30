@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Txtxj ΦωΦ</title>
+    <link>https://txtxj.github.io/posts/</link>
+    <description>Recent content in Posts on Txtxj ΦωΦ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
+    <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
+    <lastBuildDate>Mon, 03 May 2021 01:46:19 +0800</lastBuildDate><atom:link href="https://txtxj.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unity笔记02</title>
+      <link>https://txtxj.github.io/posts/unityself02/</link>
+      <pubDate>Mon, 03 May 2021 01:46:19 +0800</pubDate>
+      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <guid>https://txtxj.github.io/posts/unityself02/</guid>
+      <description>本篇笔记记录了后座力的实现。
+ 后座力（AddForce）与移动（velocity）不兼容 用 AddForce 给玩家添加一个反向的作用力后，
+如果玩家正在进行移动，
+由于移动是直接对刚体的 velocity 进行操作，
+所以玩家受到的反作用力会在一瞬间消失。
+实现的效果就是看到玩家向后闪了一小段距离。
+ 解决方案 考虑角色的移动也用 AddForce 实现，
+当方向键按下的时候判断该方向的速度是否达到最大速度，
+如果没有达到最大速度就给玩家加一个对应的力。
+private float speed = 2f; private void FixedUpdate() { float rh = Input.GetAxisRaw(&amp;#34;Horizontal&amp;#34;); float rv = Input.GetAxisRaw(&amp;#34;Vertical&amp;#34;); if (rh &amp;gt; 0f &amp;amp;&amp;amp; GetComponent&amp;lt;Rigidbody2D&amp;gt;().velocity.x &amp;lt; speed) { GetComponent&amp;lt;Rigidbody2D&amp;gt;().AddForce(new Vector2(speed, 0f) * 10f); } else if (rh &amp;lt; 0f &amp;amp;&amp;amp; GetComponent&amp;lt;Rigidbody2D&amp;gt;().velocity.x &amp;gt; -speed) { GetComponent&amp;lt;Rigidbody2D&amp;gt;().AddForce(new Vector2(-speed, 0f) * 10f); } if (rv &amp;gt; 0f &amp;amp;&amp;amp; GetComponent&amp;lt;Rigidbody2D&amp;gt;().</description>
+    </item>
+    
+    <item>
+      <title>Unity笔记01</title>
+      <link>https://txtxj.github.io/posts/unityself01/</link>
+      <pubDate>Sat, 02 Jan 2021 18:08:34 +0800</pubDate>
+      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <guid>https://txtxj.github.io/posts/unityself01/</guid>
+      <description>本篇笔记记录了瞬移魔法的穿墙问题的解决问题。
+ 瞬移魔法穿墙问题 在 2021.1.1 的版本中，
+如果玩家贴墙向墙内发射瞬移魔法，
+由于发射口与玩家人物中心之间有一定的距离，
+所以瞬移魔法发射的一瞬间，就已经位于墙内，
+接着魔法立刻消失，玩家被传送至墙内。
+网上查找解决方案，
+关于防止子弹穿墙问题的解决方案大多是
+发射射线，
+然后在射线命中碰撞体时做出命中效果，
+再发射一个物体作为子弹。
+但在我的游戏中，魔法的移动速度并不快，
+不能用射线这种瞬间判断是否命中的方式。
+ 解决方案 给发射口加一个刚体组件和一个碰撞体组件，
+且将碰撞体设置为触发器，
+加入如下代码：
+private void OnTriggerStay2D(Collider2D target) { if (target.tag != &amp;#34;Player&amp;#34;) { isfence = true; } } 并在攻击时加入如下判断：
+if (fr == 1f &amp;amp;&amp;amp; isfire == false &amp;amp;&amp;amp; isinterval == false &amp;amp;&amp;amp; isfence == false) { isfire = true; timeCounter = 0; } 经测试，
+当玩家面朝墙的时候，
+按下攻击键不能使用魔法。
+问题解决。
+ 还是瞬移魔法穿墙问题 远距离发射瞬移魔法的时候，
+可能由于角度问题，导致魔法仍然会卡进墙内，使得玩家瞬移入墙。</description>
+    </item>
+    
+    <item>
+      <title>为Sublime搭建C&#43;&#43;环境</title>
+      <link>https://txtxj.github.io/posts/sublimecpp/</link>
+      <pubDate>Tue, 25 Aug 2020 22:03:36 +0800</pubDate>
+      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <guid>https://txtxj.github.io/posts/sublimecpp/</guid>
+      <description>Windows 下为 Sublime Text 3 搭建 C/C++环境 写这篇博客时，我正在为新电脑搭建 C/C++ 环境
+ 步骤：
+  下载 Sublime Text 3 本体
+  安装 MinGW
+  配置系统变量
+  让 Sublime 变得更适合工作
+  安装插件
+  设置编译系统
+     下载 Sublime Text 3 本体 官方下载地址：http://sublimetext.com/3
+选择 Windows 64 bit.
+下载后运行，安装。
+安装时记住安装目录，因为 Sublime Text 3 安装后不会在桌面生成快捷方式。
+如果没有记住也无妨，你可以在开始菜单里找到 Sublime Text 3.
+ 安装 MinGW 如果你的电脑上已经有了 C/C++ 的编译器，那么你不需要重新下载 MinGW.
+在 Dev C++ 和 CodeBlocks 等软件的文件夹内，</description>
+    </item>
+    
+    <item>
+      <title>题解 P5020 【货币系统】</title>
+      <link>https://txtxj.github.io/posts/solutionp5020/</link>
+      <pubDate>Thu, 07 Feb 2019 23:50:45 +0800</pubDate>
+      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <guid>https://txtxj.github.io/posts/solutionp5020/</guid>
+      <description>某凯的疑惑
+看样例：
+$$3, 10, 19, 6 \Leftrightarrow 3, 10$$
+这是因为
+$$19 = 10 + 3 + 3 + 3, 6 = 3 + 3$$
+看起来我们要把 能够被其他钱凑出来的钱 给筛掉，
+这样一来剩下的就是我们必须要保留的面值了。
+那我们可以建一个数组 mon[i] ，
+来存 面值为 i 的钱能不能被其它面值的钱凑出来 ，
+最后再把整个 mon 跑一遍，
+看看原货币系统中剩下几个不能被凑出来的钱，这就是答案了。
+代码如下
+#include &amp;lt;cstdlib&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;algorithm&amp;gt;using namespace std; int mon[25001] = {}; /* mon[i] = 0 表示i面值的钱不能被凑出来 mon[i] = 1 表示i面值的钱可以被凑出来 mon[i] = 2 表示i面值的钱是货币系统中本来就有的钱 */ int coins[101] = {};//存钱的面值 int T, n, ans = 0; int main() { scanf(&amp;#34;%d &amp;#34;, &amp;amp;T); while (T--) { ans=0; memset(mon, 0, sizeof(mon)); memset(coins, 0, sizeof(coins)); scanf(&amp;#34;%d&amp;#34;, &amp;amp;n); for (int i = 1; i &amp;lt;= n; i++) { scanf(&amp;#34;%d&amp;#34;, coins + i); mon[coins[i]]=2; } //把货币系统中的钱标好 	sort(coins + 1, coins + 1 + n); for (int i = 1; i &amp;lt;= coins[n]; i++) { if (mon[i] &amp;gt; 0) //如果mon[i]能被凑出来 	//那么mon[i+coins[j]]也能被凑出来 	{ for (int j = 1; j &amp;lt;= n; j++) { if (i + coins[j] &amp;lt;= coins[n]) //防止数组越界 	{ mon[i + coins[j]] = 1; } else break; } } } for (int i = 1; i &amp;lt;= coins[n]; i++) { if (mon[i] == 2) ans++; } printf(&amp;#34;%d\n&amp;#34;, ans); } } </description>
+    </item>
+    
+  </channel>
+</rss>

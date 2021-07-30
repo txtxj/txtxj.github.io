@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html><head>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   
+    <meta name="author" content="Txtxj">
+  
+
+  
+
+  
+
+  <meta name="generator" content="Hugo 0.86.0" />
+  
+  
+  
+  
+  
+  
+  <title>为Sublime搭建C&#43;&#43;环境 🌟 Txtxj ΦωΦ</title>
+
+  <meta property="og:title" content="为Sublime搭建C&#43;&#43;环境" />
+<meta property="og:description" content="Windows 下为 Sublime Text 3 搭建 C/C&#43;&#43;环境 写这篇博客时，我正在为新电脑搭建 C/C&#43;&#43; 环境
+ 步骤：
+  下载 Sublime Text 3 本体
+  安装 MinGW
+  配置系统变量
+  让 Sublime 变得更适合工作
+  安装插件
+  设置编译系统
+     下载 Sublime Text 3 本体 官方下载地址：http://sublimetext.com/3
+选择 Windows 64 bit.
+下载后运行，安装。
+安装时记住安装目录，因为 Sublime Text 3 安装后不会在桌面生成快捷方式。
+如果没有记住也无妨，你可以在开始菜单里找到 Sublime Text 3.
+ 安装 MinGW 如果你的电脑上已经有了 C/C&#43;&#43; 的编译器，那么你不需要重新下载 MinGW.
+在 Dev C&#43;&#43; 和 CodeBlocks 等软件的文件夹内，" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://txtxj.github.io/posts/sublimecpp/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-08-25T22:03:36+08:00" />
+<meta property="article:modified_time" content="2020-08-25T22:03:36+08:00" />
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="为Sublime搭建C&#43;&#43;环境"/>
+<meta name="twitter:description" content="Windows 下为 Sublime Text 3 搭建 C/C&#43;&#43;环境 写这篇博客时，我正在为新电脑搭建 C/C&#43;&#43; 环境
+ 步骤：
+  下载 Sublime Text 3 本体
+  安装 MinGW
+  配置系统变量
+  让 Sublime 变得更适合工作
+  安装插件
+  设置编译系统
+     下载 Sublime Text 3 本体 官方下载地址：http://sublimetext.com/3
+选择 Windows 64 bit.
+下载后运行，安装。
+安装时记住安装目录，因为 Sublime Text 3 安装后不会在桌面生成快捷方式。
+如果没有记住也无妨，你可以在开始菜单里找到 Sublime Text 3.
+ 安装 MinGW 如果你的电脑上已经有了 C/C&#43;&#43; 的编译器，那么你不需要重新下载 MinGW.
+在 Dev C&#43;&#43; 和 CodeBlocks 等软件的文件夹内，"/>
+
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://txtxj.github.io/assets/css/style.min.7acbb80c25ca5b5806306b4858f3e2d35bfbcad5bd3afea3271ca2ce38d47e65.css" integrity="sha256-esu4DCXKW1gGMGtIWPPi01v7ytW9Ov6jJxyizjjUfmU=">
+
+  <script src="https://txtxj.github.io/assets/js/main.min.02c6f5c1a681332122b4761eba4bf2a5df10c7f5e08ca75bae52bbf648c05b7f.js" integrity="sha256-Asb1waaBMyEitHYeukvypd8Qx/XgjKdbrlK79kjAW38="></script>
+  
+  </head><body><header class="header-container layout-block layout-padding">
+  <div class="header-inner content-padding-large soft-size--large soft-style--box">
+    <div class="header-logo">
+      <a href="https://txtxj.github.io"><h1>Txtxj ΦωΦ</h1></a>
+    </div>
+    <nav class="header-nav">
+      <div class="header-nav--btn">
+        <div class="btn-item"></div>
+        <div class="btn-item"></div>
+        <div class="btn-item"></div>
+      </div>
+      <div class="header-nav--list">
+        <div>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/" title="">🏠 HOME</a>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/tags" title="">🏷️ TAGS</a>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/link" title="">🔗 LINKS</a>
+          
+        </div>
+      </div>
+    </nav>
+  </div>
+</header><main id="content">
+    
+
+    <div class="single-container layout-block">
+      <div class="article-info">
+        <div class="article-header layout-padding">
+          <div class="article-cover card-container content-padding-large soft-size--large soft-style--box img">
+
+  <div class="card-cover">
+    
+      <img src="/images/20200825_0.jpg" alt="/images/20200825_0.jpg" />
+    
+  </div>
+
+  <div class="card-text">
+    <h1 class="card-text--title">为Sublime搭建C&#43;&#43;环境</h1>
+    
+      <p class="card-text--row">2020-08-25 22:03</p>
+      
+      
+      
+
+      
+      
+        <ul class="card-text--tag">
+          
+            <li><a href="https://txtxj.github.io/tags/%E6%95%99%E7%A8%8B/">教程</a></li></ul>
+      
+    
+  </div>
+
+</div>
+        </div>
+
+        <div class="article-content">
+          <div class="markdown-body content-padding-large soft-size--large soft-style--box">
+            <h1 id="windows-下为-sublime-text-3-搭建-cc环境">Windows 下为 Sublime Text 3 搭建 C/C++环境</h1>
+<p>写这篇博客时，我正在为新电脑搭建 C/C++ 环境</p>
+<hr>
+<p>步骤：</p>
+<ol>
+<li>
+<p>下载 Sublime Text 3 本体</p>
+</li>
+<li>
+<p>安装 MinGW</p>
+</li>
+<li>
+<p>配置系统变量</p>
+</li>
+<li>
+<p>让 Sublime 变得更适合工作</p>
+<ul>
+<li>
+<p>安装插件</p>
+</li>
+<li>
+<p>设置编译系统</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="下载-sublime-text-3-本体">下载 Sublime Text 3 本体</h2>
+<p>官方下载地址：http://sublimetext.com/3</p>
+<p>选择 Windows 64 bit.</p>
+<p>下载后运行，安装。</p>
+<p>安装时记住安装目录，因为 Sublime Text 3 安装后不会在桌面生成快捷方式。</p>
+<p>如果没有记住也无妨，你可以在开始菜单里找到 Sublime Text 3.</p>
+<hr>
+<h2 id="安装-mingw">安装 MinGW</h2>
+<p>如果你的电脑上已经有了 C/C++ 的编译器，那么你不需要重新下载 MinGW.</p>
+<p>在 Dev C++ 和 CodeBlocks 等软件的文件夹内，</p>
+<p>都可以找到一个名为 MinGW 的文件夹。</p>
+<p>这个文件夹就是我们需要的东西。</p>
+<p>如果你的电脑上没有 MinGW，那么在下面的地址下载到最新版：</p>
+<p>下载地址：https://osdn.net/projects/mingw/releases/</p>
+<p>下载按钮在左下角。</p>
+<p>
+  <p><img src="/images/20200825_1.jpg" alt="" loading="lazy" /></p>
+</p>
+<p>下载好之后一路确定，</p>
+<p>在之后的这个页面里，把这几个全打上勾</p>
+<p>
+  <p><img src="/images/20200825_2.jpg" alt="" loading="lazy" /></p>
+</p>
+<p>然后 Installation -&gt; Apply Changes -&gt; Apply</p>
+<p>完成之后 Win+R -&gt; cmd -&gt; g++ -v</p>
+<p>如果出现类似这样的版本信息，就证明安装成功了。</p>
+<p>
+  <p><img src="/images/20200825_3.jpg" alt="" loading="lazy" /></p>
+</p>
+<hr>
+<h2 id="配置系统变量">配置系统变量</h2>
+<p>右键 此电脑 -&gt; 属性 -&gt; 高级系统设置 -&gt; 环境变量。</p>
+<p>在下面一栏，也就是系统变量里，找到 Path，</p>
+<p>在值里加入 MinGW 目录下，bin 文件夹的地址</p>
+<p>例如，我把 MinGW 安装到了 C 盘根目录下，那么我需要加入：</p>
+<pre><code>C:\MinGW\bin;
+</code></pre><p>如果系统是 Win7 还需要注意上一个值后面有没有分号，</p>
+<p>如果前面没有分号，你需要先加入分号，再加入这个内容。</p>
+<hr>
+<h2 id="让-sublime-变得更适合工作">让 Sublime 变得更适合工作</h2>
+<p>打开 Sublime Text 3，按 Ctrl+Shift+P</p>
+<p>在出现的控制台里输入 Package Control，安装 Package Control.</p>
+<p>安装过程中是看不到进度条的，不要以为你电脑卡了。</p>
+<p>安装成功后会有提示。</p>
+<p>再按 Ctrl+Shift+P 呼出控制台，输入 Package Control，</p>
+<p>找到 Package Control: Install Package</p>
+<p>
+  <p><img src="/images/20200825_4.jpg" alt="" loading="lazy" /></p>
+</p>
+<p>Enter之后会有几秒的寂寞。</p>
+<p>输入 Chinese，安装 ChineseLocalizations.</p>
+<p>过几秒安装完成就会变成中文界面。</p>
+<p>还有很多对工作有用的插件都可以在这里找到。</p>
+<p>之后是建立 C/C++ 的编译系统。</p>
+<p>工具 -&gt; 编译系统 -&gt; 新建编译系统&hellip;</p>
+<p>把以下内容原封不动地放在新文件里，替换掉原内容。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">{
+    <span style="color:#f92672">&#34;encoding&#34;: </span><span style="color:#e6db74">&#34;utf-8&#34;</span>,
+    <span style="color:#f92672">&#34;working_dir&#34;: </span><span style="color:#e6db74">&#34;$file_path&#34;</span>,
+    <span style="color:#f92672">&#34;shell_cmd&#34;: </span><span style="color:#e6db74">&#34;g++ -Wall -std=c++11 \&#34;$file_name\&#34; -o \&#34;$file_base_name\&#34;&#34;</span>,
+    <span style="color:#f92672">&#34;file_regex&#34;: </span><span style="color:#e6db74">&#34;^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$&#34;</span>,
+    <span style="color:#f92672">&#34;selector&#34;: </span><span style="color:#e6db74">&#34;source.c++&#34;</span>,
+    <span style="color:#f92672">&#34;shell&#34;: </span><span style="color:#66d9ef">true</span>,
+ 
+    <span style="color:#e6db74">&#34;variants&#34;</span>:
+    [
+        {  
+        <span style="color:#f92672">&#34;name&#34;: </span><span style="color:#e6db74">&#34;Run in sublime&#34;</span>,
+            <span style="color:#f92672">&#34;shell_cmd&#34;: </span><span style="color:#e6db74">&#34;g++ -Wall -std=c++11 \&#34;$file_name\&#34; -o \&#34;$file_base_name\&#34; &amp;&amp; cmd /c \&#34;${file_path}/${file_base_name}\&#34;&#34;</span>
+        },
+        {  
+        <span style="color:#f92672">&#34;name&#34;: </span><span style="color:#e6db74">&#34;CMD Run&#34;</span>,
+            <span style="color:#f92672">&#34;shell_cmd&#34;: </span><span style="color:#e6db74">&#34;g++ -Wall -std=c++11 \&#34;$file\&#34; -o \&#34;$file_base_name\&#34; &amp;&amp; start cmd /c \&#34;\&#34;${file_path}/${file_base_name}\&#34; &amp; pause\&#34;&#34;</span>
+        }
+    ]
+}
+</code></pre></div><p>Ctrl+S保存为 c++.sublime-build</p>
+<p>写一个代码，Ctrl+Shift+B 选择刚才的编译系统 CMD Run</p>
+<p>
+  <p><img src="/images/20200825_5.jpg" alt="" loading="lazy" /></p>
+</p>
+<p>配置/测试完成</p>
+<p>以后需要编译+运行代码的时候，只需要按 Ctrl+B 即可。</p>
+
+          </div>
+        </div>
+                 
+      
+  
+  
+  
+  
+
+  
+
+  <div class="article-paging">
+    
+      <section class="post-paging--item card-container content-padding-primary soft-size--primary soft-style--box">
+  <div class="card-cover" background-image-lazy data-img="/images/20210102_0.jpg"></div>
+  <div class="card-text">
+    <a href="/posts/unityself01/"><h4 class="card-text--title">Unity笔记01</h4></a>
+    <p class="card-text--row">2021-01-02 18:08</p>
+  </div>
+</section>
+    
+    
+      <section class="post-paging--item card-container content-padding-primary soft-size--primary soft-style--box">
+  <div class="card-cover" background-image-lazy data-img="/images/20190207_0.jpg"></div>
+  <div class="card-text">
+    <a href="/posts/solutionp5020/"><h4 class="card-text--title">题解 P5020 【货币系统】</h4></a>
+    <p class="card-text--row">2019-02-07 23:50</p>
+  </div>
+</section>
+    
+  </div>
+</div>
+  <aside class="widget-info">
+    
+<section class="aside-widget widget-author content-padding-large soft-size--large soft-style--box">
+  <div class="widget-body">
+    <div class="author-box avatar">
+      
+      <img class="author-avatar soft-size--round soft-style--box" src="/images/avatar.jpg" alt="Txtxj">
+      
+      <h2 class="author-name text-ellipsis">Txtxj</h2>
+      
+      <p class="author-desc text-ellipsis">ΦωΦ</p>
+      
+    </div>
+  </div>
+</section>
+
+
+    
+
+<section class="aside-widget widget-toc content-padding-large soft-size--large soft-style--box">
+  <h2 class="widget-header">
+    <div class="title">
+      <span>Toc</span>
+    </div>
+  </h2>
+  <div class="widget-body">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#下载-sublime-text-3-本体">下载 Sublime Text 3 本体</a></li>
+    <li><a href="#安装-mingw">安装 MinGW</a></li>
+    <li><a href="#配置系统变量">配置系统变量</a></li>
+    <li><a href="#让-sublime-变得更适合工作">让 Sublime 变得更适合工作</a></li>
+  </ul>
+</nav>
+  </div>
+</section>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+<section class="aside-widget widget-articles content-padding-large soft-size--large soft-style--box">
+  <h2 class="widget-header">
+    <div class="title">
+      <span>Related Posts</span>
+    </div>
+  </h2>
+  <div class="widget-body">
+    <ul class="post-list">
+      
+      
+        <li class="post-item"><a href="/posts/unityself02/">Unity笔记02</a></li>
+      
+        <li class="post-item"><a href="/posts/unityself01/">Unity笔记01</a></li>
+      
+        <li class="post-item"><a href="/posts/solutionp5020/">题解 P5020 【货币系统】</a></li>
+      
+    </ul>
+  </div>
+</section>
+
+
+    
+
+
+
+
+
+    
+
+
+
+
+<section class="aside-widget widget-tags content-padding-large soft-size--large soft-style--box">
+  <h2 class="widget-header">
+    <div class="title">
+      <span>Tags</span>
+    </div>
+  </h2>
+  <div class="widget-body">
+    <div class="tags-list">
+      
+        <a href="https://txtxj.github.io/tags/unity/" data-count="2" class="soft-size--small soft-style--hover soft-style--active">Unity</a>
+      
+        <a href="https://txtxj.github.io/tags/%E7%AC%94%E8%AE%B0/" data-count="2" class="soft-size--small soft-style--hover soft-style--active">笔记</a>
+      
+        <a href="https://txtxj.github.io/tags/%E6%95%99%E7%A8%8B/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">教程</a>
+      
+        <a href="https://txtxj.github.io/tags/%E9%A2%98%E8%A7%A3/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">题解</a>
+      
+    </div>
+  </div>
+
+  
+</section>
+
+  </aside>
+</div>
+  </main><footer class="footer-container layout-block">
+  
+  <div class="social-icons">
+    
+      <a class="soft-size--primary soft-style--box" href="https://github.com/txtxj" target="_blank" rel="noopener noreferrer">
+          
+        <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+        </svg>
+        
+
+        
+
+        
+
+        
+
+        
+      </a>
+    
+  </div>
+  
+
+  <div class="colour-bar"></div>
+  
+  
+
+  
+
+  <p>
+    Powered by
+    <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a>
+    Theme - 
+    <a href="https://github.com/miiiku/hugo-theme-kagome" target="_blank" rel="noopener noreferrer author">kagome</a>
+  </p>
+
+  <p>
+    <a href="javascript:;" id="theme-light">🌞 light</a>
+    <a href="javascript:;" id="theme-dark">🌛 dark</a>
+    <a href="javascript:;" id="theme-auto">🤖️ auto</a>
+  </p>
+</footer>
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>教程 on Txtxj ΦωΦ</title>
+    <link>https://txtxj.github.io/tags/%E6%95%99%E7%A8%8B/</link>
+    <description>Recent content in 教程 on Txtxj ΦωΦ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
+    <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
+    <lastBuildDate>Tue, 25 Aug 2020 22:03:36 +0800</lastBuildDate><atom:link href="https://txtxj.github.io/tags/%E6%95%99%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>为Sublime搭建C&#43;&#43;环境</title>
+      <link>https://txtxj.github.io/posts/sublimecpp/</link>
+      <pubDate>Tue, 25 Aug 2020 22:03:36 +0800</pubDate>
+      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <guid>https://txtxj.github.io/posts/sublimecpp/</guid>
+      <description>Windows 下为 Sublime Text 3 搭建 C/C++环境 写这篇博客时，我正在为新电脑搭建 C/C++ 环境
+ 步骤：
+  下载 Sublime Text 3 本体
+  安装 MinGW
+  配置系统变量
+  让 Sublime 变得更适合工作
+  安装插件
+  设置编译系统
+     下载 Sublime Text 3 本体 官方下载地址：http://sublimetext.com/3
+选择 Windows 64 bit.
+下载后运行，安装。
+安装时记住安装目录，因为 Sublime Text 3 安装后不会在桌面生成快捷方式。
+如果没有记住也无妨，你可以在开始菜单里找到 Sublime Text 3.
+ 安装 MinGW 如果你的电脑上已经有了 C/C++ 的编译器，那么你不需要重新下载 MinGW.
+在 Dev C++ 和 CodeBlocks 等软件的文件夹内，</description>
+    </item>
+    
+  </channel>
+</rss>
