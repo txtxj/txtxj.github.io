@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/posts/</loc>
-    <lastmod>2021-07-19T03:43:14+08:00</lastmod>
-  </url><url>
     <loc>/</loc>
     <lastmod>2021-07-19T03:43:14+08:00</lastmod>
   </url><url>
-    <loc>/posts/fireemblemthreehousescharacterfigure/</loc>
+    <loc>/games/fireemblemthreehousescharacterfigure/</loc>
     <lastmod>2021-07-19T03:43:14+08:00</lastmod>
   </url><url>
     <loc>/tags/</loc>
+    <lastmod>2021-07-19T03:43:14+08:00</lastmod>
+  </url><url>
+    <loc>/games/</loc>
     <lastmod>2021-07-19T03:43:14+08:00</lastmod>
   </url><url>
     <loc>/tags/%E7%81%AB%E7%84%B0%E7%BA%B9%E7%AB%A0/</loc>
@@ -21,6 +21,9 @@
     <lastmod>2021-05-03T01:46:19+08:00</lastmod>
   </url><url>
     <loc>/posts/unityself02/</loc>
+    <lastmod>2021-05-03T01:46:19+08:00</lastmod>
+  </url><url>
+    <loc>/posts/</loc>
     <lastmod>2021-05-03T01:46:19+08:00</lastmod>
   </url><url>
     <loc>/tags/%E7%AC%94%E8%AE%B0/</loc>
@@ -42,5 +45,7 @@
     <lastmod>2019-02-07T23:50:45+08:00</lastmod>
   </url><url>
     <loc>/categories/</loc>
+  </url><url>
+    <loc>/link/</loc>
   </url>
 </urlset>
