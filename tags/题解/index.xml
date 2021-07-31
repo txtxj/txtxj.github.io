@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>题解 on Txtxj ΦωΦ</title>
-    <link>https://txtxj.github.io/tags/%E9%A2%98%E8%A7%A3/</link>
+    <link>/tags/%E9%A2%98%E8%A7%A3/</link>
     <description>Recent content in 题解 on Txtxj ΦωΦ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
     <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
-    <lastBuildDate>Thu, 07 Feb 2019 23:50:45 +0800</lastBuildDate><atom:link href="https://txtxj.github.io/tags/%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 07 Feb 2019 23:50:45 +0800</lastBuildDate><atom:link href="/tags/%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>题解 P5020 【货币系统】</title>
-      <link>https://txtxj.github.io/posts/solutionp5020/</link>
+      <link>/posts/solutionp5020/</link>
       <pubDate>Thu, 07 Feb 2019 23:50:45 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
-      <guid>https://txtxj.github.io/posts/solutionp5020/</guid>
+      <guid>/posts/solutionp5020/</guid>
       <description>某凯的疑惑
 看样例：
 $$3, 10, 19, 6 \Leftrightarrow 3, 10$$

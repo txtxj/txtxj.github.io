@@ -2,41 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://txtxj.github.io/posts/</loc>
+    <loc>/posts/</loc>
     <lastmod>2021-05-03T01:46:19+08:00</lastmod>
   </url><url>
-    <loc>https://txtxj.github.io/</loc>
+    <loc>/</loc>
     <lastmod>2021-05-03T01:46:19+08:00</lastmod>
   </url><url>
-    <loc>https://txtxj.github.io/tags/unity/</loc>
+    <loc>/tags/unity/</loc>
     <lastmod>2021-05-03T01:46:19+08:00</lastmod>
   </url><url>
-    <loc>https://txtxj.github.io/posts/unityself02/</loc>
+    <loc>/posts/unityself02/</loc>
     <lastmod>2021-05-03T01:46:19+08:00</lastmod>
   </url><url>
-    <loc>https://txtxj.github.io/tags/</loc>
+    <loc>/tags/</loc>
     <lastmod>2021-05-03T01:46:19+08:00</lastmod>
   </url><url>
-    <loc>https://txtxj.github.io/tags/%E7%AC%94%E8%AE%B0/</loc>
+    <loc>/tags/%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2021-05-03T01:46:19+08:00</lastmod>
   </url><url>
-    <loc>https://txtxj.github.io/posts/unityself01/</loc>
+    <loc>/posts/unityself01/</loc>
     <lastmod>2021-01-02T18:08:34+08:00</lastmod>
   </url><url>
-    <loc>https://txtxj.github.io/posts/sublimecpp/</loc>
+    <loc>/posts/sublimecpp/</loc>
     <lastmod>2020-08-25T22:03:36+08:00</lastmod>
   </url><url>
-    <loc>https://txtxj.github.io/tags/%E6%95%99%E7%A8%8B/</loc>
+    <loc>/tags/%E6%95%99%E7%A8%8B/</loc>
     <lastmod>2020-08-25T22:03:36+08:00</lastmod>
   </url><url>
-    <loc>https://txtxj.github.io/tags/%E9%A2%98%E8%A7%A3/</loc>
+    <loc>/tags/%E9%A2%98%E8%A7%A3/</loc>
     <lastmod>2019-02-07T23:50:45+08:00</lastmod>
   </url><url>
-    <loc>https://txtxj.github.io/posts/solutionp5020/</loc>
+    <loc>/posts/solutionp5020/</loc>
     <lastmod>2019-02-07T23:50:45+08:00</lastmod>
   </url><url>
-    <loc>https://txtxj.github.io/categories/</loc>
+    <loc>/categories/</loc>
   </url><url>
-    <loc>https://txtxj.github.io/link/</loc>
+    <loc>/link/</loc>
   </url>
 </urlset>
