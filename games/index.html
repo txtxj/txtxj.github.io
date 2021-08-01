@@ -25,8 +25,9 @@ jQuery(document).ready(function($) {
         });
     });
 });
-var OriginTitile = document.title; 
+var OriginTitile = document.title;
 document.addEventListener("visibilitychange", function () { 
+    if (document.title != "txtxj呼呼zzz") OriginTitile = document.title;
     document.title = document.hidden ? "txtxj呼呼zzz" : OriginTitile;
 });
 </script>
@@ -88,15 +89,15 @@ document.addEventListener("visibilitychange", function () {
       <div class="header-nav--list">
         <div>
           
-          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/" title="">🏠 HOME</a>
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/" title="">🏠 主页</a>
           
-          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/posts" title="">🗂️ POSTS</a>
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/posts" title="">🗂️ 博客</a>
           
-          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/games" title="">🎮 GAMES</a>
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/games" title="">🎮 电动</a>
           
-          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/tags" title="">🏷️ TAGS</a>
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/tags" title="">🏷️ 标签</a>
           
-          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/link" title="">🔗 LINKS</a>
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/link" title="">🔗 友链</a>
           
         </div>
       </div>
@@ -125,7 +126,7 @@ document.addEventListener("visibilitychange", function () {
         
 
          
-          <p class="card-text--row">1 totals</p>
+          <p class="card-text--row">总计1条</p>
         
         
         
@@ -201,9 +202,9 @@ document.addEventListener("visibilitychange", function () {
   </p>
 
   <p>
-    <a href="javascript:;" id="theme-light">🌞 light</a>
-    <a href="javascript:;" id="theme-dark">🌛 dark</a>
-    <a href="javascript:;" id="theme-auto">🤖️ auto</a>
+    <a href="javascript:;" id="theme-light">🌞 浅色</a>
+    <a href="javascript:;" id="theme-dark">🌛 深色</a>
+    <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
   </p>
 </footer>
 <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hibiki.model.json"},"display":{"position":"left","width":80,"height":184},"mobile":{"show":true},"log":false});</script>

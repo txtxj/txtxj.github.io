@@ -27,6 +27,7 @@ jQuery(document).ready(function($) {
 });
 var OriginTitile = document.title; 
 document.addEventListener("visibilitychange", function () { 
+    if (document.title != "txtxj呼呼zzz") OriginTitile = document.title;
     document.title = document.hidden ? "txtxj呼呼zzz" : OriginTitile;
 });
 </script>
@@ -131,15 +132,15 @@ if (fr == 1f &amp;&amp; isfire == false &amp;&amp; isinterval == false &amp;&amp
       <div class="header-nav--list">
         <div>
           
-          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/" title="">🏠 HOME</a>
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/" title="">🏠 主页</a>
           
-          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/posts" title="">🗂️ POSTS</a>
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/posts" title="">🗂️ 博客</a>
           
-          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/games" title="">🎮 GAMES</a>
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/games" title="">🎮 电动</a>
           
-          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/tags" title="">🏷️ TAGS</a>
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/tags" title="">🏷️ 标签</a>
           
-          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/link" title="">🔗 LINKS</a>
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/link" title="">🔗 友链</a>
           
         </div>
       </div>
@@ -301,7 +302,7 @@ if (fr == 1f &amp;&amp; isfire == false &amp;&amp; isinterval == false &amp;&amp
 <section class="aside-widget widget-toc content-padding-large soft-size--large soft-style--box">
   <h2 class="widget-header">
     <div class="title">
-      <span>Toc</span>
+      <span>目录</span>
     </div>
   </h2>
   <div class="widget-body">
@@ -329,7 +330,7 @@ if (fr == 1f &amp;&amp; isfire == false &amp;&amp; isinterval == false &amp;&amp
 <section class="aside-widget widget-articles content-padding-large soft-size--large soft-style--box">
   <h2 class="widget-header">
     <div class="title">
-      <span>Related Posts</span>
+      <span>相关文章</span>
     </div>
   </h2>
   <div class="widget-body">
@@ -357,7 +358,7 @@ if (fr == 1f &amp;&amp; isfire == false &amp;&amp; isinterval == false &amp;&amp
 <section class="aside-widget widget-tags content-padding-large soft-size--large soft-style--box">
   <h2 class="widget-header">
     <div class="title">
-      <span>Tags</span>
+      <span>聚合标签</span>
     </div>
   </h2>
   <div class="widget-body">
@@ -418,9 +419,9 @@ if (fr == 1f &amp;&amp; isfire == false &amp;&amp; isinterval == false &amp;&amp
   </p>
 
   <p>
-    <a href="javascript:;" id="theme-light">🌞 light</a>
-    <a href="javascript:;" id="theme-dark">🌛 dark</a>
-    <a href="javascript:;" id="theme-auto">🤖️ auto</a>
+    <a href="javascript:;" id="theme-light">🌞 浅色</a>
+    <a href="javascript:;" id="theme-dark">🌛 深色</a>
+    <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
   </p>
 </footer>
 
