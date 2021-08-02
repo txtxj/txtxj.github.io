@@ -8,7 +8,16 @@
     <language>zh-CN</language>
     <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
     <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
-    <lastBuildDate>Mon, 19 Jul 2021 03:43:14 +0800</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 02 Aug 2021 06:37:00 +0800</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>题解</title>
+      <link>/tags/%E9%A2%98%E8%A7%A3/</link>
+      <pubDate>Mon, 02 Aug 2021 06:37:00 +0800</pubDate>
+      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <guid>/tags/%E9%A2%98%E8%A7%A3/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>火焰纹章</title>
       <link>/tags/%E7%81%AB%E7%84%B0%E7%BA%B9%E7%AB%A0/</link>
@@ -42,15 +51,6 @@
       <pubDate>Tue, 25 Aug 2020 22:03:36 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
       <guid>/tags/%E6%95%99%E7%A8%8B/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>题解</title>
-      <link>/tags/%E9%A2%98%E8%A7%A3/</link>
-      <pubDate>Thu, 07 Feb 2019 23:50:45 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
-      <guid>/tags/%E9%A2%98%E8%A7%A3/</guid>
       <description></description>
     </item>
     

@@ -31,7 +31,41 @@ document.addEventListener("visibilitychange", function () {
     document.title = document.hidden ? "txtxj呼呼zzz" : OriginTitile;
 });
 </script>
-<html><head>
+<html><script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style><head>
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -130,6 +164,10 @@ document.addEventListener("visibilitychange", function () {
     <div class="terms-inner">
       
         <div class="term-item layout-padding">
+          <a href="/tags/%E9%A2%98%E8%A7%A3/" class="content-padding-primary soft-size--primary soft-style--box" data-count="2">题解</a>
+        </div>
+      
+        <div class="term-item layout-padding">
           <a href="/tags/%E7%81%AB%E7%84%B0%E7%BA%B9%E7%AB%A0/" class="content-padding-primary soft-size--primary soft-style--box" data-count="1">火焰纹章</a>
         </div>
       
@@ -143,10 +181,6 @@ document.addEventListener("visibilitychange", function () {
       
         <div class="term-item layout-padding">
           <a href="/tags/%E6%95%99%E7%A8%8B/" class="content-padding-primary soft-size--primary soft-style--box" data-count="1">教程</a>
-        </div>
-      
-        <div class="term-item layout-padding">
-          <a href="/tags/%E9%A2%98%E8%A7%A3/" class="content-padding-primary soft-size--primary soft-style--box" data-count="1">题解</a>
         </div>
       
     </div>

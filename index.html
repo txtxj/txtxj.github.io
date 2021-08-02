@@ -31,7 +31,41 @@ document.addEventListener("visibilitychange", function () {
     document.title = document.hidden ? "txtxj呼呼zzz" : OriginTitile;
 });
 </script>
-<html><head>
+<html><script type="text/javascript"
+        async
+        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style><head>
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -105,6 +139,27 @@ document.addEventListener("visibilitychange", function () {
   
   
   <div class="article-list layout-block">
+    
+      <div class="article-item large">
+  <section class="article-card card-container content-padding-large soft-size--large soft-style--box">
+    <div class="card-cover" background-image-lazy data-img="https://i.loli.net/2021/08/02/9RNkqUTJLrvxShM.jpg"></div>
+    <div class="card-text">
+      <a href="/posts/solutioncf1452d/"><h4 class="card-text--title">【题解】CF1452D Radio Towers</h4></a>
+
+      <p class="card-text--row">August 2, 2021</p>
+      
+      
+      
+
+      
+      
+        <ul class="card-text--tag">
+          
+            <li><a href="/tags/%E9%A2%98%E8%A7%A3/">题解</a></li></ul>
+      
+    </div>
+  </section>
+</div>
     
       <div class="article-item ">
   <section class="article-card card-container content-padding-large soft-size--large soft-style--box">

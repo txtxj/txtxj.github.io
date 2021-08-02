@@ -8,7 +8,36 @@
     <language>zh-CN</language>
     <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
     <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
-    <lastBuildDate>Mon, 03 May 2021 01:46:19 +0800</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 02 Aug 2021 06:37:00 +0800</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【题解】CF1452D Radio Towers</title>
+      <link>/posts/solutioncf1452d/</link>
+      <pubDate>Mon, 02 Aug 2021 06:37:00 +0800</pubDate>
+      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <guid>/posts/solutioncf1452d/</guid>
+      <description>cyz好兄弟上了大学一直在刷题打比赛，
+某日忘了概率怎么算了，半夜来问我这个题。
+题面：
+https://codeforces.com/contest/1452/problem/D
+显然总方案数是 $2 ^ n$
+问题是求出建造合法的方案数。
+不难看出，每座塔能覆盖的区间总长度一定是一个奇数，
+要求所有塔的覆盖范围不重叠，
+问题就化为了求正整数 $n$ 能拆分成若干个允许相同的奇数的和的方案个数。
+因此考虑 dp .
+对于任意的正整数 $n$ ，
+我们可以枚举所有不大于 $n$ 的奇数 $i$ ，将其作为拆分序列的首个奇数，
+这样，除去 $$i 后，我们只需要求解剩余部分（即 $n - i$ ）的拆分方案数即可。
+上述过程的状态转移方程为
+奇数：
+$$dp[n] = dp[n - 1] + dp[n - 3] + &amp;hellip; + dp[0]$$
+偶数：
+$$dp[n] = dp[n - 1] + dp[n - 3] + &amp;hellip; + dp[1]$$
+考虑到 $dp[1] = dp[0] = 1$
+可以得到
+$$dp[2n] = dp[1] + dp[3] + dp[5] + &amp;hellip; + dp[2n - 1]$$</description>
+    </item>
+    
     <item>
       <title>Unity笔记02</title>
       <link>/posts/unityself02/</link>
