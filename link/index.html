@@ -31,41 +31,26 @@ document.addEventListener("visibilitychange", function () {
     document.title = document.hidden ? "txtxj呼呼zzz" : OriginTitile;
 });
 </script>
-<html><script type="text/javascript"
-        async
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[\[','\]\]']],
-    processEscapes: true,
-    processEnvironments: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    TeX: { equationNumbers: { autoNumber: "AMS" },
-         extensions: ["AMSmath.js", "AMSsymbols.js"] }
-  }
-});
-
-MathJax.Hub.Queue(function() {
-    
-    
-    
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i = 0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
+<html><script>
+  MathJax = {
+    tex: {
+      inlineMath: [["$", "$"]],
+    },
+    displayMath: [
+      ["$$", "$$"],
+      ["\[\[", "\]\]"],
+    ],
+    svg: {
+      fontCache: "global",
+    },
+  };
 </script>
-
-<style>
-code.has-jax {
-    font: inherit;
-    font-size: 100%;
-    background: inherit;
-    border: inherit;
-    color: #515151;
-}
-</style><head>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+></script><head>
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -190,14 +175,14 @@ code.has-jax {
   <div class="links-wrap">
     
     <div class="link-item layout-padding">
-      <a href="http://zmdoj.top/" target="_blank" rel="noopener" class="content-padding-primary soft-size--primary soft-style--box">
+      <a href="https://zmdoj.top/" target="_blank" rel="noopener" class="content-padding-primary soft-size--primary soft-style--box">
         
-        <img src="https://cdn.jsdelivr.net/gh/libreoj/assets/logo-website.min.svg" alt="驻马店高中OJ" class="soft-size--round soft-style--box">
+        <img src="https://q2.qlogo.cn/g?b=qq&amp;nk=656441789&amp;s=100" alt="伏犬" class="soft-size--round soft-style--box">
         
         <div>
-          <h4 class="text-ellipsis">驻马店高中OJ</h4>
+          <h4 class="text-ellipsis">伏犬</h4>
           
-          <p class="text-ellipsis">永远不挂</p>
+          <p class="text-ellipsis">原ZMDOJ</p>
           
         </div>
       </a>
@@ -206,12 +191,40 @@ code.has-jax {
     <div class="link-item layout-padding">
       <a href="https://xkz0777.github.io/" target="_blank" rel="noopener" class="content-padding-primary soft-size--primary soft-style--box">
         
-        <img src="https://xkz0777.github.io/favicon.jpg" alt="xkz" class="soft-size--round soft-style--box">
+        <img src="https://q2.qlogo.cn/g?b=qq&amp;nk=821376043&amp;s=100" alt="xkz" class="soft-size--round soft-style--box">
         
         <div>
           <h4 class="text-ellipsis">xkz</h4>
           
           <p class="text-ellipsis">许老师</p>
+          
+        </div>
+      </a>
+    </div>
+    
+    <div class="link-item layout-padding">
+      <a href="http://home.ustc.edu.cn/~liuly0322/blog/" target="_blank" rel="noopener" class="content-padding-primary soft-size--primary soft-style--box">
+        
+        <img src="https://q2.qlogo.cn/g?b=qq&amp;nk=453026205&amp;s=100" alt="lly" class="soft-size--round soft-style--box">
+        
+        <div>
+          <h4 class="text-ellipsis">lly</h4>
+          
+          <p class="text-ellipsis">lly, 我的超人</p>
+          
+        </div>
+      </a>
+    </div>
+    
+    <div class="link-item layout-padding">
+      <a href="http://sprout.promo/" target="_blank" rel="noopener" class="content-padding-primary soft-size--primary soft-style--box">
+        
+        <img src="https://q2.qlogo.cn/g?b=qq&amp;nk=1025890895&amp;s=100" alt="hrx" class="soft-size--round soft-style--box">
+        
+        <div>
+          <h4 class="text-ellipsis">hrx</h4>
+          
+          <p class="text-ellipsis">院士！院士！</p>
           
         </div>
       </a>
