@@ -8,7 +8,30 @@
     <language>zh-CN</language>
     <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
     <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
-    <lastBuildDate>Mon, 02 Aug 2021 06:37:00 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 06 Sep 2021 12:08:35 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unity笔记03</title>
+      <link>/posts/unityself03/</link>
+      <pubDate>Mon, 06 Sep 2021 12:08:35 +0800</pubDate>
+      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <guid>/posts/unityself03/</guid>
+      <description>本篇记录了物体移动以及摄像机跟随防抖动的实现。
+ 键盘控制物体移动 使用 Input.GetAxis() 或 Input.GetAxisRaw() 获取 axisName 标识的虚拟轴的值。
+以下内容摘自 Unity API.
+ 对于键盘和游戏杆输入设备， GetAxis() 返回值是一个介于 -1 和 1 之间的浮点数。
+该值的含义取决于输入控制的类型，例如，对于游戏杆的水平轴，值为 1 表示游戏杆向右推到底，值为 -1 表示游戏杆向左推到底；值为 0 表示游戏杆处于中性位置。
+如果将轴映射到鼠标，该值会有所不同，并且不会在 -1&amp;hellip;1 的范围内。此时，该值为当前鼠标增量乘以轴灵敏度。通常，正值表示鼠标向右/向下移动，负值表示鼠标向左/向上移动。
+GetAxisRaw() 与前者类似，但未应用平滑过滤。
+对于键盘和游戏杆输入，其返回值将处于 -1&amp;hellip;1 的范围内。
+由于未对输入进行平滑处理，键盘输入将始终为 -1、0 或 1。
+ 这里我使用了 GetAxisRaw() 进行键盘的输入。
+首先创建一个方向变量。
+Vector2 dir = Vector2.zero; 用两个变量记录该帧方向键是否被按下
+float rh = Input.GetAxisRaw(&amp;#34;Horizontal&amp;#34;); float rv = Input.GetAxisRaw(&amp;#34;Vertical&amp;#34;); 接着判断这两个变量的正负，并修改方向变量，注意向量单位化。
+同时可以控制 animator ，修改所控制物体的朝向与移动动画。
+if (rh &amp;lt; 0f) { dir.x = -1; animator.</description>
+    </item>
+    
     <item>
       <title>【题解】CF1452D Radio Towers</title>
       <link>/posts/solutioncf1452d/</link>
