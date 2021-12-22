@@ -8,7 +8,29 @@
     <language>zh-CN</language>
     <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
     <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
-    <lastBuildDate>Mon, 06 Sep 2021 12:08:35 +0800</lastBuildDate><atom:link href="/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 22 Dec 2021 16:01:30 +0800</lastBuildDate><atom:link href="/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GAMES笔记01-线性代数基础</title>
+      <link>/posts/games101note/</link>
+      <pubDate>Wed, 22 Dec 2021 16:01:30 +0800</pubDate>
+      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <guid>/posts/games101note/</guid>
+      <description>2D 线性变换 缩放(Scale) $$ \mathbf{scale}(s_x, s_y) = \begin{bmatrix} s_x &amp;amp; 0 \\
+0 &amp;amp; s_y \\
+\end{bmatrix} $$ $$x&#39; = s_x x$$ $$y&#39; = s_y y$$
+如上图所示，
+$$ \begin{bmatrix} x&#39;	\\
+y&#39; \end{bmatrix} = \begin{bmatrix} 0.5 &amp;amp; 0	\\
+0 &amp;amp; 1	\\
+\end{bmatrix} \begin{bmatrix} x	\\
+y \end{bmatrix} $$
+另外，关于坐标轴的反射，也是一种特殊的缩放。
+如上图所示，
+$$ \begin{bmatrix} x&#39;	\\
+y&#39; \end{bmatrix} = \begin{bmatrix} -1 &amp;amp; 0	\\
+0 &amp;amp; 1	\\</description>
+    </item>
+    
     <item>
       <title>Unity笔记03</title>
       <link>/posts/unityself03/</link>
