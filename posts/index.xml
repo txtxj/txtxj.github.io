@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>学习 on Txtxj ΦωΦ</title>
-    <link>https://txtxj.top/posts/</link>
+    <link>/posts/</link>
     <description>Recent content in 学习 on Txtxj ΦωΦ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
     <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
-    <lastBuildDate>Wed, 22 Dec 2021 16:01:30 +0800</lastBuildDate><atom:link href="https://txtxj.top/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 22 Dec 2021 16:01:30 +0800</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GAMES笔记01-线性代数基础</title>
-      <link>https://txtxj.top/posts/gamesnote01/</link>
+      <link>/posts/gamesnote01/</link>
       <pubDate>Wed, 22 Dec 2021 16:01:30 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
-      <guid>https://txtxj.top/posts/gamesnote01/</guid>
+      <guid>/posts/gamesnote01/</guid>
       <description>2D 线性变换 缩放(Scale) $$ \mathbf{scale}(s_x, s_y) = \begin{bmatrix} s_x &amp;amp; 0 \\
 0 &amp;amp; s_y \\
 \end{bmatrix} $$ $$x&#39; = s_x x$$ $$y&#39; = s_y y$$
@@ -33,10 +33,10 @@ y&#39; \end{bmatrix} = \begin{bmatrix} -1 &amp;amp; 0	\\
     
     <item>
       <title>Unity笔记03</title>
-      <link>https://txtxj.top/posts/unityself03/</link>
+      <link>/posts/unityself03/</link>
       <pubDate>Mon, 06 Sep 2021 12:08:35 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
-      <guid>https://txtxj.top/posts/unityself03/</guid>
+      <guid>/posts/unityself03/</guid>
       <description>本篇记录了物体移动以及摄像机跟随防抖动的实现。
  键盘控制物体移动 使用 Input.GetAxis() 或 Input.GetAxisRaw() 获取 axisName 标识的虚拟轴的值。
 以下内容摘自 Unity API.
@@ -56,10 +56,10 @@ if (rh &amp;lt; 0f) { dir.x = -1; animator.</description>
     
     <item>
       <title>【题解】CF1452D Radio Towers</title>
-      <link>https://txtxj.top/posts/solutioncf1452d/</link>
+      <link>/posts/solutioncf1452d/</link>
       <pubDate>Mon, 02 Aug 2021 06:37:00 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
-      <guid>https://txtxj.top/posts/solutioncf1452d/</guid>
+      <guid>/posts/solutioncf1452d/</guid>
       <description>cyz好兄弟上了大学一直在刷题打比赛，
 某日忘了概率怎么算了，半夜来问我这个题。
 题面：
@@ -85,10 +85,10 @@ $$dp[2n] = dp[1] + dp[3] + dp[5] + &amp;hellip; + dp[2n - 1]$$</description>
     
     <item>
       <title>Unity笔记02</title>
-      <link>https://txtxj.top/posts/unityself02/</link>
+      <link>/posts/unityself02/</link>
       <pubDate>Mon, 03 May 2021 01:46:19 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
-      <guid>https://txtxj.top/posts/unityself02/</guid>
+      <guid>/posts/unityself02/</guid>
       <description>本篇笔记记录了后座力的实现。
  后座力（AddForce）与移动（velocity）不兼容 用 AddForce 给玩家添加一个反向的作用力后，
 如果玩家正在进行移动，
@@ -103,10 +103,10 @@ private float speed = 2f; private void FixedUpdate() { float rh = Input.GetAxisR
     
     <item>
       <title>Unity笔记01</title>
-      <link>https://txtxj.top/posts/unityself01/</link>
+      <link>/posts/unityself01/</link>
       <pubDate>Sat, 02 Jan 2021 18:08:34 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
-      <guid>https://txtxj.top/posts/unityself01/</guid>
+      <guid>/posts/unityself01/</guid>
       <description>本篇笔记记录了瞬移魔法的穿墙问题的解决问题。
  瞬移魔法穿墙问题 在 2021.1.1 的版本中，
 如果玩家贴墙向墙内发射瞬移魔法，
@@ -134,10 +134,10 @@ if (fr == 1f &amp;amp;&amp;amp; isfire == false &amp;amp;&amp;amp; isinterval ==
     
     <item>
       <title>为Sublime搭建C&#43;&#43;环境</title>
-      <link>https://txtxj.top/posts/sublimecpp/</link>
+      <link>/posts/sublimecpp/</link>
       <pubDate>Tue, 25 Aug 2020 22:03:36 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
-      <guid>https://txtxj.top/posts/sublimecpp/</guid>
+      <guid>/posts/sublimecpp/</guid>
       <description>Windows 下为 Sublime Text 3 搭建 C/C++环境 写这篇博客时，我正在为新电脑搭建 C/C++ 环境
  步骤：
   下载 Sublime Text 3 本体
@@ -157,10 +157,10 @@ if (fr == 1f &amp;amp;&amp;amp; isfire == false &amp;amp;&amp;amp; isinterval ==
     
     <item>
       <title>题解 P5020 【货币系统】</title>
-      <link>https://txtxj.top/posts/solutionp5020/</link>
+      <link>/posts/solutionp5020/</link>
       <pubDate>Thu, 07 Feb 2019 23:50:45 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
-      <guid>https://txtxj.top/posts/solutionp5020/</guid>
+      <guid>/posts/solutionp5020/</guid>
       <description>某凯的疑惑
 看样例：
 $$3, 10, 19, 6 \Leftrightarrow 3, 10$$

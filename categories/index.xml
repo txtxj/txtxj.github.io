@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Txtxj ΦωΦ</title>
-    <link>https://txtxj.top/categories/</link>
+    <link>/categories/</link>
     <description>Recent content in Categories on Txtxj ΦωΦ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
-    <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster><atom:link href="https://txtxj.top/categories/index.xml" rel="self" type="application/rss+xml" />
+    <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster><atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
