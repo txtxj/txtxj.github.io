@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Txtxj ΦωΦ</title>
-    <link>/</link>
+    <link>https://txtxj.top/</link>
     <description>Recent content on Txtxj ΦωΦ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
     <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
-    <lastBuildDate>Wed, 22 Dec 2021 16:01:30 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 22 Dec 2021 16:01:30 +0800</lastBuildDate><atom:link href="https://txtxj.top/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GAMES笔记01-线性代数基础</title>
-      <link>/posts/gamesnote01/</link>
+      <link>https://txtxj.top/posts/gamesnote01/</link>
       <pubDate>Wed, 22 Dec 2021 16:01:30 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
-      <guid>/posts/gamesnote01/</guid>
+      <guid>https://txtxj.top/posts/gamesnote01/</guid>
       <description>2D 线性变换 缩放(Scale) $$ \mathbf{scale}(s_x, s_y) = \begin{bmatrix} s_x &amp;amp; 0 \\
 0 &amp;amp; s_y \\
 \end{bmatrix} $$ $$x&#39; = s_x x$$ $$y&#39; = s_y y$$
@@ -33,10 +33,10 @@ y&#39; \end{bmatrix} = \begin{bmatrix} -1 &amp;amp; 0	\\
     
     <item>
       <title>Unity笔记03</title>
-      <link>/posts/unityself03/</link>
+      <link>https://txtxj.top/posts/unityself03/</link>
       <pubDate>Mon, 06 Sep 2021 12:08:35 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
-      <guid>/posts/unityself03/</guid>
+      <guid>https://txtxj.top/posts/unityself03/</guid>
       <description>本篇记录了物体移动以及摄像机跟随防抖动的实现。
  键盘控制物体移动 使用 Input.GetAxis() 或 Input.GetAxisRaw() 获取 axisName 标识的虚拟轴的值。
 以下内容摘自 Unity API.
@@ -56,10 +56,10 @@ if (rh &amp;lt; 0f) { dir.x = -1; animator.</description>
     
     <item>
       <title>【题解】CF1452D Radio Towers</title>
-      <link>/posts/solutioncf1452d/</link>
+      <link>https://txtxj.top/posts/solutioncf1452d/</link>
       <pubDate>Mon, 02 Aug 2021 06:37:00 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
-      <guid>/posts/solutioncf1452d/</guid>
+      <guid>https://txtxj.top/posts/solutioncf1452d/</guid>
       <description>cyz好兄弟上了大学一直在刷题打比赛，
 某日忘了概率怎么算了，半夜来问我这个题。
 题面：
@@ -85,20 +85,20 @@ $$dp[2n] = dp[1] + dp[3] + dp[5] + &amp;hellip; + dp[2n - 1]$$</description>
     
     <item>
       <title>《火焰纹章 风花雪月》人物数值</title>
-      <link>/games/fireemblemthreehousescharacterfigure/</link>
+      <link>https://txtxj.top/games/fireemblemthreehousescharacterfigure/</link>
       <pubDate>Mon, 19 Jul 2021 03:43:14 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
-      <guid>/games/fireemblemthreehousescharacterfigure/</guid>
+      <guid>https://txtxj.top/games/fireemblemthreehousescharacterfigure/</guid>
       <description>注：本文只收录了可挖角人物的数据
 初始能力 主角     HP 力量 魔力 技巧 速度 幸运 防守 魔防 魅力     主角 27 13 6 9 8 8 6 6 7    黑鹫学级     HP 力量 魔力 技巧 速度 幸运 防守 魔防 魅力     艾黛尔贾特 29 13 6 5 8 5 6 4 10   修伯特 22 6 12 6 7 6 4 7 6   多洛缇雅 24 5 11 6 7 6 4 7 8   菲尔迪南特 28 8 5 6 8 6 6 2 7   贝尔娜提塔 25 8 5 7 7 5 4 2 6   卡斯帕尔 26 9 3 5 6 8 6 2 4   佩托拉 25 9 3 7 10 7 5 2 6   林哈尔特 24 5 10 6 5 7 5 9 3    青狮学级     HP 力量 魔力 技巧 速度 幸运 防守 魔防 魅力     帝弥托利 28 12 4 7 7 5 7 4 9   杜笃 30 12 2 5 7 5 8 1 4   菲力克斯 26 10 5 6 9 5 5 3 5   梅尔赛德司 25 6 10 6 8 5 5 9 8   亚修 23 8 5 8 9 6 5 6 5   雅妮特 23 6 11 7 7 6 5 4 6   希尔凡 27 9 5 5 8 6 6 2 7   英谷莉特 27 8 6 6 8 6 5 8 8    金鹿学级     HP 力量 魔力 技巧 速度 幸运 防守 魔防 魅力     库罗德 26 11 5 8 8 7 6 4 8   洛廉兹 28 8 7 6 7 5 6 6 3   希尔妲 29 10 5 5 8 6 6 3 7   拉斐尔 30 11 3 5 6 6 7 1 4   莉丝缇亚 22 4 11 7 7 4 3 4 5   伊古纳兹 25 8 5 7 8 8 4 6 4   玛莉安奴 23 5 11 6 7 6 4 8 7   雷欧妮 26 9 5 8 9 6 7 2 7    赛罗司圣教会     HP 力量 魔力 技巧 速度 幸运 防守 魔防 魅力     蕾雅 28 9 9 6 6 6 6 10 10   玛努艾拉 26 10 8 6 8 6 5 4 7   汉尼曼 25 6 10 6 6 4 5 7 5   西提司 27 9 8 8 5 6 6 4 9   芙莲 24 6 9 6 5 4 5 10 9   锥里尔 24 7 4 6 6 6 5 2 4   伊艾里扎 30 7 6 5 7 5 6 5 3   安娜 25 8 4 7 6 7 6 6 8    赛罗司骑士团     HP 力量 魔力 技巧 速度 幸运 防守 魔防 魅力     卡多莉奴 27 8 5 6 7 6 5 2 4   阿罗伊斯 28 9 4 5 6 5 5 2 7   吉尔伯特 30 9 4 6 5 4 5 2 6   萨米亚 26 8 4 7 6 8 5 2 6    灰狼学级     HP 力量 魔力 技巧 速度 幸运 防守 魔防 魅力     尤里斯 25 11 7 8 10 8 6 8 9   康丝坦洁 23 5 12 7 7 4 6 8 7   哈琵 27 7 12 9 7 4 4 8 5   巴鲁塔扎尔 29 12 6 5 8 3 8 5 5     成长率 主角     HP 力量 魔力 技巧 速度 幸运 防守 魔防 魅力     主角 45 45 35 45 45 45 35 30 45    黑鹫学级     HP 力量 魔力 技巧 速度 幸运 防守 魔防 魅力     艾黛尔贾特 40 55 45 45 40 30 35 35 60   修伯特 35 30 55 45 45 35 25 40 35   多洛缇雅 40 20 40 45 40 35 15 35 40   菲尔迪南特 50 45 20 40 50 40 35 20 40   贝尔娜提塔 35 35 20 55 50 25 20 30 35   卡斯帕尔 55 45 25 45 45 40 30 20 25   佩托拉 45 40 25 50 60 45 30 15 35   林哈尔特 30 30 45 40 40 45 30 45 20    青狮学级     HP 力量 魔力 技巧 速度 幸运 防守 魔防 魅力     帝弥托利 55 60 20 50 50 25 40 20 55   杜笃 60 50 15 30 20 25 50 10 30   菲力克斯 45 55 30 45 55 40 30 20 30   梅尔赛德司 30 25 50 45 40 30 25 45 40   亚修 35 35 25 55 50 40 20 35 25   雅妮特 25 30 50 50 35 35 20 30 35   希尔凡 55 45 30 35 50 35 40 25 40   英谷莉特 40 35 35 40 60 45 30 40 45    金鹿学级     HP 力量 魔力 技巧 速度 幸运 防守 魔防 魅力     库罗德 35 40 25 60 55 45 30 25 55   洛廉兹 55 40 40 45 40 25 30 40 35   希尔妲 50 45 25 03 50 35 35 20 50   拉斐尔 65 50 15 35 15 35 45 10 25   莉丝缇亚 20 15 60 60 50 15 10 25 25   伊古纳兹 35 35 30 50 50 55 25 35 25   玛莉安奴 35 20 50 40 40 35 15 45 40   雷欧妮 40 40 20 55 60 40 40 15 40    赛罗司圣教会     HP 力量 魔力 技巧 速度 幸运 防守 魔防 魅力     蕾雅 45 35 45 40 40 40 30 40 70   玛努艾拉 50 35 35 40 60 35 30 25 50   汉尼曼 40 30 55 45 20 35 25 40 35   西提司 50 45 35 50 50 25 30 25 45   芙莲 25 25 55 45 35 15 25 50 45   锥里尔 35 20 15 40 40 30 10 10 15   锥里尔（天赋） 55 40 35 60 60 50 30 30 35   伊艾里扎 50 50 35 35 60 30 40 25 25   安娜 35 35 35 45 55 45 30 40 50    赛罗司骑士团     HP 力量 魔力 技巧 速度 幸运 防守 魔防 魅力     卡多莉奴 50 50 25 40 55 30 30 20 25   阿罗伊斯 45 45 20 35 40 30 40 20 40   吉尔伯特 55 45 20 45 30 15 45 10 35   萨米亚 35 40 20 55 40 55 20 15 30    灰狼学级     HP 力量 魔力 技巧 速度 幸运 防守 魔防 魅力     尤里斯 30 40 35 40 65 45 30 35 50   康丝坦洁 20 20 60 30 35 15 15 30 25   哈琵 35 35 45 45 40 20 15 45 25   巴鲁塔扎尔 50 50 30 25 30 20 45 30 30     能力上限 主角     HP 力量 魔力 技巧 速度 幸运 防守 魔防 魅力     主角 88 77 55 66 66 66 55 55 99    黑鹫学级     HP 力量 魔力 技巧 速度 幸运 防守 魔防 魅力     艾黛尔贾特 81 81 72 61 57 42 61 47 85   修伯特 67 43 80 62 63 51 45 57 49   多洛缇雅 76 30 61 62 57 49 38 50 58   菲尔迪南特 93 64 40 56 70 56 49 36 57   贝尔娜提塔 70 51 40 75 69 41 41 39 39   卡斯帕尔 97 65 41 61 62 58 51 35 46   佩托拉 83 59 36 69 85 63 42 35 63   林哈尔特 63 42 66 56 55 63 48 65 43    青狮学级     HP 力量 魔力 技巧 速度 幸运 防守 魔防 魅力     帝弥托利 99 87 38 69 69 42 57 36 77   杜笃 108 74 30 42 35 44 70 35 41   菲力克斯 84 78 42 62 77 55 51 35 42   梅尔赛德司 64 37 72 62 58 54 44 65 58   亚修 68 51 36 76 71 56 43 49 36   雅妮特 55 43 73 69 50 49 40 41 49   希尔凡 98 65 42 48 70 49 56 38 57   英谷莉特 79 51 49 56 83 62 51 58 64    金鹿学级     HP 力量 魔力 技巧 速度 幸运 防守 魔防 魅力     库罗德 71 61 40 89 76 63 50 42 76   洛廉兹 99 59 57 62 57 48 55 56 46   希尔妲 94 66 36 42 70 49 49 39 76   拉斐尔 114 73 31 48 33 49 63 36 51   莉丝缇亚 48 30 86 82 69 40 36 41 44   伊古纳兹 70 51 42 69 70 76 43 49 45   玛莉安奴 68 30 73 56 57 49 39 64 57   雷欧妮 78 59 38 76 84 56 57 36 57    赛罗司圣教会     HP 力量 魔力 技巧 速度 幸运 防守 魔防 魅力     蕾雅 86 52 65 56 56 56 43 60 97   玛努艾拉 91 53 48 56 83 52 42 44 69   汉尼曼 77 43 78 62 35 49 36 57 48   西提司 92 65 51 70 67 49 43 41 65   芙莲 56 37 77 62 48 46 36 72 65   锥里尔 85 55 48 78 76 66 45 41 48   伊艾里扎 79 74 42 49 78 41 63 42 42   安娜 68 55 49 76 65 75 44 49 60    赛罗司骑士团     HP 力量 魔力 技巧 速度 幸运 防守 魔防 魅力     卡多莉奴 92 70 36 56 75 43 42 37 35   阿罗伊斯 86 71 33 48 56 42 55 37 57   吉尔伯特 101 65 35 62 42 40 61 35 49   萨米亚 71 58 35 75 56 76 37 35 43    灰狼学级     HP 力量 魔力 技巧 速度 幸运 防守 魔防 魅力     尤里斯 64 59 55 68 92 77 48 51 71   康丝坦洁 51 32 84 68 60 42 39 51 62   哈琵 69 41 76 70 51 40 42 61 43   巴鲁塔扎尔 100 71 48 39 46 35 69 43 46    </description>
     </item>
     
     <item>
       <title>Unity笔记02</title>
-      <link>/posts/unityself02/</link>
+      <link>https://txtxj.top/posts/unityself02/</link>
       <pubDate>Mon, 03 May 2021 01:46:19 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
-      <guid>/posts/unityself02/</guid>
+      <guid>https://txtxj.top/posts/unityself02/</guid>
       <description>本篇笔记记录了后座力的实现。
  后座力（AddForce）与移动（velocity）不兼容 用 AddForce 给玩家添加一个反向的作用力后，
 如果玩家正在进行移动，
@@ -113,10 +113,10 @@ private float speed = 2f; private void FixedUpdate() { float rh = Input.GetAxisR
     
     <item>
       <title>Unity笔记01</title>
-      <link>/posts/unityself01/</link>
+      <link>https://txtxj.top/posts/unityself01/</link>
       <pubDate>Sat, 02 Jan 2021 18:08:34 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
-      <guid>/posts/unityself01/</guid>
+      <guid>https://txtxj.top/posts/unityself01/</guid>
       <description>本篇笔记记录了瞬移魔法的穿墙问题的解决问题。
  瞬移魔法穿墙问题 在 2021.1.1 的版本中，
 如果玩家贴墙向墙内发射瞬移魔法，
@@ -144,10 +144,10 @@ if (fr == 1f &amp;amp;&amp;amp; isfire == false &amp;amp;&amp;amp; isinterval ==
     
     <item>
       <title>为Sublime搭建C&#43;&#43;环境</title>
-      <link>/posts/sublimecpp/</link>
+      <link>https://txtxj.top/posts/sublimecpp/</link>
       <pubDate>Tue, 25 Aug 2020 22:03:36 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
-      <guid>/posts/sublimecpp/</guid>
+      <guid>https://txtxj.top/posts/sublimecpp/</guid>
       <description>Windows 下为 Sublime Text 3 搭建 C/C++环境 写这篇博客时，我正在为新电脑搭建 C/C++ 环境
  步骤：
   下载 Sublime Text 3 本体
@@ -167,10 +167,10 @@ if (fr == 1f &amp;amp;&amp;amp; isfire == false &amp;amp;&amp;amp; isinterval ==
     
     <item>
       <title>题解 P5020 【货币系统】</title>
-      <link>/posts/solutionp5020/</link>
+      <link>https://txtxj.top/posts/solutionp5020/</link>
       <pubDate>Thu, 07 Feb 2019 23:50:45 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
-      <guid>/posts/solutionp5020/</guid>
+      <guid>https://txtxj.top/posts/solutionp5020/</guid>
       <description>某凯的疑惑
 看样例：
 $$3, 10, 19, 6 \Leftrightarrow 3, 10$$

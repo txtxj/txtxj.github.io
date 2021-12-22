@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>题解 on Txtxj ΦωΦ</title>
-    <link>/tags/%E9%A2%98%E8%A7%A3/</link>
+    <link>https://txtxj.top/tags/%E9%A2%98%E8%A7%A3/</link>
     <description>Recent content in 题解 on Txtxj ΦωΦ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
     <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
-    <lastBuildDate>Mon, 02 Aug 2021 06:37:00 +0800</lastBuildDate><atom:link href="/tags/%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 02 Aug 2021 06:37:00 +0800</lastBuildDate><atom:link href="https://txtxj.top/tags/%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【题解】CF1452D Radio Towers</title>
-      <link>/posts/solutioncf1452d/</link>
+      <link>https://txtxj.top/posts/solutioncf1452d/</link>
       <pubDate>Mon, 02 Aug 2021 06:37:00 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
-      <guid>/posts/solutioncf1452d/</guid>
+      <guid>https://txtxj.top/posts/solutioncf1452d/</guid>
       <description>cyz好兄弟上了大学一直在刷题打比赛，
 某日忘了概率怎么算了，半夜来问我这个题。
 题面：
@@ -40,10 +40,10 @@ $$dp[2n] = dp[1] + dp[3] + dp[5] + &amp;hellip; + dp[2n - 1]$$</description>
     
     <item>
       <title>题解 P5020 【货币系统】</title>
-      <link>/posts/solutionp5020/</link>
+      <link>https://txtxj.top/posts/solutionp5020/</link>
       <pubDate>Thu, 07 Feb 2019 23:50:45 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
-      <guid>/posts/solutionp5020/</guid>
+      <guid>https://txtxj.top/posts/solutionp5020/</guid>
       <description>某凯的疑惑
 看样例：
 $$3, 10, 19, 6 \Leftrightarrow 3, 10$$

@@ -87,7 +87,7 @@ $$19 = 10 &#43; 3 &#43; 3 &#43; 3, 6 = 3 &#43; 3$$
 代码如下
 #include &lt;cstdlib&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;using namespace std; int mon[25001] = {}; /* mon[i] = 0 表示i面值的钱不能被凑出来 mon[i] = 1 表示i面值的钱可以被凑出来 mon[i] = 2 表示i面值的钱是货币系统中本来就有的钱 */ int coins[101] = {};//存钱的面值 int T, n, ans = 0; int main() { scanf(&#34;%d &#34;, &amp;T); while (T--) { ans=0; memset(mon, 0, sizeof(mon)); memset(coins, 0, sizeof(coins)); scanf(&#34;%d&#34;, &amp;n); for (int i = 1; i &lt;= n; i&#43;&#43;) { scanf(&#34;%d&#34;, coins &#43; i); mon[coins[i]]=2; } //把货币系统中的钱标好 	sort(coins &#43; 1, coins &#43; 1 &#43; n); for (int i = 1; i &lt;= coins[n]; i&#43;&#43;) { if (mon[i] &gt; 0) //如果mon[i]能被凑出来 	//那么mon[i&#43;coins[j]]也能被凑出来 	{ for (int j = 1; j &lt;= n; j&#43;&#43;) { if (i &#43; coins[j] &lt;= coins[n]) //防止数组越界 	{ mon[i &#43; coins[j]] = 1; } else break; } } } for (int i = 1; i &lt;= coins[n]; i&#43;&#43;) { if (mon[i] == 2) ans&#43;&#43;; } printf(&#34;%d\n&#34;, ans); } } " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/posts/solutionp5020/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://txtxj.top/posts/solutionp5020/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-02-07T23:50:45+08:00" />
 <meta property="article:modified_time" content="2019-02-07T23:50:45+08:00" />
 
@@ -113,14 +113,14 @@ $$19 = 10 &#43; 3 &#43; 3 &#43; 3, 6 = 3 &#43; 3$$
   
   
   
-  <link rel="stylesheet" href="/assets/css/style.min.7acbb80c25ca5b5806306b4858f3e2d35bfbcad5bd3afea3271ca2ce38d47e65.css" integrity="sha256-esu4DCXKW1gGMGtIWPPi01v7ytW9Ov6jJxyizjjUfmU=">
+  <link rel="stylesheet" href="https://txtxj.top/assets/css/style.min.7acbb80c25ca5b5806306b4858f3e2d35bfbcad5bd3afea3271ca2ce38d47e65.css" integrity="sha256-esu4DCXKW1gGMGtIWPPi01v7ytW9Ov6jJxyizjjUfmU=">
 
-  <script src="/assets/js/main.min.02c6f5c1a681332122b4761eba4bf2a5df10c7f5e08ca75bae52bbf648c05b7f.js" integrity="sha256-Asb1waaBMyEitHYeukvypd8Qx/XgjKdbrlK79kjAW38="></script>
+  <script src="https://txtxj.top/assets/js/main.min.02c6f5c1a681332122b4761eba4bf2a5df10c7f5e08ca75bae52bbf648c05b7f.js" integrity="sha256-Asb1waaBMyEitHYeukvypd8Qx/XgjKdbrlK79kjAW38="></script>
   
   </head><body><header class="header-container layout-block layout-padding">
   <div class="header-inner content-padding-large soft-size--large soft-style--box">
     <div class="header-logo">
-      <a href=""><h1>Txtxj ΦωΦ</h1></a>
+      <a href="https://txtxj.top"><h1>Txtxj ΦωΦ</h1></a>
     </div>
     <nav class="header-nav">
       <div class="header-nav--btn">
@@ -171,7 +171,7 @@ $$19 = 10 &#43; 3 &#43; 3 &#43; 3, 6 = 3 &#43; 3$$
       
         <ul class="card-text--tag">
           
-            <li><a href="/tags/%E9%A2%98%E8%A7%A3/">题解</a></li></ul>
+            <li><a href="https://txtxj.top/tags/%E9%A2%98%E8%A7%A3/">题解</a></li></ul>
       
     
   </div>
@@ -336,17 +336,17 @@ $$19 = 10 &#43; 3 &#43; 3 &#43; 3, 6 = 3 &#43; 3$$
   <div class="widget-body">
     <div class="tags-list">
       
-        <a href="/tags/%E7%AC%94%E8%AE%B0/" data-count="4" class="soft-size--small soft-style--hover soft-style--active">笔记</a>
+        <a href="https://txtxj.top/tags/%E7%AC%94%E8%AE%B0/" data-count="4" class="soft-size--small soft-style--hover soft-style--active">笔记</a>
       
-        <a href="/tags/unity/" data-count="3" class="soft-size--small soft-style--hover soft-style--active">Unity</a>
+        <a href="https://txtxj.top/tags/unity/" data-count="3" class="soft-size--small soft-style--hover soft-style--active">Unity</a>
       
-        <a href="/tags/%E9%A2%98%E8%A7%A3/" data-count="2" class="soft-size--small soft-style--hover soft-style--active">题解</a>
+        <a href="https://txtxj.top/tags/%E9%A2%98%E8%A7%A3/" data-count="2" class="soft-size--small soft-style--hover soft-style--active">题解</a>
       
-        <a href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">图形学</a>
+        <a href="https://txtxj.top/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">图形学</a>
       
-        <a href="/tags/%E6%95%99%E7%A8%8B/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">教程</a>
+        <a href="https://txtxj.top/tags/%E6%95%99%E7%A8%8B/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">教程</a>
       
-        <a href="/tags/%E7%81%AB%E7%84%B0%E7%BA%B9%E7%AB%A0/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">火焰纹章</a>
+        <a href="https://txtxj.top/tags/%E7%81%AB%E7%84%B0%E7%BA%B9%E7%AB%A0/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">火焰纹章</a>
       
     </div>
   </div>

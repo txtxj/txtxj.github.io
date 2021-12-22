@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Unity on Txtxj ΦωΦ</title>
-    <link>/tags/unity/</link>
+    <link>https://txtxj.top/tags/unity/</link>
     <description>Recent content in Unity on Txtxj ΦωΦ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
     <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
-    <lastBuildDate>Mon, 06 Sep 2021 12:08:35 +0800</lastBuildDate><atom:link href="/tags/unity/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 06 Sep 2021 12:08:35 +0800</lastBuildDate><atom:link href="https://txtxj.top/tags/unity/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Unity笔记03</title>
-      <link>/posts/unityself03/</link>
+      <link>https://txtxj.top/posts/unityself03/</link>
       <pubDate>Mon, 06 Sep 2021 12:08:35 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
-      <guid>/posts/unityself03/</guid>
+      <guid>https://txtxj.top/posts/unityself03/</guid>
       <description>本篇记录了物体移动以及摄像机跟随防抖动的实现。
  键盘控制物体移动 使用 Input.GetAxis() 或 Input.GetAxisRaw() 获取 axisName 标识的虚拟轴的值。
 以下内容摘自 Unity API.
@@ -34,10 +34,10 @@ if (rh &amp;lt; 0f) { dir.x = -1; animator.</description>
     
     <item>
       <title>Unity笔记02</title>
-      <link>/posts/unityself02/</link>
+      <link>https://txtxj.top/posts/unityself02/</link>
       <pubDate>Mon, 03 May 2021 01:46:19 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
-      <guid>/posts/unityself02/</guid>
+      <guid>https://txtxj.top/posts/unityself02/</guid>
       <description>本篇笔记记录了后座力的实现。
  后座力（AddForce）与移动（velocity）不兼容 用 AddForce 给玩家添加一个反向的作用力后，
 如果玩家正在进行移动，
@@ -52,10 +52,10 @@ private float speed = 2f; private void FixedUpdate() { float rh = Input.GetAxisR
     
     <item>
       <title>Unity笔记01</title>
-      <link>/posts/unityself01/</link>
+      <link>https://txtxj.top/posts/unityself01/</link>
       <pubDate>Sat, 02 Jan 2021 18:08:34 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
-      <guid>/posts/unityself01/</guid>
+      <guid>https://txtxj.top/posts/unityself01/</guid>
       <description>本篇笔记记录了瞬移魔法的穿墙问题的解决问题。
  瞬移魔法穿墙问题 在 2021.1.1 的版本中，
 如果玩家贴墙向墙内发射瞬移魔法，
