@@ -330,6 +330,17 @@ $$d = \cos \theta$$</p>
 \sin \theta &amp; \cos \theta           \\<br>
 \end{bmatrix}
 $$</p>
+<p>值得一提的是，根据定义， 
+$
+\mathbf{rotate}(\theta)^{-1} = 
+\mathbf{rotate}(-\theta) = 
+\begin{bmatrix}
+\cos \theta &amp; \sin \theta	        \\<br>
+-\sin \theta &amp; \cos \theta           \\<br>
+\end{bmatrix} = 
+\mathbf{rotate}(\theta)^T
+$</p>
+<p>也就是旋转矩阵的逆和它的转置相等，旋转矩阵是正交矩阵。</p>
 <h2 id="2d-非线性变换">2D 非线性变换</h2>
 <h3 id="平移translation">平移(Translation)</h3>
 <p>平移并非线性变换，其过程不能表示为矩阵与向量的乘法。</p>
@@ -452,7 +463,73 @@ a &amp; b &amp; t_x \\ c &amp; d &amp; t_y \\ 0 &amp; 0 &amp; 1
 x \\ y \\ 1
 \end{bmatrix}
 $$</p>
-<p>对于 3D 坐标，仍可同理为之添加一个新的维度，构建齐次坐标。</p>
+<h2 id="3d-线性变换">3D 线性变换</h2>
+<p>理同 2D 线性变换，在此只给出三种线性变换在 3D 下的矩阵</p>
+<p>缩放</p>
+<p>$$
+\mathbf{scale}(s_x, s_y, s_z) = 
+\begin{bmatrix}
+s_x &amp; 0 &amp; 0      \\<br>
+0 &amp; s_y &amp; 0      \\<br>
+0 &amp; 0 &amp; s_z
+\end{bmatrix}
+$$</p>
+<p>剪切</p>
+<p>$$
+\mathbf{shear}_x(s_y, s_z) = 
+\begin{bmatrix}
+1 &amp; s_y &amp; s_z	        \\<br>
+0 &amp; 1 &amp; 0               \\<br>
+0 &amp; 0 &amp; 1
+\end{bmatrix},
+\mathbf{shear}_y(s_x, s_z) = 
+\begin{bmatrix}
+1 &amp; 0 &amp; 0	            \\<br>
+s_x &amp; 1 &amp; s_z           \\<br>
+0 &amp; 0 &amp; 1
+\end{bmatrix},
+\mathbf{shear}_z(s_x, s_y) = 
+\begin{bmatrix}
+1 &amp; 0 &amp; 0	            \\<br>
+0 &amp; 1 &amp; 0               \\<br>
+s_x &amp; s_y &amp; 1
+\end{bmatrix},
+$$</p>
+<p>旋转</p>
+<p>$$
+\mathbf{rotate}_x(\theta) = 
+\begin{bmatrix}
+1 &amp; 0 &amp; 0   \\<br>
+0 &amp; \cos \theta &amp; -\sin \theta	        \\<br>
+0 &amp; \sin \theta &amp; \cos \theta           \\<br>
+\end{bmatrix},
+\mathbf{rotate}_y(\theta) = 
+\begin{bmatrix}
+\cos \theta  &amp; 0 &amp; \sin \theta          \\<br>
+0 &amp; 1 &amp; 0	                            \\<br>
+-\sin \theta &amp; 0 &amp; \cos \theta          \\<br>
+\end{bmatrix},
+\mathbf{rotate}_z(\theta) = 
+\begin{bmatrix}
+\cos \theta &amp; -\sin \theta &amp; 0	        \\<br>
+\sin \theta &amp; \cos \theta &amp; 0           \\<br>
+0 &amp; 0 &amp; 1
+\end{bmatrix}
+$$</p>
+<h2 id="3d-齐次坐标">3D 齐次坐标</h2>
+<p>$$\mathbf{3D}\ \mathbf{point} = (x, y, z, 1)^T$$
+$$\mathbf{3D}\ \mathbf{vector} = (x, y, z, 0)^T$$</p>
+<p>$$
+\begin{bmatrix}
+x' \\ y' \\ z' \\ 1
+\end{bmatrix} = 
+\begin{bmatrix}
+a &amp; b &amp; c &amp; t_x \\ d &amp; e &amp; f &amp; t_y \\ g &amp; h &amp; i &amp; t_z \\ 0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+x \\ y \\ z \\1
+\end{bmatrix}
+$$</p>
 
           </div>
         </div>
@@ -519,6 +596,8 @@ $$</p>
       </ul>
     </li>
     <li><a href="#齐次坐标">齐次坐标</a></li>
+    <li><a href="#3d-线性变换">3D 线性变换</a></li>
+    <li><a href="#3d-齐次坐标">3D 齐次坐标</a></li>
   </ul>
 </nav>
   </div>
