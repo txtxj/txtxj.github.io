@@ -464,7 +464,7 @@ x \\ y \\ 1
 \end{bmatrix}
 $$</p>
 <h2 id="3d-线性变换">3D 线性变换</h2>
-<p>理同 2D 线性变换，在此只给出三种线性变换在 3D 下的矩阵</p>
+<p>理同 2D 线性变换，在此给出三种线性变换在 3D 下的矩阵</p>
 <p>缩放</p>
 <p>$$
 \mathbf{scale}(s_x, s_y, s_z) = 
@@ -516,6 +516,48 @@ $$</p>
 0 &amp; 0 &amp; 1
 \end{bmatrix}
 $$</p>
+<h2 id="3d-绕任意轴旋转">3D 绕任意轴旋转</h2>
+<p>对于任何一个旋转，都可将其分解为绕三个坐标轴的旋转的组合。</p>
+<p>$$
+\mathbf{R}_{xyz}(\alpha, \beta, \gamma) = \mathbf{R}_x(\alpha) \mathbf{R}_y(\beta) \mathbf{R}_z(\gamma)
+$$</p>
+<p>其中， $\alpha, \beta, \gamma$ 被称为欧拉角。</p>
+<p>在飞机模拟中常用到该方法分解旋转，并将三个坐标轴命名为 roll ， pitch ， yaw 。</p>
+<p>
+  <p><img src="https://s2.loli.net/2021/12/23/WGQfwL3R9FTodbv.jpg" alt="" loading="lazy" /></p>
+</p>
+<p>另一种常用的方法被称为罗德里格斯旋转公式 (Rodrigues' Rotation Formula) ，</p>
+<p>对于一个过原点的轴，其方向向量为 $\mathbf{n}$ ，旋转角度为 $\alpha$</p>
+<p>则旋转矩阵为</p>
+<p>$$
+\mathbf{R}(\mathbf{n}, \alpha) = \cos(\alpha) \mathbf{I} + (1 - \cos(\alpha)) \mathbf{nn}^T + \sin(\alpha)
+\begin{pmatrix}
+0 &amp; -n_z &amp; n_y \\<br>
+n_z &amp; 0 &amp; -n_x \\<br>
+-n_y &amp; n_x &amp; 0
+\end{pmatrix}
+$$</p>
+<p>设 $\mathbf{n}$ 的叉积矩阵为 $\mathbf{R_n}$</p>
+<p>则上式可表示为</p>
+<p>$$
+\mathbf{R}(\mathbf{n}, \alpha) = \cos(\alpha) \mathbf{I} + (1 - \cos(\alpha)) \mathbf{nn}^T + \sin(\alpha)
+\begin{pmatrix}
+0 &amp; -n_z &amp; n_y \\<br>
+n_z &amp; 0 &amp; -n_x \\<br>
+-n_y &amp; n_x &amp; 0
+\end{pmatrix}
+$$</p>
+<p>另一种表达方式为</p>
+<p>$$
+\mathbf{R}(\mathbf{n}, \alpha) = \mathbf{I} + \sin(\alpha) \mathbf{N} + (1 - \cos(\alpha)) \mathbf{N}^2 
+$$</p>
+<p>其中， $\mathbf{N} = 
+\begin{pmatrix}
+0 &amp; -n_z &amp; n_y \\<br>
+n_z &amp; 0 &amp; -n_x \\<br>
+-n_y &amp; n_x &amp; 0
+\end{pmatrix}$ 为向量 $\mathbf{n}$ 的叉乘矩阵。</p>
+<p>上述两种表达方式中后者需要的参数更少，在旋转操作时更为常用。</p>
 <h2 id="3d-齐次坐标">3D 齐次坐标</h2>
 <p>$$\mathbf{3D}\ \mathbf{point} = (x, y, z, 1)^T$$
 $$\mathbf{3D}\ \mathbf{vector} = (x, y, z, 0)^T$$</p>
@@ -597,6 +639,7 @@ $$</p>
     </li>
     <li><a href="#齐次坐标">齐次坐标</a></li>
     <li><a href="#3d-线性变换">3D 线性变换</a></li>
+    <li><a href="#3d-绕任意轴旋转">3D 绕任意轴旋转</a></li>
     <li><a href="#3d-齐次坐标">3D 齐次坐标</a></li>
   </ul>
 </nav>
