@@ -73,19 +73,19 @@ document.addEventListener("visibilitychange", function () {
   <title>GAMES笔记01-线性代数基础 🌟 Txtxj ΦωΦ</title>
 
   <meta property="og:title" content="GAMES笔记01-线性代数基础" />
-<meta property="og:description" content="2D 线性变换 缩放(Scale) $$ \mathbf{scale}(s_x, s_y) = \begin{bmatrix} s_x &amp; 0 \\
+<meta property="og:description" content="2D 线性变换 缩放(Scale) $$ \mathbf{scale}(s_x, s_y) = \begin{pmatrix} s_x &amp; 0 \\
 0 &amp; s_y \\
-\end{bmatrix} $$ $$x&#39; = s_x x$$ $$y&#39; = s_y y$$
+\end{pmatrix} $$ $$x&#39; = s_x x$$ $$y&#39; = s_y y$$
 如上图所示，
-$$ \begin{bmatrix} x&#39;	\\
-y&#39; \end{bmatrix} = \begin{bmatrix} 0.5 &amp; 0	\\
+$$ \begin{pmatrix} x&#39;	\\
+y&#39; \end{pmatrix} = \begin{pmatrix} 0.5 &amp; 0	\\
 0 &amp; 1	\\
-\end{bmatrix} \begin{bmatrix} x	\\
-y \end{bmatrix} $$
+\end{pmatrix} \begin{pmatrix} x	\\
+y \end{pmatrix} $$
 另外，关于坐标轴的反射，也是一种特殊的缩放。
 如上图所示，
-$$ \begin{bmatrix} x&#39;	\\
-y&#39; \end{bmatrix} = \begin{bmatrix} -1 &amp; 0	\\
+$$ \begin{pmatrix} x&#39;	\\
+y&#39; \end{pmatrix} = \begin{pmatrix} -1 &amp; 0	\\
 0 &amp; 1	\\" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://txtxj.top/posts/gamesnote01/" /><meta property="article:section" content="posts" />
@@ -95,19 +95,19 @@ y&#39; \end{bmatrix} = \begin{bmatrix} -1 &amp; 0	\\
 
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="GAMES笔记01-线性代数基础"/>
-<meta name="twitter:description" content="2D 线性变换 缩放(Scale) $$ \mathbf{scale}(s_x, s_y) = \begin{bmatrix} s_x &amp; 0 \\
+<meta name="twitter:description" content="2D 线性变换 缩放(Scale) $$ \mathbf{scale}(s_x, s_y) = \begin{pmatrix} s_x &amp; 0 \\
 0 &amp; s_y \\
-\end{bmatrix} $$ $$x&#39; = s_x x$$ $$y&#39; = s_y y$$
+\end{pmatrix} $$ $$x&#39; = s_x x$$ $$y&#39; = s_y y$$
 如上图所示，
-$$ \begin{bmatrix} x&#39;	\\
-y&#39; \end{bmatrix} = \begin{bmatrix} 0.5 &amp; 0	\\
+$$ \begin{pmatrix} x&#39;	\\
+y&#39; \end{pmatrix} = \begin{pmatrix} 0.5 &amp; 0	\\
 0 &amp; 1	\\
-\end{bmatrix} \begin{bmatrix} x	\\
-y \end{bmatrix} $$
+\end{pmatrix} \begin{pmatrix} x	\\
+y \end{pmatrix} $$
 另外，关于坐标轴的反射，也是一种特殊的缩放。
 如上图所示，
-$$ \begin{bmatrix} x&#39;	\\
-y&#39; \end{bmatrix} = \begin{bmatrix} -1 &amp; 0	\\
+$$ \begin{pmatrix} x&#39;	\\
+y&#39; \end{pmatrix} = \begin{pmatrix} -1 &amp; 0	\\
 0 &amp; 1	\\"/>
 
 
@@ -188,10 +188,10 @@ y&#39; \end{bmatrix} = \begin{bmatrix} -1 &amp; 0	\\
 <h3 id="缩放scale">缩放(Scale)</h3>
 <p>$$
 \mathbf{scale}(s_x, s_y) = 
-\begin{bmatrix}
+\begin{pmatrix}
 s_x &amp; 0         \\<br>
 0 &amp; s_y         \\<br>
-\end{bmatrix}
+\end{pmatrix}
 $$
 $$x' = s_x x$$
 $$y' = s_y y$$</p>
@@ -200,18 +200,18 @@ $$y' = s_y y$$</p>
 </p>
 <p>如上图所示，</p>
 <p>$$
-\begin{bmatrix}
+\begin{pmatrix}
 x'				\\<br>
 y'
-\end{bmatrix} = 
-\begin{bmatrix}
+\end{pmatrix} = 
+\begin{pmatrix}
 0.5 &amp; 0			\\<br>
 0 &amp; 1			\\<br>
-\end{bmatrix}
-\begin{bmatrix}
+\end{pmatrix}
+\begin{pmatrix}
 x				\\<br>
 y
-\end{bmatrix}
+\end{pmatrix}
 $$</p>
 <p>另外，关于坐标轴的反射，也是一种特殊的缩放。</p>
 <p>
@@ -219,27 +219,27 @@ $$</p>
 </p>
 <p>如上图所示，</p>
 <p>$$
-\begin{bmatrix}
+\begin{pmatrix}
 x'				\\<br>
 y'
-\end{bmatrix} = 
-\begin{bmatrix}
+\end{pmatrix} = 
+\begin{pmatrix}
 -1 &amp; 0			\\<br>
 0 &amp; 1			\\<br>
-\end{bmatrix}
-\begin{bmatrix}
+\end{pmatrix}
+\begin{pmatrix}
 x				\\<br>
 y
-\end{bmatrix}
+\end{pmatrix}
 $$</p>
 <h3 id="剪切shear">剪切(Shear)</h3>
 <p>剪切就像是固定住图形的一边，通过拖拽图形的另外一边得到的变换。</p>
 <p>$$
 \mathbf{shear}_x(s) = 
-\begin{bmatrix}
+\begin{pmatrix}
 1 &amp; s	        \\<br>
 0 &amp; 1           \\<br>
-\end{bmatrix}, 
+\end{pmatrix}, 
 \begin{aligned}
 x' &amp;= x + s y	\\<br>
 y' &amp;= y
@@ -247,10 +247,10 @@ y' &amp;= y
 $$
 $$
 \mathbf{shear}_y(s) = 
-\begin{bmatrix}
+\begin{pmatrix}
 1 &amp; 0	        \\<br>
 s &amp; 1           \\<br>
-\end{bmatrix}, 
+\end{pmatrix}, 
 \begin{aligned}
 x' &amp;= x 		\\<br>
 y' &amp;= s x + y
@@ -261,18 +261,18 @@ $$</p>
 </p>
 <p>如上图所示，</p>
 <p>$$
-\begin{bmatrix}
+\begin{pmatrix}
 x'				\\<br>
 y'
-\end{bmatrix} = 
-\begin{bmatrix}
+\end{pmatrix} = 
+\begin{pmatrix}
 1 &amp; a			\\<br>
 0 &amp; 1			\\<br>
-\end{bmatrix}
-\begin{bmatrix}
+\end{pmatrix}
+\begin{pmatrix}
 x				\\<br>
 y
-\end{bmatrix}
+\end{pmatrix}
 $$</p>
 <p>缩放后得到
 $$
@@ -289,32 +289,32 @@ $$</p>
 <p>如上图所示，</p>
 <p>$$
 \mathbf{rotate}(\theta) = 
-\begin{bmatrix}
+\begin{pmatrix}
 \cos \theta &amp; -\sin \theta	        \\<br>
 \sin \theta &amp; \cos \theta           \\<br>
-\end{bmatrix}
+\end{pmatrix}
 $$</p>
 <p>推导：</p>
 <p>设 
 $
 \mathbf{rotate}(\theta) = 
-\begin{bmatrix}
+\begin{pmatrix}
 a &amp; b \\ c &amp; d
-\end{bmatrix}
+\end{pmatrix}
 $</p>
 <p>对于任意向量 $\mathbf{r}$ ，一定有 $\mathbf{r}' = \mathbf{rotate}(\theta) \mathbf{r}$</p>
 <p>则取单位向量 $\hat{\mathbf{r}} = (1, 0)^T$ ，由上图，通过三角函数的计算得到旋转后向量为 $\hat{\mathbf{r}}' = (\cos \theta, \sin \theta)^T$</p>
 <p>因此，一定有下式成立</p>
 <p>$$
-\begin{bmatrix}
+\begin{pmatrix}
 \cos \theta \\ \sin \theta
-\end{bmatrix} = 
-\begin{bmatrix}
+\end{pmatrix} = 
+\begin{pmatrix}
 a &amp; b \\ c &amp; d
-\end{bmatrix}
-\begin{bmatrix}
+\end{pmatrix}
+\begin{pmatrix}
 1 \\ 0
-\end{bmatrix}
+\end{pmatrix}
 $$</p>
 <p>得到</p>
 <p>$$a = \cos \theta$$
@@ -325,19 +325,19 @@ $$d = \cos \theta$$</p>
 <p>故</p>
 <p>$$
 \mathbf{rotate}(\theta) = 
-\begin{bmatrix}
+\begin{pmatrix}
 \cos \theta &amp; -\sin \theta	        \\<br>
 \sin \theta &amp; \cos \theta           \\<br>
-\end{bmatrix}
+\end{pmatrix}
 $$</p>
 <p>值得一提的是，根据定义， 
 $
 \mathbf{rotate}(\theta)^{-1} = 
 \mathbf{rotate}(-\theta) = 
-\begin{bmatrix}
+\begin{pmatrix}
 \cos \theta &amp; \sin \theta	        \\<br>
 -\sin \theta &amp; \cos \theta           \\<br>
-\end{bmatrix} = 
+\end{pmatrix} = 
 \mathbf{rotate}(\theta)^T
 $</p>
 <p>也就是旋转矩阵的逆和它的转置相等，旋转矩阵是正交矩阵。</p>
@@ -346,39 +346,39 @@ $</p>
 <p>平移并非线性变换，其过程不能表示为矩阵与向量的乘法。</p>
 <p>$$
 \mathbf{Trans}(t_x, t_y) = 
-\begin{bmatrix}
+\begin{pmatrix}
 t_x \\ t_y
-\end{bmatrix}
+\end{pmatrix}
 $$</p>
 <p>
   <p><img src="https://s2.loli.net/2021/12/22/yR8cT9iCVlWNjws.jpg" alt="" loading="lazy" /></p>
 </p>
 <p>如上图所示，</p>
 <p>$$
-\begin{bmatrix}
+\begin{pmatrix}
 x' \\ y'
-\end{bmatrix} = 
-\begin{bmatrix}
+\end{pmatrix} = 
+\begin{pmatrix}
 x \\ y
-\end{bmatrix} + 
-\begin{bmatrix}
+\end{pmatrix} + 
+\begin{pmatrix}
 t_x \\ t_y
-\end{bmatrix}
+\end{pmatrix}
 $$</p>
 <p>上述所有线性变换和平移均可用以下一个公式表示</p>
 <p>$$
-\begin{bmatrix}
+\begin{pmatrix}
 x' \\ y'
-\end{bmatrix} = 
-\begin{bmatrix}
+\end{pmatrix} = 
+\begin{pmatrix}
 a &amp; b \\ c &amp; d
-\end{bmatrix}
-\begin{bmatrix}
+\end{pmatrix}
+\begin{pmatrix}
 x \\ y
-\end{bmatrix} + 
-\begin{bmatrix}
+\end{pmatrix} + 
+\begin{pmatrix}
 t_x \\ t_y
-\end{bmatrix}
+\end{pmatrix}
 $$</p>
 <p>但将平移和其他线性变换区分开，并为平移使用一种新的计算方法（加法），并不是我们所期待。</p>
 <p>因此考虑一种方法，能够只使用矩阵乘法，表示以上所有变换。</p>
@@ -388,33 +388,33 @@ $$</p>
 $$\mathbf{2D}\ \mathbf{vector} = (x, y, 0)^T$$</p>
 <p>那么，对于点的平移可表示为</p>
 <p>$$
-\begin{bmatrix}
+\begin{pmatrix}
 x' \\ y' \\ 1
-\end{bmatrix} = 
-\begin{bmatrix}
+\end{pmatrix} = 
+\begin{pmatrix}
 1 &amp; 0 &amp; t_x \\ 0 &amp; 1 &amp; t_y \\ 0 &amp; 0 &amp; 1
-\end{bmatrix}
-\begin{bmatrix}
+\end{pmatrix}
+\begin{pmatrix}
 x \\ y \\ 1
-\end{bmatrix} =
-\begin{bmatrix}
+\end{pmatrix} =
+\begin{pmatrix}
 x + t_x \\ y + t_y \\ 1
-\end{bmatrix}
+\end{pmatrix}
 $$</p>
 <p>对于向量的平移表示为</p>
 <p>$$
-\begin{bmatrix}
+\begin{pmatrix}
 x' \\ y' \\ 0
-\end{bmatrix} = 
-\begin{bmatrix}
+\end{pmatrix} = 
+\begin{pmatrix}
 1 &amp; 0 &amp; t_x \\ 0 &amp; 1 &amp; t_y \\ 0 &amp; 0 &amp; 1
-\end{bmatrix}
-\begin{bmatrix}
+\end{pmatrix}
+\begin{pmatrix}
 x \\ y \\ 1
-\end{bmatrix} =
-\begin{bmatrix}
+\end{pmatrix} =
+\begin{pmatrix}
 x  \\ y  \\ 0
-\end{bmatrix}
+\end{pmatrix}
 $$</p>
 <p>可以看到，对于向量的平移，得到的结果与原结果相同，这恰好体现了向量的平移不变性。</p>
 <p>并且，根据以上定义，可以推导出</p>
@@ -438,83 +438,83 @@ x/w  \\ y/w  \\ 1
 $$</p>
 <p>仿射变换：</p>
 <p>$$
-\begin{bmatrix}
+\begin{pmatrix}
 x' \\ y'
-\end{bmatrix} = 
-\begin{bmatrix}
+\end{pmatrix} = 
+\begin{pmatrix}
 a &amp; b \\ c &amp; d
-\end{bmatrix}
-\begin{bmatrix}
+\end{pmatrix}
+\begin{pmatrix}
 x \\ y
-\end{bmatrix} + 
-\begin{bmatrix}
+\end{pmatrix} + 
+\begin{pmatrix}
 t_x \\ t_y
-\end{bmatrix}
+\end{pmatrix}
 $$</p>
 <p>齐次坐标下：</p>
 <p>$$
-\begin{bmatrix}
+\begin{pmatrix}
 x' \\ y' \\ 1
-\end{bmatrix} = 
-\begin{bmatrix}
+\end{pmatrix} = 
+\begin{pmatrix}
 a &amp; b &amp; t_x \\ c &amp; d &amp; t_y \\ 0 &amp; 0 &amp; 1
-\end{bmatrix}
-\begin{bmatrix}
+\end{pmatrix}
+\begin{pmatrix}
 x \\ y \\ 1
-\end{bmatrix}
+\end{pmatrix}
 $$</p>
 <h2 id="3d-线性变换">3D 线性变换</h2>
 <p>理同 2D 线性变换，在此给出三种线性变换在 3D 下的矩阵</p>
 <p>缩放</p>
 <p>$$
 \mathbf{scale}(s_x, s_y, s_z) = 
-\begin{bmatrix}
+\begin{pmatrix}
 s_x &amp; 0 &amp; 0      \\<br>
 0 &amp; s_y &amp; 0      \\<br>
 0 &amp; 0 &amp; s_z
-\end{bmatrix}
+\end{pmatrix}
 $$</p>
 <p>剪切</p>
 <p>$$
 \mathbf{shear}_x(s_y, s_z) = 
-\begin{bmatrix}
+\begin{pmatrix}
 1 &amp; s_y &amp; s_z	        \\<br>
 0 &amp; 1 &amp; 0               \\<br>
 0 &amp; 0 &amp; 1
-\end{bmatrix},
+\end{pmatrix},
 \mathbf{shear}_y(s_x, s_z) = 
-\begin{bmatrix}
+\begin{pmatrix}
 1 &amp; 0 &amp; 0	            \\<br>
 s_x &amp; 1 &amp; s_z           \\<br>
 0 &amp; 0 &amp; 1
-\end{bmatrix},
+\end{pmatrix},
 \mathbf{shear}_z(s_x, s_y) = 
-\begin{bmatrix}
+\begin{pmatrix}
 1 &amp; 0 &amp; 0	            \\<br>
 0 &amp; 1 &amp; 0               \\<br>
 s_x &amp; s_y &amp; 1
-\end{bmatrix},
+\end{pmatrix},
 $$</p>
 <p>旋转</p>
 <p>$$
 \mathbf{rotate}_x(\theta) = 
-\begin{bmatrix}
+\begin{pmatrix}
 1 &amp; 0 &amp; 0   \\<br>
 0 &amp; \cos \theta &amp; -\sin \theta	        \\<br>
 0 &amp; \sin \theta &amp; \cos \theta           \\<br>
-\end{bmatrix},
+\end{pmatrix},
 \mathbf{rotate}_y(\theta) = 
-\begin{bmatrix}
+\begin{pmatrix}
 \cos \theta  &amp; 0 &amp; \sin \theta          \\<br>
 0 &amp; 1 &amp; 0	                            \\<br>
 -\sin \theta &amp; 0 &amp; \cos \theta          \\<br>
-\end{bmatrix},
+\end{pmatrix},
 \mathbf{rotate}_z(\theta) = 
-\begin{bmatrix}
+\begin{pmatrix}
 \cos \theta &amp; -\sin \theta &amp; 0	        \\<br>
 \sin \theta &amp; \cos \theta &amp; 0           \\<br>
 0 &amp; 0 &amp; 1
-\end{bmatrix}
+\end{pmatrix}
 $$</p>
 <h2 id="3d-绕任意轴旋转">3D 绕任意轴旋转</h2>
 <p>对于任何一个旋转，都可将其分解为绕三个坐标轴的旋转的组合。</p>
@@ -553,15 +553,15 @@ n_z &amp; 0 &amp; -n_x \\<br>
 <p>$$\mathbf{3D}\ \mathbf{point} = (x, y, z, 1)^T$$
 $$\mathbf{3D}\ \mathbf{vector} = (x, y, z, 0)^T$$</p>
 <p>$$
-\begin{bmatrix}
+\begin{pmatrix}
 x' \\ y' \\ z' \\ 1
-\end{bmatrix} = 
-\begin{bmatrix}
+\end{pmatrix} = 
+\begin{pmatrix}
 a &amp; b &amp; c &amp; t_x \\ d &amp; e &amp; f &amp; t_y \\ g &amp; h &amp; i &amp; t_z \\ 0 &amp; 0 &amp; 0 &amp; 1
-\end{bmatrix}
-\begin{bmatrix}
+\end{pmatrix}
+\begin{pmatrix}
 x \\ y \\ z \\1
-\end{bmatrix}
+\end{pmatrix}
 $$</p>
 
           </div>

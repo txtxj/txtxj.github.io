@@ -215,12 +215,12 @@ document.addEventListener("visibilitychange", function () {
 <p>并且可以很轻松地写出平移变换矩阵</p>
 <p>$$
 \mathbf{T_{view}} = 
-\begin{bmatrix}
+\begin{pmatrix}
 1 &amp; 0 &amp; 0 &amp; -x_e \\<br>
 0 &amp; 1 &amp; 0 &amp; -y_e \\<br>
 0 &amp; 0 &amp; 1 &amp; -z_e \\<br>
 0 &amp; 0 &amp; 0 &amp; 1
-\end{bmatrix}
+\end{pmatrix}
 $$</p>
 <p>而对于旋转操作，并没有那么容易，</p>
 <p>考虑旋转变换矩阵 $\mathbf{R_{view}}$ 的逆矩阵，即 $\mathbf{R_{view}}^{-1}$ ，</p>
@@ -232,39 +232,39 @@ $$</p>
 </ul>
 <p>由于旋转前的三个轴形式简单，所以可以分别取三个方向的单位向量，用该矩阵左乘这三个方向，得到旋转后的矩阵</p>
 <p>$$
-\begin{bmatrix}
+\begin{pmatrix}
 \hat{\mathbf{g}} \times \hat{\mathbf{t}} &amp;
 \hat{\mathbf{t}} &amp;
 -\hat{\mathbf{g}} 
-\end{bmatrix} = 
+\end{pmatrix} = 
 \mathbf{R_{view}}^{-1}
-\begin{bmatrix}
+\begin{pmatrix}
 1 &amp; 0 &amp; 0 \\<br>
 0 &amp; 1 &amp; 0 \\<br>
 0 &amp; 0 &amp; 1 \\<br>
 0 &amp; 0 &amp; 0
-\end{bmatrix}
+\end{pmatrix}
 $$</p>
 <p>可以直接写出旋转矩阵的逆为</p>
 <p>$$
 \mathbf{R_{view}}^{-1} = 
-\begin{bmatrix}
+\begin{pmatrix}
 x_{\hat{\mathbf{g}} \times \hat{\mathbf{t}}} &amp; x_t &amp; x_{-g} &amp; 0 \\<br>
 y_{\hat{\mathbf{g}} \times \hat{\mathbf{t}}} &amp; y_t &amp; y_{-g} &amp; 0 \\<br>
 z_{\hat{\mathbf{g}} \times \hat{\mathbf{t}}} &amp; z_t &amp; z_{-g} &amp; 0 \\<br>
 0 &amp; 0 &amp; 0 &amp; 1
-\end{bmatrix}
+\end{pmatrix}
 $$</p>
 <p>而旋转矩阵是正交矩阵，其逆与转置相等</p>
 <p>所以原旋转矩阵为</p>
 <p>$$
 \mathbf{R_{view}} = 
-\begin{bmatrix}
+\begin{pmatrix}
 x_{\hat{\mathbf{g}} \times \hat{\mathbf{t}}} &amp; y_{\hat{\mathbf{g}} \times \hat{\mathbf{t}}} &amp; z_{\hat{\mathbf{g}} \times \hat{\mathbf{t}}} &amp; 0\\<br>
 x_t &amp; y_t &amp; z_t &amp; 0 \\<br>
 x_{-g} &amp; y_{-g} &amp; z_{-g} &amp; 0 \\<br>
 0 &amp; 0 &amp; 0 &amp; 1
-\end{bmatrix}
+\end{pmatrix}
 $$</p>
 <h2 id="投影变换projection-transformation">投影变换(Projection Transformation)</h2>
 <p>投影变换的作用是，将 3D 的物体映射到 2D 的图像上。</p>
@@ -294,26 +294,145 @@ $$</p>
 <p>因此可以写出该变换的矩阵为</p>
 <p>$$
 \mathbf{M_{ortho}} = 
-\begin{bmatrix}
+\begin{pmatrix}
 \frac{2}{r - l} &amp; 0 &amp; 0 &amp; 0 \\<br>
 0 &amp; \frac{2}{t - b} &amp; 0 &amp; 0 \\<br>
 0 &amp; 0 &amp; \frac{2}{n - f} &amp; 0 \\<br>
 0 &amp; 0 &amp; 0 &amp; 1
-\end{bmatrix}
-\begin{bmatrix}
+\end{pmatrix}
+\begin{pmatrix}
 1 &amp; 0 &amp; 0 &amp; -\frac{r + l}{2} \\<br>
 0 &amp; 1 &amp; 0 &amp; -\frac{t + b}{2} \\<br>
 0 &amp; 0 &amp; 1 &amp; -\frac{n + f}{2} \\<br>
 0 &amp; 0 &amp; 0 &amp; 1
-\end{bmatrix} = 
-\begin{bmatrix}
+\end{pmatrix} = 
+\begin{pmatrix}
 \frac{2}{r - l} &amp; 0 &amp; 0 &amp; -\frac{r + l}{r - l} \\<br>
 0 &amp; \frac{2}{t - b} &amp; 0 &amp; -\frac{t + b}{t - b} \\<br>
 0 &amp; 0 &amp; \frac{2}{n - f} &amp; -\frac{n + f}{n - f} \\<br>
 0 &amp; 0 &amp; 0 &amp; 1
-\end{bmatrix}
+\end{pmatrix}
 $$</p>
 <h3 id="透视投影变换perspective-projection">透视投影变换(Perspective projection)</h3>
+<p>相比于正交投影，透视投影更像是人肉眼所看到的画面，满足远小近大的透视关系。</p>
+<p>在透视投影变换中，原来平行的两条线，可能会不再平行。</p>
+<p>例如两条平行的轨道，可以看到图中两条轨道交于一点，并且这一点在图像上是可以找到的。</p>
+<p>
+  <p><img src="https://s2.loli.net/2021/12/26/gIA5sHb9LvcF7xa.jpg" alt="" loading="lazy" /></p>
+</p>
+<p>为了完成透视投影变换，可以将操作分为以下两步：</p>
+<ul>
+<li>将可视空间变换为长方体</li>
+<li>对这一长方体进行正交投影变换</li>
+</ul>
+<p>
+  <p><img src="https://s2.loli.net/2021/12/26/Cc56AxIJN3f8jiO.jpg" alt="" loading="lazy" /></p>
+</p>
+<p>如上图，左侧为原可视空间（假设 n 为视平面， f 是需要变换的最远处平面）。</p>
+<p>考虑可视空间中任意一点 $(x, y, z)^T$ ，其变换后坐标为 $(x', y', z')^T$ 。</p>
+<p>从侧面来看（只看 Y 轴的变换），可以看出变换后点的 Y 坐标为 $y' = \frac{n}{z}y$ 。</p>
+<p>
+  <p><img src="https://s2.loli.net/2021/12/26/vKxnHkParzoFq1O.jpg" alt="" loading="lazy" /></p>
+</p>
+<p>对于 X 轴的变换同理，可以得到变换后点的坐标为 $(\frac{n}{z}x, \frac{n}{z}y, z')^T$</p>
+<p>使用齐次坐标表示，</p>
+<p>$$
+\begin{pmatrix}
+x \\ y \\ z \\ 1
+\end{pmatrix} \Rightarrow 
+\begin{pmatrix}
+nx/z \\ ny/z \\ \text{unknow} \\ 1
+\end{pmatrix} =
+\begin{pmatrix}
+nx \\ ny \\ \text{still unknow} \\ z
+\end{pmatrix} (\text{mult. by z})
+$$</p>
+<p>因此，我们希望找到一个矩阵 $\mathbf{M_{persp\rightarrow ortho}^{4\times 4}}$ ，使得</p>
+<p>$$
+\mathbf{M_{persp\rightarrow ortho}^{4\times 4}}
+\begin{pmatrix}
+x \\ y \\ z \\ 1
+\end{pmatrix} =
+\begin{pmatrix}
+nx \\ ny \\ \text{still unknow} \\ z
+\end{pmatrix}
+$$</p>
+<p>可以得到</p>
+<p>$$
+\mathbf{M_{persp\rightarrow ortho}} = 
+\begin{pmatrix}
+n &amp; 0 &amp; 0 &amp; 0 \\<br>
+0 &amp; n &amp; 0 &amp; 0 \\<br>
+? &amp; ? &amp; ? &amp; ? \\<br>
+0 &amp; 0 &amp; 1 &amp; 0
+\end{pmatrix}
+$$</p>
+<p>下面考虑该矩阵第三行的值。</p>
+<p>规定：</p>
+<ul>
+<li>可视空间中距离相机最近的平面上的点，变换后保持不变</li>
+<li>可视空间中距离相机最远的平面上的点，变换后 Z 坐标保持不变</li>
+</ul>
+<p>由第一条规定，将上述所有 $z$ 替换为 $n$ ，得到下式</p>
+<p>$$
+\begin{pmatrix}
+x \\ y \\ n \\ 1
+\end{pmatrix} \Rightarrow 
+\begin{pmatrix}
+x \\ y \\ n \\ 1
+\end{pmatrix} =
+\begin{pmatrix}
+nx \\ ny \\ n^2 \\ n
+\end{pmatrix}
+$$</p>
+<p>由于 $n^2$ 与 $x$ 和 $y$ 无关，矩阵第三行可以设为 
+$
+\begin{pmatrix}
+0 &amp; 0 &amp; A &amp; B
+\end{pmatrix}
+$</p>
+<p>$$
+\begin{pmatrix}
+0 &amp; 0 &amp; A &amp; B
+\end{pmatrix}
+\begin{pmatrix}
+x \\ y \\ n \\ 1
+\end{pmatrix} = (n^2)
+$$</p>
+<p>所以 $An + B = n^2$</p>
+<p>由第二条规定，代入较远平面的中心点，得到下式</p>
+<p>$$
+\begin{pmatrix}
+0 &amp; 0 &amp; A &amp; B
+\end{pmatrix}
+\begin{pmatrix}
+x \\ y \\ f \\ 1
+\end{pmatrix} = (f^2)
+$$</p>
+<p>即 $Af + B = f^2$</p>
+<p>联立上式可以解得 $A = n + f, B = -nf$</p>
+<p>故矩阵为</p>
+<p>$$
+\mathbf{M_{persp\rightarrow ortho}} = 
+\begin{pmatrix}
+n &amp; 0 &amp; 0 &amp; 0 \\<br>
+0 &amp; n &amp; 0 &amp; 0 \\<br>
+0 &amp; 0 &amp; n + f &amp; -nf \\<br>
+0 &amp; 0 &amp; 1 &amp; 0
+\end{pmatrix}
+$$</p>
+<p>最后，将上述变换后的长方体空间正交投影变换到 $[-1,1]^3$ ，得到透视变换投影矩阵如下</p>
+<p>$$
+\mathbf{M_{persp}} = 
+\mathbf{M_{ortho}}
+\mathbf{M_{persp\rightarrow ortho}} = 
+\begin{pmatrix}
+\frac{2n}{r - l} &amp; 0 &amp; \frac{l + r}{l - r} &amp; 0 \\<br>
+0 &amp; \frac{2n}{t - b} &amp; \frac{b + t}{b - t} &amp; 0 \\<br>
+0 &amp; 0 &amp; \frac{n + f}{n - f} &amp; -\frac{2nf}{n - f} \\<br>
+0 &amp; 0 &amp; 1 &amp; 0
+\end{pmatrix}
+$$</p>
 
           </div>
         </div>

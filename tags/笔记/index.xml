@@ -39,19 +39,19 @@
       <pubDate>Wed, 22 Dec 2021 16:01:30 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
       <guid>https://txtxj.top/posts/gamesnote01/</guid>
-      <description>2D 线性变换 缩放(Scale) $$ \mathbf{scale}(s_x, s_y) = \begin{bmatrix} s_x &amp;amp; 0 \\
+      <description>2D 线性变换 缩放(Scale) $$ \mathbf{scale}(s_x, s_y) = \begin{pmatrix} s_x &amp;amp; 0 \\
 0 &amp;amp; s_y \\
-\end{bmatrix} $$ $$x&#39; = s_x x$$ $$y&#39; = s_y y$$
+\end{pmatrix} $$ $$x&#39; = s_x x$$ $$y&#39; = s_y y$$
 如上图所示，
-$$ \begin{bmatrix} x&#39;	\\
-y&#39; \end{bmatrix} = \begin{bmatrix} 0.5 &amp;amp; 0	\\
+$$ \begin{pmatrix} x&#39;	\\
+y&#39; \end{pmatrix} = \begin{pmatrix} 0.5 &amp;amp; 0	\\
 0 &amp;amp; 1	\\
-\end{bmatrix} \begin{bmatrix} x	\\
-y \end{bmatrix} $$
+\end{pmatrix} \begin{pmatrix} x	\\
+y \end{pmatrix} $$
 另外，关于坐标轴的反射，也是一种特殊的缩放。
 如上图所示，
-$$ \begin{bmatrix} x&#39;	\\
-y&#39; \end{bmatrix} = \begin{bmatrix} -1 &amp;amp; 0	\\
+$$ \begin{pmatrix} x&#39;	\\
+y&#39; \end{pmatrix} = \begin{pmatrix} -1 &amp;amp; 0	\\
 0 &amp;amp; 1	\\</description>
     </item>
     
