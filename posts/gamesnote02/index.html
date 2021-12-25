@@ -267,6 +267,53 @@ x_{-g} &amp; y_{-g} &amp; z_{-g} &amp; 0 \\<br>
 \end{bmatrix}
 $$</p>
 <h2 id="投影变换projection-transformation">投影变换(Projection Transformation)</h2>
+<p>投影变换的作用是，将 3D 的物体映射到 2D 的图像上。</p>
+<p>投影变换有两种类型，分别是正交投影变换(Orthographic Projection)和透视投影变换(Perspective projection)。</p>
+<p>
+  <p><img src="https://s2.loli.net/2021/12/25/UONX9pFLKPkHJ3w.jpg" alt="" loading="lazy" /></p>
+</p>
+<p>
+  <p><img src="https://s2.loli.net/2021/12/25/u4JNLKTI6oZhHA1.jpg" alt="" loading="lazy" /></p>
+</p>
+<h3 id="正交投影变换orthographic-projection">正交投影变换(Orthographic Projection)</h3>
+<p>对于正交投影变换，一个简单的做法是：</p>
+<ul>
+<li>视图变换</li>
+<li>将所有物体 Z 坐标变为 0</li>
+<li>将坐标变换（缩放）到 $[-1,1]^2$ 的区域中</li>
+</ul>
+<p>但通过上述方法变换得到的结果并不能反映物体之间的前后顺序，因此考虑另一种变换方法。</p>
+<p>考虑在视图变换后，将所有物体都变换到 $[-1,1]^3$ 的正方体中。</p>
+<p>这个正方体称为标准正方体。</p>
+<p>假设有一个长方体 $[l,r] \times [b,t] \times [f,n]$ 需要被投影变换到 $[-1,1]^3$ 。</p>
+<p>那么整个过程如下：</p>
+<ul>
+<li>将长方体的中心移动到原点</li>
+<li>将长方体的每条边长度缩放为 2</li>
+</ul>
+<p>因此可以写出该变换的矩阵为</p>
+<p>$$
+\mathbf{M_{ortho}} = 
+\begin{bmatrix}
+\frac{2}{r - l} &amp; 0 &amp; 0 &amp; 0 \\<br>
+0 &amp; \frac{2}{t - b} &amp; 0 &amp; 0 \\<br>
+0 &amp; 0 &amp; \frac{2}{n - f} &amp; 0 \\<br>
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; -\frac{r + l}{2} \\<br>
+0 &amp; 1 &amp; 0 &amp; -\frac{t + b}{2} \\<br>
+0 &amp; 0 &amp; 1 &amp; -\frac{n + f}{2} \\<br>
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix} = 
+\begin{bmatrix}
+\frac{2}{r - l} &amp; 0 &amp; 0 &amp; -\frac{r + l}{2} \\<br>
+0 &amp; \frac{2}{t - b} &amp; 0 &amp; -\frac{t + b}{2} \\<br>
+0 &amp; 0 &amp; \frac{2}{n - f} &amp; -\frac{n + f}{2} \\<br>
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+$$</p>
+<h3 id="透视投影变换perspective-projection">透视投影变换(Perspective projection)</h3>
 
           </div>
         </div>
@@ -322,7 +369,12 @@ $$</p>
   <ul>
     <li><a href="#模型变换model-transformation">模型变换(Model Transformation)</a></li>
     <li><a href="#视图变换viewing-transformation">视图变换(Viewing Transformation)</a></li>
-    <li><a href="#投影变换projection-transformation">投影变换(Projection Transformation)</a></li>
+    <li><a href="#投影变换projection-transformation">投影变换(Projection Transformation)</a>
+      <ul>
+        <li><a href="#正交投影变换orthographic-projection">正交投影变换(Orthographic Projection)</a></li>
+        <li><a href="#透视投影变换perspective-projection">透视投影变换(Perspective projection)</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
