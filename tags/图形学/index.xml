@@ -8,7 +8,31 @@
     <language>zh-CN</language>
     <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
     <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
-    <lastBuildDate>Wed, 22 Dec 2021 16:01:30 +0800</lastBuildDate><atom:link href="https://txtxj.top/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 23 Dec 2021 20:18:27 +0800</lastBuildDate><atom:link href="https://txtxj.top/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GAMES笔记02-模型、视图、投影变换</title>
+      <link>https://txtxj.top/posts/gamesnote02/</link>
+      <pubDate>Thu, 23 Dec 2021 20:18:27 +0800</pubDate>
+      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <guid>https://txtxj.top/posts/gamesnote02/</guid>
+      <description>模型变换(Model Transformation) 通过缩放、旋转、平移，将物体变换到合适的位置。
+视图变换(Viewing Transformation) 视图变换是通过调整摄像机，得到物体与摄像机之间相对位置的变换。
+为了确定相机的位置(Position)，需要一个向量 $\mathbf{e}$
+为了确定相机的朝向(Look-at / gaze direction)，需要一个向量 $\hat{\mathbf{g}}$
+为了确定相机的正上方向(Up direction)，需要一个向量 $\hat{\mathbf{t}}$
+此处相机的正上方向是为了确定相机拍摄时，图像的正上方所指向的位置。
+试想，如果一个相机的位置和朝向都已经确定，相机仍然可以以其朝向为轴旋转，因此必须使用 $\hat{\mathbf{t}}$ 限制相机的正上方向。
+在实际应用中，我们只关心物体与相机的相对位置，因此可以考虑把相机变换到原点，并使相机的坐标轴与空间坐标轴重合，这样一来，变换后物体在空间中的坐标就是物体与相机的相对坐标了。
+将相机移动到原点 $\mathbf{e} = \mathbf{0}$
+正上方向为朝向 $Y$ 轴 $\hat{\mathbf{t}} = \hat{\mathbf{y}}$
+相机朝向为 $Z$ 轴负方向 $\hat{\mathbf{g}} = -\hat{\mathbf{z}}$
+同时，将空间中所有物体跟随相机进行变换。
+考虑使用一个矩阵 $\mathbf{M_{view}}$ 表示上述变换。
+那么， $\mathbf{M_{view}}$ 需要完成的操作包含：
+ 将 $\mathbf{e}$ 变换到原点 将 $\hat{\mathbf{g}}$ 旋转到 $-\hat{\mathbf{z}}$ 将 $\hat{\mathbf{t}}$ 旋转到 $\hat{\mathbf{y}}$ 将 $\hat{\mathbf{g}} \times \hat{\mathbf{t}}$ 旋转到 $\hat{\mathbf{x}}$  对于上述操作的第一步平移操作，可以用一个矩阵 $\mathbf{T_{view}}$ 表示，
+则 $\mathbf{M_{view}} = \mathbf{R_{view}} \mathbf{T_{view}}$，</description>
+    </item>
+    
     <item>
       <title>GAMES笔记01-线性代数基础</title>
       <link>https://txtxj.top/posts/gamesnote01/</link>
