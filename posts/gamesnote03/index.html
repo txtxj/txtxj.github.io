@@ -73,7 +73,17 @@ document.addEventListener("visibilitychange", function () {
   <title>GAMES笔记03-光栅化 🌟 Txtxj</title>
 
   <meta property="og:title" content="GAMES笔记03-光栅化" />
-<meta property="og:description" content="" />
+<meta property="og:description" content="在经过模型、视图、投影变换后，待显示的所有物体都处在了一个标准正方体内。
+而光栅化的目的，就是把这个标准正方体内的物体转化为一个个像素点显示在屏幕上。
+视口变换(Viewport Transformation) 屏幕中的每个像素点都可以使用一个整数坐标表示，每个像素点的边长为 1 ，
+需要注意，坐标 $(x, y)$ 表示的像素点的中心位置实际应为 $(x &#43; 0.5, y &#43; 0.5)$
+例如，坐标为 $(0, 0)$ 的像素点中心位于 $(0.5, 0.5)$ 。
+要将标准正方体变换到屏幕的矩形中，需要
+ 无视 Z 坐标 将坐标变换（缩放）到 $[0, \text{width}] \times [0, \text{height}]$ 的区域中  可以直接写出变换矩阵
+$$ \mathbf{M_{viewpoint}} = \begin{pmatrix} \frac{\text{width}}{2} &amp; 0 &amp; 0 &amp; \frac{\text{width}}{2} \\
+0 &amp; \frac{\text{height}}{2} &amp; 0 &amp; \frac{\text{height}}{2} \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1 \end{pmatrix} $$" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://txtxj.top/posts/gamesnote03/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-12-30T03:13:15+08:00" />
@@ -82,7 +92,17 @@ document.addEventListener("visibilitychange", function () {
 
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="GAMES笔记03-光栅化"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:description" content="在经过模型、视图、投影变换后，待显示的所有物体都处在了一个标准正方体内。
+而光栅化的目的，就是把这个标准正方体内的物体转化为一个个像素点显示在屏幕上。
+视口变换(Viewport Transformation) 屏幕中的每个像素点都可以使用一个整数坐标表示，每个像素点的边长为 1 ，
+需要注意，坐标 $(x, y)$ 表示的像素点的中心位置实际应为 $(x &#43; 0.5, y &#43; 0.5)$
+例如，坐标为 $(0, 0)$ 的像素点中心位于 $(0.5, 0.5)$ 。
+要将标准正方体变换到屏幕的矩形中，需要
+ 无视 Z 坐标 将坐标变换（缩放）到 $[0, \text{width}] \times [0, \text{height}]$ 的区域中  可以直接写出变换矩阵
+$$ \mathbf{M_{viewpoint}} = \begin{pmatrix} \frac{\text{width}}{2} &amp; 0 &amp; 0 &amp; \frac{\text{width}}{2} \\
+0 &amp; \frac{\text{height}}{2} &amp; 0 &amp; \frac{\text{height}}{2} \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1 \end{pmatrix} $$"/>
 
 
   
@@ -156,7 +176,45 @@ document.addEventListener("visibilitychange", function () {
 
         <div class="article-content">
           <div class="markdown-body content-padding-large soft-size--large soft-style--box">
-            
+            <p>在经过模型、视图、投影变换后，待显示的所有物体都处在了一个标准正方体内。</p>
+<p>而光栅化的目的，就是把这个标准正方体内的物体转化为一个个像素点显示在屏幕上。</p>
+<h2 id="视口变换viewport-transformation">视口变换(Viewport Transformation)</h2>
+<p>屏幕中的每个像素点都可以使用一个整数坐标表示，每个像素点的边长为 1 ，</p>
+<p>
+  <p><img src="https://s2.loli.net/2022/01/04/nAB1h6CV97lvkNF.jpg" alt="" loading="lazy" /></p>
+</p>
+<p>需要注意，坐标 $(x, y)$ 表示的像素点的中心位置实际应为 $(x + 0.5, y + 0.5)$</p>
+<p>例如，坐标为 $(0, 0)$ 的像素点中心位于 $(0.5, 0.5)$ 。</p>
+<p>要将标准正方体变换到屏幕的矩形中，需要</p>
+<ul>
+<li>无视 Z 坐标</li>
+<li>将坐标变换（缩放）到 $[0, \text{width}] \times [0, \text{height}]$ 的区域中</li>
+</ul>
+<p>可以直接写出变换矩阵</p>
+<p>$$
+\mathbf{M_{viewpoint}} = 
+\begin{pmatrix}
+\frac{\text{width}}{2} &amp; 0 &amp; 0 &amp; \frac{\text{width}}{2} \\<br>
+0 &amp; \frac{\text{height}}{2} &amp; 0 &amp; \frac{\text{height}}{2} \\<br>
+0 &amp; 0 &amp; 1 &amp; 0 \\<br>
+0 &amp; 0 &amp; 0 &amp; 1
+\end{pmatrix}
+$$</p>
+<h2 id="三角形光栅化">三角形光栅化</h2>
+<p>由于三角形是最简单的多边形，任意的多边形也都可以拆分为若干个三角形，三角形光栅化也就是多边形光栅化的基础。</p>
+<p>考虑任意一个给定三顶点坐标的三角形，该三角形唯一确定。想要在屏幕上显示这个三角形，可以判断屏幕中每个像素点是否在该三角形内部，这种方法被称为采样法。</p>
+<p>
+  <p><img src="https://s2.loli.net/2022/01/04/OisGBj4mHNIUTX5.jpg" alt="" loading="lazy" /></p>
+</p>
+<p>对于每个像素点，如果该像素点的中央位于三角形内部，那么这个点将被采用；如果位于外部，那么这个点不被采用。</p>
+<p>而判断一个像素点的中心是否在三角形内部，可以通过向量的叉积解决。</p>
+<p>
+  <p><img src="https://s2.loli.net/2022/01/04/yYsmfU59cOPCXTI.jpg" alt="" loading="lazy" /></p>
+</p>
+<p>已知三角形的三顶点坐标 $P_0, P_1, P_2$ ，以及需要判断的像素点中心坐标 $Q$ ，</p>
+<p>可以通过计算 $P_0 P_1 \times P_0 Q, P_1 P_2 \times P_1 Q, P_2 P_0 \times P_2 Q$ ，判断三者结果是否同号，若结果同号，则 $Q$ 点一定位于三角形内部，否则 $Q$ 点位于三角形外部。</p>
+<p>特殊地，对于恰好落在三角形边界的像素点，可以统一规定采用或不采用，也可以设定更详细的规则来判断。</p>
+
           </div>
         </div>
                  
@@ -199,6 +257,22 @@ document.addEventListener("visibilitychange", function () {
 
 
     
+
+<section class="aside-widget widget-toc content-padding-large soft-size--large soft-style--box">
+  <h2 class="widget-header">
+    <div class="title">
+      <span>目录</span>
+    </div>
+  </h2>
+  <div class="widget-body">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#视口变换viewport-transformation">视口变换(Viewport Transformation)</a></li>
+    <li><a href="#三角形光栅化">三角形光栅化</a></li>
+  </ul>
+</nav>
+  </div>
+</section>
 
 
     
