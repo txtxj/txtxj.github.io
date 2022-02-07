@@ -63,7 +63,7 @@ document.addEventListener("visibilitychange", function () {
 
   
 
-  <meta name="generator" content="Hugo 0.86.0" />
+  <meta name="generator" content="Hugo 0.92.1" />
   
   
   
@@ -73,20 +73,12 @@ document.addEventListener("visibilitychange", function () {
   <title>GAMES笔记01-线性代数基础 🌟 Txtxj</title>
 
   <meta property="og:title" content="GAMES笔记01-线性代数基础" />
-<meta property="og:description" content="2D 线性变换 缩放(Scale) $$ \mathbf{scale}(s_x, s_y) = \begin{pmatrix} s_x &amp; 0 \\
-0 &amp; s_y \\
-\end{pmatrix} $$ $$x&#39; = s_x x$$ $$y&#39; = s_y y$$
+<meta property="og:description" content="2D 线性变换 缩放(Scale) $$ \mathbf{scale}(s_x, s_y) = \begin{pmatrix} s_x &amp; 0 \\ 0 &amp; s_y \\ \end{pmatrix} $$ $$x&#39; = s_x x$$ $$y&#39; = s_y y$$
 如上图所示，
-$$ \begin{pmatrix} x&#39;	\\
-y&#39; \end{pmatrix} = \begin{pmatrix} 0.5 &amp; 0	\\
-0 &amp; 1	\\
-\end{pmatrix} \begin{pmatrix} x	\\
-y \end{pmatrix} $$
+$$ \begin{pmatrix} x&#39;	\\ y&#39; \end{pmatrix} = \begin{pmatrix} 0.5 &amp; 0	\\ 0 &amp; 1	\\ \end{pmatrix} \begin{pmatrix} x	\\ y \end{pmatrix} $$
 另外，关于坐标轴的反射，也是一种特殊的缩放。
 如上图所示，
-$$ \begin{pmatrix} x&#39;	\\
-y&#39; \end{pmatrix} = \begin{pmatrix} -1 &amp; 0	\\
-0 &amp; 1	\\" />
+$$ \begin{pmatrix} x&#39;	\\ y&#39; \end{pmatrix} = \begin{pmatrix} -1 &amp; 0	\\ 0 &amp; 1	\\ \end{pmatrix} \begin{pmatrix} x	\\ y \end{pmatrix} $$" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://txtxj.top/posts/gamesnote01/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-12-22T16:01:30+08:00" />
@@ -95,20 +87,12 @@ y&#39; \end{pmatrix} = \begin{pmatrix} -1 &amp; 0	\\
 
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="GAMES笔记01-线性代数基础"/>
-<meta name="twitter:description" content="2D 线性变换 缩放(Scale) $$ \mathbf{scale}(s_x, s_y) = \begin{pmatrix} s_x &amp; 0 \\
-0 &amp; s_y \\
-\end{pmatrix} $$ $$x&#39; = s_x x$$ $$y&#39; = s_y y$$
+<meta name="twitter:description" content="2D 线性变换 缩放(Scale) $$ \mathbf{scale}(s_x, s_y) = \begin{pmatrix} s_x &amp; 0 \\ 0 &amp; s_y \\ \end{pmatrix} $$ $$x&#39; = s_x x$$ $$y&#39; = s_y y$$
 如上图所示，
-$$ \begin{pmatrix} x&#39;	\\
-y&#39; \end{pmatrix} = \begin{pmatrix} 0.5 &amp; 0	\\
-0 &amp; 1	\\
-\end{pmatrix} \begin{pmatrix} x	\\
-y \end{pmatrix} $$
+$$ \begin{pmatrix} x&#39;	\\ y&#39; \end{pmatrix} = \begin{pmatrix} 0.5 &amp; 0	\\ 0 &amp; 1	\\ \end{pmatrix} \begin{pmatrix} x	\\ y \end{pmatrix} $$
 另外，关于坐标轴的反射，也是一种特殊的缩放。
 如上图所示，
-$$ \begin{pmatrix} x&#39;	\\
-y&#39; \end{pmatrix} = \begin{pmatrix} -1 &amp; 0	\\
-0 &amp; 1	\\"/>
+$$ \begin{pmatrix} x&#39;	\\ y&#39; \end{pmatrix} = \begin{pmatrix} -1 &amp; 0	\\ 0 &amp; 1	\\ \end{pmatrix} \begin{pmatrix} x	\\ y \end{pmatrix} $$"/>
 
 
   
@@ -117,7 +101,7 @@ y&#39; \end{pmatrix} = \begin{pmatrix} -1 &amp; 0	\\
   
   <link rel="stylesheet" href="https://txtxj.top/assets/css/style.min.7767802ca28d5478bdc36e53c1e7e13cc54cc37c1924c35b9e00754066d927c8.css" integrity="sha256-d2eALKKNVHi9w25TwefhPMVMw3wZJMNbngB1QGbZJ8g=">
 
-  <script src="https://txtxj.top/assets/js/main.min.02c6f5c1a681332122b4761eba4bf2a5df10c7f5e08ca75bae52bbf648c05b7f.js" integrity="sha256-Asb1waaBMyEitHYeukvypd8Qx/XgjKdbrlK79kjAW38="></script>
+  <script src="https://txtxj.top/assets/js/main.min.597d9f5a80ce3137282a06b1b2cdbb5a481f3ae5ef0d0ba4265c177b6d788b36.js" integrity="sha256-WX2fWoDOMTcoKgaxss27WkgfOuXvDQukJlwXe214izY="></script>
   
   </head><body><header class="header-container layout-block layout-padding">
   <div class="header-inner content-padding-large soft-size--large soft-style--box">
@@ -189,8 +173,8 @@ y&#39; \end{pmatrix} = \begin{pmatrix} -1 &amp; 0	\\
 <p>$$
 \mathbf{scale}(s_x, s_y) = 
 \begin{pmatrix}
-s_x &amp; 0         \\<br>
-0 &amp; s_y         \\<br>
+s_x &amp; 0         \\
+0 &amp; s_y         \\
 \end{pmatrix}
 $$
 $$x' = s_x x$$
@@ -201,15 +185,15 @@ $$y' = s_y y$$</p>
 <p>如上图所示，</p>
 <p>$$
 \begin{pmatrix}
-x'				\\<br>
+x'				\\
 y'
 \end{pmatrix} = 
 \begin{pmatrix}
-0.5 &amp; 0			\\<br>
-0 &amp; 1			\\<br>
+0.5 &amp; 0			\\
+0 &amp; 1			\\
 \end{pmatrix}
 \begin{pmatrix}
-x				\\<br>
+x				\\
 y
 \end{pmatrix}
 $$</p>
@@ -220,15 +204,15 @@ $$</p>
 <p>如上图所示，</p>
 <p>$$
 \begin{pmatrix}
-x'				\\<br>
+x'				\\
 y'
 \end{pmatrix} = 
 \begin{pmatrix}
--1 &amp; 0			\\<br>
-0 &amp; 1			\\<br>
+-1 &amp; 0			\\
+0 &amp; 1			\\
 \end{pmatrix}
 \begin{pmatrix}
-x				\\<br>
+x				\\
 y
 \end{pmatrix}
 $$</p>
@@ -237,22 +221,22 @@ $$</p>
 <p>$$
 \mathbf{shear}_x(s) = 
 \begin{pmatrix}
-1 &amp; s	        \\<br>
-0 &amp; 1           \\<br>
+1 &amp; s	        \\
+0 &amp; 1           \\
 \end{pmatrix}, 
 \begin{aligned}
-x' &amp;= x + s y	\\<br>
+x' &amp;= x + s y	\\
 y' &amp;= y
 \end{aligned}
 $$
 $$
 \mathbf{shear}_y(s) = 
 \begin{pmatrix}
-1 &amp; 0	        \\<br>
-s &amp; 1           \\<br>
+1 &amp; 0	        \\
+s &amp; 1           \\
 \end{pmatrix}, 
 \begin{aligned}
-x' &amp;= x 		\\<br>
+x' &amp;= x 		\\
 y' &amp;= s x + y
 \end{aligned}
 $$</p>
@@ -262,22 +246,22 @@ $$</p>
 <p>如上图所示，</p>
 <p>$$
 \begin{pmatrix}
-x'				\\<br>
+x'				\\
 y'
 \end{pmatrix} = 
 \begin{pmatrix}
-1 &amp; a			\\<br>
-0 &amp; 1			\\<br>
+1 &amp; a			\\
+0 &amp; 1			\\
 \end{pmatrix}
 \begin{pmatrix}
-x				\\<br>
+x				\\
 y
 \end{pmatrix}
 $$</p>
 <p>缩放后得到
 $$
 \begin{aligned}
-x' &amp;= x + a y	\\<br>
+x' &amp;= x + a y	\\
 y' &amp;= y
 \end{aligned}
 $$</p>
@@ -290,8 +274,8 @@ $$</p>
 <p>$$
 \mathbf{rotate}(\theta) = 
 \begin{pmatrix}
-\cos \theta &amp; -\sin \theta	        \\<br>
-\sin \theta &amp; \cos \theta           \\<br>
+\cos \theta &amp; -\sin \theta	        \\
+\sin \theta &amp; \cos \theta           \\
 \end{pmatrix}
 $$</p>
 <p>推导：</p>
@@ -326,8 +310,8 @@ $$d = \cos \theta$$</p>
 <p>$$
 \mathbf{rotate}(\theta) = 
 \begin{pmatrix}
-\cos \theta &amp; -\sin \theta	        \\<br>
-\sin \theta &amp; \cos \theta           \\<br>
+\cos \theta &amp; -\sin \theta	        \\
+\sin \theta &amp; \cos \theta           \\
 \end{pmatrix}
 $$</p>
 <p>值得一提的是，根据定义， 
@@ -335,8 +319,8 @@ $
 \mathbf{rotate}(\theta)^{-1} = 
 \mathbf{rotate}(-\theta) = 
 \begin{pmatrix}
-\cos \theta &amp; \sin \theta	        \\<br>
--\sin \theta &amp; \cos \theta           \\<br>
+\cos \theta &amp; \sin \theta	        \\
+-\sin \theta &amp; \cos \theta           \\
 \end{pmatrix} = 
 \mathbf{rotate}(\theta)^T
 $</p>
@@ -420,9 +404,9 @@ $$</p>
 <p>并且，根据以上定义，可以推导出</p>
 <p>$$
 \begin{aligned}
-\mathbf{vector} &amp;+ \mathbf{vector} = \mathbf{vector} \\<br>
-\mathbf{point} &amp;- \mathbf{point} = \mathbf{vector} \\<br>
-\mathbf{point} &amp;+ \mathbf{vector} = \mathbf{point} \\<br>
+\mathbf{vector} &amp;+ \mathbf{vector} = \mathbf{vector} \\
+\mathbf{point} &amp;- \mathbf{point} = \mathbf{vector} \\
+\mathbf{point} &amp;+ \mathbf{vector} = \mathbf{point} \\
 \mathbf{point} &amp;+ \mathbf{point} = \mathbf{??}
 \end{aligned}
 $$</p>
@@ -469,8 +453,8 @@ $$</p>
 <p>$$
 \mathbf{scale}(s_x, s_y, s_z) = 
 \begin{pmatrix}
-s_x &amp; 0 &amp; 0      \\<br>
-0 &amp; s_y &amp; 0      \\<br>
+s_x &amp; 0 &amp; 0      \\
+0 &amp; s_y &amp; 0      \\
 0 &amp; 0 &amp; s_z
 \end{pmatrix}
 $$</p>
@@ -478,24 +462,24 @@ $$</p>
 <p>$$
 \mathbf{shear}_x(s_y, s_z) = 
 \begin{pmatrix}
-1 &amp; s_y &amp; s_z	        \\<br>
-0 &amp; 1 &amp; 0               \\<br>
+1 &amp; s_y &amp; s_z	        \\
+0 &amp; 1 &amp; 0               \\
 0 &amp; 0 &amp; 1
 \end{pmatrix},
 $$
 $$
 \mathbf{shear}_y(s_x, s_z) = 
 \begin{pmatrix}
-1 &amp; 0 &amp; 0	            \\<br>
-s_x &amp; 1 &amp; s_z           \\<br>
+1 &amp; 0 &amp; 0	            \\
+s_x &amp; 1 &amp; s_z           \\
 0 &amp; 0 &amp; 1
 \end{pmatrix},
 $$
 $$
 \mathbf{shear}_z(s_x, s_y) = 
 \begin{pmatrix}
-1 &amp; 0 &amp; 0	            \\<br>
-0 &amp; 1 &amp; 0               \\<br>
+1 &amp; 0 &amp; 0	            \\
+0 &amp; 1 &amp; 0               \\
 s_x &amp; s_y &amp; 1
 \end{pmatrix},
 $$</p>
@@ -503,24 +487,24 @@ $$</p>
 <p>$$
 \mathbf{rotate}_x(\theta) = 
 \begin{pmatrix}
-1 &amp; 0 &amp; 0   \\<br>
-0 &amp; \cos \theta &amp; -\sin \theta	        \\<br>
-0 &amp; \sin \theta &amp; \cos \theta           \\<br>
+1 &amp; 0 &amp; 0   \\
+0 &amp; \cos \theta &amp; -\sin \theta	        \\
+0 &amp; \sin \theta &amp; \cos \theta           \\
 \end{pmatrix},
 $$
 $$
 \mathbf{rotate}_y(\theta) = 
 \begin{pmatrix}
-\cos \theta  &amp; 0 &amp; \sin \theta          \\<br>
-0 &amp; 1 &amp; 0	                            \\<br>
--\sin \theta &amp; 0 &amp; \cos \theta          \\<br>
+\cos \theta  &amp; 0 &amp; \sin \theta          \\
+0 &amp; 1 &amp; 0	                            \\
+-\sin \theta &amp; 0 &amp; \cos \theta          \\
 \end{pmatrix},
 $$
 $$
 \mathbf{rotate}_z(\theta) = 
 \begin{pmatrix}
-\cos \theta &amp; -\sin \theta &amp; 0	        \\<br>
-\sin \theta &amp; \cos \theta &amp; 0           \\<br>
+\cos \theta &amp; -\sin \theta &amp; 0	        \\
+\sin \theta &amp; \cos \theta &amp; 0           \\
 0 &amp; 0 &amp; 1
 \end{pmatrix}
 $$</p>
@@ -540,8 +524,8 @@ $$</p>
 <p>$$
 \mathbf{R}(\mathbf{n}, \alpha) = \cos(\alpha) \mathbf{I} + (1 - \cos(\alpha)) \mathbf{nn}^T + \sin(\alpha)
 \begin{pmatrix}
-0 &amp; -n_z &amp; n_y \\<br>
-n_z &amp; 0 &amp; -n_x \\<br>
+0 &amp; -n_z &amp; n_y \\
+n_z &amp; 0 &amp; -n_x \\
 -n_y &amp; n_x &amp; 0
 \end{pmatrix}
 $$</p>
@@ -551,8 +535,8 @@ $$</p>
 $$</p>
 <p>其中， $\mathbf{N} = 
 \begin{pmatrix}
-0 &amp; -n_z &amp; n_y \\<br>
-n_z &amp; 0 &amp; -n_x \\<br>
+0 &amp; -n_z &amp; n_y \\
+n_z &amp; 0 &amp; -n_x \\
 -n_y &amp; n_x &amp; 0
 \end{pmatrix}$ 为向量 $\mathbf{n}$ 的叉乘矩阵。</p>
 <p>上述两种表达方式中后者需要的参数更少，在旋转操作时更为常用。</p>
