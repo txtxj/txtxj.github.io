@@ -8,7 +8,23 @@
     <language>zh-CN</language>
     <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
     <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
-    <lastBuildDate>Wed, 05 Jan 2022 22:54:43 +0800</lastBuildDate><atom:link href="https://txtxj.top/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 09 Feb 2022 20:27:03 +0800</lastBuildDate><atom:link href="https://txtxj.top/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>配置 Clash for Linux</title>
+      <link>https://txtxj.top/posts/clash4linux/</link>
+      <pubDate>Wed, 09 Feb 2022 20:27:03 +0800</pubDate>
+      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <guid>https://txtxj.top/posts/clash4linux/</guid>
+      <description>在 Ubuntu 20.04 中配置 Clash for Linux 之前一直在用 Windows ，用的梯子是不需要自己配置的。装了双系统之后一直苦于 Ubuntu 中 Github 等网站速度过慢。尝试了使用 electron-ssr ，但没找到靠谱的机场，后来在一个看起来不错的 Trojan 机场下面看见能用 Clash 托管，就换用 Clash 了。
+下载 Clash Clash 仓库地址：https://github.com/Dreamacro/clash
+在 Release 页面中下载最新的 gz 压缩包，我下载的版本为 clash-linux-amd64-v1.9.0.gz .
+在 Terminal 中进入下载文件夹，解压压缩包
+gunzip clash-linux-amd64-v1.9.0.gz 解压得到文件为 clash-linux-amd64-v1.9.0 ，为操作方便，可将其重命名为 clash
+mv clash-linux-amd64-v1.9.0 clash 将其移动到一个单独的文件夹中
+mkdir ~/clash mv clash ~/clash 下载配置文件 进入刚创建的 clash 文件夹，为 clash 授予可执行权限，并运行
+cd ~/clash chmod +x clash clash 程序将会提示缺少 config.yaml 和 Country.mmdb 两个配置文件，并自动开始下载，文件下载后位于 ~/.config/clash/ 中。</description>
+    </item>
+    
     <item>
       <title>快捷键 - MarkDown 插入代码块</title>
       <link>https://txtxj.top/posts/sublimemarkdown/</link>
