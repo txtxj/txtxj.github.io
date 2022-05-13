@@ -75,7 +75,7 @@ document.addEventListener("visibilitychange", function () {
   <meta property="og:title" content="GAMES笔记03-光栅化" />
 <meta property="og:description" content="在经过模型、视图、投影变换后，待显示的所有物体都处在了一个标准正方体内。
 而光栅化的目的，就是把这个标准正方体内的物体转化为一个个像素点显示在屏幕上。
-视口变换(Viewport Transformation) 屏幕中的每个像素点都可以使用一个整数坐标表示，每个像素点的边长为 1 ，
+视口变换(Viewpoint Transformation) 屏幕中的每个像素点都可以使用一个整数坐标表示，每个像素点的边长为 1 ，
 需要注意，坐标 $(x, y)$ 表示的像素点的中心位置实际应为 $(x &#43; 0.5, y &#43; 0.5)$
 例如，坐标为 $(0, 0)$ 的像素点中心位于 $(0.5, 0.5)$ 。
 要将标准正方体变换到屏幕的矩形中，需要
@@ -91,7 +91,7 @@ $$ \mathbf{M_{viewpoint}} = \begin{pmatrix} \frac{\text{width}}{2} &amp; 0 &amp;
 <meta name="twitter:title" content="GAMES笔记03-光栅化"/>
 <meta name="twitter:description" content="在经过模型、视图、投影变换后，待显示的所有物体都处在了一个标准正方体内。
 而光栅化的目的，就是把这个标准正方体内的物体转化为一个个像素点显示在屏幕上。
-视口变换(Viewport Transformation) 屏幕中的每个像素点都可以使用一个整数坐标表示，每个像素点的边长为 1 ，
+视口变换(Viewpoint Transformation) 屏幕中的每个像素点都可以使用一个整数坐标表示，每个像素点的边长为 1 ，
 需要注意，坐标 $(x, y)$ 表示的像素点的中心位置实际应为 $(x &#43; 0.5, y &#43; 0.5)$
 例如，坐标为 $(0, 0)$ 的像素点中心位于 $(0.5, 0.5)$ 。
 要将标准正方体变换到屏幕的矩形中，需要
@@ -174,7 +174,7 @@ $$ \mathbf{M_{viewpoint}} = \begin{pmatrix} \frac{\text{width}}{2} &amp; 0 &amp;
           <div class="markdown-body content-padding-large soft-size--large soft-style--box">
             <p>在经过模型、视图、投影变换后，待显示的所有物体都处在了一个标准正方体内。</p>
 <p>而光栅化的目的，就是把这个标准正方体内的物体转化为一个个像素点显示在屏幕上。</p>
-<h2 id="视口变换viewport-transformation">视口变换(Viewport Transformation)</h2>
+<h2 id="视口变换viewpoint-transformation">视口变换(Viewpoint Transformation)</h2>
 <p>屏幕中的每个像素点都可以使用一个整数坐标表示，每个像素点的边长为 1 ，</p>
 <p>
   <p><img src="https://s2.loli.net/2022/01/04/nAB1h6CV97lvkNF.jpg" alt="" loading="lazy" /></p>
@@ -271,7 +271,7 @@ $$</p>
   <div class="widget-body">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#视口变换viewport-transformation">视口变换(Viewport Transformation)</a></li>
+    <li><a href="#视口变换viewpoint-transformation">视口变换(Viewpoint Transformation)</a></li>
     <li><a href="#三角形光栅化">三角形光栅化</a></li>
   </ul>
 </nav>
@@ -341,7 +341,7 @@ $$</p>
       
         <a href="https://txtxj.top/tags/%E6%95%99%E7%A8%8B/" data-count="3" class="soft-size--small soft-style--hover soft-style--active">教程</a>
       
-        <a href="https://txtxj.top/tags/%E9%A2%98%E8%A7%A3/" data-count="2" class="soft-size--small soft-style--hover soft-style--active">题解</a>
+        <a href="https://txtxj.top/tags/%E9%A2%98%E8%A7%A3/" data-count="3" class="soft-size--small soft-style--hover soft-style--active">题解</a>
       
         <a href="https://txtxj.top/tags/%E7%81%AB%E7%84%B0%E7%BA%B9%E7%AB%A0/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">火焰纹章</a>
       

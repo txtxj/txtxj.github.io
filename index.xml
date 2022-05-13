@@ -8,7 +8,29 @@
     <language>zh-CN</language>
     <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
     <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
-    <lastBuildDate>Wed, 09 Feb 2022 20:27:03 +0800</lastBuildDate><atom:link href="https://txtxj.top/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 13 May 2022 17:59:19 +0800</lastBuildDate><atom:link href="https://txtxj.top/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>题解 领奖台数</title>
+      <link>https://txtxj.top/posts/solutionprize/</link>
+      <pubDate>Fri, 13 May 2022 17:59:19 +0800</pubDate>
+      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <guid>https://txtxj.top/posts/solutionprize/</guid>
+      <description>这是陈雪老师《算法基础》课程中的一道作业题，似乎是老师原创的（在网上找题解没找到）。
+题面如下
+ 给定任意一个序列 $a_1, \dots, a_n$，其中没有重复元素。
+如果 $i &amp;lt; j &amp;lt; k$ 且 $a_j &amp;gt; a_i &amp;gt; a_k$，三个数字的大小关系就像运动会颁奖时的领奖台。
+于是我们称序列中满足该条件的 三元组 $(i, j, k)$ 的个数为序列的领奖台数。
+设计一个算法来计算序列的领奖台数。
+为了简化题目，规定 $a$ 中没有相同元素。
+ 即在一个数组里找具有如下图形式的三元组。
+想到另一道经典的归并排序题目：求 $i &amp;lt; j &amp;lt; k$ 且 $a_j &amp;gt; a_i$ 且 $a_j &amp;gt; a_k$ ，可以求每个位置的顺序对和逆序对个数，最后相乘得到结果。
+这道题是上面题目的加强版，也可以从每个位置顺序对、逆序对的个数入手计算。
+因此考虑分治。
+对于任意的 $i &amp;lt; j &amp;lt; k$ ，在一次合并中，如果 $i, j, k$ 位于同一待合并区间，则其对本次合并无贡献，不考虑。
+需要考虑的情况只有两种：
+ $i &amp;lt; j \le mid &amp;lt; k$ $i \le mid &amp;lt; j &amp;lt; k$  其中 $mid$ 为分割锚点。</description>
+    </item>
+    
     <item>
       <title>配置 Clash for Linux</title>
       <link>https://txtxj.top/posts/clash4linux/</link>
@@ -44,7 +66,7 @@ Sublime 版本 [ { &amp;#34;keys&amp;#34;: [&amp;#34;alt+`&amp;#34;], &amp;#34;c
       <guid>https://txtxj.top/posts/gamesnote03/</guid>
       <description>在经过模型、视图、投影变换后，待显示的所有物体都处在了一个标准正方体内。
 而光栅化的目的，就是把这个标准正方体内的物体转化为一个个像素点显示在屏幕上。
-视口变换(Viewport Transformation) 屏幕中的每个像素点都可以使用一个整数坐标表示，每个像素点的边长为 1 ，
+视口变换(Viewpoint Transformation) 屏幕中的每个像素点都可以使用一个整数坐标表示，每个像素点的边长为 1 ，
 需要注意，坐标 $(x, y)$ 表示的像素点的中心位置实际应为 $(x + 0.5, y + 0.5)$
 例如，坐标为 $(0, 0)$ 的像素点中心位于 $(0.5, 0.5)$ 。
 要将标准正方体变换到屏幕的矩形中，需要

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $("body").click(function(e) {
+        var $text = $("<span>❤</span>");
+        if (Math.random() <= 0.02) $text = $("<span>TX!</span>");
+        var x = e.pageX, y = e.pageY;
+        $text.css({
+            "z-index": 1145141919810,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": "rgb("+~~(255 * Math.random())+","+~~(255 * Math.random())+","+~~(255 * Math.random())+")"
+        });
+        $("body").append($text);
+        $text.animate({
+            "top": y - 100,
+            "opacity": 0
+        },
+        1500,
+        function() {
+            $text.remove();
+        });
+    });
+});
+var OriginTitile = document.title; 
+document.addEventListener("visibilitychange", function () { 
+    if (document.title != "txtxj呼呼zzz") OriginTitile = document.title;
+    document.title = document.hidden ? "txtxj呼呼zzz" : OriginTitile;
+});
+</script>
+<html><script>
+  MathJax = {
+    tex: {
+      inlineMath: [["$", "$"]],
+    },
+    displayMath: [
+      ["$$", "$$"],
+      ["\[\[", "\]\]"],
+    ],
+    svg: {
+      fontCache: "global",
+    },
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+></script><head>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   
+    <meta name="author" content="Txtxj">
+  
+
+  
+
+  
+
+  <meta name="generator" content="Hugo 0.92.1" />
+  
+  
+  
+  
+  
+  
+  <title>题解 领奖台数 🌟 Txtxj</title>
+
+  <meta property="og:title" content="题解 领奖台数" />
+<meta property="og:description" content="这是陈雪老师《算法基础》课程中的一道作业题，似乎是老师原创的（在网上找题解没找到）。
+题面如下
+ 给定任意一个序列 $a_1, \dots, a_n$，其中没有重复元素。
+如果 $i &lt; j &lt; k$ 且 $a_j &gt; a_i &gt; a_k$，三个数字的大小关系就像运动会颁奖时的领奖台。
+于是我们称序列中满足该条件的 三元组 $(i, j, k)$ 的个数为序列的领奖台数。
+设计一个算法来计算序列的领奖台数。
+为了简化题目，规定 $a$ 中没有相同元素。
+ 即在一个数组里找具有如下图形式的三元组。
+想到另一道经典的归并排序题目：求 $i &lt; j &lt; k$ 且 $a_j &gt; a_i$ 且 $a_j &gt; a_k$ ，可以求每个位置的顺序对和逆序对个数，最后相乘得到结果。
+这道题是上面题目的加强版，也可以从每个位置顺序对、逆序对的个数入手计算。
+因此考虑分治。
+对于任意的 $i &lt; j &lt; k$ ，在一次合并中，如果 $i, j, k$ 位于同一待合并区间，则其对本次合并无贡献，不考虑。
+需要考虑的情况只有两种：
+ $i &lt; j \le mid &lt; k$ $i \le mid &lt; j &lt; k$  其中 $mid$ 为分割锚点。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://txtxj.top/posts/solutionprize/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-13T17:59:19+08:00" />
+<meta property="article:modified_time" content="2022-05-13T17:59:19+08:00" />
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="题解 领奖台数"/>
+<meta name="twitter:description" content="这是陈雪老师《算法基础》课程中的一道作业题，似乎是老师原创的（在网上找题解没找到）。
+题面如下
+ 给定任意一个序列 $a_1, \dots, a_n$，其中没有重复元素。
+如果 $i &lt; j &lt; k$ 且 $a_j &gt; a_i &gt; a_k$，三个数字的大小关系就像运动会颁奖时的领奖台。
+于是我们称序列中满足该条件的 三元组 $(i, j, k)$ 的个数为序列的领奖台数。
+设计一个算法来计算序列的领奖台数。
+为了简化题目，规定 $a$ 中没有相同元素。
+ 即在一个数组里找具有如下图形式的三元组。
+想到另一道经典的归并排序题目：求 $i &lt; j &lt; k$ 且 $a_j &gt; a_i$ 且 $a_j &gt; a_k$ ，可以求每个位置的顺序对和逆序对个数，最后相乘得到结果。
+这道题是上面题目的加强版，也可以从每个位置顺序对、逆序对的个数入手计算。
+因此考虑分治。
+对于任意的 $i &lt; j &lt; k$ ，在一次合并中，如果 $i, j, k$ 位于同一待合并区间，则其对本次合并无贡献，不考虑。
+需要考虑的情况只有两种：
+ $i &lt; j \le mid &lt; k$ $i \le mid &lt; j &lt; k$  其中 $mid$ 为分割锚点。"/>
+
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://txtxj.top/assets/css/style.min.bf69d7b39362f7a685ad8610adfcc502e7543671834e6c465d5f371d7a9dd098.css" integrity="sha256-v2nXs5Ni96aFrYYQrfzFAudUNnGDTmxGXV83HXqd0Jg=">
+
+  <script src="https://txtxj.top/assets/js/main.min.597d9f5a80ce3137282a06b1b2cdbb5a481f3ae5ef0d0ba4265c177b6d788b36.js" integrity="sha256-WX2fWoDOMTcoKgaxss27WkgfOuXvDQukJlwXe214izY="></script>
+  
+  </head><body><header class="header-container layout-block layout-padding">
+  <div class="header-inner content-padding-large soft-size--large soft-style--box">
+    <div class="header-logo">
+      <a href="https://txtxj.top"><h1><img class="author-avatar soft-size--round soft-style--box" src="https://i.loli.net/2021/07/31/Txvq78fELy6ZCN1.jpg">&nbspTxtxj</h1></a>
+    </div>
+    <nav class="header-nav">
+      <div class="header-nav--btn">
+        <div class="btn-item"></div>
+        <div class="btn-item"></div>
+        <div class="btn-item"></div>
+      </div>
+      <div class="header-nav--list">
+        <div>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/" title="">🏠 主页</a>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/posts" title="">🗂️ 博客</a>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/games" title="">🎮 电动</a>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/tags" title="">🏷️ 标签</a>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/link" title="">🔗 友链</a>
+          
+        </div>
+      </div>
+    </nav>
+  </div>
+</header><main id="content">
+    
+
+    <div class="single-container layout-block">
+      <div class="article-info">
+        <div class="article-header layout-padding">
+          <div class="article-cover card-container content-padding-large soft-size--large soft-style--box img">
+
+  <div class="card-cover">
+    
+      <img src="https://s2.loli.net/2022/05/13/IcUxLfh3j2RZ79p.jpg" alt="https://s2.loli.net/2022/05/13/IcUxLfh3j2RZ79p.jpg" />
+    
+  </div>
+
+  <div class="card-text">
+    <h1 class="card-text--title">题解 领奖台数</h1>
+    
+      <p class="card-text--row">2022-05-13 17:59</p>
+      
+      
+      
+
+      
+      
+        <ul class="card-text--tag">
+          
+            <li><a href="https://txtxj.top/tags/%E9%A2%98%E8%A7%A3/">题解</a></li></ul>
+      
+    
+  </div>
+
+</div>
+        </div>
+
+        <div class="article-content">
+          <div class="markdown-body content-padding-large soft-size--large soft-style--box">
+            <p>这是陈雪老师《算法基础》课程中的一道作业题，似乎是老师原创的（在网上找题解没找到）。</p>
+<p>题面如下</p>
+<blockquote>
+<p>给定任意一个序列 $a_1, \dots, a_n$，其中没有重复元素。</p>
+<p>如果 $i &lt; j &lt; k$ 且 $a_j &gt; a_i &gt; a_k$，三个数字的大小关系就像运动会颁奖时的领奖台。</p>
+<p>于是我们称序列中满足该条件的 三元组 $(i, j, k)$ 的个数为序列的领奖台数。</p>
+<p>设计一个算法来计算序列的领奖台数。</p>
+<p>为了简化题目，规定 $a$ 中没有相同元素。</p>
+</blockquote>
+<p>即在一个数组里找具有如下图形式的三元组。</p>
+<p>
+  <p><img src="https://s2.loli.net/2022/05/13/rQpHSqWkls4yGCO.jpg" alt="20220513_1.jpg" loading="lazy" /></p>
+</p>
+<p>想到另一道经典的归并排序题目：求 $i &lt; j &lt; k$ 且 $a_j &gt; a_i$ 且 $a_j &gt; a_k$ ，可以求每个位置的顺序对和逆序对个数，最后相乘得到结果。</p>
+<p>这道题是上面题目的加强版，也可以从每个位置顺序对、逆序对的个数入手计算。</p>
+<p>因此考虑分治。</p>
+<p>对于任意的 $i &lt; j &lt; k$ ，在一次合并中，如果 $i, j, k$ 位于同一待合并区间，则其对本次合并无贡献，不考虑。</p>
+<p>需要考虑的情况只有两种：</p>
+<ul>
+<li>$i &lt; j \le mid &lt; k$</li>
+<li>$i \le mid &lt; j &lt; k$</li>
+</ul>
+<p>其中 $mid$ 为分割锚点。</p>
+<p>考虑到归并排序过程中，每次合并的元素均处于所在的待合并区间的首位，故上述两种情况分别对应了待合并元素为 $a_i$ 和待合并元素为 $a_j$ 的情况。</p>
+<ul>
+<li>
+<p>对于第一种情况 $i &lt; j \le mid &lt; k$ ，</p>
+<p>
+  <p><img src="https://s2.loli.net/2022/05/13/zqyNQXf5Z2FvwEV.jpg" alt="20220513_2.jpg" loading="lazy" /></p>
+</p>
+<p>考虑对于任意的 $i$ ，</p>
+<p>首先，要求 $i &lt; j \le mid$ 且 $a_i &lt; a_j$ ，实际上满足条件的 $a_j$ 的数量即为前半区间中以 $a_i$ 为首的顺序对的个数。</p>
+<p>其次，要求 $i &lt; mid &lt; k$ 且 $a_k &lt; a_i$ ，此时满足条件的 $a_k$ 的数量即为右侧比 $a_i$ 小的数的个数。在两个半区间均有序的情况下，这个值等于 $t - mid - 1$ ，其中 $t$ 为右侧第一个比 $a_i$ 大的数的下标。</p>
+<p>综上，对于数组中任意一个数，如果它在左半区间，则可以将其视为 $a_i$ ，其对答案产生的贡献为 
+$$
+\#(\text{以} a_i \text{为头的顺序对数量}) \times \#(\text{右侧比} a_i \text{小的数的数量})
+$$</p>
+</li>
+<li>
+<p>对于第二种情况 $i \le mid &lt; j &lt; k$ ，</p>
+<p>考虑对于任意的 $j$ ，由于我们只能记录对于 $a_j$ 而言，满足条件的 $a_k$ 的数量（即，右区间中以 $a_j$ 为头的逆序对数量），此时对于 $a_i$ 和 $a_k$ 的比较信息丢失，如果仍按照第一种情况分析，则最终结果无法保证 $a_i &gt; a_k$ 。</p>
+<p>即满足 $i \le mid &lt; j &lt; k$ 且 $a_j &gt; a_i$ 且 $a_j &gt; a_k$ 的数量为 
+$$
+\#(\text{以} a_j \text{为头的逆序对数量}) \times \#(\text{左侧比} a_j \text{小的数的数量})
+$$
+发现此时实际上比要求的答案多计算了一种情况 $i \le mid &lt; j &lt; k$ 且 $a_j &gt; a_k &gt; a_i$ ，而这种情况与第一种情况刚好是对称的，</p>
+<p>
+  <p><img src="https://s2.loli.net/2022/05/13/sQ1Wk46IfLSZGJr.jpg" alt="20220513_3.jpg" loading="lazy" /></p>
+</p>
+<p>可以使用同样的方法计算出来，多计算的数量为
+$$
+\#(\text{以} a_k \text{为尾的逆序对数量}) \times \#(\text{左侧比} a_k \text{小的数的数量})
+$$
+由于 $j, k$ 两者没有相关性，上述两式可合并为
+$$
+(\#(\text{以} a_j \text{为头的逆序对数量}) - \#(\text{以} a_j \text{为尾的逆序对数量})) \times \#(\text{左侧比} a_j \text{小的数的数量})
+$$
+即为该种情况下所求的结果</p>
+</li>
+</ul>
+<p>核心代码如下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">/*
+</span><span style="color:#75715e">orderHead[i] 表示以 a[i] 为头的顺序对数量
+</span><span style="color:#75715e">reverseDf[j] 表示以 a[j] 为头的逆序对数量 - 以 a[j] 为尾的逆序对数量
+</span><span style="color:#75715e">两 temp 数组用于搬运数据时作为上述两数组的临时存储空间
+</span><span style="color:#75715e">sum 为之前所有子问题的贡献
+</span><span style="color:#75715e">cnt 为当此合并的贡献
+</span><span style="color:#75715e">*/</span>
+<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> <span style="color:#a6e22e">MergeSort</span>(<span style="color:#66d9ef">int</span> l, <span style="color:#66d9ef">int</span> r)
+{
+	<span style="color:#66d9ef">if</span> (l <span style="color:#f92672">==</span> r) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+	<span style="color:#66d9ef">int</span> mid <span style="color:#f92672">=</span> (l <span style="color:#f92672">+</span> r) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>;
+	<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> sum <span style="color:#f92672">=</span> MergeSort(l, mid) <span style="color:#f92672">+</span> MergeSort(mid <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, r);
+	<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+	<span style="color:#66d9ef">int</span> i, j, p;
+	<span style="color:#66d9ef">for</span> (p <span style="color:#f92672">=</span> l, i <span style="color:#f92672">=</span> l, j <span style="color:#f92672">=</span> mid <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> mid <span style="color:#f92672">&amp;&amp;</span> j <span style="color:#f92672">&lt;=</span> r; p <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>)
+	{
+		<span style="color:#66d9ef">if</span> (a[i] <span style="color:#f92672">&lt;=</span> a[j])
+		{
+			temp[p] <span style="color:#f92672">=</span> a[i];
+			tempOrder[p] <span style="color:#f92672">=</span> orderHead[i] <span style="color:#f92672">+</span> r <span style="color:#f92672">-</span> j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+			tempReverse[p] <span style="color:#f92672">=</span> reverseDf[i] <span style="color:#f92672">+</span> j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> mid;
+			cnt <span style="color:#f92672">+=</span> orderHead[i] <span style="color:#f92672">*</span> (j <span style="color:#f92672">-</span> mid <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+			i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+		}
+		<span style="color:#66d9ef">else</span>
+		{
+			temp[p] <span style="color:#f92672">=</span> a[j];
+			tempOrder[p] <span style="color:#f92672">=</span> orderHead[j];
+			tempReverse[p] <span style="color:#f92672">=</span> reverseDf[j] <span style="color:#f92672">+</span> i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> mid;
+			cnt <span style="color:#f92672">+=</span> reverseDf[j] <span style="color:#f92672">*</span> (i <span style="color:#f92672">-</span> l);
+			j <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+		}
+	}
+	<span style="color:#66d9ef">while</span> (i <span style="color:#f92672">&lt;=</span> mid)
+	{
+		temp[p] <span style="color:#f92672">=</span> a[i];
+		tempOrder[p] <span style="color:#f92672">=</span> orderHead[i];
+		tempReverse[p] <span style="color:#f92672">=</span> reverseDf[i] <span style="color:#f92672">+</span> r <span style="color:#f92672">-</span> mid;
+		cnt <span style="color:#f92672">+=</span> orderHead[i] <span style="color:#f92672">*</span> (r <span style="color:#f92672">-</span> mid);
+		i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+		p <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+	}
+	<span style="color:#66d9ef">while</span> (j <span style="color:#f92672">&lt;=</span> r)
+	{
+		temp[p] <span style="color:#f92672">=</span> a[j];
+		tempOrder[p] <span style="color:#f92672">=</span> orderHead[j];
+		tempReverse[p] <span style="color:#f92672">=</span> reverseDf[j];
+		cnt <span style="color:#f92672">+=</span> reverseDf[j] <span style="color:#f92672">*</span> (mid <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> l);
+		j <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+		p <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+	}
+	<span style="color:#66d9ef">while</span> (l <span style="color:#f92672">&lt;=</span> r)
+	{
+		a[l] <span style="color:#f92672">=</span> temp[l];
+		orderHead[l] <span style="color:#f92672">=</span> tempOrder[l];
+		reverseDf[l] <span style="color:#f92672">=</span> tempReverse[l];
+		l <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+	}
+	<span style="color:#66d9ef">return</span> sum <span style="color:#f92672">+</span> cnt;
+}
+</code></pre></div><p><a href="https://github.com/txtxj/USTC-Algorithm/blob/master/lab3/PrizeNumber/prize.cpp" target="_blank" rel="noopener">完整代码</a></p>
+
+          </div>
+        </div>
+                 
+      
+  
+  
+  
+  
+
+  
+
+  <div class="article-paging">
+    
+    
+      <section class="post-paging--item card-container content-padding-primary soft-size--primary soft-style--box">
+  <div class="card-cover" background-image-lazy data-img="https://s2.loli.net/2022/02/09/ElLMdJiOr98Igf2.jpg"></div>
+  <div class="card-text">
+    <a href="/posts/clash4linux/"><h4 class="card-text--title">配置 Clash for Linux</h4></a>
+    <p class="card-text--row">2022-02-09 20:27</p>
+  </div>
+</section>
+    
+  </div>
+</div>
+  <aside class="widget-info">
+    
+<section class="aside-widget widget-author content-padding-large soft-size--large soft-style--box">
+  <div class="widget-body">
+    <div class="author-box avatar">
+      
+      <img class="author-avatar soft-size--round soft-style--box" src="https://i.loli.net/2021/07/31/Txvq78fELy6ZCN1.jpg" alt="Txtxj">
+      
+      <h2 class="author-name text-ellipsis">Txtxj</h2>
+      
+      <p class="author-desc text-ellipsis">TXTXJ</p>
+      
+    </div>
+  </div>
+</section>
+
+
+    
+
+
+    
+
+
+
+
+
+
+
+
+<section class="aside-widget widget-articles content-padding-large soft-size--large soft-style--box">
+  <h2 class="widget-header">
+    <div class="title">
+      <span>相关文章</span>
+    </div>
+  </h2>
+  <div class="widget-body">
+    <ul class="post-list">
+      
+      
+        <li class="post-item"><a href="/posts/solutioncf1452d/">【题解】CF1452D Radio Towers</a></li>
+      
+        <li class="post-item"><a href="/posts/solutionp5020/">题解 P5020 【货币系统】</a></li>
+      
+    </ul>
+  </div>
+</section>
+
+
+    
+
+
+
+
+
+    
+
+
+
+
+<section class="aside-widget widget-tags content-padding-large soft-size--large soft-style--box">
+  <h2 class="widget-header">
+    <div class="title">
+      <span>聚合标签</span>
+    </div>
+  </h2>
+  <div class="widget-body">
+    <div class="tags-list">
+      
+        <a href="https://txtxj.top/tags/%E7%AC%94%E8%AE%B0/" data-count="6" class="soft-size--small soft-style--hover soft-style--active">笔记</a>
+      
+        <a href="https://txtxj.top/tags/unity/" data-count="3" class="soft-size--small soft-style--hover soft-style--active">Unity</a>
+      
+        <a href="https://txtxj.top/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" data-count="3" class="soft-size--small soft-style--hover soft-style--active">图形学</a>
+      
+        <a href="https://txtxj.top/tags/%E6%95%99%E7%A8%8B/" data-count="3" class="soft-size--small soft-style--hover soft-style--active">教程</a>
+      
+        <a href="https://txtxj.top/tags/%E9%A2%98%E8%A7%A3/" data-count="3" class="soft-size--small soft-style--hover soft-style--active">题解</a>
+      
+        <a href="https://txtxj.top/tags/%E7%81%AB%E7%84%B0%E7%BA%B9%E7%AB%A0/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">火焰纹章</a>
+      
+    </div>
+  </div>
+
+  
+</section>
+
+  </aside>
+</div>
+  </main><footer class="footer-container layout-block">
+  
+  <div class="social-icons">
+    
+      <a class="soft-size--primary soft-style--box" href="https://github.com/txtxj" target="_blank" rel="noopener noreferrer">
+          
+        <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+        </svg>
+        
+
+        
+
+        
+
+        
+
+        
+      </a>
+    
+  </div>
+  
+
+  <div class="colour-bar"></div>
+  
+  
+
+  
+
+  <p>
+    Copyright © 2021 2021 txtxj
+  </p>
+
+  <p>
+    Powered by
+    <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a>
+    Theme - 
+    <a href="https://github.com/txtxj/hugo-theme-kagome" target="_blank" rel="noopener noreferrer author">kagome</a>
+  </p>
+
+  <p>
+    <a href="javascript:;" id="theme-light">🌞 浅色</a>
+    <a href="javascript:;" id="theme-dark">🌛 深色</a>
+    <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+  </p>
+  <script src="/js/copy.js"></script>
+</footer>
+
+
+
+<script type="text/javascript" src="https://csdnimg.cn/release/blog_mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hibiki.model.json"},"display":{"position":"left","width":80,"height":184},"mobile":{"show":false},"log":false});</script>
+</body>
+
+</html>
