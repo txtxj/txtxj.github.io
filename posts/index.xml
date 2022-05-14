@@ -8,7 +8,19 @@
     <language>zh-CN</language>
     <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
     <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
-    <lastBuildDate>Fri, 13 May 2022 17:59:19 +0800</lastBuildDate><atom:link href="https://txtxj.top/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 14 May 2022 16:07:55 +0800</lastBuildDate><atom:link href="https://txtxj.top/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>二叉树打印</title>
+      <link>https://txtxj.top/posts/treedebugger/</link>
+      <pubDate>Sat, 14 May 2022 16:07:55 +0800</pubDate>
+      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <guid>https://txtxj.top/posts/treedebugger/</guid>
+      <description>之前调红黑树的时候写的一个二叉树打印方法。
+可以以如下图形式在控制台输出树的结构。
+代码如下：
+#ifdef DEBUG static void DebugPrintMessage(Node* p) { // This is an example print function 	// Here puts the info you want to print 	std::cout &amp;lt;&amp;lt; &amp;#34;val: &amp;#34; &amp;lt;&amp;lt; p -&amp;gt; val &amp;lt;&amp;lt; &amp;#34; siz: &amp;#34; &amp;lt;&amp;lt; p -&amp;gt; siz &amp;lt;&amp;lt; &amp;#34; color: &amp;#34; &amp;lt;&amp;lt; (p -&amp;gt; color ? &amp;#34;R&amp;#34; : &amp;#34;B&amp;#34;) &amp;lt;&amp;lt; std::endl; } void DebugPrintNode(Node* p, int step, int valid, bool right) { if (p == nil) return; for (int i = 0; i &amp;lt; step; i++) { std::cout &amp;lt;&amp;lt; ((valid &amp;amp; (1 &amp;lt;&amp;lt; (i - 1))) == 0 ?</description>
+    </item>
+    
     <item>
       <title>题解 领奖台数</title>
       <link>https://txtxj.top/posts/solutionprize/</link>
