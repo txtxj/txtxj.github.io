@@ -8,7 +8,23 @@
     <language>zh-CN</language>
     <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
     <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
-    <lastBuildDate>Mon, 06 Sep 2021 12:08:35 +0800</lastBuildDate><atom:link href="https://txtxj.top/tags/unity/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 16 May 2022 22:44:43 +0800</lastBuildDate><atom:link href="https://txtxj.top/tags/unity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵</title>
+      <link>https://txtxj.top/posts/objecttoworldnormal/</link>
+      <pubDate>Mon, 16 May 2022 22:44:43 +0800</pubDate>
+      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <guid>https://txtxj.top/posts/objecttoworldnormal/</guid>
+      <description>在 《Unity ShaderLab 新手宝典》中 64 页给出了一个结论
+ 在顶点函数中，使用 Unity 提供的变换矩阵 unity_ObjectToWorld 将顶点坐标从模型空间变换到世界空间。为了避免非统一缩放的物体法线方向偏移，使用法线向量右乘逆矩阵的方式对其进行空间变换。
+ 即 worldNormal = mul(vertex， (float3x3)unity_WorldToObject) 。
+首先解释为什么对于非统一缩放的物体，左乘模型变换矩阵可能会导致法线方向偏移。
+考虑一个正方形，它的两条对角线是互相垂直的。
+但在将其 $x$ 方向变换为原来的 $\frac{1}{2}$ 之后，两条对角线不再互相垂直。
+将上述变换写为矩阵乘法的形式， $$ \text{令}\ \mathbf{n} = \overrightarrow{AC}, \mathbf{a} = \overrightarrow{BD} \ \text{为列向量}\\ \mathbf{n}^T \mathbf{a} = 0\\ \text{变换后}\ \mathbf{n&#39;} = \mathbf{Mn}, \mathbf{a&#39;} = \mathbf{Ma}\\ \mathbf{n&#39;}^T\mathbf{a&#39;} = \mathbf{n}^T \mathbf{M}^T \mathbf{Ma} $$
+由于模型变换矩阵 $\mathbf{M}$ 并不一定是正交矩阵，无法保证 $\mathbf{M}^T\mathbf{M} = \mathbf{I}$ ，因此也就无法保证 $\mathbf{n&#39;}^T\mathbf{a&#39;} = 0$ ，即 $\mathbf{n&#39;}$ 与 $\mathbf{a&#39;}$ 不一定垂直。</description>
+    </item>
+    
     <item>
       <title>Unity笔记03</title>
       <link>https://txtxj.top/posts/unityself03/</link>

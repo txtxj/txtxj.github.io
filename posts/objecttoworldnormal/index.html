@@ -70,59 +70,33 @@ document.addEventListener("visibilitychange", function () {
   
   
   
-  <title>【题解】CF1452D Radio Towers 🌟 Txtxj</title>
+  <title>为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵 🌟 Txtxj</title>
 
-  <meta property="og:title" content="【题解】CF1452D Radio Towers" />
-<meta property="og:description" content="cyz好兄弟上了大学一直在刷题打比赛，
-某日忘了概率怎么算了，半夜来问我这个题。
-题面：
-https://codeforces.com/contest/1452/problem/D
-显然总方案数是 $2 ^ n$
-问题是求出建造合法的方案数。
-不难看出，每座塔能覆盖的区间总长度一定是一个奇数，
-要求所有塔的覆盖范围不重叠，
-问题就化为了求正整数 $n$ 能拆分成若干个允许相同的奇数的和的方案个数。
-因此考虑 dp .
-对于任意的正整数 $n$ ，
-我们可以枚举所有不大于 $n$ 的奇数 $i$ ，将其作为拆分序列的首个奇数，
-这样，除去 $i$ 后，我们只需要求解剩余部分（即 $n - i$ ）的拆分方案数即可。
-上述过程的状态转移方程为
-奇数：
-$$dp[n] = dp[n - 1] &#43; dp[n - 3] &#43; &hellip; &#43; dp[0]$$
-偶数：
-$$dp[n] = dp[n - 1] &#43; dp[n - 3] &#43; &hellip; &#43; dp[1]$$
-考虑到 $dp[1] = dp[0] = 1$
-可以得到
-$$dp[2n] = dp[1] &#43; dp[3] &#43; dp[5] &#43; &hellip; &#43; dp[2n - 1]$$" />
+  <meta property="og:title" content="为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵" />
+<meta property="og:description" content="在 《Unity ShaderLab 新手宝典》中 64 页给出了一个结论
+ 在顶点函数中，使用 Unity 提供的变换矩阵 unity_ObjectToWorld 将顶点坐标从模型空间变换到世界空间。为了避免非统一缩放的物体法线方向偏移，使用法线向量右乘逆矩阵的方式对其进行空间变换。
+ 即 worldNormal = mul(vertex， (float3x3)unity_WorldToObject) 。
+首先解释为什么对于非统一缩放的物体，左乘模型变换矩阵可能会导致法线方向偏移。
+考虑一个正方形，它的两条对角线是互相垂直的。
+但在将其 $x$ 方向变换为原来的 $\frac{1}{2}$ 之后，两条对角线不再互相垂直。
+将上述变换写为矩阵乘法的形式， $$ \text{令}\ \mathbf{n} = \overrightarrow{AC}, \mathbf{a} = \overrightarrow{BD} \ \text{为列向量}\\ \mathbf{n}^T \mathbf{a} = 0\\ \text{变换后}\ \mathbf{n&#39;} = \mathbf{Mn}, \mathbf{a&#39;} = \mathbf{Ma}\\ \mathbf{n&#39;}^T\mathbf{a&#39;} = \mathbf{n}^T \mathbf{M}^T \mathbf{Ma} $$
+由于模型变换矩阵 $\mathbf{M}$ 并不一定是正交矩阵，无法保证 $\mathbf{M}^T\mathbf{M} = \mathbf{I}$ ，因此也就无法保证 $\mathbf{n&#39;}^T\mathbf{a&#39;} = 0$ ，即 $\mathbf{n&#39;}$ 与 $\mathbf{a&#39;}$ 不一定垂直。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://txtxj.top/posts/solutioncf1452d/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-08-02T06:37:00+08:00" />
-<meta property="article:modified_time" content="2021-08-02T06:37:00+08:00" />
+<meta property="og:url" content="https://txtxj.top/posts/objecttoworldnormal/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-16T22:44:43+08:00" />
+<meta property="article:modified_time" content="2022-05-16T22:44:43+08:00" />
 
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="【题解】CF1452D Radio Towers"/>
-<meta name="twitter:description" content="cyz好兄弟上了大学一直在刷题打比赛，
-某日忘了概率怎么算了，半夜来问我这个题。
-题面：
-https://codeforces.com/contest/1452/problem/D
-显然总方案数是 $2 ^ n$
-问题是求出建造合法的方案数。
-不难看出，每座塔能覆盖的区间总长度一定是一个奇数，
-要求所有塔的覆盖范围不重叠，
-问题就化为了求正整数 $n$ 能拆分成若干个允许相同的奇数的和的方案个数。
-因此考虑 dp .
-对于任意的正整数 $n$ ，
-我们可以枚举所有不大于 $n$ 的奇数 $i$ ，将其作为拆分序列的首个奇数，
-这样，除去 $i$ 后，我们只需要求解剩余部分（即 $n - i$ ）的拆分方案数即可。
-上述过程的状态转移方程为
-奇数：
-$$dp[n] = dp[n - 1] &#43; dp[n - 3] &#43; &hellip; &#43; dp[0]$$
-偶数：
-$$dp[n] = dp[n - 1] &#43; dp[n - 3] &#43; &hellip; &#43; dp[1]$$
-考虑到 $dp[1] = dp[0] = 1$
-可以得到
-$$dp[2n] = dp[1] &#43; dp[3] &#43; dp[5] &#43; &hellip; &#43; dp[2n - 1]$$"/>
+<meta name="twitter:title" content="为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵"/>
+<meta name="twitter:description" content="在 《Unity ShaderLab 新手宝典》中 64 页给出了一个结论
+ 在顶点函数中，使用 Unity 提供的变换矩阵 unity_ObjectToWorld 将顶点坐标从模型空间变换到世界空间。为了避免非统一缩放的物体法线方向偏移，使用法线向量右乘逆矩阵的方式对其进行空间变换。
+ 即 worldNormal = mul(vertex， (float3x3)unity_WorldToObject) 。
+首先解释为什么对于非统一缩放的物体，左乘模型变换矩阵可能会导致法线方向偏移。
+考虑一个正方形，它的两条对角线是互相垂直的。
+但在将其 $x$ 方向变换为原来的 $\frac{1}{2}$ 之后，两条对角线不再互相垂直。
+将上述变换写为矩阵乘法的形式， $$ \text{令}\ \mathbf{n} = \overrightarrow{AC}, \mathbf{a} = \overrightarrow{BD} \ \text{为列向量}\\ \mathbf{n}^T \mathbf{a} = 0\\ \text{变换后}\ \mathbf{n&#39;} = \mathbf{Mn}, \mathbf{a&#39;} = \mathbf{Ma}\\ \mathbf{n&#39;}^T\mathbf{a&#39;} = \mathbf{n}^T \mathbf{M}^T \mathbf{Ma} $$
+由于模型变换矩阵 $\mathbf{M}$ 并不一定是正交矩阵，无法保证 $\mathbf{M}^T\mathbf{M} = \mathbf{I}$ ，因此也就无法保证 $\mathbf{n&#39;}^T\mathbf{a&#39;} = 0$ ，即 $\mathbf{n&#39;}$ 与 $\mathbf{a&#39;}$ 不一定垂直。"/>
 
 
   
@@ -171,14 +145,14 @@ $$dp[2n] = dp[1] &#43; dp[3] &#43; dp[5] &#43; &hellip; &#43; dp[2n - 1]$$"/>
 
   <div class="card-cover">
     
-      <img src="https://s2.loli.net/2021/12/22/xhVLAFBjoZwySpW.jpg" alt="https://s2.loli.net/2021/12/22/xhVLAFBjoZwySpW.jpg" />
+      <img src="https://s2.loli.net/2022/05/16/Um8rKAjiHdPbhLM.jpg" alt="https://s2.loli.net/2022/05/16/Um8rKAjiHdPbhLM.jpg" />
     
   </div>
 
   <div class="card-text">
-    <h1 class="card-text--title">【题解】CF1452D Radio Towers</h1>
+    <h1 class="card-text--title">为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵</h1>
     
-      <p class="card-text--row">2021-08-02 06:37</p>
+      <p class="card-text--row">2022-05-16 22:44</p>
       
       
       
@@ -187,7 +161,8 @@ $$dp[2n] = dp[1] &#43; dp[3] &#43; dp[5] &#43; &hellip; &#43; dp[2n - 1]$$"/>
       
         <ul class="card-text--tag">
           
-            <li><a href="https://txtxj.top/tags/%E9%A2%98%E8%A7%A3/">题解</a></li></ul>
+            <li><a href="https://txtxj.top/tags/unity/">Unity</a></li>
+            <li><a href="https://txtxj.top/tags/%E7%AC%94%E8%AE%B0/">笔记</a></li></ul>
       
     
   </div>
@@ -197,69 +172,44 @@ $$dp[2n] = dp[1] &#43; dp[3] &#43; dp[5] &#43; &hellip; &#43; dp[2n - 1]$$"/>
 
         <div class="article-content">
           <div class="markdown-body content-padding-large soft-size--large soft-style--box">
-            <p>cyz好兄弟上了大学一直在刷题打比赛，</p>
-<p>某日忘了概率怎么算了，半夜来问我这个题。</p>
-<p>题面：</p>
-<p><a href="https://codeforces.com/contest/1452/problem/D" target="_blank" rel="noopener">https://codeforces.com/contest/1452/problem/D</a></p>
-<p>显然总方案数是 $2 ^ n$</p>
-<p>问题是求出建造合法的方案数。</p>
-<p>不难看出，每座塔能覆盖的区间总长度一定是一个奇数，</p>
-<p>要求所有塔的覆盖范围不重叠，</p>
-<p>问题就化为了求正整数 $n$ 能拆分成若干个允许相同的奇数的和的方案个数。</p>
-<p>因此考虑 dp .</p>
-<p>对于任意的正整数 $n$ ，</p>
-<p>我们可以枚举所有不大于 $n$ 的奇数 $i$ ，将其作为拆分序列的首个奇数，</p>
-<p>这样，除去 $i$ 后，我们只需要求解剩余部分（即 $n - i$ ）的拆分方案数即可。</p>
-<p>上述过程的状态转移方程为</p>
-<p>奇数：</p>
-<p>$$dp[n] = dp[n - 1] + dp[n - 3] + &hellip; + dp[0]$$</p>
-<p>偶数：</p>
-<p>$$dp[n] = dp[n - 1] + dp[n - 3] + &hellip; + dp[1]$$</p>
-<p>考虑到 $dp[1] = dp[0] = 1$</p>
-<p>可以得到</p>
-<p>$$dp[2n] = dp[1] + dp[3] + dp[5] + &hellip; + dp[2n - 1]$$</p>
-<p>$$dp[2n - 1] = 1 + dp[2] + dp[4] + &hellip; + dp[2n - 2]$$</p>
-<p>正是斐波那契数列。</p>
-<p>代码：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#define MOD 998244353ll
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
-<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> <span style="color:#a6e22e">fastPow</span>(<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> a,<span style="color:#66d9ef">int</span> b,<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> m)
+            <p>在 《Unity ShaderLab 新手宝典》中 64 页给出了一个结论</p>
+<blockquote>
+<p>在顶点函数中，使用 Unity 提供的变换矩阵 <code>unity_ObjectToWorld</code> 将顶点坐标从模型空间变换到世界空间。为了避免非统一缩放的物体法线方向偏移，使用法线向量右乘逆矩阵的方式对其进行空间变换。</p>
+</blockquote>
+<p>即 <code>worldNormal = mul(vertex， (float3x3)unity_WorldToObject)</code> 。</p>
+<p>首先解释为什么对于非统一缩放的物体，左乘模型变换矩阵可能会导致法线方向偏移。</p>
+<p>考虑一个正方形，它的两条对角线是互相垂直的。</p>
+<p>
+  <p><img src="https://s2.loli.net/2022/05/16/fgJo7bsYwK53uRd.jpg" alt="20220516_1.jpg" loading="lazy" /></p>
+</p>
+<p>但在将其 $x$ 方向变换为原来的 $\frac{1}{2}$ 之后，两条对角线不再互相垂直。</p>
+<p>
+  <p><img src="https://s2.loli.net/2022/05/16/PlUB19D8XnEmFof.jpg" alt="20220516_2.jpg" loading="lazy" /></p>
+</p>
+<p>将上述变换写为矩阵乘法的形式，
+$$
+\text{令}\  \mathbf{n} = \overrightarrow{AC}, \mathbf{a} = \overrightarrow{BD} \ \text{为列向量}\\
+\mathbf{n}^T \mathbf{a} = 0\\
+\text{变换后}\ \mathbf{n'} = \mathbf{Mn}, \mathbf{a'} = \mathbf{Ma}\\
+\mathbf{n'}^T\mathbf{a'} = \mathbf{n}^T \mathbf{M}^T \mathbf{Ma}
+$$</p>
+<p>由于模型变换矩阵 $\mathbf{M}$ 并不一定是正交矩阵，无法保证 $\mathbf{M}^T\mathbf{M} = \mathbf{I}$ ，因此也就无法保证 $\mathbf{n'}^T\mathbf{a'} = 0$ ，即 $\mathbf{n'}$ 与 $\mathbf{a'}$ 不一定垂直。</p>
+<p>从上式不难看出，如果想要变换后向量 $\mathbf{a'}$ 与其法向量 $\mathbf{n'}$ 仍保持垂直关系，那么一定有
+$$
+\mathbf{n'}^T\mathbf{a'} = \mathbf{n}^T \mathbf{M}^{-1} \mathbf{Ma} = \mathbf{n}^T \mathbf{a} = 0
+$$
+故 $\mathbf{n'}^T = \mathbf{n}^T \mathbf{M}^{-1}$ ，法向量需要右乘模型变换矩阵的逆变换矩阵。</p>
+<p>以下为 <code>UnityCG.cginc</code> 中的法向量模型-世界变换函数原型。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">// Transforms normal from object to world space
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">inline</span> float3 <span style="color:#a6e22e">UnityObjectToWorldNormal</span>( in float3 norm )
 {
-	<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-	<span style="color:#66d9ef">while</span> (b)
-	{
-		<span style="color:#66d9ef">if</span> (b <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>)
-		{
-			b<span style="color:#f92672">--</span>;
-			ans <span style="color:#f92672">*=</span> a;
-			ans <span style="color:#f92672">%=</span> m;
-		}
-		b <span style="color:#f92672">&gt;&gt;=</span> <span style="color:#ae81ff">1</span>;
-		a <span style="color:#f92672">*=</span> a;
-		a <span style="color:#f92672">%=</span> m;
-	}
-	<span style="color:#66d9ef">return</span> ans;
-}
-<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> <span style="color:#a6e22e">inv</span>(<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> x)
-{
-	<span style="color:#66d9ef">return</span> fastPow(x, MOD <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>, MOD);
-}
-<span style="color:#66d9ef">int</span> n;
-<span style="color:#66d9ef">int</span> now <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, pre <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, temp;
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-{
-	scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>n);
-	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>)
-	{
-		temp <span style="color:#f92672">=</span> (now <span style="color:#f92672">+</span> pre) <span style="color:#f92672">%</span> MOD;
-		pre <span style="color:#f92672">=</span> now <span style="color:#f92672">%</span> MOD;
-		now <span style="color:#f92672">=</span> temp <span style="color:#f92672">%</span> MOD;
-	}
-	printf(<span style="color:#e6db74">&#34;%lld&#34;</span>,now <span style="color:#f92672">*</span> inv(fastPow(<span style="color:#ae81ff">2</span>, n, MOD)) <span style="color:#f92672">%</span> MOD);
-	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
+<span style="color:#75715e">#ifdef UNITY_ASSUME_UNIFORM_SCALING
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> UnityObjectToWorldDir(norm);
+<span style="color:#75715e">#else
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// mul(IT_M, norm) =&gt; mul(norm, I_M) =&gt; {dot(norm, I_M.col0), dot(norm, I_M.col1), dot(norm, I_M.col2)}
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> normalize(mul(norm, (float3x3)unity_WorldToObject));
+<span style="color:#75715e">#endif
+</span><span style="color:#75715e"></span>}
 </code></pre></div>
           </div>
         </div>
@@ -274,20 +224,12 @@ $$dp[2n] = dp[1] &#43; dp[3] &#43; dp[5] &#43; &hellip; &#43; dp[2n - 1]$$"/>
 
   <div class="article-paging">
     
-      <section class="post-paging--item card-container content-padding-primary soft-size--primary soft-style--box">
-  <div class="card-cover" background-image-lazy data-img="https://i.loli.net/2021/09/07/v8uMpjYme9qa6zy.jpg"></div>
-  <div class="card-text">
-    <a href="/posts/unityself03/"><h4 class="card-text--title">Unity笔记03</h4></a>
-    <p class="card-text--row">2021-09-06 12:08</p>
-  </div>
-</section>
-    
     
       <section class="post-paging--item card-container content-padding-primary soft-size--primary soft-style--box">
-  <div class="card-cover" background-image-lazy data-img="https://i.loli.net/2021/07/31/4QMk3yYFNqzoRu8.jpg"></div>
+  <div class="card-cover" background-image-lazy data-img="https://s2.loli.net/2022/05/14/inBpH1FlPMfgOxd.jpg"></div>
   <div class="card-text">
-    <a href="/posts/unityself02/"><h4 class="card-text--title">Unity笔记02</h4></a>
-    <p class="card-text--row">2021-05-03 01:46</p>
+    <a href="/posts/treedebugger/"><h4 class="card-text--title">二叉树打印</h4></a>
+    <p class="card-text--row">2022-05-14 16:07</p>
   </div>
 </section>
     
@@ -312,6 +254,17 @@ $$dp[2n] = dp[1] &#43; dp[3] &#43; dp[5] &#43; &hellip; &#43; dp[2n - 1]$$"/>
 
     
 
+<section class="aside-widget widget-toc content-padding-large soft-size--large soft-style--box">
+  <h2 class="widget-header">
+    <div class="title">
+      <span>目录</span>
+    </div>
+  </h2>
+  <div class="widget-body">
+    <nav id="TableOfContents"></nav>
+  </div>
+</section>
+
 
     
 
@@ -332,9 +285,17 @@ $$dp[2n] = dp[1] &#43; dp[3] &#43; dp[5] &#43; &hellip; &#43; dp[2n - 1]$$"/>
     <ul class="post-list">
       
       
-        <li class="post-item"><a href="/posts/solutionprize/">题解 领奖台数</a></li>
+        <li class="post-item"><a href="/posts/treedebugger/">二叉树打印</a></li>
       
-        <li class="post-item"><a href="/posts/solutionp5020/">题解 P5020 【货币系统】</a></li>
+        <li class="post-item"><a href="/posts/gamesnote03/">GAMES笔记03-光栅化</a></li>
+      
+        <li class="post-item"><a href="/posts/gamesnote02/">GAMES笔记02-模型、视图、投影变换</a></li>
+      
+        <li class="post-item"><a href="/posts/gamesnote01/">GAMES笔记01-线性代数基础</a></li>
+      
+        <li class="post-item"><a href="/posts/unityself03/">Unity笔记03</a></li>
+      
+        <li class="post-item"><a href="/posts/unityself02/">Unity笔记02</a></li>
       
     </ul>
   </div>
@@ -430,6 +391,8 @@ $$dp[2n] = dp[1] &#43; dp[3] &#43; dp[5] &#43; &hellip; &#43; dp[2n - 1]$$"/>
 </footer>
 
 
+
+<script type="text/javascript" src="https://csdnimg.cn/release/blog_mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 
 
