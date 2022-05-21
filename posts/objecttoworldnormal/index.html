@@ -70,10 +70,10 @@ document.addEventListener("visibilitychange", function () {
   
   
   
-  <title>为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵 🌟 Txtxj</title>
+  <title>法线向量的模型-世界变换 🌟 Txtxj</title>
 
-  <meta property="og:title" content="为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵" />
-<meta property="og:description" content="在 《Unity ShaderLab 新手宝典》中 64 页给出了一个结论
+  <meta property="og:title" content="法线向量的模型-世界变换" />
+<meta property="og:description" content="为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵 在 《Unity ShaderLab 新手宝典》中 64 页给出了一个结论
  在顶点函数中，使用 Unity 提供的变换矩阵 unity_ObjectToWorld 将顶点坐标从模型空间变换到世界空间。为了避免非统一缩放的物体法线方向偏移，使用法线向量右乘逆矩阵的方式对其进行空间变换。
  即 worldNormal = mul(vertex， (float3x3)unity_WorldToObject) 。
 首先解释为什么对于非统一缩放的物体，左乘模型变换矩阵可能会导致法线方向偏移。
@@ -88,8 +88,8 @@ document.addEventListener("visibilitychange", function () {
 
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵"/>
-<meta name="twitter:description" content="在 《Unity ShaderLab 新手宝典》中 64 页给出了一个结论
+<meta name="twitter:title" content="法线向量的模型-世界变换"/>
+<meta name="twitter:description" content="为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵 在 《Unity ShaderLab 新手宝典》中 64 页给出了一个结论
  在顶点函数中，使用 Unity 提供的变换矩阵 unity_ObjectToWorld 将顶点坐标从模型空间变换到世界空间。为了避免非统一缩放的物体法线方向偏移，使用法线向量右乘逆矩阵的方式对其进行空间变换。
  即 worldNormal = mul(vertex， (float3x3)unity_WorldToObject) 。
 首先解释为什么对于非统一缩放的物体，左乘模型变换矩阵可能会导致法线方向偏移。
@@ -150,7 +150,7 @@ document.addEventListener("visibilitychange", function () {
   </div>
 
   <div class="card-text">
-    <h1 class="card-text--title">为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵</h1>
+    <h1 class="card-text--title">法线向量的模型-世界变换</h1>
     
       <p class="card-text--row">2022-05-16 22:44</p>
       
@@ -172,7 +172,8 @@ document.addEventListener("visibilitychange", function () {
 
         <div class="article-content">
           <div class="markdown-body content-padding-large soft-size--large soft-style--box">
-            <p>在 《Unity ShaderLab 新手宝典》中 64 页给出了一个结论</p>
+            <h2 id="为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵">为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵</h2>
+<p>在 《Unity ShaderLab 新手宝典》中 64 页给出了一个结论</p>
 <blockquote>
 <p>在顶点函数中，使用 Unity 提供的变换矩阵 <code>unity_ObjectToWorld</code> 将顶点坐标从模型空间变换到世界空间。为了避免非统一缩放的物体法线方向偏移，使用法线向量右乘逆矩阵的方式对其进行空间变换。</p>
 </blockquote>
@@ -261,7 +262,11 @@ $$
     </div>
   </h2>
   <div class="widget-body">
-    <nav id="TableOfContents"></nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵">为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵</a></li>
+  </ul>
+</nav>
   </div>
 </section>
 
