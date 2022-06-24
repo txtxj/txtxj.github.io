@@ -8,11 +8,11 @@
     <language>zh-CN</language>
     <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
     <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
-    <lastBuildDate>Mon, 16 May 2022 22:44:43 +0800</lastBuildDate><atom:link href="https://txtxj.top/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 12 Jul 2022 15:45:35 +0800</lastBuildDate><atom:link href="https://txtxj.top/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Unity</title>
       <link>https://txtxj.top/tags/unity/</link>
-      <pubDate>Mon, 16 May 2022 22:44:43 +0800</pubDate>
+      <pubDate>Tue, 12 Jul 2022 15:45:35 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
       <guid>https://txtxj.top/tags/unity/</guid>
       <description></description>
@@ -21,9 +21,18 @@
     <item>
       <title>笔记</title>
       <link>https://txtxj.top/tags/%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Mon, 16 May 2022 22:44:43 +0800</pubDate>
+      <pubDate>Tue, 12 Jul 2022 15:45:35 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
       <guid>https://txtxj.top/tags/%E7%AC%94%E8%AE%B0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>图形学</title>
+      <link>https://txtxj.top/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</link>
+      <pubDate>Tue, 12 Jul 2022 15:45:35 +0800</pubDate>
+      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <guid>https://txtxj.top/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</guid>
       <description></description>
     </item>
     
@@ -42,15 +51,6 @@
       <pubDate>Wed, 09 Feb 2022 20:27:03 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
       <guid>https://txtxj.top/tags/%E6%95%99%E7%A8%8B/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>图形学</title>
-      <link>https://txtxj.top/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</link>
-      <pubDate>Thu, 30 Dec 2021 03:13:15 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
-      <guid>https://txtxj.top/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</guid>
       <description></description>
     </item>
     

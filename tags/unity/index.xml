@@ -8,7 +8,19 @@
     <language>zh-CN</language>
     <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
     <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
-    <lastBuildDate>Mon, 16 May 2022 22:44:43 +0800</lastBuildDate><atom:link href="https://txtxj.top/tags/unity/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 12 Jul 2022 15:45:35 +0800</lastBuildDate><atom:link href="https://txtxj.top/tags/unity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>屏幕空间环境光遮蔽（SSAO） Unity 实现</title>
+      <link>https://txtxj.top/posts/ssaounity/</link>
+      <pubDate>Tue, 12 Jul 2022 15:45:35 +0800</pubDate>
+      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <guid>https://txtxj.top/posts/ssaounity/</guid>
+      <description>Games 101 大作业 Screen Space Ambient Occlusion With Unity
+本文旨在记录大作业实现过程中遇到的各种问题与解决方案。
+仓库地址：https://github.com/txtxj/Screen-Space-Ambient-Occlusion
+参考资料 https://www.bilibili.com/video/BV16q4y1U7S3?p=2 https://www.bilibili.com/video/BV1YK4y1T7yY?p=8 https://blog.csdn.net/linuxheik/article/details/86691117 https://zhuanlan.zhihu.com/p/148627526 https://zhuanlan.zhihu.com/p/510620589 </description>
+    </item>
+    
     <item>
       <title>法线向量的模型-世界变换</title>
       <link>https://txtxj.top/posts/objecttoworldnormal/</link>
