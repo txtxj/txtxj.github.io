@@ -18,7 +18,10 @@
       <description>Games 101 大作业 Screen Space Ambient Occlusion With Unity
 本文旨在记录大作业实现过程中遇到的各种问题与解决方案。
 仓库地址：https://github.com/txtxj/Screen-Space-Ambient-Occlusion
-参考资料 https://www.bilibili.com/video/BV16q4y1U7S3?p=2 https://www.bilibili.com/video/BV1YK4y1T7yY?p=8 https://blog.csdn.net/linuxheik/article/details/86691117 https://zhuanlan.zhihu.com/p/148627526 https://zhuanlan.zhihu.com/p/510620589 </description>
+随机函数 float fract(float x) { return x - floor(x); } fract 函数返回浮点数的小数部分。
+float random(float2 st) { return fract(sin(dot(st.xy, float2(12.9898,78.233))) * 43758.5453123); } random 函数用于生成一个随机浮点数，这是一个很用于着色器的经典随机数生成器。
+float3 random3(float2 seed) { float3 vec; vec.x = random(seed); vec.y = random(seed * seed); vec.z = random(seed * seed * seed); return normalize(vec); } 该函数使用一个二维向量（一般是 uv 坐标），生成一个归一化的三维随机向量，这个向量用于生成 TBN 矩阵。
+float3 sampling(float2 seed) { float4 r; r.</description>
     </item>
     
     <item>

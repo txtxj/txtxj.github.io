@@ -76,7 +76,10 @@ document.addEventListener("visibilitychange", function () {
 <meta property="og:description" content="Games 101 大作业 Screen Space Ambient Occlusion With Unity
 本文旨在记录大作业实现过程中遇到的各种问题与解决方案。
 仓库地址：https://github.com/txtxj/Screen-Space-Ambient-Occlusion
-参考资料 https://www.bilibili.com/video/BV16q4y1U7S3?p=2 https://www.bilibili.com/video/BV1YK4y1T7yY?p=8 https://blog.csdn.net/linuxheik/article/details/86691117 https://zhuanlan.zhihu.com/p/148627526 https://zhuanlan.zhihu.com/p/510620589 " />
+随机函数 float fract(float x) { return x - floor(x); } fract 函数返回浮点数的小数部分。
+float random(float2 st) { return fract(sin(dot(st.xy, float2(12.9898,78.233))) * 43758.5453123); } random 函数用于生成一个随机浮点数，这是一个很用于着色器的经典随机数生成器。
+float3 random3(float2 seed) { float3 vec; vec.x = random(seed); vec.y = random(seed * seed); vec.z = random(seed * seed * seed); return normalize(vec); } 该函数使用一个二维向量（一般是 uv 坐标），生成一个归一化的三维随机向量，这个向量用于生成 TBN 矩阵。
+float3 sampling(float2 seed) { float4 r; r." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://txtxj.top/posts/ssaounity/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-07-12T15:45:35+08:00" />
@@ -88,7 +91,10 @@ document.addEventListener("visibilitychange", function () {
 <meta name="twitter:description" content="Games 101 大作业 Screen Space Ambient Occlusion With Unity
 本文旨在记录大作业实现过程中遇到的各种问题与解决方案。
 仓库地址：https://github.com/txtxj/Screen-Space-Ambient-Occlusion
-参考资料 https://www.bilibili.com/video/BV16q4y1U7S3?p=2 https://www.bilibili.com/video/BV1YK4y1T7yY?p=8 https://blog.csdn.net/linuxheik/article/details/86691117 https://zhuanlan.zhihu.com/p/148627526 https://zhuanlan.zhihu.com/p/510620589 "/>
+随机函数 float fract(float x) { return x - floor(x); } fract 函数返回浮点数的小数部分。
+float random(float2 st) { return fract(sin(dot(st.xy, float2(12.9898,78.233))) * 43758.5453123); } random 函数用于生成一个随机浮点数，这是一个很用于着色器的经典随机数生成器。
+float3 random3(float2 seed) { float3 vec; vec.x = random(seed); vec.y = random(seed * seed); vec.z = random(seed * seed * seed); return normalize(vec); } 该函数使用一个二维向量（一般是 uv 坐标），生成一个归一化的三维随机向量，这个向量用于生成 TBN 矩阵。
+float3 sampling(float2 seed) { float4 r; r."/>
 
 
   
@@ -168,6 +174,101 @@ document.addEventListener("visibilitychange", function () {
             <p>Games 101 大作业 Screen Space Ambient Occlusion With Unity</p>
 <p>本文旨在记录大作业实现过程中遇到的各种问题与解决方案。</p>
 <p>仓库地址：https://github.com/txtxj/Screen-Space-Ambient-Occlusion</p>
+<h2 id="随机函数">随机函数</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">fract</span>(<span style="color:#66d9ef">float</span> x)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> x <span style="color:#f92672">-</span> floor(x);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><code>fract</code> 函数返回浮点数的小数部分。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">random</span>(float2 st)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> fract(sin(dot(st.xy, float2(<span style="color:#ae81ff">12.9898</span>,<span style="color:#ae81ff">78.233</span>))) <span style="color:#f92672">*</span> <span style="color:#ae81ff">43758.5453123</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><code>random</code> 函数用于生成一个随机浮点数，这是一个很用于着色器的经典随机数生成器。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>float3 <span style="color:#a6e22e">random3</span>(float2 seed)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    float3 vec;
+</span></span><span style="display:flex;"><span>    vec.x <span style="color:#f92672">=</span> random(seed);
+</span></span><span style="display:flex;"><span>    vec.y <span style="color:#f92672">=</span> random(seed <span style="color:#f92672">*</span> seed);
+</span></span><span style="display:flex;"><span>    vec.z <span style="color:#f92672">=</span> random(seed <span style="color:#f92672">*</span> seed <span style="color:#f92672">*</span> seed);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> normalize(vec);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>该函数使用一个二维向量（一般是 uv 坐标），生成一个归一化的三维随机向量，这个向量用于生成 TBN 矩阵。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>float3 <span style="color:#a6e22e">sampling</span>(float2 seed)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    float4 r;
+</span></span><span style="display:flex;"><span>    r.x <span style="color:#f92672">=</span> random(seed) <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    r.y <span style="color:#f92672">=</span> random(seed <span style="color:#f92672">*</span> seed) <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    r.z <span style="color:#f92672">=</span> random(seed <span style="color:#f92672">*</span> seed <span style="color:#f92672">*</span> seed);
+</span></span><span style="display:flex;"><span>    r.w <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    r <span style="color:#f92672">=</span> normalize(r);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> r.xyz;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>与 <code>random3</code> 类似，但返回值的 <code>x</code> 和 <code>y</code> 方向范围在 $-1$ 和 $1$ 之间， <code>z</code> 方向范围在 $0$ 和 $1$ 之间，这个向量用于半球内采样。</p>
+<h2 id="顶点着色器">顶点着色器</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>v2f <span style="color:#a6e22e">vert</span>(appdata_full v)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    v2f o;
+</span></span><span style="display:flex;"><span>    o.position <span style="color:#f92672">=</span> UnityObjectToClipPos(v.vertex);
+</span></span><span style="display:flex;"><span>    o.uv <span style="color:#f92672">=</span> v.texcoord;
+</span></span><span style="display:flex;"><span>    o.screenPos <span style="color:#f92672">=</span> ComputeScreenPos(o.position);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> o;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>此处笔者曾尝试讲计算屏幕空间坐标推迟到片段着色器进行，但效果如下图</p>
+<p>
+  <p><img src="https://s2.loli.net/2022/07/12/oUhPbzOWD25yBYi.png" alt="20220712_1.png" loading="lazy" /></p>
+</p>
+<p>可见明显条纹。</p>
+<p>造成这一现象的原因是 <code>ComputeScreenPos()</code> 函数返回的是齐次坐标下屏幕空间的坐标值，其核心实现为</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>float4 <span style="color:#a6e22e">ComputeScreenPos</span>(float4 pos)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    float4 o;
+</span></span><span style="display:flex;"><span>    o.x <span style="color:#f92672">=</span> pos.x <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.5f</span> <span style="color:#f92672">+</span> pos.w <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.5f</span>;
+</span></span><span style="display:flex;"><span>    o.y <span style="color:#f92672">=</span> pos.y <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.5f</span> <span style="color:#f92672">*</span> _ProjectionParams.x <span style="color:#f92672">+</span> pos.w <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.5f</span>;
+</span></span><span style="display:flex;"><span>    o.zw <span style="color:#f92672">=</span> pos.zw;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> o;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>然而投影变换不是线性变换，而片段着色器的插值是线性插值，这会导致该函数在投影前、投影后调用的结果不同。</p>
+<h2 id="片段着色器">片段着色器</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">// Get view space normal and lineal0-1 depth
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>DecodeDepthNormal(tex2D(_CameraDepthNormalsTexture, i.uv), depth, normal);
+</span></span><span style="display:flex;"><span>normal.z <span style="color:#f92672">*=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><p>从相机深度法线纹理中采样深度与法向，注意由于摄像机看向 z 轴负方向，该法线纹理的 z 分量需要取反。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">// screen space -&gt; ndc -&gt; clip space -&gt; view space
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>float4 ndc <span style="color:#f92672">=</span> i.screenPos <span style="color:#f92672">/</span> i.screenPos.w <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>float4 clipPos <span style="color:#f92672">=</span> float4(ndc.xy, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> _ProjectionParams.z;
+</span></span><span style="display:flex;"><span>float4 viewPos <span style="color:#f92672">=</span> mul(unity_CameraInvProjection, clipPos);
+</span></span><span style="display:flex;"><span>viewPos <span style="color:#f92672">=</span> viewPos <span style="color:#f92672">/</span> viewPos.w <span style="color:#f92672">*</span> depth;
+</span></span></code></pre></div><p>从屏幕空间出发，三行依次计算出 ndc 空间坐标、裁剪空间坐标、观察空间坐标，我们接下来的采样工作均在观察空间中进行。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">// Get normal direction hemisphere TBN matrix
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>float3 tangent <span style="color:#f92672">=</span> random3(i.uv);
+</span></span><span style="display:flex;"><span>float3 bitangent <span style="color:#f92672">=</span> cross(normal, tangent);
+</span></span><span style="display:flex;"><span>tangent <span style="color:#f92672">=</span> cross(bitangent, normal);
+</span></span><span style="display:flex;"><span>float3x3 TBN <span style="color:#f92672">=</span> float3x3(tangent, bitangent, normal);
+</span></span></code></pre></div><p>获取当前采样点的 TBN 矩阵，先随机一个向量，求法线与该向量的叉乘，结果作为副切线，再利用副切线与法线的乘积作为切线方向。</p>
+<p>
+  <p><img src="https://s2.loli.net/2022/07/12/8IamxurzJtGTSZL.png" alt="20220712_2.png" loading="lazy" /></p>
+</p>
+<p>接下来是在采样点半球内进行随机采样，计算遮挡百分比。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>float3 offset <span style="color:#f92672">=</span> sampling(j <span style="color:#f92672">*</span> i.uv);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">float</span> scale <span style="color:#f92672">=</span> j <span style="color:#f92672">/</span> _SampleCount;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Bringing the sampling point closer to the centre of the ball
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>offset <span style="color:#f92672">*=</span> scale;
+</span></span><span style="display:flex;"><span>offset <span style="color:#f92672">=</span> mul(offset, TBN);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">float</span> weight <span style="color:#f92672">=</span> smoothstep(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, length(offset));
+</span></span></code></pre></div><p>使用 <code>sampling</code> 随机得到的向量模长服从 $0$ 到 $1$ 之间的均匀分布，而我们希望采样更多离球心更近的点，使得估计的方差不会太大。</p>
+<p>因此使用一个 <code>scale</code> 作为约束，让采样点更靠近球心。</p>
+<p>另外，使用 <code>weight</code> 参数作为权重，采样点离球心越远，该采样点对球心的遮挡效果越明显。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">// samp: view space -&gt; clip space -&gt; ndc
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>float3 samp <span style="color:#f92672">=</span> viewPos <span style="color:#f92672">+</span> offset <span style="color:#f92672">*</span> _SampleRadius;
+</span></span><span style="display:flex;"><span>samp <span style="color:#f92672">=</span> mul(unity_CameraProjection, samp);
+</span></span><span style="display:flex;"><span>samp <span style="color:#f92672">/=</span> samp.z;
+</span></span><span style="display:flex;"><span>samp <span style="color:#f92672">=</span> (samp <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.5</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">float</span> sampDepth <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>float3 sampNormal <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>DecodeDepthNormal(tex2D(_CameraDepthNormalsTexture, samp.xy), sampDepth, sampNormal);
+</span></span><span style="display:flex;"><span>ao <span style="color:#f92672">+=</span> abs(sampDepth <span style="color:#f92672">-</span> depth) <span style="color:#f92672">&lt;</span> _DepthRange <span style="color:#f92672">&amp;&amp;</span> depth <span style="color:#f92672">&gt;</span> sampDepth <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.0001</span> <span style="color:#f92672">?</span> weight : <span style="color:#ae81ff">0</span>;
+</span></span></code></pre></div><p>与球心点的操作相反，将采样点从观察空间变换到 ndc 空间中，采样得到该点的深度，计算遮挡关系。</p>
 <h2 id="参考资料">参考资料</h2>
 <ul>
 <li><a href="https://www.bilibili.com/video/BV16q4y1U7S3?p=2" target="_blank" rel="noopener">https://www.bilibili.com/video/BV16q4y1U7S3?p=2</a></li>
@@ -229,6 +330,9 @@ document.addEventListener("visibilitychange", function () {
   <div class="widget-body">
     <nav id="TableOfContents">
   <ul>
+    <li><a href="#随机函数">随机函数</a></li>
+    <li><a href="#顶点着色器">顶点着色器</a></li>
+    <li><a href="#片段着色器">片段着色器</a></li>
     <li><a href="#参考资料">参考资料</a></li>
   </ul>
 </nav>
