@@ -16,13 +16,14 @@
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
       <guid>https://txtxj.top/posts/objecttoworldnormal/</guid>
       <description>为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵 在 《Unity ShaderLab 新手宝典》中 64 页给出了一个结论
- 在顶点函数中，使用 Unity 提供的变换矩阵 unity_ObjectToWorld 将顶点坐标从模型空间变换到世界空间。为了避免非统一缩放的物体法线方向偏移，使用法线向量右乘逆矩阵的方式对其进行空间变换。
- 即 worldNormal = mul(vertex， (float3x3)unity_WorldToObject) 。
+在顶点函数中，使用 Unity 提供的变换矩阵 unity_ObjectToWorld 将顶点坐标从模型空间变换到世界空间。为了避免非统一缩放的物体法线方向偏移，使用法线向量右乘逆矩阵的方式对其进行空间变换。
+即 worldNormal = mul(vertex， (float3x3)unity_WorldToObject) 。
 首先解释为什么对于非统一缩放的物体，左乘模型变换矩阵可能会导致法线方向偏移。
 考虑一个正方形，它的两条对角线是互相垂直的。
-但在将其 $x$ 方向变换为原来的 $\frac{1}{2}$ 之后，两条对角线不再互相垂直。
-将上述变换写为矩阵乘法的形式， $$ \text{令}\ \mathbf{n} = \overrightarrow{AC}, \mathbf{a} = \overrightarrow{BD} \ \text{为列向量}\\ \mathbf{n}^T \mathbf{a} = 0\\ \text{变换后}\ \mathbf{n&#39;} = \mathbf{Mn}, \mathbf{a&#39;} = \mathbf{Ma}\\ \mathbf{n&#39;}^T\mathbf{a&#39;} = \mathbf{n}^T \mathbf{M}^T \mathbf{Ma} $$
-由于模型变换矩阵 $\mathbf{M}$ 并不一定是正交矩阵，无法保证 $\mathbf{M}^T\mathbf{M} = \mathbf{I}$ ，因此也就无法保证 $\mathbf{n&#39;}^T\mathbf{a&#39;} = 0$ ，即 $\mathbf{n&#39;}$ 与 $\mathbf{a&#39;}$ 不一定垂直。</description>
+但在将其 $x$ 方向变换为原来的 $\frac{1}{2}$ 之后，两条对角线不再互相垂直。
+将上述变换写为矩阵乘法的形式， $$ \text{令}\ \mathbf{n} = \overrightarrow{AC}, \mathbf{a} = \overrightarrow{BD} \ \text{为列向量}\\ \mathbf{n}^T \mathbf{a} = 0\\ \text{变换后}\ \mathbf{n&amp;rsquo;} = \mathbf{Mn}, \mathbf{a&amp;rsquo;} = \mathbf{Ma}\\ \mathbf{n&amp;rsquo;}^T\mathbf{a&amp;rsquo;} = \mathbf{n}^T \mathbf{M}^T \mathbf{Ma} $$
+由于模型变换矩阵 $\mathbf{M}$ 并不一定是正交矩阵，无法保证 $\mathbf{M}^T\mathbf{M} = \mathbf{I}$ ，因此也就无法保证 $\mathbf{n&amp;rsquo;}^T\mathbf{a&amp;rsquo;} = 0$ ，即 $\mathbf{n&amp;rsquo;}$ 与 $\mathbf{a&amp;rsquo;}$ 不一定垂直。
+从上式不难看出，如果想要变换后向量 $\mathbf{a&amp;rsquo;}$ 与其法向量 $\mathbf{n&amp;rsquo;}$ 仍保持垂直关系，那么一定有 $$ \mathbf{n&amp;rsquo;}^T\mathbf{a&amp;rsquo;} = \mathbf{n}^T \mathbf{M}^{-1} \mathbf{Ma} = \mathbf{n}^T \mathbf{a} = 0 $$ 故 $\mathbf{n&amp;rsquo;}^T = \mathbf{n}^T \mathbf{M}^{-1}$ ，法向量需要右乘模型变换矩阵的逆变换矩阵。</description>
     </item>
     
     <item>
@@ -33,8 +34,8 @@
       <guid>https://txtxj.top/posts/treedebugger/</guid>
       <description>之前调红黑树的时候写的一个二叉树打印方法。
 可以以如下图形式在控制台输出树的结构。
-代码如下：
-#ifdef DEBUG static void DebugPrintMessage(Node* p) { // This is an example print function 	// Here puts the info you want to print 	std::cout &amp;lt;&amp;lt; &amp;#34;val: &amp;#34; &amp;lt;&amp;lt; p -&amp;gt; val &amp;lt;&amp;lt; &amp;#34; siz: &amp;#34; &amp;lt;&amp;lt; p -&amp;gt; siz &amp;lt;&amp;lt; &amp;#34; color: &amp;#34; &amp;lt;&amp;lt; (p -&amp;gt; color ? &amp;#34;R&amp;#34; : &amp;#34;B&amp;#34;) &amp;lt;&amp;lt; std::endl; } void DebugPrintNode(Node* p, int step, int valid, bool right) { if (p == nil) return; for (int i = 0; i &amp;lt; step; i++) { std::cout &amp;lt;&amp;lt; ((valid &amp;amp; (1 &amp;lt;&amp;lt; (i - 1))) == 0 ?</description>
+代码如下：
+#ifdef DEBUG static void DebugPrintMessage(Node* p) { // This is an example print function // Here puts the info you want to print std::cout &amp;lt;&amp;lt; &amp;#34;val: &amp;#34; &amp;lt;&amp;lt; p -&amp;gt; val &amp;lt;&amp;lt; &amp;#34; siz: &amp;#34; &amp;lt;&amp;lt; p -&amp;gt; siz &amp;lt;&amp;lt; &amp;#34; color: &amp;#34; &amp;lt;&amp;lt; (p -&amp;gt; color ? &amp;#34;R&amp;#34; : &amp;#34;B&amp;#34;) &amp;lt;&amp;lt; std::endl; } void DebugPrintNode(Node* p, int step, int valid, bool right) { if (p == nil) return; for (int i = 0; i &amp;lt; step; i++) { std::cout &amp;lt;&amp;lt; ((valid &amp;amp; (1 &amp;lt;&amp;lt; (i - 1))) == 0 ?</description>
     </item>
     
     <item>
@@ -45,18 +46,18 @@
       <guid>https://txtxj.top/posts/solutionprize/</guid>
       <description>这是陈雪老师《算法基础》课程中的一道作业题，似乎是老师原创的（在网上找题解没找到）。
 题面如下
- 给定任意一个序列 $a_1, \dots, a_n$，其中没有重复元素。
+给定任意一个序列 $a_1, \dots, a_n$，其中没有重复元素。
 如果 $i &amp;lt; j &amp;lt; k$ 且 $a_j &amp;gt; a_i &amp;gt; a_k$，三个数字的大小关系就像运动会颁奖时的领奖台。
 于是我们称序列中满足该条件的 三元组 $(i, j, k)$ 的个数为序列的领奖台数。
 设计一个算法来计算序列的领奖台数。
 为了简化题目，规定 $a$ 中没有相同元素。
- 即在一个数组里找具有如下图形式的三元组。
-想到另一道经典的归并排序题目：求 $i &amp;lt; j &amp;lt; k$ 且 $a_j &amp;gt; a_i$ 且 $a_j &amp;gt; a_k$ ，可以求每个位置的顺序对和逆序对个数，最后相乘得到结果。
+即在一个数组里找具有如下图形式的三元组。
+想到另一道经典的归并排序题目：求 $i &amp;lt; j &amp;lt; k$ 且 $a_j &amp;gt; a_i$ 且 $a_j &amp;gt; a_k$ ，可以求每个位置的顺序对和逆序对个数，最后相乘得到结果。
 这道题是上面题目的加强版，也可以从每个位置顺序对、逆序对的个数入手计算。
 因此考虑分治。
 对于任意的 $i &amp;lt; j &amp;lt; k$ ，在一次合并中，如果 $i, j, k$ 位于同一待合并区间，则其对本次合并无贡献，不考虑。
 需要考虑的情况只有两种：
- $i &amp;lt; j \le mid &amp;lt; k$ $i \le mid &amp;lt; j &amp;lt; k$  其中 $mid$ 为分割锚点。</description>
+$i &amp;lt; j \le mid &amp;lt; k$ $i \le mid &amp;lt; j &amp;lt; k$ 其中 $mid$ 为分割锚点。</description>
     </item>
     
     <item>
@@ -95,10 +96,10 @@ Sublime 版本 [ { &amp;#34;keys&amp;#34;: [&amp;#34;alt+`&amp;#34;], &amp;#34;c
       <description>在经过模型、视图、投影变换后，待显示的所有物体都处在了一个标准正方体内。
 而光栅化的目的，就是把这个标准正方体内的物体转化为一个个像素点显示在屏幕上。
 视口变换(Viewpoint Transformation) 屏幕中的每个像素点都可以使用一个整数坐标表示，每个像素点的边长为 1 ，
-需要注意，坐标 $(x, y)$ 表示的像素点的中心位置实际应为 $(x + 0.5, y + 0.5)$
+需要注意，坐标 $(x, y)$ 表示的像素点的中心位置实际应为 $(x + 0.5, y + 0.5)$
 例如，坐标为 $(0, 0)$ 的像素点中心位于 $(0.5, 0.5)$ 。
 要将标准正方体变换到屏幕的矩形中，需要
- 无视 Z 坐标 将坐标变换（缩放）到 $[0, \text{width}] \times [0, \text{height}]$ 的区域中  可以直接写出变换矩阵
+无视 Z 坐标 将坐标变换（缩放）到 $[0, \text{width}] \times [0, \text{height}]$ 的区域中 可以直接写出变换矩阵
 $$ \mathbf{M_{viewpoint}} = \begin{pmatrix} \frac{\text{width}}{2} &amp;amp; 0 &amp;amp; 0 &amp;amp; \frac{\text{width}}{2} \\ 0 &amp;amp; \frac{\text{height}}{2} &amp;amp; 0 &amp;amp; \frac{\text{height}}{2} \\ 0 &amp;amp; 0 &amp;amp; 1 &amp;amp; 0 \\ 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 \end{pmatrix} $$</description>
     </item>
     
@@ -122,8 +123,9 @@ $$ \mathbf{M_{viewpoint}} = \begin{pmatrix} \frac{\text{width}}{2} &amp;amp; 0 &
 同时，将空间中所有物体跟随相机进行变换。
 考虑使用一个矩阵 $\mathbf{M_{view}}$ 表示上述变换。
 那么， $\mathbf{M_{view}}$ 需要完成的操作包含：
- 将 $\mathbf{e}$ 变换到原点 将 $\hat{\mathbf{g}}$ 旋转到 $-\hat{\mathbf{z}}$ 将 $\hat{\mathbf{t}}$ 旋转到 $\hat{\mathbf{y}}$ 将 $\hat{\mathbf{g}} \times \hat{\mathbf{t}}$ 旋转到 $\hat{\mathbf{x}}$  对于上述操作的第一步平移操作，可以用一个矩阵 $\mathbf{T_{view}}$ 表示，
-则 $\mathbf{M_{view}} = \mathbf{R_{view}} \mathbf{T_{view}}$，</description>
+将 $\mathbf{e}$ 变换到原点 将 $\hat{\mathbf{g}}$ 旋转到 $-\hat{\mathbf{z}}$ 将 $\hat{\mathbf{t}}$ 旋转到 $\hat{\mathbf{y}}$ 将 $\hat{\mathbf{g}} \times \hat{\mathbf{t}}$ 旋转到 $\hat{\mathbf{x}}$ 对于上述操作的第一步平移操作，可以用一个矩阵 $\mathbf{T_{view}}$ 表示，
+则 $\mathbf{M_{view}} = \mathbf{R_{view}} \mathbf{T_{view}}$，
+并且可以很轻松地写出平移变换矩阵</description>
     </item>
     
     <item>
@@ -132,12 +134,12 @@ $$ \mathbf{M_{viewpoint}} = \begin{pmatrix} \frac{\text{width}}{2} &amp;amp; 0 &
       <pubDate>Wed, 22 Dec 2021 16:01:30 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
       <guid>https://txtxj.top/posts/gamesnote01/</guid>
-      <description>2D 线性变换 缩放(Scale) $$ \mathbf{scale}(s_x, s_y) = \begin{pmatrix} s_x &amp;amp; 0 \\ 0 &amp;amp; s_y \\ \end{pmatrix} $$ $$x&#39; = s_x x$$ $$y&#39; = s_y y$$
-如上图所示，
-$$ \begin{pmatrix} x&#39;	\\ y&#39; \end{pmatrix} = \begin{pmatrix} 0.5 &amp;amp; 0	\\ 0 &amp;amp; 1	\\ \end{pmatrix} \begin{pmatrix} x	\\ y \end{pmatrix} $$
+      <description>2D 线性变换 缩放(Scale) $$ \mathbf{scale}(s_x, s_y) = \begin{pmatrix} s_x &amp;amp; 0 \\ 0 &amp;amp; s_y \\ \end{pmatrix} $$ $$x&amp;rsquo; = s_x x$$ $$y&amp;rsquo; = s_y y$$
+如上图所示，
+$$ \begin{pmatrix} x&amp;rsquo;	\\ y&amp;rsquo; \end{pmatrix} = \begin{pmatrix} 0.5 &amp;amp; 0	\\ 0 &amp;amp; 1	\\ \end{pmatrix} \begin{pmatrix} x	\\ y \end{pmatrix} $$
 另外，关于坐标轴的反射，也是一种特殊的缩放。
-如上图所示，
-$$ \begin{pmatrix} x&#39;	\\ y&#39; \end{pmatrix} = \begin{pmatrix} -1 &amp;amp; 0	\\ 0 &amp;amp; 1	\\ \end{pmatrix} \begin{pmatrix} x	\\ y \end{pmatrix} $$</description>
+如上图所示，
+$$ \begin{pmatrix} x&amp;rsquo;	\\ y&amp;rsquo; \end{pmatrix} = \begin{pmatrix} -1 &amp;amp; 0	\\ 0 &amp;amp; 1	\\ \end{pmatrix} \begin{pmatrix} x	\\ y \end{pmatrix} $$</description>
     </item>
     
     <item>
@@ -147,20 +149,20 @@ $$ \begin{pmatrix} x&#39;	\\ y&#39; \end{pmatrix} = \begin{pmatrix} -1 &amp;amp;
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
       <guid>https://txtxj.top/posts/unityself03/</guid>
       <description>本篇记录了物体移动以及摄像机跟随防抖动的实现。
- 键盘控制物体移动 使用 Input.GetAxis() 或 Input.GetAxisRaw() 获取 axisName 标识的虚拟轴的值。
+键盘控制物体移动 使用 Input.GetAxis() 或 Input.GetAxisRaw() 获取 axisName 标识的虚拟轴的值。
 以下内容摘自 Unity API.
- 对于键盘和游戏杆输入设备， GetAxis() 返回值是一个介于 -1 和 1 之间的浮点数。
+对于键盘和游戏杆输入设备， GetAxis() 返回值是一个介于 -1 和 1 之间的浮点数。
 该值的含义取决于输入控制的类型，例如，对于游戏杆的水平轴，值为 1 表示游戏杆向右推到底，值为 -1 表示游戏杆向左推到底；值为 0 表示游戏杆处于中性位置。
 如果将轴映射到鼠标，该值会有所不同，并且不会在 -1&amp;hellip;1 的范围内。此时，该值为当前鼠标增量乘以轴灵敏度。通常，正值表示鼠标向右/向下移动，负值表示鼠标向左/向上移动。
 GetAxisRaw() 与前者类似，但未应用平滑过滤。
 对于键盘和游戏杆输入，其返回值将处于 -1&amp;hellip;1 的范围内。
 由于未对输入进行平滑处理，键盘输入将始终为 -1、0 或 1。
- 这里我使用了 GetAxisRaw() 进行键盘的输入。
+这里我使用了 GetAxisRaw() 进行键盘的输入。
 首先创建一个方向变量。
 Vector2 dir = Vector2.zero; 用两个变量记录该帧方向键是否被按下
 float rh = Input.GetAxisRaw(&amp;#34;Horizontal&amp;#34;); float rv = Input.GetAxisRaw(&amp;#34;Vertical&amp;#34;); 接着判断这两个变量的正负，并修改方向变量，注意向量单位化。
 同时可以控制 animator ，修改所控制物体的朝向与移动动画。
-if (rh &amp;lt; 0f) { dir.x = -1; animator.</description>
+if (rh &amp;lt; 0f) { dir.x = -1; animator.SetInteger(&amp;#34;Direction&amp;#34;, 0); } else if (rh &amp;gt; 0f) { dir.</description>
     </item>
     
     <item>
@@ -199,12 +201,12 @@ $$dp[2n] = dp[1] + dp[3] + dp[5] + &amp;hellip; + dp[2n - 1]$$</description>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
       <guid>https://txtxj.top/posts/unityself02/</guid>
       <description>本篇笔记记录了后座力的实现。
- 后座力（AddForce）与移动（velocity）不兼容 用 AddForce 给玩家添加一个反向的作用力后，
+后座力（AddForce）与移动（velocity）不兼容 用 AddForce 给玩家添加一个反向的作用力后，
 如果玩家正在进行移动，
 由于移动是直接对刚体的 velocity 进行操作，
 所以玩家受到的反作用力会在一瞬间消失。
 实现的效果就是看到玩家向后闪了一小段距离。
- 解决方案 考虑角色的移动也用 AddForce 实现，
+解决方案 考虑角色的移动也用 AddForce 实现，
 当方向键按下的时候判断该方向的速度是否达到最大速度，
 如果没有达到最大速度就给玩家加一个对应的力。
 private float speed = 2f; private void FixedUpdate() { float rh = Input.GetAxisRaw(&amp;#34;Horizontal&amp;#34;); float rv = Input.GetAxisRaw(&amp;#34;Vertical&amp;#34;); if (rh &amp;gt; 0f &amp;amp;&amp;amp; GetComponent&amp;lt;Rigidbody2D&amp;gt;().velocity.x &amp;lt; speed) { GetComponent&amp;lt;Rigidbody2D&amp;gt;().AddForce(new Vector2(speed, 0f) * 10f); } else if (rh &amp;lt; 0f &amp;amp;&amp;amp; GetComponent&amp;lt;Rigidbody2D&amp;gt;().velocity.x &amp;gt; -speed) { GetComponent&amp;lt;Rigidbody2D&amp;gt;().AddForce(new Vector2(-speed, 0f) * 10f); } if (rv &amp;gt; 0f &amp;amp;&amp;amp; GetComponent&amp;lt;Rigidbody2D&amp;gt;().</description>
@@ -217,7 +219,7 @@ private float speed = 2f; private void FixedUpdate() { float rh = Input.GetAxisR
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
       <guid>https://txtxj.top/posts/unityself01/</guid>
       <description>本篇笔记记录了瞬移魔法的穿墙问题的解决问题。
- 瞬移魔法穿墙问题 在 2021.1.1 的版本中，
+瞬移魔法穿墙问题 在 2021.1.1 的版本中，
 如果玩家贴墙向墙内发射瞬移魔法，
 由于发射口与玩家人物中心之间有一定的距离，
 所以瞬移魔法发射的一瞬间，就已经位于墙内，
@@ -229,7 +231,7 @@ private float speed = 2f; private void FixedUpdate() { float rh = Input.GetAxisR
 再发射一个物体作为子弹。
 但在我的游戏中，魔法的移动速度并不快，
 不能用射线这种瞬间判断是否命中的方式。
- 解决方案 给发射口加一个刚体组件和一个碰撞体组件，
+解决方案 给发射口加一个刚体组件和一个碰撞体组件，
 且将碰撞体设置为触发器，
 加入如下代码：
 private void OnTriggerStay2D(Collider2D target) { if (target.tag != &amp;#34;Player&amp;#34;) { isfence = true; } } 并在攻击时加入如下判断：
@@ -237,8 +239,11 @@ if (fr == 1f &amp;amp;&amp;amp; isfire == false &amp;amp;&amp;amp; isinterval ==
 当玩家面朝墙的时候，
 按下攻击键不能使用魔法。
 问题解决。
- 还是瞬移魔法穿墙问题 远距离发射瞬移魔法的时候，
-可能由于角度问题，导致魔法仍然会卡进墙内，使得玩家瞬移入墙。</description>
+还是瞬移魔法穿墙问题 远距离发射瞬移魔法的时候，
+可能由于角度问题，导致魔法仍然会卡进墙内，使得玩家瞬移入墙。
+玩家入墙后，由于发射口与墙始终有接触，玩家不能发射任何魔法，
+游戏卡死。
+解决方案 网上查阅了Unity手册，</description>
     </item>
     
     <item>
@@ -248,20 +253,28 @@ if (fr == 1f &amp;amp;&amp;amp; isfire == false &amp;amp;&amp;amp; isinterval ==
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
       <guid>https://txtxj.top/posts/sublimecpp/</guid>
       <description>Windows 下为 Sublime Text 3 搭建 C/C++环境 写这篇博客时，我正在为新电脑搭建 C/C++ 环境
- 步骤：
-  下载 Sublime Text 3 本体
-  安装 MinGW
-  配置系统变量
-  让 Sublime 变得更适合工作
-  安装插件
-  设置编译系统
-     下载 Sublime Text 3 本体 官方下载地址：http://sublimetext.com/3
+步骤：
+下载 Sublime Text 3 本体
+安装 MinGW
+配置系统变量
+让 Sublime 变得更适合工作
+安装插件
+设置编译系统
+下载 Sublime Text 3 本体 官方下载地址：http://sublimetext.com/3
 选择 Windows 64 bit.
 下载后运行，安装。
 安装时记住安装目录，因为 Sublime Text 3 安装后不会在桌面生成快捷方式。
 如果没有记住也无妨，你可以在开始菜单里找到 Sublime Text 3.
- 安装 MinGW 如果你的电脑上已经有了 C/C++ 的编译器，那么你不需要重新下载 MinGW.
-在 Dev C++ 和 CodeBlocks 等软件的文件夹内，</description>
+安装 MinGW 如果你的电脑上已经有了 C/C++ 的编译器，那么你不需要重新下载 MinGW.
+在 Dev C++ 和 CodeBlocks 等软件的文件夹内，
+都可以找到一个名为 MinGW 的文件夹。
+这个文件夹就是我们需要的东西。
+如果你的电脑上没有 MinGW，那么在下面的地址下载到最新版：
+下载地址：https://osdn.net/projects/mingw/releases/
+下载按钮在左下角。
+下载好之后一路确定，
+在之后的这个页面里，把这几个全打上勾
+然后 Installation -&amp;gt; Apply Changes -&amp;gt; Apply</description>
     </item>
     
     <item>
@@ -282,7 +295,7 @@ $$19 = 10 + 3 + 3 + 3, 6 = 3 + 3$$
 最后再把整个 mon 跑一遍，
 看看原货币系统中剩下几个不能被凑出来的钱，这就是答案了。
 代码如下
-#include &amp;lt;cstdlib&amp;gt;#include &amp;lt;cstdio&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;algorithm&amp;gt;using namespace std; int mon[25001] = {}; /* mon[i] = 0 表示i面值的钱不能被凑出来 mon[i] = 1 表示i面值的钱可以被凑出来 mon[i] = 2 表示i面值的钱是货币系统中本来就有的钱 */ int coins[101] = {};//存钱的面值 int T, n, ans = 0; int main() { scanf(&amp;#34;%d &amp;#34;, &amp;amp;T); while (T--) { ans=0; memset(mon, 0, sizeof(mon)); memset(coins, 0, sizeof(coins)); scanf(&amp;#34;%d&amp;#34;, &amp;amp;n); for (int i = 1; i &amp;lt;= n; i++) { scanf(&amp;#34;%d&amp;#34;, coins + i); mon[coins[i]]=2; } //把货币系统中的钱标好 	sort(coins + 1, coins + 1 + n); for (int i = 1; i &amp;lt;= coins[n]; i++) { if (mon[i] &amp;gt; 0) //如果mon[i]能被凑出来 	//那么mon[i+coins[j]]也能被凑出来 	{ for (int j = 1; j &amp;lt;= n; j++) { if (i + coins[j] &amp;lt;= coins[n]) //防止数组越界 	{ mon[i + coins[j]] = 1; } else break; } } } for (int i = 1; i &amp;lt;= coins[n]; i++) { if (mon[i] == 2) ans++; } printf(&amp;#34;%d\n&amp;#34;, ans); } } </description>
+#include &amp;lt;cstdlib&amp;gt; #include &amp;lt;cstdio&amp;gt; #include &amp;lt;cstring&amp;gt; #include &amp;lt;algorithm&amp;gt; using namespace std; int mon[25001] = {}; /* mon[i] = 0 表示i面值的钱不能被凑出来 mon[i] = 1 表示i面值的钱可以被凑出来 mon[i] = 2 表示i面值的钱是货币系统中本来就有的钱 */ int coins[101] = {};//存钱的面值 int T, n, ans = 0; int main() { scanf(&amp;#34;%d &amp;#34;, &amp;amp;T); while (T--) { ans=0; memset(mon, 0, sizeof(mon)); memset(coins, 0, sizeof(coins)); scanf(&amp;#34;%d&amp;#34;, &amp;amp;n); for (int i = 1; i &amp;lt;= n; i++) { scanf(&amp;#34;%d&amp;#34;, coins + i); mon[coins[i]]=2; } //把货币系统中的钱标好 sort(coins + 1, coins + 1 + n); for (int i = 1; i &amp;lt;= coins[n]; i++) { if (mon[i] &amp;gt; 0) //如果mon[i]能被凑出来 //那么mon[i+coins[j]]也能被凑出来 { for (int j = 1; j &amp;lt;= n; j++) { if (i + coins[j] &amp;lt;= coins[n]) //防止数组越界 { mon[i + coins[j]] = 1; } else break; } } } for (int i = 1; i &amp;lt;= coins[n]; i++) { if (mon[i] == 2) ans++; } printf(&amp;#34;%d\n&amp;#34;, ans); } } </description>
     </item>
     
   </channel>

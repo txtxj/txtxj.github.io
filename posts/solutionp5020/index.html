@@ -63,7 +63,7 @@ document.addEventListener("visibilitychange", function () {
 
   
 
-  <meta name="generator" content="Hugo 0.92.1" />
+  <meta name="generator" content="Hugo 0.101.0" />
   
   
   
@@ -85,7 +85,7 @@ $$19 = 10 &#43; 3 &#43; 3 &#43; 3, 6 = 3 &#43; 3$$
 最后再把整个 mon 跑一遍，
 看看原货币系统中剩下几个不能被凑出来的钱，这就是答案了。
 代码如下
-#include &lt;cstdlib&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;using namespace std; int mon[25001] = {}; /* mon[i] = 0 表示i面值的钱不能被凑出来 mon[i] = 1 表示i面值的钱可以被凑出来 mon[i] = 2 表示i面值的钱是货币系统中本来就有的钱 */ int coins[101] = {};//存钱的面值 int T, n, ans = 0; int main() { scanf(&#34;%d &#34;, &amp;T); while (T--) { ans=0; memset(mon, 0, sizeof(mon)); memset(coins, 0, sizeof(coins)); scanf(&#34;%d&#34;, &amp;n); for (int i = 1; i &lt;= n; i&#43;&#43;) { scanf(&#34;%d&#34;, coins &#43; i); mon[coins[i]]=2; } //把货币系统中的钱标好 	sort(coins &#43; 1, coins &#43; 1 &#43; n); for (int i = 1; i &lt;= coins[n]; i&#43;&#43;) { if (mon[i] &gt; 0) //如果mon[i]能被凑出来 	//那么mon[i&#43;coins[j]]也能被凑出来 	{ for (int j = 1; j &lt;= n; j&#43;&#43;) { if (i &#43; coins[j] &lt;= coins[n]) //防止数组越界 	{ mon[i &#43; coins[j]] = 1; } else break; } } } for (int i = 1; i &lt;= coins[n]; i&#43;&#43;) { if (mon[i] == 2) ans&#43;&#43;; } printf(&#34;%d\n&#34;, ans); } } " />
+#include &lt;cstdlib&gt; #include &lt;cstdio&gt; #include &lt;cstring&gt; #include &lt;algorithm&gt; using namespace std; int mon[25001] = {}; /* mon[i] = 0 表示i面值的钱不能被凑出来 mon[i] = 1 表示i面值的钱可以被凑出来 mon[i] = 2 表示i面值的钱是货币系统中本来就有的钱 */ int coins[101] = {};//存钱的面值 int T, n, ans = 0; int main() { scanf(&#34;%d &#34;, &amp;T); while (T--) { ans=0; memset(mon, 0, sizeof(mon)); memset(coins, 0, sizeof(coins)); scanf(&#34;%d&#34;, &amp;n); for (int i = 1; i &lt;= n; i&#43;&#43;) { scanf(&#34;%d&#34;, coins &#43; i); mon[coins[i]]=2; } //把货币系统中的钱标好 sort(coins &#43; 1, coins &#43; 1 &#43; n); for (int i = 1; i &lt;= coins[n]; i&#43;&#43;) { if (mon[i] &gt; 0) //如果mon[i]能被凑出来 //那么mon[i&#43;coins[j]]也能被凑出来 { for (int j = 1; j &lt;= n; j&#43;&#43;) { if (i &#43; coins[j] &lt;= coins[n]) //防止数组越界 { mon[i &#43; coins[j]] = 1; } else break; } } } for (int i = 1; i &lt;= coins[n]; i&#43;&#43;) { if (mon[i] == 2) ans&#43;&#43;; } printf(&#34;%d\n&#34;, ans); } } " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://txtxj.top/posts/solutionp5020/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-02-07T23:50:45+08:00" />
@@ -106,7 +106,7 @@ $$19 = 10 &#43; 3 &#43; 3 &#43; 3, 6 = 3 &#43; 3$$
 最后再把整个 mon 跑一遍，
 看看原货币系统中剩下几个不能被凑出来的钱，这就是答案了。
 代码如下
-#include &lt;cstdlib&gt;#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;using namespace std; int mon[25001] = {}; /* mon[i] = 0 表示i面值的钱不能被凑出来 mon[i] = 1 表示i面值的钱可以被凑出来 mon[i] = 2 表示i面值的钱是货币系统中本来就有的钱 */ int coins[101] = {};//存钱的面值 int T, n, ans = 0; int main() { scanf(&#34;%d &#34;, &amp;T); while (T--) { ans=0; memset(mon, 0, sizeof(mon)); memset(coins, 0, sizeof(coins)); scanf(&#34;%d&#34;, &amp;n); for (int i = 1; i &lt;= n; i&#43;&#43;) { scanf(&#34;%d&#34;, coins &#43; i); mon[coins[i]]=2; } //把货币系统中的钱标好 	sort(coins &#43; 1, coins &#43; 1 &#43; n); for (int i = 1; i &lt;= coins[n]; i&#43;&#43;) { if (mon[i] &gt; 0) //如果mon[i]能被凑出来 	//那么mon[i&#43;coins[j]]也能被凑出来 	{ for (int j = 1; j &lt;= n; j&#43;&#43;) { if (i &#43; coins[j] &lt;= coins[n]) //防止数组越界 	{ mon[i &#43; coins[j]] = 1; } else break; } } } for (int i = 1; i &lt;= coins[n]; i&#43;&#43;) { if (mon[i] == 2) ans&#43;&#43;; } printf(&#34;%d\n&#34;, ans); } } "/>
+#include &lt;cstdlib&gt; #include &lt;cstdio&gt; #include &lt;cstring&gt; #include &lt;algorithm&gt; using namespace std; int mon[25001] = {}; /* mon[i] = 0 表示i面值的钱不能被凑出来 mon[i] = 1 表示i面值的钱可以被凑出来 mon[i] = 2 表示i面值的钱是货币系统中本来就有的钱 */ int coins[101] = {};//存钱的面值 int T, n, ans = 0; int main() { scanf(&#34;%d &#34;, &amp;T); while (T--) { ans=0; memset(mon, 0, sizeof(mon)); memset(coins, 0, sizeof(coins)); scanf(&#34;%d&#34;, &amp;n); for (int i = 1; i &lt;= n; i&#43;&#43;) { scanf(&#34;%d&#34;, coins &#43; i); mon[coins[i]]=2; } //把货币系统中的钱标好 sort(coins &#43; 1, coins &#43; 1 &#43; n); for (int i = 1; i &lt;= coins[n]; i&#43;&#43;) { if (mon[i] &gt; 0) //如果mon[i]能被凑出来 //那么mon[i&#43;coins[j]]也能被凑出来 { for (int j = 1; j &lt;= n; j&#43;&#43;) { if (i &#43; coins[j] &lt;= coins[n]) //防止数组越界 { mon[i &#43; coins[j]] = 1; } else break; } } } for (int i = 1; i &lt;= coins[n]; i&#43;&#43;) { if (mon[i] == 2) ans&#43;&#43;; } printf(&#34;%d\n&#34;, ans); } } "/>
 
 
   
@@ -193,59 +193,59 @@ $$19 = 10 &#43; 3 &#43; 3 &#43; 3, 6 = 3 &#43; 3$$
 <p>最后再把整个 <code>mon</code> 跑一遍，</p>
 <p>看看原货币系统中剩下几个不能被凑出来的钱，这就是答案了。</p>
 <p>代码如下</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
-<span style="color:#66d9ef">int</span> mon[<span style="color:#ae81ff">25001</span>] <span style="color:#f92672">=</span> {};
-<span style="color:#75715e">/*
-</span><span style="color:#75715e">mon[i] = 0 表示i面值的钱不能被凑出来
-</span><span style="color:#75715e">mon[i] = 1 表示i面值的钱可以被凑出来
-</span><span style="color:#75715e">mon[i] = 2 表示i面值的钱是货币系统中本来就有的钱
-</span><span style="color:#75715e">*/</span>
-<span style="color:#66d9ef">int</span> coins[<span style="color:#ae81ff">101</span>] <span style="color:#f92672">=</span> {};<span style="color:#75715e">//存钱的面值
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> T, n, ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-{
-	scanf(<span style="color:#e6db74">&#34;%d &#34;</span>, <span style="color:#f92672">&amp;</span>T);
-	<span style="color:#66d9ef">while</span> (T<span style="color:#f92672">--</span>)
-	{
-		ans<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
-		memset(mon, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span>(mon));
-		memset(coins, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span>(coins));
-		scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>n);
-		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>)
-		{
-			scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, coins <span style="color:#f92672">+</span> i);
-			mon[coins[i]]<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>;
-		}
-        <span style="color:#75715e">//把货币系统中的钱标好
-</span><span style="color:#75715e"></span>		sort(coins <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, coins <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> n);
-		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> coins[n]; i<span style="color:#f92672">++</span>)
-		{
-			<span style="color:#66d9ef">if</span> (mon[i] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>)
-			<span style="color:#75715e">//如果mon[i]能被凑出来
-</span><span style="color:#75715e"></span>			<span style="color:#75715e">//那么mon[i+coins[j]]也能被凑出来
-</span><span style="color:#75715e"></span>			{
-				<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;=</span> n; j<span style="color:#f92672">++</span>)
-				{
-					<span style="color:#66d9ef">if</span> (i <span style="color:#f92672">+</span> coins[j] <span style="color:#f92672">&lt;=</span> coins[n]) <span style="color:#75715e">//防止数组越界
-</span><span style="color:#75715e"></span>					{
-						mon[i <span style="color:#f92672">+</span> coins[j]] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-					}
-					<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">break</span>; 
-				}
-			}
-		}
-		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> coins[n]; i<span style="color:#f92672">++</span>)
-		{
-			<span style="color:#66d9ef">if</span> (mon[i] <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>) ans<span style="color:#f92672">++</span>;
-		}
-		printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ans);
-	}
-}
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> mon[<span style="color:#ae81ff">25001</span>] <span style="color:#f92672">=</span> {};
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">mon[i] = 0 表示i面值的钱不能被凑出来
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">mon[i] = 1 表示i面值的钱可以被凑出来
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">mon[i] = 2 表示i面值的钱是货币系统中本来就有的钱
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> coins[<span style="color:#ae81ff">101</span>] <span style="color:#f92672">=</span> {};<span style="color:#75715e">//存钱的面值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> T, n, ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	scanf(<span style="color:#e6db74">&#34;%d &#34;</span>, <span style="color:#f92672">&amp;</span>T);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (T<span style="color:#f92672">--</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		ans<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>		memset(mon, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span>(mon));
+</span></span><span style="display:flex;"><span>		memset(coins, <span style="color:#ae81ff">0</span>, <span style="color:#66d9ef">sizeof</span>(coins));
+</span></span><span style="display:flex;"><span>		scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>n);
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, coins <span style="color:#f92672">+</span> i);
+</span></span><span style="display:flex;"><span>			mon[coins[i]]<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//把货币系统中的钱标好
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		sort(coins <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, coins <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> n);
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> coins[n]; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (mon[i] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">//如果mon[i]能被凑出来
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#75715e">//那么mon[i+coins[j]]也能被凑出来
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			{
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; j <span style="color:#f92672">&lt;=</span> n; j<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>				{
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">if</span> (i <span style="color:#f92672">+</span> coins[j] <span style="color:#f92672">&lt;=</span> coins[n]) <span style="color:#75715e">//防止数组越界
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>					{
+</span></span><span style="display:flex;"><span>						mon[i <span style="color:#f92672">+</span> coins[j]] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>					}
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">break</span>; 
+</span></span><span style="display:flex;"><span>				}
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> coins[n]; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> (mon[i] <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span>) ans<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ans);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
           </div>
         </div>
                  

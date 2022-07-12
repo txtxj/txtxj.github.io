@@ -18,10 +18,10 @@
       <description>在经过模型、视图、投影变换后，待显示的所有物体都处在了一个标准正方体内。
 而光栅化的目的，就是把这个标准正方体内的物体转化为一个个像素点显示在屏幕上。
 视口变换(Viewpoint Transformation) 屏幕中的每个像素点都可以使用一个整数坐标表示，每个像素点的边长为 1 ，
-需要注意，坐标 $(x, y)$ 表示的像素点的中心位置实际应为 $(x + 0.5, y + 0.5)$
+需要注意，坐标 $(x, y)$ 表示的像素点的中心位置实际应为 $(x + 0.5, y + 0.5)$
 例如，坐标为 $(0, 0)$ 的像素点中心位于 $(0.5, 0.5)$ 。
 要将标准正方体变换到屏幕的矩形中，需要
- 无视 Z 坐标 将坐标变换（缩放）到 $[0, \text{width}] \times [0, \text{height}]$ 的区域中  可以直接写出变换矩阵
+无视 Z 坐标 将坐标变换（缩放）到 $[0, \text{width}] \times [0, \text{height}]$ 的区域中 可以直接写出变换矩阵
 $$ \mathbf{M_{viewpoint}} = \begin{pmatrix} \frac{\text{width}}{2} &amp;amp; 0 &amp;amp; 0 &amp;amp; \frac{\text{width}}{2} \\ 0 &amp;amp; \frac{\text{height}}{2} &amp;amp; 0 &amp;amp; \frac{\text{height}}{2} \\ 0 &amp;amp; 0 &amp;amp; 1 &amp;amp; 0 \\ 0 &amp;amp; 0 &amp;amp; 0 &amp;amp; 1 \end{pmatrix} $$</description>
     </item>
     
@@ -45,8 +45,9 @@ $$ \mathbf{M_{viewpoint}} = \begin{pmatrix} \frac{\text{width}}{2} &amp;amp; 0 &
 同时，将空间中所有物体跟随相机进行变换。
 考虑使用一个矩阵 $\mathbf{M_{view}}$ 表示上述变换。
 那么， $\mathbf{M_{view}}$ 需要完成的操作包含：
- 将 $\mathbf{e}$ 变换到原点 将 $\hat{\mathbf{g}}$ 旋转到 $-\hat{\mathbf{z}}$ 将 $\hat{\mathbf{t}}$ 旋转到 $\hat{\mathbf{y}}$ 将 $\hat{\mathbf{g}} \times \hat{\mathbf{t}}$ 旋转到 $\hat{\mathbf{x}}$  对于上述操作的第一步平移操作，可以用一个矩阵 $\mathbf{T_{view}}$ 表示，
-则 $\mathbf{M_{view}} = \mathbf{R_{view}} \mathbf{T_{view}}$，</description>
+将 $\mathbf{e}$ 变换到原点 将 $\hat{\mathbf{g}}$ 旋转到 $-\hat{\mathbf{z}}$ 将 $\hat{\mathbf{t}}$ 旋转到 $\hat{\mathbf{y}}$ 将 $\hat{\mathbf{g}} \times \hat{\mathbf{t}}$ 旋转到 $\hat{\mathbf{x}}$ 对于上述操作的第一步平移操作，可以用一个矩阵 $\mathbf{T_{view}}$ 表示，
+则 $\mathbf{M_{view}} = \mathbf{R_{view}} \mathbf{T_{view}}$，
+并且可以很轻松地写出平移变换矩阵</description>
     </item>
     
     <item>
@@ -55,12 +56,12 @@ $$ \mathbf{M_{viewpoint}} = \begin{pmatrix} \frac{\text{width}}{2} &amp;amp; 0 &
       <pubDate>Wed, 22 Dec 2021 16:01:30 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
       <guid>https://txtxj.top/posts/gamesnote01/</guid>
-      <description>2D 线性变换 缩放(Scale) $$ \mathbf{scale}(s_x, s_y) = \begin{pmatrix} s_x &amp;amp; 0 \\ 0 &amp;amp; s_y \\ \end{pmatrix} $$ $$x&#39; = s_x x$$ $$y&#39; = s_y y$$
-如上图所示，
-$$ \begin{pmatrix} x&#39;	\\ y&#39; \end{pmatrix} = \begin{pmatrix} 0.5 &amp;amp; 0	\\ 0 &amp;amp; 1	\\ \end{pmatrix} \begin{pmatrix} x	\\ y \end{pmatrix} $$
+      <description>2D 线性变换 缩放(Scale) $$ \mathbf{scale}(s_x, s_y) = \begin{pmatrix} s_x &amp;amp; 0 \\ 0 &amp;amp; s_y \\ \end{pmatrix} $$ $$x&amp;rsquo; = s_x x$$ $$y&amp;rsquo; = s_y y$$
+如上图所示，
+$$ \begin{pmatrix} x&amp;rsquo;	\\ y&amp;rsquo; \end{pmatrix} = \begin{pmatrix} 0.5 &amp;amp; 0	\\ 0 &amp;amp; 1	\\ \end{pmatrix} \begin{pmatrix} x	\\ y \end{pmatrix} $$
 另外，关于坐标轴的反射，也是一种特殊的缩放。
-如上图所示，
-$$ \begin{pmatrix} x&#39;	\\ y&#39; \end{pmatrix} = \begin{pmatrix} -1 &amp;amp; 0	\\ 0 &amp;amp; 1	\\ \end{pmatrix} \begin{pmatrix} x	\\ y \end{pmatrix} $$</description>
+如上图所示，
+$$ \begin{pmatrix} x&amp;rsquo;	\\ y&amp;rsquo; \end{pmatrix} = \begin{pmatrix} -1 &amp;amp; 0	\\ 0 &amp;amp; 1	\\ \end{pmatrix} \begin{pmatrix} x	\\ y \end{pmatrix} $$</description>
     </item>
     
   </channel>

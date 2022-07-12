@@ -63,7 +63,7 @@ document.addEventListener("visibilitychange", function () {
 
   
 
-  <meta name="generator" content="Hugo 0.92.1" />
+  <meta name="generator" content="Hugo 0.101.0" />
   
   
   
@@ -75,18 +75,18 @@ document.addEventListener("visibilitychange", function () {
   <meta property="og:title" content="题解 领奖台数" />
 <meta property="og:description" content="这是陈雪老师《算法基础》课程中的一道作业题，似乎是老师原创的（在网上找题解没找到）。
 题面如下
- 给定任意一个序列 $a_1, \dots, a_n$，其中没有重复元素。
+给定任意一个序列 $a_1, \dots, a_n$，其中没有重复元素。
 如果 $i &lt; j &lt; k$ 且 $a_j &gt; a_i &gt; a_k$，三个数字的大小关系就像运动会颁奖时的领奖台。
 于是我们称序列中满足该条件的 三元组 $(i, j, k)$ 的个数为序列的领奖台数。
 设计一个算法来计算序列的领奖台数。
 为了简化题目，规定 $a$ 中没有相同元素。
- 即在一个数组里找具有如下图形式的三元组。
-想到另一道经典的归并排序题目：求 $i &lt; j &lt; k$ 且 $a_j &gt; a_i$ 且 $a_j &gt; a_k$ ，可以求每个位置的顺序对和逆序对个数，最后相乘得到结果。
+即在一个数组里找具有如下图形式的三元组。
+想到另一道经典的归并排序题目：求 $i &lt; j &lt; k$ 且 $a_j &gt; a_i$ 且 $a_j &gt; a_k$ ，可以求每个位置的顺序对和逆序对个数，最后相乘得到结果。
 这道题是上面题目的加强版，也可以从每个位置顺序对、逆序对的个数入手计算。
 因此考虑分治。
 对于任意的 $i &lt; j &lt; k$ ，在一次合并中，如果 $i, j, k$ 位于同一待合并区间，则其对本次合并无贡献，不考虑。
 需要考虑的情况只有两种：
- $i &lt; j \le mid &lt; k$ $i \le mid &lt; j &lt; k$  其中 $mid$ 为分割锚点。" />
+$i &lt; j \le mid &lt; k$ $i \le mid &lt; j &lt; k$ 其中 $mid$ 为分割锚点。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://txtxj.top/posts/solutionprize/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-05-13T17:59:19+08:00" />
@@ -97,18 +97,18 @@ document.addEventListener("visibilitychange", function () {
 <meta name="twitter:title" content="题解 领奖台数"/>
 <meta name="twitter:description" content="这是陈雪老师《算法基础》课程中的一道作业题，似乎是老师原创的（在网上找题解没找到）。
 题面如下
- 给定任意一个序列 $a_1, \dots, a_n$，其中没有重复元素。
+给定任意一个序列 $a_1, \dots, a_n$，其中没有重复元素。
 如果 $i &lt; j &lt; k$ 且 $a_j &gt; a_i &gt; a_k$，三个数字的大小关系就像运动会颁奖时的领奖台。
 于是我们称序列中满足该条件的 三元组 $(i, j, k)$ 的个数为序列的领奖台数。
 设计一个算法来计算序列的领奖台数。
 为了简化题目，规定 $a$ 中没有相同元素。
- 即在一个数组里找具有如下图形式的三元组。
-想到另一道经典的归并排序题目：求 $i &lt; j &lt; k$ 且 $a_j &gt; a_i$ 且 $a_j &gt; a_k$ ，可以求每个位置的顺序对和逆序对个数，最后相乘得到结果。
+即在一个数组里找具有如下图形式的三元组。
+想到另一道经典的归并排序题目：求 $i &lt; j &lt; k$ 且 $a_j &gt; a_i$ 且 $a_j &gt; a_k$ ，可以求每个位置的顺序对和逆序对个数，最后相乘得到结果。
 这道题是上面题目的加强版，也可以从每个位置顺序对、逆序对的个数入手计算。
 因此考虑分治。
 对于任意的 $i &lt; j &lt; k$ ，在一次合并中，如果 $i, j, k$ 位于同一待合并区间，则其对本次合并无贡献，不考虑。
 需要考虑的情况只有两种：
- $i &lt; j \le mid &lt; k$ $i \le mid &lt; j &lt; k$  其中 $mid$ 为分割锚点。"/>
+$i &lt; j \le mid &lt; k$ $i \le mid &lt; j &lt; k$ 其中 $mid$ 为分割锚点。"/>
 
 
   
@@ -244,67 +244,67 @@ $$
 </li>
 </ul>
 <p>核心代码如下</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">/*
-</span><span style="color:#75715e">orderHead[i] 表示以 a[i] 为头的顺序对数量
-</span><span style="color:#75715e">reverseDf[j] 表示以 a[j] 为头的逆序对数量 - 以 a[j] 为尾的逆序对数量
-</span><span style="color:#75715e">两 temp 数组用于搬运数据时作为上述两数组的临时存储空间
-</span><span style="color:#75715e">sum 为之前所有子问题的贡献
-</span><span style="color:#75715e">cnt 为当此合并的贡献
-</span><span style="color:#75715e">*/</span>
-<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> <span style="color:#a6e22e">MergeSort</span>(<span style="color:#66d9ef">int</span> l, <span style="color:#66d9ef">int</span> r)
-{
-	<span style="color:#66d9ef">if</span> (l <span style="color:#f92672">==</span> r) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-	<span style="color:#66d9ef">int</span> mid <span style="color:#f92672">=</span> (l <span style="color:#f92672">+</span> r) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>;
-	<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> sum <span style="color:#f92672">=</span> MergeSort(l, mid) <span style="color:#f92672">+</span> MergeSort(mid <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, r);
-	<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-	<span style="color:#66d9ef">int</span> i, j, p;
-	<span style="color:#66d9ef">for</span> (p <span style="color:#f92672">=</span> l, i <span style="color:#f92672">=</span> l, j <span style="color:#f92672">=</span> mid <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> mid <span style="color:#f92672">&amp;&amp;</span> j <span style="color:#f92672">&lt;=</span> r; p <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>)
-	{
-		<span style="color:#66d9ef">if</span> (a[i] <span style="color:#f92672">&lt;=</span> a[j])
-		{
-			temp[p] <span style="color:#f92672">=</span> a[i];
-			tempOrder[p] <span style="color:#f92672">=</span> orderHead[i] <span style="color:#f92672">+</span> r <span style="color:#f92672">-</span> j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
-			tempReverse[p] <span style="color:#f92672">=</span> reverseDf[i] <span style="color:#f92672">+</span> j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> mid;
-			cnt <span style="color:#f92672">+=</span> orderHead[i] <span style="color:#f92672">*</span> (j <span style="color:#f92672">-</span> mid <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
-			i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
-		}
-		<span style="color:#66d9ef">else</span>
-		{
-			temp[p] <span style="color:#f92672">=</span> a[j];
-			tempOrder[p] <span style="color:#f92672">=</span> orderHead[j];
-			tempReverse[p] <span style="color:#f92672">=</span> reverseDf[j] <span style="color:#f92672">+</span> i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> mid;
-			cnt <span style="color:#f92672">+=</span> reverseDf[j] <span style="color:#f92672">*</span> (i <span style="color:#f92672">-</span> l);
-			j <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
-		}
-	}
-	<span style="color:#66d9ef">while</span> (i <span style="color:#f92672">&lt;=</span> mid)
-	{
-		temp[p] <span style="color:#f92672">=</span> a[i];
-		tempOrder[p] <span style="color:#f92672">=</span> orderHead[i];
-		tempReverse[p] <span style="color:#f92672">=</span> reverseDf[i] <span style="color:#f92672">+</span> r <span style="color:#f92672">-</span> mid;
-		cnt <span style="color:#f92672">+=</span> orderHead[i] <span style="color:#f92672">*</span> (r <span style="color:#f92672">-</span> mid);
-		i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
-		p <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
-	}
-	<span style="color:#66d9ef">while</span> (j <span style="color:#f92672">&lt;=</span> r)
-	{
-		temp[p] <span style="color:#f92672">=</span> a[j];
-		tempOrder[p] <span style="color:#f92672">=</span> orderHead[j];
-		tempReverse[p] <span style="color:#f92672">=</span> reverseDf[j];
-		cnt <span style="color:#f92672">+=</span> reverseDf[j] <span style="color:#f92672">*</span> (mid <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> l);
-		j <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
-		p <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
-	}
-	<span style="color:#66d9ef">while</span> (l <span style="color:#f92672">&lt;=</span> r)
-	{
-		a[l] <span style="color:#f92672">=</span> temp[l];
-		orderHead[l] <span style="color:#f92672">=</span> tempOrder[l];
-		reverseDf[l] <span style="color:#f92672">=</span> tempReverse[l];
-		l <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
-	}
-	<span style="color:#66d9ef">return</span> sum <span style="color:#f92672">+</span> cnt;
-}
-</code></pre></div><p><a href="https://github.com/txtxj/USTC-Algorithm/blob/master/lab3/PrizeNumber/prize.cpp" target="_blank" rel="noopener">完整代码</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">orderHead[i] 表示以 a[i] 为头的顺序对数量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">reverseDf[j] 表示以 a[j] 为头的逆序对数量 - 以 a[j] 为尾的逆序对数量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">两 temp 数组用于搬运数据时作为上述两数组的临时存储空间
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">sum 为之前所有子问题的贡献
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">cnt 为当此合并的贡献
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> <span style="color:#a6e22e">MergeSort</span>(<span style="color:#66d9ef">int</span> l, <span style="color:#66d9ef">int</span> r)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (l <span style="color:#f92672">==</span> r) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> mid <span style="color:#f92672">=</span> (l <span style="color:#f92672">+</span> r) <span style="color:#f92672">&gt;&gt;</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> sum <span style="color:#f92672">=</span> MergeSort(l, mid) <span style="color:#f92672">+</span> MergeSort(mid <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, r);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> cnt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> i, j, p;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (p <span style="color:#f92672">=</span> l, i <span style="color:#f92672">=</span> l, j <span style="color:#f92672">=</span> mid <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;=</span> mid <span style="color:#f92672">&amp;&amp;</span> j <span style="color:#f92672">&lt;=</span> r; p <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (a[i] <span style="color:#f92672">&lt;=</span> a[j])
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			temp[p] <span style="color:#f92672">=</span> a[i];
+</span></span><span style="display:flex;"><span>			tempOrder[p] <span style="color:#f92672">=</span> orderHead[i] <span style="color:#f92672">+</span> r <span style="color:#f92672">-</span> j <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>			tempReverse[p] <span style="color:#f92672">=</span> reverseDf[i] <span style="color:#f92672">+</span> j <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> mid;
+</span></span><span style="display:flex;"><span>			cnt <span style="color:#f92672">+=</span> orderHead[i] <span style="color:#f92672">*</span> (j <span style="color:#f92672">-</span> mid <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>			i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			temp[p] <span style="color:#f92672">=</span> a[j];
+</span></span><span style="display:flex;"><span>			tempOrder[p] <span style="color:#f92672">=</span> orderHead[j];
+</span></span><span style="display:flex;"><span>			tempReverse[p] <span style="color:#f92672">=</span> reverseDf[j] <span style="color:#f92672">+</span> i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> mid;
+</span></span><span style="display:flex;"><span>			cnt <span style="color:#f92672">+=</span> reverseDf[j] <span style="color:#f92672">*</span> (i <span style="color:#f92672">-</span> l);
+</span></span><span style="display:flex;"><span>			j <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (i <span style="color:#f92672">&lt;=</span> mid)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		temp[p] <span style="color:#f92672">=</span> a[i];
+</span></span><span style="display:flex;"><span>		tempOrder[p] <span style="color:#f92672">=</span> orderHead[i];
+</span></span><span style="display:flex;"><span>		tempReverse[p] <span style="color:#f92672">=</span> reverseDf[i] <span style="color:#f92672">+</span> r <span style="color:#f92672">-</span> mid;
+</span></span><span style="display:flex;"><span>		cnt <span style="color:#f92672">+=</span> orderHead[i] <span style="color:#f92672">*</span> (r <span style="color:#f92672">-</span> mid);
+</span></span><span style="display:flex;"><span>		i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>		p <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (j <span style="color:#f92672">&lt;=</span> r)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		temp[p] <span style="color:#f92672">=</span> a[j];
+</span></span><span style="display:flex;"><span>		tempOrder[p] <span style="color:#f92672">=</span> orderHead[j];
+</span></span><span style="display:flex;"><span>		tempReverse[p] <span style="color:#f92672">=</span> reverseDf[j];
+</span></span><span style="display:flex;"><span>		cnt <span style="color:#f92672">+=</span> reverseDf[j] <span style="color:#f92672">*</span> (mid <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> l);
+</span></span><span style="display:flex;"><span>		j <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>		p <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (l <span style="color:#f92672">&lt;=</span> r)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		a[l] <span style="color:#f92672">=</span> temp[l];
+</span></span><span style="display:flex;"><span>		orderHead[l] <span style="color:#f92672">=</span> tempOrder[l];
+</span></span><span style="display:flex;"><span>		reverseDf[l] <span style="color:#f92672">=</span> tempReverse[l];
+</span></span><span style="display:flex;"><span>		l <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> sum <span style="color:#f92672">+</span> cnt;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><a href="https://github.com/txtxj/USTC-Algorithm/blob/master/lab3/PrizeNumber/prize.cpp" target="_blank" rel="noopener">完整代码</a></p>
 
           </div>
         </div>

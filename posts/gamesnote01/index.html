@@ -63,7 +63,7 @@ document.addEventListener("visibilitychange", function () {
 
   
 
-  <meta name="generator" content="Hugo 0.92.1" />
+  <meta name="generator" content="Hugo 0.101.0" />
   
   
   
@@ -73,12 +73,12 @@ document.addEventListener("visibilitychange", function () {
   <title>GAMES笔记01-线性代数基础 🌟 Txtxj</title>
 
   <meta property="og:title" content="GAMES笔记01-线性代数基础" />
-<meta property="og:description" content="2D 线性变换 缩放(Scale) $$ \mathbf{scale}(s_x, s_y) = \begin{pmatrix} s_x &amp; 0 \\ 0 &amp; s_y \\ \end{pmatrix} $$ $$x&#39; = s_x x$$ $$y&#39; = s_y y$$
-如上图所示，
-$$ \begin{pmatrix} x&#39;	\\ y&#39; \end{pmatrix} = \begin{pmatrix} 0.5 &amp; 0	\\ 0 &amp; 1	\\ \end{pmatrix} \begin{pmatrix} x	\\ y \end{pmatrix} $$
+<meta property="og:description" content="2D 线性变换 缩放(Scale) $$ \mathbf{scale}(s_x, s_y) = \begin{pmatrix} s_x &amp; 0 \\ 0 &amp; s_y \\ \end{pmatrix} $$ $$x&rsquo; = s_x x$$ $$y&rsquo; = s_y y$$
+如上图所示，
+$$ \begin{pmatrix} x&rsquo;	\\ y&rsquo; \end{pmatrix} = \begin{pmatrix} 0.5 &amp; 0	\\ 0 &amp; 1	\\ \end{pmatrix} \begin{pmatrix} x	\\ y \end{pmatrix} $$
 另外，关于坐标轴的反射，也是一种特殊的缩放。
-如上图所示，
-$$ \begin{pmatrix} x&#39;	\\ y&#39; \end{pmatrix} = \begin{pmatrix} -1 &amp; 0	\\ 0 &amp; 1	\\ \end{pmatrix} \begin{pmatrix} x	\\ y \end{pmatrix} $$" />
+如上图所示，
+$$ \begin{pmatrix} x&rsquo;	\\ y&rsquo; \end{pmatrix} = \begin{pmatrix} -1 &amp; 0	\\ 0 &amp; 1	\\ \end{pmatrix} \begin{pmatrix} x	\\ y \end{pmatrix} $$" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://txtxj.top/posts/gamesnote01/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-12-22T16:01:30+08:00" />
@@ -87,12 +87,12 @@ $$ \begin{pmatrix} x&#39;	\\ y&#39; \end{pmatrix} = \begin{pmatrix} -1 &amp; 0	\
 
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="GAMES笔记01-线性代数基础"/>
-<meta name="twitter:description" content="2D 线性变换 缩放(Scale) $$ \mathbf{scale}(s_x, s_y) = \begin{pmatrix} s_x &amp; 0 \\ 0 &amp; s_y \\ \end{pmatrix} $$ $$x&#39; = s_x x$$ $$y&#39; = s_y y$$
-如上图所示，
-$$ \begin{pmatrix} x&#39;	\\ y&#39; \end{pmatrix} = \begin{pmatrix} 0.5 &amp; 0	\\ 0 &amp; 1	\\ \end{pmatrix} \begin{pmatrix} x	\\ y \end{pmatrix} $$
+<meta name="twitter:description" content="2D 线性变换 缩放(Scale) $$ \mathbf{scale}(s_x, s_y) = \begin{pmatrix} s_x &amp; 0 \\ 0 &amp; s_y \\ \end{pmatrix} $$ $$x&rsquo; = s_x x$$ $$y&rsquo; = s_y y$$
+如上图所示，
+$$ \begin{pmatrix} x&rsquo;	\\ y&rsquo; \end{pmatrix} = \begin{pmatrix} 0.5 &amp; 0	\\ 0 &amp; 1	\\ \end{pmatrix} \begin{pmatrix} x	\\ y \end{pmatrix} $$
 另外，关于坐标轴的反射，也是一种特殊的缩放。
-如上图所示，
-$$ \begin{pmatrix} x&#39;	\\ y&#39; \end{pmatrix} = \begin{pmatrix} -1 &amp; 0	\\ 0 &amp; 1	\\ \end{pmatrix} \begin{pmatrix} x	\\ y \end{pmatrix} $$"/>
+如上图所示，
+$$ \begin{pmatrix} x&rsquo;	\\ y&rsquo; \end{pmatrix} = \begin{pmatrix} -1 &amp; 0	\\ 0 &amp; 1	\\ \end{pmatrix} \begin{pmatrix} x	\\ y \end{pmatrix} $$"/>
 
 
   
@@ -177,16 +177,16 @@ s_x &amp; 0         \\
 0 &amp; s_y         \\
 \end{pmatrix}
 $$
-$$x' = s_x x$$
-$$y' = s_y y$$</p>
+$$x&rsquo; = s_x x$$
+$$y&rsquo; = s_y y$$</p>
 <p>
   <p><img src="https://s2.loli.net/2021/12/22/TVHI19lXyZgW3tA.jpg" alt="" loading="lazy" /></p>
 </p>
 <p>如上图所示，</p>
 <p>$$
 \begin{pmatrix}
-x'				\\
-y'
+x&rsquo;				\\
+y&rsquo;
 \end{pmatrix} = 
 \begin{pmatrix}
 0.5 &amp; 0			\\
@@ -204,8 +204,8 @@ $$</p>
 <p>如上图所示，</p>
 <p>$$
 \begin{pmatrix}
-x'				\\
-y'
+x&rsquo;				\\
+y&rsquo;
 \end{pmatrix} = 
 \begin{pmatrix}
 -1 &amp; 0			\\
@@ -225,8 +225,8 @@ $$</p>
 0 &amp; 1           \\
 \end{pmatrix}, 
 \begin{aligned}
-x' &amp;= x + s y	\\
-y' &amp;= y
+x&rsquo; &amp;= x + s y	\\
+y&rsquo; &amp;= y
 \end{aligned}
 $$
 $$
@@ -236,8 +236,8 @@ $$
 s &amp; 1           \\
 \end{pmatrix}, 
 \begin{aligned}
-x' &amp;= x 		\\
-y' &amp;= s x + y
+x&rsquo; &amp;= x 		\\
+y&rsquo; &amp;= s x + y
 \end{aligned}
 $$</p>
 <p>
@@ -246,8 +246,8 @@ $$</p>
 <p>如上图所示，</p>
 <p>$$
 \begin{pmatrix}
-x'				\\
-y'
+x&rsquo;				\\
+y&rsquo;
 \end{pmatrix} = 
 \begin{pmatrix}
 1 &amp; a			\\
@@ -261,8 +261,8 @@ $$</p>
 <p>缩放后得到
 $$
 \begin{aligned}
-x' &amp;= x + a y	\\
-y' &amp;= y
+x&rsquo; &amp;= x + a y	\\
+y&rsquo; &amp;= y
 \end{aligned}
 $$</p>
 <h3 id="旋转rotate">旋转(Rotate)</h3>
@@ -286,8 +286,8 @@ $
 a &amp; b \\ c &amp; d
 \end{pmatrix}
 $</p>
-<p>对于任意向量 $\mathbf{r}$ ，一定有 $\mathbf{r}' = \mathbf{rotate}(\theta) \mathbf{r}$</p>
-<p>则取单位向量 $\hat{\mathbf{r}} = (1, 0)^T$ ，由上图，通过三角函数的计算得到旋转后向量为 $\hat{\mathbf{r}}' = (\cos \theta, \sin \theta)^T$</p>
+<p>对于任意向量 $\mathbf{r}$ ，一定有 $\mathbf{r}&rsquo; = \mathbf{rotate}(\theta) \mathbf{r}$</p>
+<p>则取单位向量 $\hat{\mathbf{r}} = (1, 0)^T$ ，由上图，通过三角函数的计算得到旋转后向量为 $\hat{\mathbf{r}}&rsquo; = (\cos \theta, \sin \theta)^T$</p>
 <p>因此，一定有下式成立</p>
 <p>$$
 \begin{pmatrix}
@@ -340,7 +340,7 @@ $$</p>
 <p>如上图所示，</p>
 <p>$$
 \begin{pmatrix}
-x' \\ y'
+x&rsquo; \\ y&rsquo;
 \end{pmatrix} = 
 \begin{pmatrix}
 x \\ y
@@ -352,7 +352,7 @@ $$</p>
 <p>上述所有线性变换和平移均可用以下一个公式表示</p>
 <p>$$
 \begin{pmatrix}
-x' \\ y'
+x&rsquo; \\ y&rsquo;
 \end{pmatrix} = 
 \begin{pmatrix}
 a &amp; b \\ c &amp; d
@@ -373,7 +373,7 @@ $$\mathbf{2D}\ \mathbf{vector} = (x, y, 0)^T$$</p>
 <p>那么，对于点的平移可表示为</p>
 <p>$$
 \begin{pmatrix}
-x' \\ y' \\ 1
+x&rsquo; \\ y&rsquo; \\ 1
 \end{pmatrix} = 
 \begin{pmatrix}
 1 &amp; 0 &amp; t_x \\ 0 &amp; 1 &amp; t_y \\ 0 &amp; 0 &amp; 1
@@ -388,7 +388,7 @@ $$</p>
 <p>对于向量的平移表示为</p>
 <p>$$
 \begin{pmatrix}
-x' \\ y' \\ 0
+x&rsquo; \\ y&rsquo; \\ 0
 \end{pmatrix} = 
 \begin{pmatrix}
 1 &amp; 0 &amp; t_x \\ 0 &amp; 1 &amp; t_y \\ 0 &amp; 0 &amp; 1
@@ -423,7 +423,7 @@ $$</p>
 <p>仿射变换：</p>
 <p>$$
 \begin{pmatrix}
-x' \\ y'
+x&rsquo; \\ y&rsquo;
 \end{pmatrix} = 
 \begin{pmatrix}
 a &amp; b \\ c &amp; d
@@ -438,7 +438,7 @@ $$</p>
 <p>齐次坐标下：</p>
 <p>$$
 \begin{pmatrix}
-x' \\ y' \\ 1
+x&rsquo; \\ y&rsquo; \\ 1
 \end{pmatrix} = 
 \begin{pmatrix}
 a &amp; b &amp; t_x \\ c &amp; d &amp; t_y \\ 0 &amp; 0 &amp; 1
@@ -518,7 +518,7 @@ $$</p>
 <p>
   <p><img src="https://s2.loli.net/2021/12/23/WGQfwL3R9FTodbv.jpg" alt="" loading="lazy" /></p>
 </p>
-<p>另一种常用的方法被称为罗德里格斯旋转公式 (Rodrigues' Rotation Formula) ，</p>
+<p>另一种常用的方法被称为罗德里格斯旋转公式 (Rodrigues&rsquo; Rotation Formula) ，</p>
 <p>对于一个过原点的轴，其方向向量为 $\mathbf{n}$ ，旋转角度为 $\alpha$</p>
 <p>则旋转矩阵为</p>
 <p>$$
@@ -546,7 +546,7 @@ n_z &amp; 0 &amp; -n_x \\
 $$\mathbf{3D}\ \mathbf{vector} = (x, y, z, 0)^T$$</p>
 <p>$$
 \begin{pmatrix}
-x' \\ y' \\ z' \\ 1
+x&rsquo; \\ y&rsquo; \\ z&rsquo; \\ 1
 \end{pmatrix} = 
 \begin{pmatrix}
 a &amp; b &amp; c &amp; t_x \\ d &amp; e &amp; f &amp; t_y \\ g &amp; h &amp; i &amp; t_z \\ 0 &amp; 0 &amp; 0 &amp; 1

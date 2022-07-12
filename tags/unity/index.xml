@@ -16,13 +16,14 @@
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
       <guid>https://txtxj.top/posts/objecttoworldnormal/</guid>
       <description>为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵 在 《Unity ShaderLab 新手宝典》中 64 页给出了一个结论
- 在顶点函数中，使用 Unity 提供的变换矩阵 unity_ObjectToWorld 将顶点坐标从模型空间变换到世界空间。为了避免非统一缩放的物体法线方向偏移，使用法线向量右乘逆矩阵的方式对其进行空间变换。
- 即 worldNormal = mul(vertex， (float3x3)unity_WorldToObject) 。
+在顶点函数中，使用 Unity 提供的变换矩阵 unity_ObjectToWorld 将顶点坐标从模型空间变换到世界空间。为了避免非统一缩放的物体法线方向偏移，使用法线向量右乘逆矩阵的方式对其进行空间变换。
+即 worldNormal = mul(vertex， (float3x3)unity_WorldToObject) 。
 首先解释为什么对于非统一缩放的物体，左乘模型变换矩阵可能会导致法线方向偏移。
 考虑一个正方形，它的两条对角线是互相垂直的。
-但在将其 $x$ 方向变换为原来的 $\frac{1}{2}$ 之后，两条对角线不再互相垂直。
-将上述变换写为矩阵乘法的形式， $$ \text{令}\ \mathbf{n} = \overrightarrow{AC}, \mathbf{a} = \overrightarrow{BD} \ \text{为列向量}\\ \mathbf{n}^T \mathbf{a} = 0\\ \text{变换后}\ \mathbf{n&#39;} = \mathbf{Mn}, \mathbf{a&#39;} = \mathbf{Ma}\\ \mathbf{n&#39;}^T\mathbf{a&#39;} = \mathbf{n}^T \mathbf{M}^T \mathbf{Ma} $$
-由于模型变换矩阵 $\mathbf{M}$ 并不一定是正交矩阵，无法保证 $\mathbf{M}^T\mathbf{M} = \mathbf{I}$ ，因此也就无法保证 $\mathbf{n&#39;}^T\mathbf{a&#39;} = 0$ ，即 $\mathbf{n&#39;}$ 与 $\mathbf{a&#39;}$ 不一定垂直。</description>
+但在将其 $x$ 方向变换为原来的 $\frac{1}{2}$ 之后，两条对角线不再互相垂直。
+将上述变换写为矩阵乘法的形式， $$ \text{令}\ \mathbf{n} = \overrightarrow{AC}, \mathbf{a} = \overrightarrow{BD} \ \text{为列向量}\\ \mathbf{n}^T \mathbf{a} = 0\\ \text{变换后}\ \mathbf{n&amp;rsquo;} = \mathbf{Mn}, \mathbf{a&amp;rsquo;} = \mathbf{Ma}\\ \mathbf{n&amp;rsquo;}^T\mathbf{a&amp;rsquo;} = \mathbf{n}^T \mathbf{M}^T \mathbf{Ma} $$
+由于模型变换矩阵 $\mathbf{M}$ 并不一定是正交矩阵，无法保证 $\mathbf{M}^T\mathbf{M} = \mathbf{I}$ ，因此也就无法保证 $\mathbf{n&amp;rsquo;}^T\mathbf{a&amp;rsquo;} = 0$ ，即 $\mathbf{n&amp;rsquo;}$ 与 $\mathbf{a&amp;rsquo;}$ 不一定垂直。
+从上式不难看出，如果想要变换后向量 $\mathbf{a&amp;rsquo;}$ 与其法向量 $\mathbf{n&amp;rsquo;}$ 仍保持垂直关系，那么一定有 $$ \mathbf{n&amp;rsquo;}^T\mathbf{a&amp;rsquo;} = \mathbf{n}^T \mathbf{M}^{-1} \mathbf{Ma} = \mathbf{n}^T \mathbf{a} = 0 $$ 故 $\mathbf{n&amp;rsquo;}^T = \mathbf{n}^T \mathbf{M}^{-1}$ ，法向量需要右乘模型变换矩阵的逆变换矩阵。</description>
     </item>
     
     <item>
@@ -32,20 +33,20 @@
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
       <guid>https://txtxj.top/posts/unityself03/</guid>
       <description>本篇记录了物体移动以及摄像机跟随防抖动的实现。
- 键盘控制物体移动 使用 Input.GetAxis() 或 Input.GetAxisRaw() 获取 axisName 标识的虚拟轴的值。
+键盘控制物体移动 使用 Input.GetAxis() 或 Input.GetAxisRaw() 获取 axisName 标识的虚拟轴的值。
 以下内容摘自 Unity API.
- 对于键盘和游戏杆输入设备， GetAxis() 返回值是一个介于 -1 和 1 之间的浮点数。
+对于键盘和游戏杆输入设备， GetAxis() 返回值是一个介于 -1 和 1 之间的浮点数。
 该值的含义取决于输入控制的类型，例如，对于游戏杆的水平轴，值为 1 表示游戏杆向右推到底，值为 -1 表示游戏杆向左推到底；值为 0 表示游戏杆处于中性位置。
 如果将轴映射到鼠标，该值会有所不同，并且不会在 -1&amp;hellip;1 的范围内。此时，该值为当前鼠标增量乘以轴灵敏度。通常，正值表示鼠标向右/向下移动，负值表示鼠标向左/向上移动。
 GetAxisRaw() 与前者类似，但未应用平滑过滤。
 对于键盘和游戏杆输入，其返回值将处于 -1&amp;hellip;1 的范围内。
 由于未对输入进行平滑处理，键盘输入将始终为 -1、0 或 1。
- 这里我使用了 GetAxisRaw() 进行键盘的输入。
+这里我使用了 GetAxisRaw() 进行键盘的输入。
 首先创建一个方向变量。
 Vector2 dir = Vector2.zero; 用两个变量记录该帧方向键是否被按下
 float rh = Input.GetAxisRaw(&amp;#34;Horizontal&amp;#34;); float rv = Input.GetAxisRaw(&amp;#34;Vertical&amp;#34;); 接着判断这两个变量的正负，并修改方向变量，注意向量单位化。
 同时可以控制 animator ，修改所控制物体的朝向与移动动画。
-if (rh &amp;lt; 0f) { dir.x = -1; animator.</description>
+if (rh &amp;lt; 0f) { dir.x = -1; animator.SetInteger(&amp;#34;Direction&amp;#34;, 0); } else if (rh &amp;gt; 0f) { dir.</description>
     </item>
     
     <item>
@@ -55,12 +56,12 @@ if (rh &amp;lt; 0f) { dir.x = -1; animator.</description>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
       <guid>https://txtxj.top/posts/unityself02/</guid>
       <description>本篇笔记记录了后座力的实现。
- 后座力（AddForce）与移动（velocity）不兼容 用 AddForce 给玩家添加一个反向的作用力后，
+后座力（AddForce）与移动（velocity）不兼容 用 AddForce 给玩家添加一个反向的作用力后，
 如果玩家正在进行移动，
 由于移动是直接对刚体的 velocity 进行操作，
 所以玩家受到的反作用力会在一瞬间消失。
 实现的效果就是看到玩家向后闪了一小段距离。
- 解决方案 考虑角色的移动也用 AddForce 实现，
+解决方案 考虑角色的移动也用 AddForce 实现，
 当方向键按下的时候判断该方向的速度是否达到最大速度，
 如果没有达到最大速度就给玩家加一个对应的力。
 private float speed = 2f; private void FixedUpdate() { float rh = Input.GetAxisRaw(&amp;#34;Horizontal&amp;#34;); float rv = Input.GetAxisRaw(&amp;#34;Vertical&amp;#34;); if (rh &amp;gt; 0f &amp;amp;&amp;amp; GetComponent&amp;lt;Rigidbody2D&amp;gt;().velocity.x &amp;lt; speed) { GetComponent&amp;lt;Rigidbody2D&amp;gt;().AddForce(new Vector2(speed, 0f) * 10f); } else if (rh &amp;lt; 0f &amp;amp;&amp;amp; GetComponent&amp;lt;Rigidbody2D&amp;gt;().velocity.x &amp;gt; -speed) { GetComponent&amp;lt;Rigidbody2D&amp;gt;().AddForce(new Vector2(-speed, 0f) * 10f); } if (rv &amp;gt; 0f &amp;amp;&amp;amp; GetComponent&amp;lt;Rigidbody2D&amp;gt;().</description>
@@ -73,7 +74,7 @@ private float speed = 2f; private void FixedUpdate() { float rh = Input.GetAxisR
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
       <guid>https://txtxj.top/posts/unityself01/</guid>
       <description>本篇笔记记录了瞬移魔法的穿墙问题的解决问题。
- 瞬移魔法穿墙问题 在 2021.1.1 的版本中，
+瞬移魔法穿墙问题 在 2021.1.1 的版本中，
 如果玩家贴墙向墙内发射瞬移魔法，
 由于发射口与玩家人物中心之间有一定的距离，
 所以瞬移魔法发射的一瞬间，就已经位于墙内，
@@ -85,7 +86,7 @@ private float speed = 2f; private void FixedUpdate() { float rh = Input.GetAxisR
 再发射一个物体作为子弹。
 但在我的游戏中，魔法的移动速度并不快，
 不能用射线这种瞬间判断是否命中的方式。
- 解决方案 给发射口加一个刚体组件和一个碰撞体组件，
+解决方案 给发射口加一个刚体组件和一个碰撞体组件，
 且将碰撞体设置为触发器，
 加入如下代码：
 private void OnTriggerStay2D(Collider2D target) { if (target.tag != &amp;#34;Player&amp;#34;) { isfence = true; } } 并在攻击时加入如下判断：
@@ -93,8 +94,11 @@ if (fr == 1f &amp;amp;&amp;amp; isfire == false &amp;amp;&amp;amp; isinterval ==
 当玩家面朝墙的时候，
 按下攻击键不能使用魔法。
 问题解决。
- 还是瞬移魔法穿墙问题 远距离发射瞬移魔法的时候，
-可能由于角度问题，导致魔法仍然会卡进墙内，使得玩家瞬移入墙。</description>
+还是瞬移魔法穿墙问题 远距离发射瞬移魔法的时候，
+可能由于角度问题，导致魔法仍然会卡进墙内，使得玩家瞬移入墙。
+玩家入墙后，由于发射口与墙始终有接触，玩家不能发射任何魔法，
+游戏卡死。
+解决方案 网上查阅了Unity手册，</description>
     </item>
     
   </channel>

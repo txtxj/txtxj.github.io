@@ -63,7 +63,7 @@ document.addEventListener("visibilitychange", function () {
 
   
 
-  <meta name="generator" content="Hugo 0.92.1" />
+  <meta name="generator" content="Hugo 0.101.0" />
   
   
   
@@ -76,10 +76,10 @@ document.addEventListener("visibilitychange", function () {
 <meta property="og:description" content="在经过模型、视图、投影变换后，待显示的所有物体都处在了一个标准正方体内。
 而光栅化的目的，就是把这个标准正方体内的物体转化为一个个像素点显示在屏幕上。
 视口变换(Viewpoint Transformation) 屏幕中的每个像素点都可以使用一个整数坐标表示，每个像素点的边长为 1 ，
-需要注意，坐标 $(x, y)$ 表示的像素点的中心位置实际应为 $(x &#43; 0.5, y &#43; 0.5)$
+需要注意，坐标 $(x, y)$ 表示的像素点的中心位置实际应为 $(x &#43; 0.5, y &#43; 0.5)$
 例如，坐标为 $(0, 0)$ 的像素点中心位于 $(0.5, 0.5)$ 。
 要将标准正方体变换到屏幕的矩形中，需要
- 无视 Z 坐标 将坐标变换（缩放）到 $[0, \text{width}] \times [0, \text{height}]$ 的区域中  可以直接写出变换矩阵
+无视 Z 坐标 将坐标变换（缩放）到 $[0, \text{width}] \times [0, \text{height}]$ 的区域中 可以直接写出变换矩阵
 $$ \mathbf{M_{viewpoint}} = \begin{pmatrix} \frac{\text{width}}{2} &amp; 0 &amp; 0 &amp; \frac{\text{width}}{2} \\ 0 &amp; \frac{\text{height}}{2} &amp; 0 &amp; \frac{\text{height}}{2} \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \end{pmatrix} $$" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://txtxj.top/posts/gamesnote03/" /><meta property="article:section" content="posts" />
@@ -92,10 +92,10 @@ $$ \mathbf{M_{viewpoint}} = \begin{pmatrix} \frac{\text{width}}{2} &amp; 0 &amp;
 <meta name="twitter:description" content="在经过模型、视图、投影变换后，待显示的所有物体都处在了一个标准正方体内。
 而光栅化的目的，就是把这个标准正方体内的物体转化为一个个像素点显示在屏幕上。
 视口变换(Viewpoint Transformation) 屏幕中的每个像素点都可以使用一个整数坐标表示，每个像素点的边长为 1 ，
-需要注意，坐标 $(x, y)$ 表示的像素点的中心位置实际应为 $(x &#43; 0.5, y &#43; 0.5)$
+需要注意，坐标 $(x, y)$ 表示的像素点的中心位置实际应为 $(x &#43; 0.5, y &#43; 0.5)$
 例如，坐标为 $(0, 0)$ 的像素点中心位于 $(0.5, 0.5)$ 。
 要将标准正方体变换到屏幕的矩形中，需要
- 无视 Z 坐标 将坐标变换（缩放）到 $[0, \text{width}] \times [0, \text{height}]$ 的区域中  可以直接写出变换矩阵
+无视 Z 坐标 将坐标变换（缩放）到 $[0, \text{width}] \times [0, \text{height}]$ 的区域中 可以直接写出变换矩阵
 $$ \mathbf{M_{viewpoint}} = \begin{pmatrix} \frac{\text{width}}{2} &amp; 0 &amp; 0 &amp; \frac{\text{width}}{2} \\ 0 &amp; \frac{\text{height}}{2} &amp; 0 &amp; \frac{\text{height}}{2} \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \end{pmatrix} $$"/>
 
 

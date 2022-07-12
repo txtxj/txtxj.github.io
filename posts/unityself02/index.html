@@ -63,7 +63,7 @@ document.addEventListener("visibilitychange", function () {
 
   
 
-  <meta name="generator" content="Hugo 0.92.1" />
+  <meta name="generator" content="Hugo 0.101.0" />
   
   
   
@@ -74,12 +74,12 @@ document.addEventListener("visibilitychange", function () {
 
   <meta property="og:title" content="Unity笔记02" />
 <meta property="og:description" content="本篇笔记记录了后座力的实现。
- 后座力（AddForce）与移动（velocity）不兼容 用 AddForce 给玩家添加一个反向的作用力后，
+后座力（AddForce）与移动（velocity）不兼容 用 AddForce 给玩家添加一个反向的作用力后，
 如果玩家正在进行移动，
 由于移动是直接对刚体的 velocity 进行操作，
 所以玩家受到的反作用力会在一瞬间消失。
 实现的效果就是看到玩家向后闪了一小段距离。
- 解决方案 考虑角色的移动也用 AddForce 实现，
+解决方案 考虑角色的移动也用 AddForce 实现，
 当方向键按下的时候判断该方向的速度是否达到最大速度，
 如果没有达到最大速度就给玩家加一个对应的力。
 private float speed = 2f; private void FixedUpdate() { float rh = Input.GetAxisRaw(&#34;Horizontal&#34;); float rv = Input.GetAxisRaw(&#34;Vertical&#34;); if (rh &gt; 0f &amp;&amp; GetComponent&lt;Rigidbody2D&gt;().velocity.x &lt; speed) { GetComponent&lt;Rigidbody2D&gt;().AddForce(new Vector2(speed, 0f) * 10f); } else if (rh &lt; 0f &amp;&amp; GetComponent&lt;Rigidbody2D&gt;().velocity.x &gt; -speed) { GetComponent&lt;Rigidbody2D&gt;().AddForce(new Vector2(-speed, 0f) * 10f); } if (rv &gt; 0f &amp;&amp; GetComponent&lt;Rigidbody2D&gt;()." />
@@ -92,12 +92,12 @@ private float speed = 2f; private void FixedUpdate() { float rh = Input.GetAxisR
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Unity笔记02"/>
 <meta name="twitter:description" content="本篇笔记记录了后座力的实现。
- 后座力（AddForce）与移动（velocity）不兼容 用 AddForce 给玩家添加一个反向的作用力后，
+后座力（AddForce）与移动（velocity）不兼容 用 AddForce 给玩家添加一个反向的作用力后，
 如果玩家正在进行移动，
 由于移动是直接对刚体的 velocity 进行操作，
 所以玩家受到的反作用力会在一瞬间消失。
 实现的效果就是看到玩家向后闪了一小段距离。
- 解决方案 考虑角色的移动也用 AddForce 实现，
+解决方案 考虑角色的移动也用 AddForce 实现，
 当方向键按下的时候判断该方向的速度是否达到最大速度，
 如果没有达到最大速度就给玩家加一个对应的力。
 private float speed = 2f; private void FixedUpdate() { float rh = Input.GetAxisRaw(&#34;Horizontal&#34;); float rv = Input.GetAxisRaw(&#34;Vertical&#34;); if (rh &gt; 0f &amp;&amp; GetComponent&lt;Rigidbody2D&gt;().velocity.x &lt; speed) { GetComponent&lt;Rigidbody2D&gt;().AddForce(new Vector2(speed, 0f) * 10f); } else if (rh &lt; 0f &amp;&amp; GetComponent&lt;Rigidbody2D&gt;().velocity.x &gt; -speed) { GetComponent&lt;Rigidbody2D&gt;().AddForce(new Vector2(-speed, 0f) * 10f); } if (rv &gt; 0f &amp;&amp; GetComponent&lt;Rigidbody2D&gt;()."/>
@@ -189,31 +189,31 @@ private float speed = 2f; private void FixedUpdate() { float rh = Input.GetAxisR
 <p>考虑角色的移动也用 <code>AddForce</code> 实现，</p>
 <p>当方向键按下的时候判断该方向的速度是否达到最大速度，</p>
 <p>如果没有达到最大速度就给玩家加一个对应的力。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">float</span> speed = <span style="color:#ae81ff">2f</span>;
-<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> FixedUpdate()
-{
-    <span style="color:#66d9ef">float</span> rh = Input.GetAxisRaw(<span style="color:#e6db74">&#34;Horizontal&#34;</span>);
-    <span style="color:#66d9ef">float</span> rv = Input.GetAxisRaw(<span style="color:#e6db74">&#34;Vertical&#34;</span>);
-    <span style="color:#66d9ef">if</span> (rh &gt; <span style="color:#ae81ff">0f</span> &amp;&amp; GetComponent&lt;Rigidbody2D&gt;().velocity.x &lt; speed)
-    {
-        GetComponent&lt;Rigidbody2D&gt;().AddForce(<span style="color:#66d9ef">new</span> Vector2(speed, <span style="color:#ae81ff">0f</span>) * <span style="color:#ae81ff">10f</span>);
-    }
-    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (rh &lt; <span style="color:#ae81ff">0f</span> &amp;&amp; GetComponent&lt;Rigidbody2D&gt;().velocity.x &gt; -speed)
-    {
-        GetComponent&lt;Rigidbody2D&gt;().AddForce(<span style="color:#66d9ef">new</span> Vector2(-speed, <span style="color:#ae81ff">0f</span>) * <span style="color:#ae81ff">10f</span>);
-    }
-    <span style="color:#66d9ef">if</span> (rv &gt; <span style="color:#ae81ff">0f</span> &amp;&amp; GetComponent&lt;Rigidbody2D&gt;().velocity.y &lt; speed)
-    {
-        GetComponent&lt;Rigidbody2D&gt;().AddForce(<span style="color:#66d9ef">new</span> Vector2(<span style="color:#ae81ff">0f</span>, speed) * <span style="color:#ae81ff">10f</span>);
-    }
-    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (rv &lt; <span style="color:#ae81ff">0f</span> &amp;&amp; GetComponent&lt;Rigidbody2D&gt;().velocity.y &gt; -speed)
-    {
-        GetComponent&lt;Rigidbody2D&gt;().AddForce(<span style="color:#66d9ef">new</span> Vector2(<span style="color:#ae81ff">0f</span>, -speed) * <span style="color:#ae81ff">10f</span>);
-    }
-    <span style="color:#75715e">//模拟摩擦力
-</span><span style="color:#75715e"></span>    GetComponent&lt;Rigidbody2D&gt;().velocity *= <span style="color:#ae81ff">0.75f</span>;
-}
-</code></pre></div><p>子弹发射时的后座力和以前一样用 <code>AddForce</code> 实现，不再赘述。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">float</span> speed = <span style="color:#ae81ff">2f</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> FixedUpdate()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> rh = Input.GetAxisRaw(<span style="color:#e6db74">&#34;Horizontal&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> rv = Input.GetAxisRaw(<span style="color:#e6db74">&#34;Vertical&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (rh &gt; <span style="color:#ae81ff">0f</span> &amp;&amp; GetComponent&lt;Rigidbody2D&gt;().velocity.x &lt; speed)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        GetComponent&lt;Rigidbody2D&gt;().AddForce(<span style="color:#66d9ef">new</span> Vector2(speed, <span style="color:#ae81ff">0f</span>) * <span style="color:#ae81ff">10f</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (rh &lt; <span style="color:#ae81ff">0f</span> &amp;&amp; GetComponent&lt;Rigidbody2D&gt;().velocity.x &gt; -speed)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        GetComponent&lt;Rigidbody2D&gt;().AddForce(<span style="color:#66d9ef">new</span> Vector2(-speed, <span style="color:#ae81ff">0f</span>) * <span style="color:#ae81ff">10f</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (rv &gt; <span style="color:#ae81ff">0f</span> &amp;&amp; GetComponent&lt;Rigidbody2D&gt;().velocity.y &lt; speed)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        GetComponent&lt;Rigidbody2D&gt;().AddForce(<span style="color:#66d9ef">new</span> Vector2(<span style="color:#ae81ff">0f</span>, speed) * <span style="color:#ae81ff">10f</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (rv &lt; <span style="color:#ae81ff">0f</span> &amp;&amp; GetComponent&lt;Rigidbody2D&gt;().velocity.y &gt; -speed)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        GetComponent&lt;Rigidbody2D&gt;().AddForce(<span style="color:#66d9ef">new</span> Vector2(<span style="color:#ae81ff">0f</span>, -speed) * <span style="color:#ae81ff">10f</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//模拟摩擦力</span>
+</span></span><span style="display:flex;"><span>    GetComponent&lt;Rigidbody2D&gt;().velocity *= <span style="color:#ae81ff">0.75f</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>子弹发射时的后座力和以前一样用 <code>AddForce</code> 实现，不再赘述。</p>
 
           </div>
         </div>

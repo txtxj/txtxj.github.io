@@ -63,7 +63,7 @@ document.addEventListener("visibilitychange", function () {
 
   
 
-  <meta name="generator" content="Hugo 0.92.1" />
+  <meta name="generator" content="Hugo 0.101.0" />
   
   
   
@@ -177,61 +177,61 @@ cd ~/clash chmod &#43;x clash clash 程序将会提示缺少 config.yaml 和 Cou
 <p>Clash 仓库地址：<a href="https://github.com/Dreamacro/clash" target="_blank" rel="noopener">https://github.com/Dreamacro/clash</a></p>
 <p>在 <a href="https://github.com/Dreamacro/clash/releases" target="_blank" rel="noopener">Release</a> 页面中下载最新的 gz 压缩包，我下载的版本为 <a href="https://github.com/Dreamacro/clash/releases/download/v1.9.0/clash-linux-amd64-v1.9.0.gz" target="_blank" rel="noopener">clash-linux-amd64-v1.9.0.gz</a> .</p>
 <p>在 Terminal 中进入下载文件夹，解压压缩包</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">gunzip clash-linux-amd64-v1.9.0.gz
-</code></pre></div><p>解压得到文件为 clash-linux-amd64-v1.9.0 ，为操作方便，可将其重命名为 clash</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">mv clash-linux-amd64-v1.9.0 clash
-</code></pre></div><p>将其移动到一个单独的文件夹中</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">mkdir ~/clash
-mv clash ~/clash
-</code></pre></div><h2 id="下载配置文件">下载配置文件</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>gunzip clash-linux-amd64-v1.9.0.gz
+</span></span></code></pre></div><p>解压得到文件为 clash-linux-amd64-v1.9.0 ，为操作方便，可将其重命名为 clash</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>mv clash-linux-amd64-v1.9.0 clash
+</span></span></code></pre></div><p>将其移动到一个单独的文件夹中</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>mkdir ~/clash
+</span></span><span style="display:flex;"><span>mv clash ~/clash
+</span></span></code></pre></div><h2 id="下载配置文件">下载配置文件</h2>
 <p>进入刚创建的 clash 文件夹，为 clash 授予可执行权限，并运行</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd ~/clash
-chmod +x clash
-clash
-</code></pre></div><p>程序将会提示缺少 config.yaml 和 Country.mmdb 两个配置文件，并自动开始下载，文件下载后位于 <code>~/.config/clash/</code> 中。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>cd ~/clash
+</span></span><span style="display:flex;"><span>chmod +x clash
+</span></span><span style="display:flex;"><span>clash
+</span></span></code></pre></div><p>程序将会提示缺少 config.yaml 和 Country.mmdb 两个配置文件，并自动开始下载，文件下载后位于 <code>~/.config/clash/</code> 中。</p>
 <p>需要注意的是，如果安装的 Go 语言版本过低，在该步骤中可能会出现报错。需要按照如下方法卸载旧版本 Go 并安装至少 Go v1.17 。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo apt-get remove golang
-sudo apt-get remove golang-go
-sudo apt auto remove
-wget https://studygolang.com/dl/golang/go1.17.linux-amd64.tar.gz
-tar -zxvf go1.17.linux-amd64.tar.gz -C /usr/lib
-</code></pre></div><p>并添加环境变量</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">gedit /etc/profile
-</code></pre></div><p>在最后添加</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">export GOPATH<span style="color:#f92672">=</span>/opt/gopath
-export GOROOT<span style="color:#f92672">=</span>/usr/lib/go
-export GOARCH<span style="color:#f92672">=</span><span style="color:#ae81ff">386</span>
-export GOOS<span style="color:#f92672">=</span>linux
-export GOTOOLS<span style="color:#f92672">=</span>$GOROOT/pkg/tool
-export PATH<span style="color:#f92672">=</span>$PATH:$GOROOT/bin:$GOPATH/bin
-</code></pre></div><p>查询 Go 版本结果如下</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">txtxj@txtxj-Lenovo-Legion:~$ go version
-go version go1.17 linux/amd64
-</code></pre></div><h2 id="获取订阅链接">获取订阅链接</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo apt-get remove golang
+</span></span><span style="display:flex;"><span>sudo apt-get remove golang-go
+</span></span><span style="display:flex;"><span>sudo apt auto remove
+</span></span><span style="display:flex;"><span>wget https://studygolang.com/dl/golang/go1.17.linux-amd64.tar.gz
+</span></span><span style="display:flex;"><span>tar -zxvf go1.17.linux-amd64.tar.gz -C /usr/lib
+</span></span></code></pre></div><p>并添加环境变量</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>gedit /etc/profile
+</span></span></code></pre></div><p>在最后添加</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>export GOPATH<span style="color:#f92672">=</span>/opt/gopath
+</span></span><span style="display:flex;"><span>export GOROOT<span style="color:#f92672">=</span>/usr/lib/go
+</span></span><span style="display:flex;"><span>export GOARCH<span style="color:#f92672">=</span><span style="color:#ae81ff">386</span>
+</span></span><span style="display:flex;"><span>export GOOS<span style="color:#f92672">=</span>linux
+</span></span><span style="display:flex;"><span>export GOTOOLS<span style="color:#f92672">=</span>$GOROOT/pkg/tool
+</span></span><span style="display:flex;"><span>export PATH<span style="color:#f92672">=</span>$PATH:$GOROOT/bin:$GOPATH/bin
+</span></span></code></pre></div><p>查询 Go 版本结果如下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>txtxj@txtxj-Lenovo-Legion:~$ go version
+</span></span><span style="display:flex;"><span>go version go1.17 linux/amd64
+</span></span></code></pre></div><h2 id="获取订阅链接">获取订阅链接</h2>
 <p>我正在使用的 Trojan 机场是 <a href="http://www.gotomony.com/register?aff=QJH1YC" target="_blank" rel="noopener">CMYNetwork 红莓网络</a>，复制 Clash 订阅后获得一个订阅链接，访问该链接下载得到一个 yaml 文件。</p>
 <p>进入下载文件夹，将该文件重命名为 config.yaml ，并覆盖上一步中的 config.yaml 文件</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">mv ClashR_xxxxxxxxxx.yaml config.yaml
-mv -f config.yaml ~/.config/clash
-</code></pre></div><h2 id="配置网络代理设置">配置网络代理设置</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>mv ClashR_xxxxxxxxxx.yaml config.yaml
+</span></span><span style="display:flex;"><span>mv -f config.yaml ~/.config/clash
+</span></span></code></pre></div><h2 id="配置网络代理设置">配置网络代理设置</h2>
 <p>访问 <a href="http://clash.razord.top/" target="_blank" rel="noopener">clash.razord.top</a> ，代理与端口、密钥分别对应 config.yaml 文件中的 <code>external-controller</code> 、 <code>secret</code> ，如果 <code>secret</code> 为空，则先设置一个密钥后再在网页端登录。</p>
 <p>打开 设置 - 网络 - 网络代理，设置为手动。</p>
 <p>根据网页端信息填写 HTTP 代理、 HTTPS 代理、 Socks 主机。</p>
 <p>运行 Clash</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">~/clash/clash
-</code></pre></div><p>保持 Terminal 运行，即可正常访问国外网页。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>~/clash/clash
+</span></span></code></pre></div><p>保持 Terminal 运行，即可正常访问国外网页。</p>
 <h2 id="设置快捷方式">设置快捷方式</h2>
 <p>在桌面创建快捷方式，以快速启动 Clash</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">gedit ~/桌面/clash.desktop
-</code></pre></div><p>文件内容为</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#f92672">[</span>Desktop Entry<span style="color:#f92672">]</span>
-Name<span style="color:#f92672">=</span>Clash
-Icon<span style="color:#f92672">=</span>/home/$username/clash/clash_logo.png
-Exec<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/home/</span>$username<span style="color:#e6db74">/clash/clash&#34;</span> %u
-Version<span style="color:#f92672">=</span>1.0
-Type<span style="color:#f92672">=</span>Application
-Terminal<span style="color:#f92672">=</span>false
-StartupNotify<span style="color:#f92672">=</span>true
-</code></pre></div><p>其中 clash_logo.png 为自行设置的快捷方式图标。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>gedit ~/桌面/clash.desktop
+</span></span></code></pre></div><p>文件内容为</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#f92672">[</span>Desktop Entry<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>Name<span style="color:#f92672">=</span>Clash
+</span></span><span style="display:flex;"><span>Icon<span style="color:#f92672">=</span>/home/$username/clash/clash_logo.png
+</span></span><span style="display:flex;"><span>Exec<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/home/</span>$username<span style="color:#e6db74">/clash/clash&#34;</span> %u
+</span></span><span style="display:flex;"><span>Version<span style="color:#f92672">=</span>1.0
+</span></span><span style="display:flex;"><span>Type<span style="color:#f92672">=</span>Application
+</span></span><span style="display:flex;"><span>Terminal<span style="color:#f92672">=</span>false
+</span></span><span style="display:flex;"><span>StartupNotify<span style="color:#f92672">=</span>true
+</span></span></code></pre></div><p>其中 clash_logo.png 为自行设置的快捷方式图标。</p>
 
           </div>
         </div>

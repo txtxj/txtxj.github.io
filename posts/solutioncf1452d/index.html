@@ -63,7 +63,7 @@ document.addEventListener("visibilitychange", function () {
 
   
 
-  <meta name="generator" content="Hugo 0.92.1" />
+  <meta name="generator" content="Hugo 0.101.0" />
   
   
   
@@ -221,46 +221,46 @@ $$dp[2n] = dp[1] &#43; dp[3] &#43; dp[5] &#43; &hellip; &#43; dp[2n - 1]$$"/>
 <p>$$dp[2n - 1] = 1 + dp[2] + dp[4] + &hellip; + dp[2n - 2]$$</p>
 <p>正是斐波那契数列。</p>
 <p>代码：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
-</span><span style="color:#75715e">#define MOD 998244353ll
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
-<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> <span style="color:#a6e22e">fastPow</span>(<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> a,<span style="color:#66d9ef">int</span> b,<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> m)
-{
-	<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-	<span style="color:#66d9ef">while</span> (b)
-	{
-		<span style="color:#66d9ef">if</span> (b <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>)
-		{
-			b<span style="color:#f92672">--</span>;
-			ans <span style="color:#f92672">*=</span> a;
-			ans <span style="color:#f92672">%=</span> m;
-		}
-		b <span style="color:#f92672">&gt;&gt;=</span> <span style="color:#ae81ff">1</span>;
-		a <span style="color:#f92672">*=</span> a;
-		a <span style="color:#f92672">%=</span> m;
-	}
-	<span style="color:#66d9ef">return</span> ans;
-}
-<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> <span style="color:#a6e22e">inv</span>(<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> x)
-{
-	<span style="color:#66d9ef">return</span> fastPow(x, MOD <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>, MOD);
-}
-<span style="color:#66d9ef">int</span> n;
-<span style="color:#66d9ef">int</span> now <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, pre <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, temp;
-<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
-{
-	scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>n);
-	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>)
-	{
-		temp <span style="color:#f92672">=</span> (now <span style="color:#f92672">+</span> pre) <span style="color:#f92672">%</span> MOD;
-		pre <span style="color:#f92672">=</span> now <span style="color:#f92672">%</span> MOD;
-		now <span style="color:#f92672">=</span> temp <span style="color:#f92672">%</span> MOD;
-	}
-	printf(<span style="color:#e6db74">&#34;%lld&#34;</span>,now <span style="color:#f92672">*</span> inv(fastPow(<span style="color:#ae81ff">2</span>, n, MOD)) <span style="color:#f92672">%</span> MOD);
-	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
-}
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdlib&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define MOD 998244353ll
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> <span style="color:#a6e22e">fastPow</span>(<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> a,<span style="color:#66d9ef">int</span> b,<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> m)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (b)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (b <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			b<span style="color:#f92672">--</span>;
+</span></span><span style="display:flex;"><span>			ans <span style="color:#f92672">*=</span> a;
+</span></span><span style="display:flex;"><span>			ans <span style="color:#f92672">%=</span> m;
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		b <span style="color:#f92672">&gt;&gt;=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>		a <span style="color:#f92672">*=</span> a;
+</span></span><span style="display:flex;"><span>		a <span style="color:#f92672">%=</span> m;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> ans;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> <span style="color:#a6e22e">inv</span>(<span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> x)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> fastPow(x, MOD <span style="color:#f92672">-</span> <span style="color:#ae81ff">2</span>, MOD);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> n;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> now <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, pre <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, temp;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>n);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>; i <span style="color:#f92672">&lt;=</span> n; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		temp <span style="color:#f92672">=</span> (now <span style="color:#f92672">+</span> pre) <span style="color:#f92672">%</span> MOD;
+</span></span><span style="display:flex;"><span>		pre <span style="color:#f92672">=</span> now <span style="color:#f92672">%</span> MOD;
+</span></span><span style="display:flex;"><span>		now <span style="color:#f92672">=</span> temp <span style="color:#f92672">%</span> MOD;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	printf(<span style="color:#e6db74">&#34;%lld&#34;</span>,now <span style="color:#f92672">*</span> inv(fastPow(<span style="color:#ae81ff">2</span>, n, MOD)) <span style="color:#f92672">%</span> MOD);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
           </div>
         </div>
                  

@@ -63,7 +63,7 @@ document.addEventListener("visibilitychange", function () {
 
   
 
-  <meta name="generator" content="Hugo 0.92.1" />
+  <meta name="generator" content="Hugo 0.101.0" />
   
   
   
@@ -74,20 +74,28 @@ document.addEventListener("visibilitychange", function () {
 
   <meta property="og:title" content="为Sublime搭建C&#43;&#43;环境" />
 <meta property="og:description" content="Windows 下为 Sublime Text 3 搭建 C/C&#43;&#43;环境 写这篇博客时，我正在为新电脑搭建 C/C&#43;&#43; 环境
- 步骤：
-  下载 Sublime Text 3 本体
-  安装 MinGW
-  配置系统变量
-  让 Sublime 变得更适合工作
-  安装插件
-  设置编译系统
-     下载 Sublime Text 3 本体 官方下载地址：http://sublimetext.com/3
+步骤：
+下载 Sublime Text 3 本体
+安装 MinGW
+配置系统变量
+让 Sublime 变得更适合工作
+安装插件
+设置编译系统
+下载 Sublime Text 3 本体 官方下载地址：http://sublimetext.com/3
 选择 Windows 64 bit.
 下载后运行，安装。
 安装时记住安装目录，因为 Sublime Text 3 安装后不会在桌面生成快捷方式。
 如果没有记住也无妨，你可以在开始菜单里找到 Sublime Text 3.
- 安装 MinGW 如果你的电脑上已经有了 C/C&#43;&#43; 的编译器，那么你不需要重新下载 MinGW.
-在 Dev C&#43;&#43; 和 CodeBlocks 等软件的文件夹内，" />
+安装 MinGW 如果你的电脑上已经有了 C/C&#43;&#43; 的编译器，那么你不需要重新下载 MinGW.
+在 Dev C&#43;&#43; 和 CodeBlocks 等软件的文件夹内，
+都可以找到一个名为 MinGW 的文件夹。
+这个文件夹就是我们需要的东西。
+如果你的电脑上没有 MinGW，那么在下面的地址下载到最新版：
+下载地址：https://osdn.net/projects/mingw/releases/
+下载按钮在左下角。
+下载好之后一路确定，
+在之后的这个页面里，把这几个全打上勾
+然后 Installation -&gt; Apply Changes -&gt; Apply" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://txtxj.top/posts/sublimecpp/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-08-25T22:03:36+08:00" />
@@ -97,20 +105,28 @@ document.addEventListener("visibilitychange", function () {
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="为Sublime搭建C&#43;&#43;环境"/>
 <meta name="twitter:description" content="Windows 下为 Sublime Text 3 搭建 C/C&#43;&#43;环境 写这篇博客时，我正在为新电脑搭建 C/C&#43;&#43; 环境
- 步骤：
-  下载 Sublime Text 3 本体
-  安装 MinGW
-  配置系统变量
-  让 Sublime 变得更适合工作
-  安装插件
-  设置编译系统
-     下载 Sublime Text 3 本体 官方下载地址：http://sublimetext.com/3
+步骤：
+下载 Sublime Text 3 本体
+安装 MinGW
+配置系统变量
+让 Sublime 变得更适合工作
+安装插件
+设置编译系统
+下载 Sublime Text 3 本体 官方下载地址：http://sublimetext.com/3
 选择 Windows 64 bit.
 下载后运行，安装。
 安装时记住安装目录，因为 Sublime Text 3 安装后不会在桌面生成快捷方式。
 如果没有记住也无妨，你可以在开始菜单里找到 Sublime Text 3.
- 安装 MinGW 如果你的电脑上已经有了 C/C&#43;&#43; 的编译器，那么你不需要重新下载 MinGW.
-在 Dev C&#43;&#43; 和 CodeBlocks 等软件的文件夹内，"/>
+安装 MinGW 如果你的电脑上已经有了 C/C&#43;&#43; 的编译器，那么你不需要重新下载 MinGW.
+在 Dev C&#43;&#43; 和 CodeBlocks 等软件的文件夹内，
+都可以找到一个名为 MinGW 的文件夹。
+这个文件夹就是我们需要的东西。
+如果你的电脑上没有 MinGW，那么在下面的地址下载到最新版：
+下载地址：https://osdn.net/projects/mingw/releases/
+下载按钮在左下角。
+下载好之后一路确定，
+在之后的这个页面里，把这几个全打上勾
+然后 Installation -&gt; Apply Changes -&gt; Apply"/>
 
 
   
@@ -268,27 +284,27 @@ document.addEventListener("visibilitychange", function () {
 <p>之后是建立 C/C++ 的编译系统。</p>
 <p>工具 -&gt; 编译系统 -&gt; 新建编译系统&hellip;</p>
 <p>把以下内容原封不动地放在新文件里，替换掉原内容。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml">{
-    <span style="color:#f92672">&#34;encoding&#34;: </span><span style="color:#e6db74">&#34;utf-8&#34;</span>,
-    <span style="color:#f92672">&#34;working_dir&#34;: </span><span style="color:#e6db74">&#34;$file_path&#34;</span>,
-    <span style="color:#f92672">&#34;shell_cmd&#34;: </span><span style="color:#e6db74">&#34;g++ -Wall -std=c++11 \&#34;$file_name\&#34; -o \&#34;$file_base_name\&#34;&#34;</span>,
-    <span style="color:#f92672">&#34;file_regex&#34;: </span><span style="color:#e6db74">&#34;^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$&#34;</span>,
-    <span style="color:#f92672">&#34;selector&#34;: </span><span style="color:#e6db74">&#34;source.c++&#34;</span>,
-    <span style="color:#f92672">&#34;shell&#34;: </span><span style="color:#66d9ef">true</span>,
- 
-    <span style="color:#e6db74">&#34;variants&#34;</span>:
-    [
-        {  
-        <span style="color:#f92672">&#34;name&#34;: </span><span style="color:#e6db74">&#34;Run in sublime&#34;</span>,
-            <span style="color:#f92672">&#34;shell_cmd&#34;: </span><span style="color:#e6db74">&#34;g++ -Wall -std=c++11 \&#34;$file_name\&#34; -o \&#34;$file_base_name\&#34; &amp;&amp; cmd /c \&#34;${file_path}/${file_base_name}\&#34;&#34;</span>
-        },
-        {  
-        <span style="color:#f92672">&#34;name&#34;: </span><span style="color:#e6db74">&#34;CMD Run&#34;</span>,
-            <span style="color:#f92672">&#34;shell_cmd&#34;: </span><span style="color:#e6db74">&#34;g++ -Wall -std=c++11 \&#34;$file\&#34; -o \&#34;$file_base_name\&#34; &amp;&amp; start cmd /c \&#34;\&#34;${file_path}/${file_base_name}\&#34; &amp; pause\&#34;&#34;</span>
-        }
-    ]
-}
-</code></pre></div><p>Ctrl+S保存为 c++.sublime-build</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;encoding&#34;: </span><span style="color:#e6db74">&#34;utf-8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;working_dir&#34;: </span><span style="color:#e6db74">&#34;$file_path&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;shell_cmd&#34;: </span><span style="color:#e6db74">&#34;g++ -Wall -std=c++11 \&#34;$file_name\&#34; -o \&#34;$file_base_name\&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;file_regex&#34;: </span><span style="color:#e6db74">&#34;^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;selector&#34;: </span><span style="color:#e6db74">&#34;source.c++&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;shell&#34;: </span><span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;variants&#34;</span>:
+</span></span><span style="display:flex;"><span>    [
+</span></span><span style="display:flex;"><span>        {  
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;name&#34;: </span><span style="color:#e6db74">&#34;Run in sublime&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;shell_cmd&#34;: </span><span style="color:#e6db74">&#34;g++ -Wall -std=c++11 \&#34;$file_name\&#34; -o \&#34;$file_base_name\&#34; &amp;&amp; cmd /c \&#34;${file_path}/${file_base_name}\&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {  
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;name&#34;: </span><span style="color:#e6db74">&#34;CMD Run&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;shell_cmd&#34;: </span><span style="color:#e6db74">&#34;g++ -Wall -std=c++11 \&#34;$file\&#34; -o \&#34;$file_base_name\&#34; &amp;&amp; start cmd /c \&#34;\&#34;${file_path}/${file_base_name}\&#34; &amp; pause\&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Ctrl+S保存为 c++.sublime-build</p>
 <p>写一个代码，Ctrl+Shift+B 选择刚才的编译系统 CMD Run</p>
 <p>
   <p><img src="https://i.loli.net/2021/07/31/PCkqyXG3ESbjNJI.jpg" alt="" loading="lazy" /></p>

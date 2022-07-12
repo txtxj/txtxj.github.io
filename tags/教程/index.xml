@@ -43,20 +43,28 @@ Sublime 版本 [ { &amp;#34;keys&amp;#34;: [&amp;#34;alt+`&amp;#34;], &amp;#34;c
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
       <guid>https://txtxj.top/posts/sublimecpp/</guid>
       <description>Windows 下为 Sublime Text 3 搭建 C/C++环境 写这篇博客时，我正在为新电脑搭建 C/C++ 环境
- 步骤：
-  下载 Sublime Text 3 本体
-  安装 MinGW
-  配置系统变量
-  让 Sublime 变得更适合工作
-  安装插件
-  设置编译系统
-     下载 Sublime Text 3 本体 官方下载地址：http://sublimetext.com/3
+步骤：
+下载 Sublime Text 3 本体
+安装 MinGW
+配置系统变量
+让 Sublime 变得更适合工作
+安装插件
+设置编译系统
+下载 Sublime Text 3 本体 官方下载地址：http://sublimetext.com/3
 选择 Windows 64 bit.
 下载后运行，安装。
 安装时记住安装目录，因为 Sublime Text 3 安装后不会在桌面生成快捷方式。
 如果没有记住也无妨，你可以在开始菜单里找到 Sublime Text 3.
- 安装 MinGW 如果你的电脑上已经有了 C/C++ 的编译器，那么你不需要重新下载 MinGW.
-在 Dev C++ 和 CodeBlocks 等软件的文件夹内，</description>
+安装 MinGW 如果你的电脑上已经有了 C/C++ 的编译器，那么你不需要重新下载 MinGW.
+在 Dev C++ 和 CodeBlocks 等软件的文件夹内，
+都可以找到一个名为 MinGW 的文件夹。
+这个文件夹就是我们需要的东西。
+如果你的电脑上没有 MinGW，那么在下面的地址下载到最新版：
+下载地址：https://osdn.net/projects/mingw/releases/
+下载按钮在左下角。
+下载好之后一路确定，
+在之后的这个页面里，把这几个全打上勾
+然后 Installation -&amp;gt; Apply Changes -&amp;gt; Apply</description>
     </item>
     
   </channel>
