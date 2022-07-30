@@ -319,8 +319,17 @@ $$</p>
   <p><img src="https://s2.loli.net/2022/07/30/p1FMkSgHiEN65wa.gif" alt="20220730_6.gif" loading="lazy" /></p>
 </p>
 <p>然而实际上笔者在实现过程中还遇到了一个离奇的 bug 。</p>
-<p>使用 <code>index</code> 和 <code>id</code> 的互相转化后，会出现只有第一列粒子运动的情况（即只有第一列粒子被更新）。</p>
-<p>经过巨大痛苦的 debug 之后发现原因是 compute shader 中布料大小参数 <code>size</code> 的类型是 <code>int3</code> ，</p>
+<p>使用如下代码进行 <code>index</code> 和 <code>id</code> 的互相转化，会出现只有第一列粒子运动的情况（即只有第一列粒子被更新）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>int2 <span style="color:#a6e22e">GetId</span>(<span style="color:#66d9ef">int</span> index)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> int2(index <span style="color:#f92672">/</span> size.y, index <span style="color:#f92672">%</span> size.y);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">GetIndex</span>(int2 id)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> id.x <span style="color:#f92672">*</span> size.y <span style="color:#f92672">+</span> id.y;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>经过巨大痛苦的 debug 之后发现原因是 compute shader 中布料大小参数 <code>size</code> 的类型是 <code>int3</code> ，</p>
 <p>而在 csharp 文件中则使用了</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span>compute.SetVector(<span style="color:#e6db74">&#34;size&#34;</span>, <span style="color:#66d9ef">new</span> Vector3(clothSize.x, clothSize.y, clothSize.x * clothSize.y));
 </span></span></code></pre></div><p>进行赋值。</p>
