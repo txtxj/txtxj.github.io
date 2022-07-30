@@ -22,11 +22,18 @@
   }
 
   function addCopyButton(containerEl) {
+
+    var codeEl = containerEl.children[0];
+
+    var codeDiv = document.createElement('div');
+    codeDiv.className = "markdown-code-copy";
+    codeDiv.appendChild(codeEl);
+    containerEl.appendChild(codeDiv);
+
     var copyBtn = document.createElement("button");
     copyBtn.className = "highlight-copy-btn";
     copyBtn.textContent = "Copy";
 
-    var codeEl = containerEl.firstElementChild;
     copyBtn.addEventListener('click', function() {
       try {
         var selection = selectText(codeEl);
