@@ -8,7 +8,26 @@
     <language>zh-CN</language>
     <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
     <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
-    <lastBuildDate>Tue, 12 Jul 2022 15:45:35 +0800</lastBuildDate><atom:link href="https://txtxj.top/tags/unity/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 30 Jul 2022 15:50:01 +0800</lastBuildDate><atom:link href="https://txtxj.top/tags/unity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>布料模拟与渲染</title>
+      <link>https://txtxj.top/posts/clothsimulation/</link>
+      <pubDate>Sat, 30 Jul 2022 15:50:01 +0800</pubDate>
+      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <guid>https://txtxj.top/posts/clothsimulation/</guid>
+      <description>仓库地址：https://github.com/txtxj/Cloth-Simulation
+本来上次的 SSAO 做完之后准备去做流体模拟的，结果因为完全不懂 GPU 编程，看不懂 compute shader ，并且以前没做过物理模拟而放弃了。
+为了学习 GPU 编程和 PBD ，笔者选择了布料模拟这一个比较简单的题目来做（然而布料模拟并不是 PBD ），等搞明白之后再去尝试流体模拟。
+然而在做这个项目的过程中，只能找到 CPU 布料模拟和 GPU 粒子效果，没找到 GPU 布料模拟，这对一个初学 GPU 编程的小白真的是巨大痛苦……
+本文记录了笔者实现过程中遇到的各种问题。
+物理基础 根据 Games101 课上的介绍，布料可以使用网格弹簧质点系统进行模拟。
+使用一个由质点构成的矩阵，质点之间根据以下规则连接弹簧：
+连接横向、纵向相邻的质点，这种弹簧称为结构弹簧； 连接对角线上的质点，这种弹簧称为剪切弹簧，这种弹簧能抵抗使布料剪切变形的力； 连接横向、纵向相隔一个位置的质点，这种弹簧称为弯曲弹簧，这种弹簧能抵抗使布料折叠的力。 质点之间的弹簧力满足胡克定律
+$$ \mathbf{f_{b \rightarrow a}} = -k_s \frac{\mathbf{b - a}}{||\mathbf{b - a}||}(||\mathbf{b - a}|| - l) $$
+理同 Games101 作业 8 ，先根据所有弹簧计算出所有质点的受力情况，再使用显式欧拉积分更新所有质点的速度、位置信息
+a = F / m v(t + 1) = v(t) + a * dt x(t + 1) = x(t) + v(t + 1) * dt 代码模拟（踩坑） 理论非常简单，但在实现过程中笔者踩了不少坑。</description>
+    </item>
+    
     <item>
       <title>屏幕空间环境光遮蔽（SSAO） Unity 实现</title>
       <link>https://txtxj.top/posts/ssaounity/</link>

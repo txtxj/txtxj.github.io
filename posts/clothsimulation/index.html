@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $("body").click(function(e) {
+        var $text = $("<span>❤</span>");
+        if (Math.random() <= 0.02) $text = $("<span>TX!</span>");
+        var x = e.pageX, y = e.pageY;
+        $text.css({
+            "z-index": 1145141919810,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": "rgb("+~~(255 * Math.random())+","+~~(255 * Math.random())+","+~~(255 * Math.random())+")"
+        });
+        $("body").append($text);
+        $text.animate({
+            "top": y - 100,
+            "opacity": 0
+        },
+        1500,
+        function() {
+            $text.remove();
+        });
+    });
+});
+var OriginTitile = document.title; 
+document.addEventListener("visibilitychange", function () { 
+    if (document.title != "txtxj呼呼zzz") OriginTitile = document.title;
+    document.title = document.hidden ? "txtxj呼呼zzz" : OriginTitile;
+});
+</script>
+<html><script>
+  MathJax = {
+    tex: {
+      inlineMath: [["$", "$"]],
+    },
+    displayMath: [
+      ["$$", "$$"],
+      ["\[\[", "\]\]"],
+    ],
+    svg: {
+      fontCache: "global",
+    },
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+></script><head>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   
+    <meta name="author" content="Txtxj">
+  
+
+  
+
+  
+
+  <meta name="generator" content="Hugo 0.101.0" />
+  
+  
+  
+  
+  
+  
+  <title>布料模拟与渲染 🌟 Txtxj</title>
+
+  <meta property="og:title" content="布料模拟与渲染" />
+<meta property="og:description" content="仓库地址：https://github.com/txtxj/Cloth-Simulation
+本来上次的 SSAO 做完之后准备去做流体模拟的，结果因为完全不懂 GPU 编程，看不懂 compute shader ，并且以前没做过物理模拟而放弃了。
+为了学习 GPU 编程和 PBD ，笔者选择了布料模拟这一个比较简单的题目来做（然而布料模拟并不是 PBD ），等搞明白之后再去尝试流体模拟。
+然而在做这个项目的过程中，只能找到 CPU 布料模拟和 GPU 粒子效果，没找到 GPU 布料模拟，这对一个初学 GPU 编程的小白真的是巨大痛苦……
+本文记录了笔者实现过程中遇到的各种问题。
+物理基础 根据 Games101 课上的介绍，布料可以使用网格弹簧质点系统进行模拟。
+使用一个由质点构成的矩阵，质点之间根据以下规则连接弹簧：
+连接横向、纵向相邻的质点，这种弹簧称为结构弹簧； 连接对角线上的质点，这种弹簧称为剪切弹簧，这种弹簧能抵抗使布料剪切变形的力； 连接横向、纵向相隔一个位置的质点，这种弹簧称为弯曲弹簧，这种弹簧能抵抗使布料折叠的力。 质点之间的弹簧力满足胡克定律
+$$ \mathbf{f_{b \rightarrow a}} = -k_s \frac{\mathbf{b - a}}{||\mathbf{b - a}||}(||\mathbf{b - a}|| - l) $$
+理同 Games101 作业 8 ，先根据所有弹簧计算出所有质点的受力情况，再使用显式欧拉积分更新所有质点的速度、位置信息
+a = F / m v(t &#43; 1) = v(t) &#43; a * dt x(t &#43; 1) = x(t) &#43; v(t &#43; 1) * dt 代码模拟（踩坑） 理论非常简单，但在实现过程中笔者踩了不少坑。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://txtxj.top/posts/clothsimulation/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-30T15:50:01+08:00" />
+<meta property="article:modified_time" content="2022-07-30T15:50:01+08:00" />
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="布料模拟与渲染"/>
+<meta name="twitter:description" content="仓库地址：https://github.com/txtxj/Cloth-Simulation
+本来上次的 SSAO 做完之后准备去做流体模拟的，结果因为完全不懂 GPU 编程，看不懂 compute shader ，并且以前没做过物理模拟而放弃了。
+为了学习 GPU 编程和 PBD ，笔者选择了布料模拟这一个比较简单的题目来做（然而布料模拟并不是 PBD ），等搞明白之后再去尝试流体模拟。
+然而在做这个项目的过程中，只能找到 CPU 布料模拟和 GPU 粒子效果，没找到 GPU 布料模拟，这对一个初学 GPU 编程的小白真的是巨大痛苦……
+本文记录了笔者实现过程中遇到的各种问题。
+物理基础 根据 Games101 课上的介绍，布料可以使用网格弹簧质点系统进行模拟。
+使用一个由质点构成的矩阵，质点之间根据以下规则连接弹簧：
+连接横向、纵向相邻的质点，这种弹簧称为结构弹簧； 连接对角线上的质点，这种弹簧称为剪切弹簧，这种弹簧能抵抗使布料剪切变形的力； 连接横向、纵向相隔一个位置的质点，这种弹簧称为弯曲弹簧，这种弹簧能抵抗使布料折叠的力。 质点之间的弹簧力满足胡克定律
+$$ \mathbf{f_{b \rightarrow a}} = -k_s \frac{\mathbf{b - a}}{||\mathbf{b - a}||}(||\mathbf{b - a}|| - l) $$
+理同 Games101 作业 8 ，先根据所有弹簧计算出所有质点的受力情况，再使用显式欧拉积分更新所有质点的速度、位置信息
+a = F / m v(t &#43; 1) = v(t) &#43; a * dt x(t &#43; 1) = x(t) &#43; v(t &#43; 1) * dt 代码模拟（踩坑） 理论非常简单，但在实现过程中笔者踩了不少坑。"/>
+
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://txtxj.top/assets/css/style.min.1477a639b6c8b763f73b6d941efb0f939ada44556d9063523f126d5495bd8f0a.css" integrity="sha256-FHemObbIt2P3O22UHvsPk5raRFVtkGNSPxJtVJW9jwo=">
+
+  <script src="https://txtxj.top/assets/js/main.min.597d9f5a80ce3137282a06b1b2cdbb5a481f3ae5ef0d0ba4265c177b6d788b36.js" integrity="sha256-WX2fWoDOMTcoKgaxss27WkgfOuXvDQukJlwXe214izY="></script>
+  
+  </head><body><header class="header-container layout-block layout-padding">
+  <div class="header-inner content-padding-large soft-size--large soft-style--box">
+    <div class="header-logo">
+      <a href="https://txtxj.top"><h1><img class="author-avatar soft-size--round soft-style--box" src="https://i.loli.net/2021/07/31/Txvq78fELy6ZCN1.jpg">&nbspTxtxj</h1></a>
+    </div>
+    <nav class="header-nav">
+      <div class="header-nav--btn">
+        <div class="btn-item"></div>
+        <div class="btn-item"></div>
+        <div class="btn-item"></div>
+      </div>
+      <div class="header-nav--list">
+        <div>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/" title="">🏠 主页</a>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/posts" title="">🗂️ 博客</a>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/games" title="">🎮 电动</a>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/tags" title="">🏷️ 标签</a>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/link" title="">🔗 友链</a>
+          
+        </div>
+      </div>
+    </nav>
+  </div>
+</header><main id="content">
+    
+
+    <div class="single-container layout-block">
+      <div class="article-info">
+        <div class="article-header layout-padding">
+          <div class="article-cover card-container content-padding-large soft-size--large soft-style--box img">
+
+  <div class="card-cover">
+    
+      <img src="https://s2.loli.net/2022/07/30/kEXcOuYz3aCjq15.jpg" alt="https://s2.loli.net/2022/07/30/kEXcOuYz3aCjq15.jpg" />
+    
+  </div>
+
+  <div class="card-text">
+    <h1 class="card-text--title">布料模拟与渲染</h1>
+    
+      <p class="card-text--row">2022-07-30 15:50</p>
+      
+      
+      
+
+      
+      
+        <ul class="card-text--tag">
+          
+            <li><a href="https://txtxj.top/tags/unity/">Unity</a></li>
+            <li><a href="https://txtxj.top/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a></li>
+            <li><a href="https://txtxj.top/tags/%E7%AC%94%E8%AE%B0/">笔记</a></li></ul>
+      
+    
+  </div>
+
+</div>
+        </div>
+
+        <div class="article-content">
+          <div class="markdown-body content-padding-large soft-size--large soft-style--box">
+            <p>仓库地址：https://github.com/txtxj/Cloth-Simulation</p>
+<p>本来上次的 SSAO 做完之后准备去做流体模拟的，结果因为完全不懂 GPU 编程，看不懂 compute shader ，并且以前没做过物理模拟而放弃了。</p>
+<p>为了学习 GPU 编程和 PBD ，笔者选择了布料模拟这一个比较简单的题目来做（然而布料模拟并不是 PBD ），等搞明白之后再去尝试流体模拟。</p>
+<p>然而在做这个项目的过程中，只能找到 CPU 布料模拟和 GPU 粒子效果，没找到 GPU 布料模拟，这对一个初学 GPU 编程的小白真的是巨大痛苦……</p>
+<p>本文记录了笔者实现过程中遇到的各种问题。</p>
+<hr>
+<h2 id="物理基础">物理基础</h2>
+<p>根据 Games101 课上的介绍，布料可以使用网格弹簧质点系统进行模拟。</p>
+<p>使用一个由质点构成的矩阵，质点之间根据以下规则连接弹簧：</p>
+<ol start="0">
+<li>连接横向、纵向相邻的质点，这种弹簧称为结构弹簧；</li>
+<li>连接对角线上的质点，这种弹簧称为剪切弹簧，这种弹簧能抵抗使布料剪切变形的力；</li>
+<li>连接横向、纵向相隔一个位置的质点，这种弹簧称为弯曲弹簧，这种弹簧能抵抗使布料折叠的力。</li>
+</ol>
+<p>
+  <p><img src="https://s2.loli.net/2022/07/30/jY1Io8i6VHzBluX.jpg" alt="20220730_1.jpg" loading="lazy" /></p>
+</p>
+<p>质点之间的弹簧力满足胡克定律</p>
+<p>$$
+\mathbf{f_{b \rightarrow a}} = -k_s \frac{\mathbf{b - a}}{||\mathbf{b - a}||}(||\mathbf{b - a}|| - l)
+$$</p>
+<p>理同 Games101 作业 8 ，先根据所有弹簧计算出所有质点的受力情况，再使用显式欧拉积分更新所有质点的速度、位置信息</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>a <span style="color:#f92672">=</span> F <span style="color:#f92672">/</span> m
+</span></span><span style="display:flex;"><span>v(t <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">=</span> v(t) <span style="color:#f92672">+</span> a <span style="color:#f92672">*</span> dt
+</span></span><span style="display:flex;"><span>x(t <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">=</span> x(t) <span style="color:#f92672">+</span> v(t <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">*</span> dt
+</span></span></code></pre></div><h2 id="代码模拟踩坑">代码模拟（踩坑）</h2>
+<p>理论非常简单，但在实现过程中笔者踩了不少坑。</p>
+<p>初次实现，笔者使用与 Games101 相同的代码框架，定义了质点类与弹簧类如下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Particle</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Vector3 position;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Vector3 velocity;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Vector3 force;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">float</span> isFixed;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Spring</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Vector2Int node;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">float</span> length;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Spring(<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">int</span> b)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        node = <span style="color:#66d9ef">new</span> Vector2Int(a, b);
+</span></span><span style="display:flex;"><span>        length = (particles[a].position - particles[b].position).magnitude;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>并在 compute shader 中使用两个 kernel 分别计算每个弹簧贡献的力、每个粒子的速度与位置</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>[numthreads(<span style="color:#ae81ff">1024</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>)]
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> UpdateParticles(uint3 id : SV_DispatchThreadID)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (particles[id.x].isFixed) <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    float3 acc <span style="color:#f92672">=</span> particles[id.x].force <span style="color:#f92672">*</span> wass <span style="color:#f92672">+</span> gravity;
+</span></span><span style="display:flex;"><span>    particles[id.x].velocity <span style="color:#f92672">+=</span> acc <span style="color:#f92672">*</span> dt;
+</span></span><span style="display:flex;"><span>    particles[id.x].position <span style="color:#f92672">+=</span> particles[id.x].velocity <span style="color:#f92672">*</span> dt;
+</span></span><span style="display:flex;"><span>    particles[id.x].force <span style="color:#f92672">=</span> float3(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[numthreads(<span style="color:#ae81ff">1024</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>)]
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> UpdateSprings(uint3 id : SV_DispatchThreadID)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> springs[id.x].node.x;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> b <span style="color:#f92672">=</span> springs[id.x].node.y;
+</span></span><span style="display:flex;"><span>    float3 dir <span style="color:#f92672">=</span> particles[a].position <span style="color:#f92672">-</span> particles[b].position;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> length <span style="color:#f92672">=</span> sqrt(dot(dir, dir));
+</span></span><span style="display:flex;"><span>    dir <span style="color:#f92672">=</span> normalize(dir);
+</span></span><span style="display:flex;"><span>    float3 force <span style="color:#f92672">=</span> ks <span style="color:#f92672">*</span> (length <span style="color:#f92672">-</span> springs[id.x].length) <span style="color:#f92672">*</span> dir;
+</span></span><span style="display:flex;"><span>    particles[a].force <span style="color:#f92672">-=</span> force;
+</span></span><span style="display:flex;"><span>    particles[b].force <span style="color:#f92672">+=</span> force;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>然而当程序运行起来的时候，却得到了这样的效果</p>
+<p>
+  <p><img src="https://s2.loli.net/2022/07/30/xuUHNEFcr25SjYz.gif" alt="20220730_2.gif" loading="lazy" /></p>
+</p>
+<p>粒子满天飞。</p>
+<p>根据之前做弹簧模拟的经验，这是模拟步长 <code>dt</code> 过大和弹簧弹性系数 <code>ks</code> 过大导致的不稳定，进而失真。</p>
+<p>接下来就是漫长的调参过程，在调参过程中发现，质点数量太多严重影响了系统的稳定性，因此笔者使用了最简单的 2x2 系统进行模拟测试。</p>
+<p>如下图是一个比较合适的参数效果</p>
+<p>
+  <p><img src="https://s2.loli.net/2022/07/30/wVFuonz8WeDZ3U9.gif" alt="20220730_3.gif" loading="lazy" /></p>
+</p>
+<p>可以看到，除了上方两个固定的粒子，下方粒子产生了明显偏移，且偏移方向为左侧（序号较小）的粒子。</p>
+<p>刚开始笔者认为这是因为重力太大，多个弹簧之间计算产生了不同的误差，误差逐渐积累导致粒子向左偏移，又进行了大量调参，但仍然得不到好的效果。</p>
+<p>
+  <p><img src="https://s2.loli.net/2022/07/30/Gsl8yQ9KznRji2H.gif" alt="20220730_4.gif" loading="lazy" /></p>
+</p>
+<p>如上，将阻力调大、重力调小、弹性系数调大之后，整个系统很稳定，但粒子仍然会向左偏移。</p>
+<p>可以猜测是弹簧的某些 bug 导致了粒子左偏。</p>
+<p>为了找到问题是否出在弹簧身上，笔者首先制作了 1xn 的普通弹簧，发现弹簧并没有任何问题，其表现与 Games101 中作业同样优秀。</p>
+<p>但将粒子列数调多，制成布料，又出现了粒子满天飞的情况。</p>
+<p>若将剪切弹簧和弯曲弹簧删去，只保留结构弹簧，粒子变得稳定，得到了如下结果</p>
+<p>
+  <p><img src="https://s2.loli.net/2022/07/30/6bi5eQWMgT9UldV.gif" alt="20220730_5.gif" loading="lazy" /></p>
+</p>
+<p>所有粒子均向左偏，并最终稳定地保持在一条线上，而右上角的固定粒子似乎与其他所有粒子都毫无关系。</p>
+<p>自然可以推测，右方粒子没有给其下方粒子提供任何力，其弹簧实际上是无效的。</p>
+<p>这时笔者才想到，很可能 GPU 的并行计算并不能给自身线程所使用的数据上锁，否则会降低并行性。</p>
+<p>也就是说，在 <code>UpdateSprings</code> 函数中，只有编号较小的弹簧能够顺利执行 <code>particles[a].force -= force;</code> 和 <code>particles[b].force += force;</code> 操作并将其结果写入内存。</p>
+<p>修改 <code>UpdateSprings</code> 函数，令其只能更新未被更新过的粒子的受力情况，发现模拟结果与之前一致，证明了上述猜测正确。</p>
+<h2 id="代码模拟正解">代码模拟（正解）</h2>
+<p>考虑另外一种计算受力的方法，删除弹簧类，将 <code>UpdateSprings</code> 函数改为对每个粒子求解一次约束，求解过程中不修改其他粒子的物理信息。所有粒子的受力情况求解完成之后，使用另一个 kernel 求其加速度、速度、位置。</p>
+<p>由于布料固定为一个矩阵，任意与粒子 p 相连的其他粒子和粒子 p 之间的偏移量可以使用一个长度为 12 的数组表示</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">static</span> int2 springs[<span style="color:#ae81ff">12</span>] <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    int2(<span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>), int2(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>), int2(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>), int2(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>), <span style="color:#75715e">// Structure
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    int2(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>), int2(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>), int2(<span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>), int2(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>), <span style="color:#75715e">// Shearing
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    int2(<span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>), int2(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>), int2(<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>), int2(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>) <span style="color:#75715e">// Bending 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
+</span></span></code></pre></div><p>对于每个粒子，通过其 <code>id</code> 计算出二维坐标，再加上上述偏移量，即可得到与其相连的粒子。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// reststore three original spring lengths
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>float3 rest;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[numthreads(<span style="color:#ae81ff">1024</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>)]
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> UpdateSprings(uint3 id : SV_DispatchThreadID)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> id.x;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (index <span style="color:#f92672">&gt;=</span> size.z) <span style="color:#66d9ef">return</span>; <span style="color:#75715e">// Out of range
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (particles[index].isFixed) <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    id.xy <span style="color:#f92672">=</span> GetId(index);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">12</span>; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> int2 pos <span style="color:#f92672">=</span> id.xy <span style="color:#f92672">+</span> springs[i];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (IsValid(pos))
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> posIndex <span style="color:#f92672">=</span> GetIndex(pos);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> float3 dir <span style="color:#f92672">=</span> particles[posIndex].position <span style="color:#f92672">-</span> particles[index].position;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">const</span> float3 ndir <span style="color:#f92672">=</span> normalize(dir);
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// spring
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            particles[index].force <span style="color:#f92672">+=</span> ks <span style="color:#f92672">*</span> (length(dir) <span style="color:#f92672">-</span> rest[i <span style="color:#f92672">/</span> <span style="color:#ae81ff">4</span>]) <span style="color:#f92672">*</span> ndir;
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// damping
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            particles[index].force <span style="color:#f92672">-=</span> kd <span style="color:#f92672">*</span> dot(ndir, particles[index].velocity) <span style="color:#f92672">*</span> ndir;
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// gravity
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            particles[index].force <span style="color:#f92672">+=</span> gravity <span style="color:#f92672">*</span> mass;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>最终效果非常好</p>
+<p>
+  <p><img src="https://s2.loli.net/2022/07/30/p1FMkSgHiEN65wa.gif" alt="20220730_6.gif" loading="lazy" /></p>
+</p>
+<p>然而实际上笔者在实现过程中还遇到了一个离奇的 bug 。</p>
+<p>使用 <code>index</code> 和 <code>id</code> 的互相转化后，会出现只有第一列粒子运动的情况（即只有第一列粒子被更新）。</p>
+<p>经过巨大痛苦的 debug 之后发现原因是 compute shader 中布料大小参数 <code>size</code> 的类型是 <code>int3</code> ，</p>
+<p>而在 csharp 文件中则使用了</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span>compute.SetVector(<span style="color:#e6db74">&#34;size&#34;</span>, <span style="color:#66d9ef">new</span> Vector3(clothSize.x, clothSize.y, clothSize.x * clothSize.y));
+</span></span></code></pre></div><p>进行赋值。</p>
+<p>csharp 代码使用三个 int 类型变量生成一个 <code>Vector3</code> 类型（也即 <code>float3</code>）变量，并将其按照 IEEE754 标准写入了 compute shader 里 <code>size</code> 的地址中，</p>
+<p>导致 <code>size</code> 数据极大，在更新第二列及后续数据时被判定越界。</p>
+<p>正确写法是</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span>compute.SetInts(<span style="color:#e6db74">&#34;size&#34;</span>, <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[]{clothSize.x, clothSize.y, clothSize.x * clothSize.y});
+</span></span></code></pre></div><h2 id="渲染">渲染</h2>
+<p>咕咕咕，累了，等会儿再写。</p>
+<p>先放个图：</p>
+<p>
+  <p><img src="https://s2.loli.net/2022/07/30/ivF8Ump1dqKBDOT.gif" alt="20220730_7.gif" loading="lazy" /></p>
+</p>
+
+          </div>
+        </div>
+                 
+      
+  
+  
+  
+  
+
+  
+
+  <div class="article-paging">
+    
+    
+      <section class="post-paging--item card-container content-padding-primary soft-size--primary soft-style--box">
+  <div class="card-cover" background-image-lazy data-img="https://s2.loli.net/2022/07/12/AGCIRLr9XN8Ksn7.jpg"></div>
+  <div class="card-text">
+    <a href="/posts/ssaounity/"><h4 class="card-text--title">屏幕空间环境光遮蔽（SSAO） Unity 实现</h4></a>
+    <p class="card-text--row">2022-07-12 15:45</p>
+  </div>
+</section>
+    
+  </div>
+</div>
+  <aside class="widget-info">
+    
+<section class="aside-widget widget-author content-padding-large soft-size--large soft-style--box">
+  <div class="widget-body">
+    <div class="author-box avatar">
+      
+      <img class="author-avatar soft-size--round soft-style--box" src="https://i.loli.net/2021/07/31/Txvq78fELy6ZCN1.jpg" alt="Txtxj">
+      
+      <h2 class="author-name text-ellipsis">Txtxj</h2>
+      
+      <p class="author-desc text-ellipsis">TXTXJ</p>
+      
+    </div>
+  </div>
+</section>
+
+
+    
+
+<section class="aside-widget widget-toc content-padding-large soft-size--large soft-style--box">
+  <h2 class="widget-header">
+    <div class="title">
+      <span>目录</span>
+    </div>
+  </h2>
+  <div class="widget-body">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#物理基础">物理基础</a></li>
+    <li><a href="#代码模拟踩坑">代码模拟（踩坑）</a></li>
+    <li><a href="#代码模拟正解">代码模拟（正解）</a></li>
+    <li><a href="#渲染">渲染</a></li>
+  </ul>
+</nav>
+  </div>
+</section>
+
+
+    
+
+
+
+
+
+
+
+
+<section class="aside-widget widget-articles content-padding-large soft-size--large soft-style--box">
+  <h2 class="widget-header">
+    <div class="title">
+      <span>相关文章</span>
+    </div>
+  </h2>
+  <div class="widget-body">
+    <ul class="post-list">
+      
+      
+        <li class="post-item"><a href="/posts/ssaounity/">屏幕空间环境光遮蔽（SSAO） Unity 实现</a></li>
+      
+        <li class="post-item"><a href="/posts/objecttoworldnormal/">法线向量的模型-世界变换</a></li>
+      
+        <li class="post-item"><a href="/posts/treedebugger/">二叉树打印</a></li>
+      
+        <li class="post-item"><a href="/posts/gamesnote03/">GAMES笔记03-光栅化</a></li>
+      
+        <li class="post-item"><a href="/posts/gamesnote02/">GAMES笔记02-模型、视图、投影变换</a></li>
+      
+        <li class="post-item"><a href="/posts/gamesnote01/">GAMES笔记01-线性代数基础</a></li>
+      
+    </ul>
+  </div>
+</section>
+
+
+    
+
+
+
+
+
+    
+
+
+
+
+<section class="aside-widget widget-tags content-padding-large soft-size--large soft-style--box">
+  <h2 class="widget-header">
+    <div class="title">
+      <span>聚合标签</span>
+    </div>
+  </h2>
+  <div class="widget-body">
+    <div class="tags-list">
+      
+        <a href="https://txtxj.top/tags/%E7%AC%94%E8%AE%B0/" data-count="10" class="soft-size--small soft-style--hover soft-style--active">笔记</a>
+      
+        <a href="https://txtxj.top/tags/unity/" data-count="6" class="soft-size--small soft-style--hover soft-style--active">Unity</a>
+      
+        <a href="https://txtxj.top/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" data-count="6" class="soft-size--small soft-style--hover soft-style--active">图形学</a>
+      
+        <a href="https://txtxj.top/tags/%E6%95%99%E7%A8%8B/" data-count="3" class="soft-size--small soft-style--hover soft-style--active">教程</a>
+      
+        <a href="https://txtxj.top/tags/%E9%A2%98%E8%A7%A3/" data-count="3" class="soft-size--small soft-style--hover soft-style--active">题解</a>
+      
+        <a href="https://txtxj.top/tags/%E7%81%AB%E7%84%B0%E7%BA%B9%E7%AB%A0/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">火焰纹章</a>
+      
+    </div>
+  </div>
+
+  
+</section>
+
+  </aside>
+</div>
+  </main><footer class="footer-container layout-block">
+  
+  <div class="social-icons">
+    
+      <a class="soft-size--primary soft-style--box" href="https://github.com/txtxj" target="_blank" rel="noopener noreferrer">
+          
+        <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+        </svg>
+        
+
+        
+
+        
+
+        
+
+        
+      </a>
+    
+  </div>
+  
+
+  <div class="colour-bar"></div>
+  
+  
+
+  
+
+  <p>
+    Copyright © 2021 2021 txtxj
+  </p>
+
+  <p>
+    Powered by
+    <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a>
+    Theme - 
+    <a href="https://github.com/txtxj/hugo-theme-kagome" target="_blank" rel="noopener noreferrer author">kagome</a>
+  </p>
+
+  <p>
+    <a href="javascript:;" id="theme-light">🌞 浅色</a>
+    <a href="javascript:;" id="theme-dark">🌛 深色</a>
+    <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+  </p>
+  <script src="/js/copy.js"></script>
+</footer>
+
+
+
+<script type="text/javascript" src="https://csdnimg.cn/release/blog_mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hibiki.model.json"},"display":{"position":"left","width":80,"height":184},"mobile":{"show":false},"log":false});</script>
+</body>
+
+</html>
