@@ -168,8 +168,7 @@ a = F / m v(t &#43; 1) = v(t) &#43; a * dt x(t &#43; 1) = x(t) &#43; v(t &#43; 1
         <ul class="card-text--tag">
           
             <li><a href="https://txtxj.top/tags/unity/">Unity</a></li>
-            <li><a href="https://txtxj.top/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a></li>
-            <li><a href="https://txtxj.top/tags/%E7%AC%94%E8%AE%B0/">笔记</a></li></ul>
+            <li><a href="https://txtxj.top/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a></li></ul>
       
     
   </div>
@@ -330,13 +329,13 @@ $$</p>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> id.x <span style="color:#f92672">*</span> size.y <span style="color:#f92672">+</span> id.y;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>经过巨大痛苦的 debug 之后发现原因是 compute shader 中布料大小参数 <code>size</code> 的类型是 <code>int3</code> ，</p>
-<p>而在 csharp 文件中则使用了</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span>compute.SetVector(<span style="color:#e6db74">&#34;size&#34;</span>, <span style="color:#66d9ef">new</span> Vector3(clothSize.x, clothSize.y, clothSize.x * clothSize.y));
+<p>而在 c# 文件中则使用了</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span>compute.SetVector(<span style="color:#e6db74">&#34;size&#34;</span>, <span style="color:#66d9ef">new</span> Vector3(clothSize.x, clothSize.y, clothSize.x * clothSize.y));
 </span></span></code></pre></div><p>进行赋值。</p>
-<p>csharp 代码使用三个 int 类型变量生成一个 <code>Vector3</code> 类型（也即 <code>float3</code>）变量，并将其按照 IEEE754 标准写入了 compute shader 里 <code>size</code> 的地址中，</p>
+<p>c# 代码使用三个 int 类型变量生成一个 <code>Vector3</code> 类型（也即 <code>float3</code>）变量，并将其按照 IEEE754 标准写入了 compute shader 里 <code>size</code> 的地址中，</p>
 <p>导致 <code>size</code> 数据极大，在更新第二列及后续数据时被判定越界。</p>
 <p>正确写法是</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span>compute.SetInts(<span style="color:#e6db74">&#34;size&#34;</span>, <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[]{clothSize.x, clothSize.y, clothSize.x * clothSize.y});
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span>compute.SetInts(<span style="color:#e6db74">&#34;size&#34;</span>, <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[]{clothSize.x, clothSize.y, clothSize.x * clothSize.y});
 </span></span></code></pre></div><h2 id="渲染">渲染</h2>
 <p>咕咕咕，累了，等会儿再写。</p>
 <p>先放个图：</p>
@@ -429,13 +428,13 @@ $$</p>
       
         <li class="post-item"><a href="/posts/objecttoworldnormal/">法线向量的模型-世界变换</a></li>
       
-        <li class="post-item"><a href="/posts/treedebugger/">二叉树打印</a></li>
-      
         <li class="post-item"><a href="/posts/gamesnote03/">GAMES笔记03-光栅化</a></li>
       
         <li class="post-item"><a href="/posts/gamesnote02/">GAMES笔记02-模型、视图、投影变换</a></li>
       
         <li class="post-item"><a href="/posts/gamesnote01/">GAMES笔记01-线性代数基础</a></li>
+      
+        <li class="post-item"><a href="/posts/unityself03/">Unity笔记03</a></li>
       
     </ul>
   </div>
@@ -462,7 +461,7 @@ $$</p>
   <div class="widget-body">
     <div class="tags-list">
       
-        <a href="https://txtxj.top/tags/%E7%AC%94%E8%AE%B0/" data-count="10" class="soft-size--small soft-style--hover soft-style--active">笔记</a>
+        <a href="https://txtxj.top/tags/%E7%AC%94%E8%AE%B0/" data-count="8" class="soft-size--small soft-style--hover soft-style--active">笔记</a>
       
         <a href="https://txtxj.top/tags/unity/" data-count="6" class="soft-size--small soft-style--hover soft-style--active">Unity</a>
       
