@@ -337,8 +337,34 @@ $$</p>
 <p>正确写法是</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span>compute.SetInts(<span style="color:#e6db74">&#34;size&#34;</span>, <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span>[]{clothSize.x, clothSize.y, clothSize.x * clothSize.y});
 </span></span></code></pre></div><h2 id="渲染">渲染</h2>
-<p>咕咕咕，累了，等会儿再写。</p>
-<p>先放个图：</p>
+<p>使用 <code>Graphics.DrawProceduralNow</code> 绘制点，或提供 <code>indexBuffer</code> 绘制三角形。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span>Graphics.DrawProceduralNow(MeshTopology.Points, particleCount); <span style="color:#75715e">// Draw points</span>
+</span></span><span style="display:flex;"><span>Graphics.DrawProceduralNow(MeshTopology.Triangles, indexBuffer, indexBuffer.count); <span style="color:#75715e">// Draw triangles</span>
+</span></span></code></pre></div><p><code>indexBuffer</code> 提供了每个三角形三个顶点在顶点数组中的索引。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> InitiateIndexBuffer()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    List&lt;<span style="color:#66d9ef">int</span>&gt; indices = <span style="color:#66d9ef">new</span> List&lt;<span style="color:#66d9ef">int</span>&gt;();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i = <span style="color:#ae81ff">1</span>; i &lt; clothSize.x; i++)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j = <span style="color:#ae81ff">1</span>; j &lt; clothSize.y; j++)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> id = i * clothSize.y + j;
+</span></span><span style="display:flex;"><span>            indices.Add(id - clothSize.y - <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>            indices.Add(id - clothSize.y);
+</span></span><span style="display:flex;"><span>            indices.Add(id);
+</span></span><span style="display:flex;"><span>            indices.Add(id);
+</span></span><span style="display:flex;"><span>            indices.Add(id - <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>            indices.Add(id - clothSize.y - <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    indexBuffer = <span style="color:#66d9ef">new</span> GraphicsBuffer(GraphicsBuffer.Target.Index, indices.Count, <span style="color:#66d9ef">sizeof</span>(<span style="color:#66d9ef">int</span>));
+</span></span><span style="display:flex;"><span>    indexBuffer.SetData(indices);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>对于除了第 0 行、第 0 列的顶点，将其左上方的两个三角形的六个顶点按逆时针（或顺时针）顺序输入数组中。</p>
+<p>
+  <p><img src="" alt="20220730_8.jpg" loading="lazy" /></p>
+</p>
+<p>再使用微表面 Blinn-Phone 模型着色，得到如下结果</p>
 <p>
   <p><img src="https://s2.loli.net/2022/07/30/ivF8Ump1dqKBDOT.gif" alt="20220730_7.gif" loading="lazy" /></p>
 </p>
