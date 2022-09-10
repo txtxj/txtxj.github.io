@@ -8,7 +8,27 @@
     <language>zh-CN</language>
     <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
     <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
-    <lastBuildDate>Sat, 30 Jul 2022 15:50:01 +0800</lastBuildDate><atom:link href="https://txtxj.top/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 10 Sep 2022 16:16:23 +0800</lastBuildDate><atom:link href="https://txtxj.top/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C# 类的多态</title>
+      <link>https://txtxj.top/posts/csharpclass/</link>
+      <pubDate>Sat, 10 Sep 2022 16:16:23 +0800</pubDate>
+      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <guid>https://txtxj.top/posts/csharpclass/</guid>
+      <description>C# 类的多态性允许把不同的派生类用一个统一的基类接口来处理。
+即一段代码可以同样地工作在所有这些具有同一个基类的不同派生类上。
+并且不同的派生类可以使用同一个接口实现不同的操作。
+在 C# 中提供了三种方法来实现类的多态：
+虚方法 抽象类与抽象方法 接口 如果需要使用基类实例化对象，则使用虚方法；
+如果不需要使用基类实例化对象，则使用抽象类与抽象方法。
+虚方法 在基类中将一个方法声明为 virtual ，就可以在其派生类中使用 override 重写该方法（也可以使用 new 隐藏基类中的方法，两者有所区别）。
+例如，我们需要编写一个 Character 基类，用于表示各种角色；此外，在 Character 基类上派生出 Player 类表示玩家。
+基类：
+public class Character { public virtual void Die() { Console.WriteLine(&amp;#34;A Character Died.&amp;#34;); } } 派生类：
+class Player : Character { public override void Die() { Console.WriteLine(&amp;#34;A Player Died.&amp;#34;); } } 如果想要玩家死亡之后还会触发游戏结束，那么可以直接在 Player 派生类中添加方法
+class Player : Character { public void GameOver() { Console.</description>
+    </item>
+    
     <item>
       <title>布料模拟与渲染</title>
       <link>https://txtxj.top/posts/clothsimulation/</link>
