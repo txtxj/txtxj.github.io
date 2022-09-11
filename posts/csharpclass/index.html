@@ -325,13 +325,16 @@ Dove can fly
 Fish can swim
 </code></pre><h2 id="接口">接口</h2>
 <p>一个派生类只能继承自一个基类，如果想要实现类似一个派生类继承自多个基类的效果，就需要使用接口。</p>
+<p>接口成员不能使用 <code>private</code> <code>public</code> <code>protected</code> <code>internal</code> <code>static</code> <code>virtual</code> <code>abstract</code> <code>sealed</code> 修饰符，</p>
+<p>接口中声明的方法默认是 <code>public</code> 的。</p>
+<p>接口中不能定义字段，不能含有方法体，可以定义属性。</p>
 <p>接口使用 <code>interface</code> 定义，通常使用大写字母 <code>I</code> 开头命名：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IBark</span>
 </span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// float Volume { get; set; } // This is ok</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> Bark();
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p><code>interface</code> 中声明的函数默认是 <code>public</code> 的。</p>
-<p>猫和鸽子都会叫，因此可以如下定义猫和鸽子：</p>
+</span></span></code></pre></div><p>猫和鸽子都会叫，因此可以如下定义猫和鸽子：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-csharp" data-lang="csharp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cat</span> : Animal, IBark
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">void</span> Eat()
