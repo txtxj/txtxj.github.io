@@ -219,7 +219,39 @@ document.addEventListener("visibilitychange", function () {
   <script src="/js/copy.js"></script>
 </footer>
 
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hibiki.model.json"},"display":{"position":"left","width":80,"height":184},"mobile":{"show":false},"log":false});</script>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/gh/litstronger/live2d-moc3@master/js/frame/live2dcubismcore.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.6.1/pixi.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/gh/litstronger/live2d-moc3@master/js/live2dcubismframework.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/litstronger/live2d-moc3@master/js/live2dcubismpixi.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/gh/litstronger/live2d-moc3@master/js/l2d.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/litstronger/live2d-moc3@master/js/main.js"></script>
+
+    <div class="Canvas" id="L2dCanvas"></div>
+    <script>
+        var config = {
+            width: 600,
+            height: 400,
+            left: '-180px',
+            bottom: '-60px',
+            basePath: 'live2dw/assets',
+            role: 'dafeng_2',
+            background: null,
+            opacity: 1,
+            mobile: false,
+            pointerevents: 'none',
+        }
+        var v = new Viewer(config);
+        window.onload = function(){
+            let dom = document.querySelector('.Canvas')
+            console.log(dom)
+            dom.style["pointer-events"]= 'none'
+        }
+    </script>
 </body>
 
 </html>
