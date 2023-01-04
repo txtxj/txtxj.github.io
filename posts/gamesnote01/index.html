@@ -8,16 +8,19 @@ jQuery(document).ready(function($) {
         var x = e.pageX, y = e.pageY;
         $text.css({
             "z-index": 1145141919810,
-            "top": y - 20,
+            "top": y,
             "left": x,
             "position": "absolute",
+            "pointer-events": "none",
+            "transform": "translate(-50%, -50%)",
             "font-weight": "bold",
             "color": "rgb("+~~(255 * Math.random())+","+~~(255 * Math.random())+","+~~(255 * Math.random())+")"
         });
         $("body").append($text);
         $text.animate({
             "top": y - 100,
-            "opacity": 0
+            "opacity": 0,
+            "fontSize": 0,
         },
         1500,
         function() {
@@ -30,6 +33,35 @@ document.addEventListener("visibilitychange", function () {
     if (document.title != "txtxj呼呼zzz") OriginTitile = document.title;
     document.title = document.hidden ? "txtxj呼呼zzz" : OriginTitile;
 });
+function showBig(obj) {
+  var popup = document.getElementById("popup");
+  var img = popup.children[0].children[0];
+  img.src = obj.src;
+  var scale = 2.0;
+  if (img.width * scale > window.innerWidth)
+  {
+    scale = window.innerWidth / img.width;
+  }
+  if (img.height * scale > window.innerHeight)
+  {
+    scale = window.innerHeight / img.height;
+  }
+  img.style.scale = scale;
+  popup.style.display = "block";
+}
+function hideBig(obj) {
+  obj.style.display = "none";
+}
+function wheelImg(obj) {
+  img = obj.children[0].children[0];
+  var scale = parseFloat(img.style.scale) || 1.0;
+    scale += event.wheelDelta / 5000;
+    if (scale > 0.9 && 
+      img.width * scale <= window.innerWidth && 
+      img.height * scale <= window.innerHeight)
+        img.style.scale = scale;
+    return false;
+}
 </script>
 <html><script>
   MathJax = {
@@ -99,7 +131,7 @@ $$ \begin{pmatrix} x&rsquo;	\\ y&rsquo; \end{pmatrix} = \begin{pmatrix} -1 &amp;
   
   
   
-  <link rel="stylesheet" href="https://txtxj.top/assets/css/style.min.f2838c815dae555621a1af5e12599139164f6748df5410c607cecca42f297b59.css" integrity="sha256-8oOMgV2uVVYhoa9eElmRORZPZ0jfVBDGB87MpC8pe1k=">
+  <link rel="stylesheet" href="https://txtxj.top/assets/css/style.min.d7be0f8fad7244473526cd277f8261515ff22b1d8040a21b197ae68da8db2de3.css" integrity="sha256-174Pj61yREc1Js0nf4JhUV/yKx2AQKIbGXrmjajbLeM=">
 
   <script src="https://txtxj.top/assets/js/main.min.597d9f5a80ce3137282a06b1b2cdbb5a481f3ae5ef0d0ba4265c177b6d788b36.js" integrity="sha256-WX2fWoDOMTcoKgaxss27WkgfOuXvDQukJlwXe214izY="></script>
   
@@ -180,7 +212,7 @@ $$
 $$x&rsquo; = s_x x$$
 $$y&rsquo; = s_y y$$</p>
 <p>
-  <p><img src="https://s2.loli.net/2021/12/22/TVHI19lXyZgW3tA.jpg" alt="" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2021/12/22/TVHI19lXyZgW3tA.jpg" alt="" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>如上图所示，</p>
 <p>$$
@@ -199,7 +231,7 @@ y
 $$</p>
 <p>另外，关于坐标轴的反射，也是一种特殊的缩放。</p>
 <p>
-  <p><img src="https://s2.loli.net/2021/12/22/W5yrbQIkLcVji4M.jpg" alt="" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2021/12/22/W5yrbQIkLcVji4M.jpg" alt="" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>如上图所示，</p>
 <p>$$
@@ -241,7 +273,7 @@ y&rsquo; &amp;= s x + y
 \end{aligned}
 $$</p>
 <p>
-  <p><img src="https://s2.loli.net/2021/12/22/hJdbpVPkT1SjaCX.jpg" alt="" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2021/12/22/hJdbpVPkT1SjaCX.jpg" alt="" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>如上图所示，</p>
 <p>$$
@@ -268,7 +300,7 @@ $$</p>
 <h3 id="旋转rotate">旋转(Rotate)</h3>
 <p>2D 旋转通常将逆时针方向设为正方向。</p>
 <p>
-  <p><img src="https://s2.loli.net/2021/12/22/uTMO6DxSrldejPm.jpg" alt="" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2021/12/22/uTMO6DxSrldejPm.jpg" alt="" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>如上图所示，</p>
 <p>$$
@@ -335,7 +367,7 @@ t_x \\ t_y
 \end{pmatrix}
 $$</p>
 <p>
-  <p><img src="https://s2.loli.net/2021/12/22/yR8cT9iCVlWNjws.jpg" alt="" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2021/12/22/yR8cT9iCVlWNjws.jpg" alt="" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>如上图所示，</p>
 <p>$$
@@ -516,7 +548,7 @@ $$</p>
 <p>其中， $\alpha, \beta, \gamma$ 被称为欧拉角。</p>
 <p>在飞机模拟中常用到该方法分解旋转，并将三个坐标轴命名为 roll ， pitch ， yaw 。</p>
 <p>
-  <p><img src="https://s2.loli.net/2021/12/23/WGQfwL3R9FTodbv.jpg" alt="" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2021/12/23/WGQfwL3R9FTodbv.jpg" alt="" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>另一种常用的方法被称为罗德里格斯旋转公式 (Rodrigues&rsquo; Rotation Formula) ，</p>
 <p>对于一个过原点的轴，其方向向量为 $\mathbf{n}$ ，旋转角度为 $\alpha$</p>
@@ -720,7 +752,11 @@ $$</p>
 
   </aside>
 </div>
-  </main><footer class="footer-container layout-block">
+  </main>
+
+  <div id="popup" onclick="hideBig(this)" onmousewheel="return wheelImg(this)">
+    <div class="bg"><img src="" alt="" /></div>
+  </div><footer class="footer-container layout-block">
   
   <div class="social-icons">
     

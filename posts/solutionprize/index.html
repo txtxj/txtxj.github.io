@@ -8,16 +8,19 @@ jQuery(document).ready(function($) {
         var x = e.pageX, y = e.pageY;
         $text.css({
             "z-index": 1145141919810,
-            "top": y - 20,
+            "top": y,
             "left": x,
             "position": "absolute",
+            "pointer-events": "none",
+            "transform": "translate(-50%, -50%)",
             "font-weight": "bold",
             "color": "rgb("+~~(255 * Math.random())+","+~~(255 * Math.random())+","+~~(255 * Math.random())+")"
         });
         $("body").append($text);
         $text.animate({
             "top": y - 100,
-            "opacity": 0
+            "opacity": 0,
+            "fontSize": 0,
         },
         1500,
         function() {
@@ -30,6 +33,35 @@ document.addEventListener("visibilitychange", function () {
     if (document.title != "txtxj呼呼zzz") OriginTitile = document.title;
     document.title = document.hidden ? "txtxj呼呼zzz" : OriginTitile;
 });
+function showBig(obj) {
+  var popup = document.getElementById("popup");
+  var img = popup.children[0].children[0];
+  img.src = obj.src;
+  var scale = 2.0;
+  if (img.width * scale > window.innerWidth)
+  {
+    scale = window.innerWidth / img.width;
+  }
+  if (img.height * scale > window.innerHeight)
+  {
+    scale = window.innerHeight / img.height;
+  }
+  img.style.scale = scale;
+  popup.style.display = "block";
+}
+function hideBig(obj) {
+  obj.style.display = "none";
+}
+function wheelImg(obj) {
+  img = obj.children[0].children[0];
+  var scale = parseFloat(img.style.scale) || 1.0;
+    scale += event.wheelDelta / 5000;
+    if (scale > 0.9 && 
+      img.width * scale <= window.innerWidth && 
+      img.height * scale <= window.innerHeight)
+        img.style.scale = scale;
+    return false;
+}
 </script>
 <html><script>
   MathJax = {
@@ -115,7 +147,7 @@ $i &lt; j \le mid &lt; k$ $i \le mid &lt; j &lt; k$ 其中 $mid$ 为分割锚点
   
   
   
-  <link rel="stylesheet" href="https://txtxj.top/assets/css/style.min.f2838c815dae555621a1af5e12599139164f6748df5410c607cecca42f297b59.css" integrity="sha256-8oOMgV2uVVYhoa9eElmRORZPZ0jfVBDGB87MpC8pe1k=">
+  <link rel="stylesheet" href="https://txtxj.top/assets/css/style.min.d7be0f8fad7244473526cd277f8261515ff22b1d8040a21b197ae68da8db2de3.css" integrity="sha256-174Pj61yREc1Js0nf4JhUV/yKx2AQKIbGXrmjajbLeM=">
 
   <script src="https://txtxj.top/assets/js/main.min.597d9f5a80ce3137282a06b1b2cdbb5a481f3ae5ef0d0ba4265c177b6d788b36.js" integrity="sha256-WX2fWoDOMTcoKgaxss27WkgfOuXvDQukJlwXe214izY="></script>
   
@@ -194,7 +226,7 @@ $i &lt; j \le mid &lt; k$ $i \le mid &lt; j &lt; k$ 其中 $mid$ 为分割锚点
 </blockquote>
 <p>即在一个数组里找具有如下图形式的三元组。</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/05/13/rQpHSqWkls4yGCO.jpg" alt="20220513_1.jpg" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/05/13/rQpHSqWkls4yGCO.jpg" alt="20220513_1.jpg" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>想到另一道经典的归并排序题目：求 $i &lt; j &lt; k$ 且 $a_j &gt; a_i$ 且 $a_j &gt; a_k$ ，可以求每个位置的顺序对和逆序对个数，最后相乘得到结果。</p>
 <p>这道题是上面题目的加强版，也可以从每个位置顺序对、逆序对的个数入手计算。</p>
@@ -211,7 +243,7 @@ $i &lt; j \le mid &lt; k$ $i \le mid &lt; j &lt; k$ 其中 $mid$ 为分割锚点
 <li>
 <p>对于第一种情况 $i &lt; j \le mid &lt; k$ ，</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/05/13/zqyNQXf5Z2FvwEV.jpg" alt="20220513_2.jpg" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/05/13/zqyNQXf5Z2FvwEV.jpg" alt="20220513_2.jpg" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>考虑对于任意的 $i$ ，</p>
 <p>首先，要求 $i &lt; j \le mid$ 且 $a_i &lt; a_j$ ，实际上满足条件的 $a_j$ 的数量即为前半区间中以 $a_i$ 为首的顺序对的个数。</p>
@@ -230,7 +262,7 @@ $$
 $$
 发现此时实际上比要求的答案多计算了一种情况 $i \le mid &lt; j &lt; k$ 且 $a_j &gt; a_k &gt; a_i$ ，而这种情况与第一种情况刚好是对称的，</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/05/13/sQ1Wk46IfLSZGJr.jpg" alt="20220513_3.jpg" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/05/13/sQ1Wk46IfLSZGJr.jpg" alt="20220513_3.jpg" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>可以使用同样的方法计算出来，多计算的数量为
 $$
@@ -434,7 +466,11 @@ $$
 
   </aside>
 </div>
-  </main><footer class="footer-container layout-block">
+  </main>
+
+  <div id="popup" onclick="hideBig(this)" onmousewheel="return wheelImg(this)">
+    <div class="bg"><img src="" alt="" /></div>
+  </div><footer class="footer-container layout-block">
   
   <div class="social-icons">
     

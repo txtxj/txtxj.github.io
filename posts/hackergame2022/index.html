@@ -8,16 +8,19 @@ jQuery(document).ready(function($) {
         var x = e.pageX, y = e.pageY;
         $text.css({
             "z-index": 1145141919810,
-            "top": y - 20,
+            "top": y,
             "left": x,
             "position": "absolute",
+            "pointer-events": "none",
+            "transform": "translate(-50%, -50%)",
             "font-weight": "bold",
             "color": "rgb("+~~(255 * Math.random())+","+~~(255 * Math.random())+","+~~(255 * Math.random())+")"
         });
         $("body").append($text);
         $text.animate({
             "top": y - 100,
-            "opacity": 0
+            "opacity": 0,
+            "fontSize": 0,
         },
         1500,
         function() {
@@ -30,6 +33,35 @@ document.addEventListener("visibilitychange", function () {
     if (document.title != "txtxj呼呼zzz") OriginTitile = document.title;
     document.title = document.hidden ? "txtxj呼呼zzz" : OriginTitile;
 });
+function showBig(obj) {
+  var popup = document.getElementById("popup");
+  var img = popup.children[0].children[0];
+  img.src = obj.src;
+  var scale = 2.0;
+  if (img.width * scale > window.innerWidth)
+  {
+    scale = window.innerWidth / img.width;
+  }
+  if (img.height * scale > window.innerHeight)
+  {
+    scale = window.innerHeight / img.height;
+  }
+  img.style.scale = scale;
+  popup.style.display = "block";
+}
+function hideBig(obj) {
+  obj.style.display = "none";
+}
+function wheelImg(obj) {
+  img = obj.children[0].children[0];
+  var scale = parseFloat(img.style.scale) || 1.0;
+    scale += event.wheelDelta / 5000;
+    if (scale > 0.9 && 
+      img.width * scale <= window.innerWidth && 
+      img.height * scale <= window.innerHeight)
+        img.style.scale = scale;
+    return false;
+}
 </script>
 <html><script>
   MathJax = {
@@ -117,7 +149,7 @@ document.addEventListener("visibilitychange", function () {
   
   
   
-  <link rel="stylesheet" href="https://txtxj.top/assets/css/style.min.f2838c815dae555621a1af5e12599139164f6748df5410c607cecca42f297b59.css" integrity="sha256-8oOMgV2uVVYhoa9eElmRORZPZ0jfVBDGB87MpC8pe1k=">
+  <link rel="stylesheet" href="https://txtxj.top/assets/css/style.min.d7be0f8fad7244473526cd277f8261515ff22b1d8040a21b197ae68da8db2de3.css" integrity="sha256-174Pj61yREc1Js0nf4JhUV/yKx2AQKIbGXrmjajbLeM=">
 
   <script src="https://txtxj.top/assets/js/main.min.597d9f5a80ce3137282a06b1b2cdbb5a481f3ae5ef0d0ba4265c177b6d788b36.js" integrity="sha256-WX2fWoDOMTcoKgaxss27WkgfOuXvDQukJlwXe214izY="></script>
   
@@ -191,11 +223,11 @@ document.addEventListener("visibilitychange", function () {
 <p>题目让签一个 2022 ，试了一下，第三个数字来不及画就结束了。</p>
 <p>去看看网页源码，想着改一下时间限制，把时间放宽点再签。</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/10/29/CNDgrSQsfaWZH49.png" alt="20221027_1.png" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/10/29/CNDgrSQsfaWZH49.png" alt="20221027_1.png" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>但结果是不行的，时间限制还是没变，应该是因为四个画板的时间限制是在下面 <code>new Vue</code> 的时候设置的， <code>TIME_LIMIT</code> 数组只是个临时变量。</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/10/29/DURlG2XTZq6N1MP.png" alt="20221027_2.png" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/10/29/DURlG2XTZq6N1MP.png" alt="20221027_2.png" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>后来点了一下提交，看见 url 是 <code>http://202.38.93.111:12022/?result=2???</code> ，那就给他改成 <code>http://202.38.93.111:12022/?result=2022</code> 试试，成功拿到 flag。</p>
 <p>看来是和去年一样的类型，直接在 url 上做手脚。</p>
@@ -208,7 +240,7 @@ document.addEventListener("visibilitychange", function () {
 <p>直接必应搜索“中国科学技术大学 NEBULA 战队（USTC NEBULA）是于何时成立的喵？”</p>
 <p>第一条结果就是喵</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/10/29/H1gc2huri6bnWJY.png" alt="20221027_3.png" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/10/29/H1gc2huri6bnWJY.png" alt="20221027_3.png" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <blockquote>
 <p>2022 年 9 月，中国科学技术大学学生 Linux 用户协会（LUG @ USTC）在科大校内承办了软件自由日活动。除了专注于自由撸猫的主会场之外，还有一些和技术相关的分会场（如闪电演讲 Lightning Talk）。其中在第一个闪电演讲主题里，主讲人于 slides 中展示了一张在 GNOME Wayland 下使用 Wayland 后端会出现显示问题的 KDE 程序截图，请问这个 KDE 程序的名字是什么？</p>
@@ -216,11 +248,11 @@ document.addEventListener("visibilitychange", function () {
 <p>搜索“LUG @ USTC 闪电演讲 2022”喵，找到 lug 主页上的一篇新闻稿喵，但是里面没有提到题目问的信息喵。</p>
 <p>继续在 lug 主页上搜索喵，找到“自由软件日”子页面喵，记录了历年的活动详情喵，包含 Slides 和回放喵。</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/10/29/epJVFL5GDmWqOv4.png" alt="20221027_4.png" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/10/29/epJVFL5GDmWqOv4.png" alt="20221027_4.png" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>先把 Slides 下载下来看看喵，可以推测出来题目是在问下面这一张中出现的截图是什么软件喵，但是截图上并没有显示软件名喵。</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/10/29/g79WbMlKI1tZcei.png" alt="20221027_5.png" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/10/29/g79WbMlKI1tZcei.png" alt="20221027_5.png" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>再去看看回访喵，定位到 2:42:04 喵，听到 taoky 说了一个软件名喵，能听出来的几个音节是 k d live 或者 life 喵。去搜索“k d live”喵，第一条记录是 Kdenlive 喵，发音符合喵，去试了一下喵，是正确答案喵。</p>
 <blockquote>
@@ -270,7 +302,7 @@ document.addEventListener("visibilitychange", function () {
 <p>在通知的附件 2 中可以看到新旧费用分担办法对比喵，可知旧的费用方案也是 20 元每月喵。</p>
 <p>那就继续搜索“〔2003〕1号《关于实行新的网络费用分担办法的通知》 site:ustc.edu.cn”喵，找到一份古早的通知喵。</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/10/29/xKlVE62h9w3MpGg.png" alt="20221027_6.png" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/10/29/xKlVE62h9w3MpGg.png" alt="20221027_6.png" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>答案是 2003-03-01 喵。</p>
 <h2 id="家目录里的秘密">家目录里的秘密</h2>
@@ -429,7 +461,7 @@ document.addEventListener("visibilitychange", function () {
 <p>去搜索“latex 包含文本文件” ，得知可以使用宏 <code>\input</code> 和 <code>\include</code> ，其中 <code>\include</code> 会导致换页，机器人截图看不到内容。</p>
 <p>输入 <code>$$ \input{/flag1} $$</code> 得到 flag 。</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/10/29/HQ5L9X4myZV2UpJ.png" alt="20221027_7.png" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/10/29/HQ5L9X4myZV2UpJ.png" alt="20221027_7.png" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>完成第一问之后，笔者就去尝试第二问了，但是一直没能做出来。</p>
 <p>这一题的第二问是笔者本次比赛做出来的最后一道题目。</p>
@@ -514,7 +546,7 @@ document.addEventListener("visibilitychange", function () {
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">$$ &#34;&#34;&#34;</span>
 </span></span></code></pre></div><p>顺利输出 flag</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/10/29/sPYpVNUKEZnm6Bc.png" alt="20221027_8.png" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/10/29/sPYpVNUKEZnm6Bc.png" alt="20221027_8.png" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>图中的点是下划线，不知道为什么变成了这样的点。</p>
 <h2 id="flag-的痕迹">Flag 的痕迹</h2>
@@ -523,7 +555,7 @@ document.addEventListener("visibilitychange", function () {
 <p>去 Dokuwiki 官网上找可以看到历史记录的命令，一个一个试，发现大部分都被禁用了，但是 <code>diff</code> 可以用。</p>
 <p>输入 <code>http://202.38.93.111:15004/doku.php?do=diff</code> ，往前一个版本，得到 flag</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/10/29/ceC4i2xSdDFMzmG.png" alt="20221027_9.png" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/10/29/ceC4i2xSdDFMzmG.png" alt="20221027_9.png" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <h2 id="安全的在线测评">安全的在线测评</h2>
 <p>从判题脚本可以看到数据的位置，直接做一个程序读取 <code>/data/static.out</code> 并输出</p>
@@ -569,7 +601,7 @@ document.addEventListener("visibilitychange", function () {
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>发现果然能输出文件内容</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/10/29/WvMVSsXuPa4EjfH.png" alt="20221027_10.png" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/10/29/WvMVSsXuPa4EjfH.png" alt="20221027_10.png" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>这时才意识到第一问的 flag 是什么意思：</p>
 <p>预期解应该是用编译器去看静态数据，然后重写一个程序输出，因此 flag 内容才是“编译器是我的眼”。</p>
@@ -706,28 +738,28 @@ document.addEventListener("visibilitychange", function () {
 <h2 id="线路板">线路板</h2>
 <p>送分题，安装一个 Altium Designer ，在某个板子上能看到 flag 字样，把后面的那些圆环一个一个删掉就能看到 flag 。</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/10/29/bWUtEfQvoPVuXZe.png" alt="20221027_11.png" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/10/29/bWUtEfQvoPVuXZe.png" alt="20221027_11.png" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <h2 id="flag-自动机">Flag 自动机</h2>
 <p>萌新的第一次逆向，不过这个题很友好，输出 flag 的函数都不对输入值做要求。</p>
 <p>先打开程序，有狠心夺取和放手离开两个按钮。</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/10/29/OqcHsBltNbjCrfM.png" alt="20221027_12.png" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/10/29/OqcHsBltNbjCrfM.png" alt="20221027_12.png" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>鼠标移动到狠心夺取上的时候按钮会随机移动到其他位置，点击放手离开则程序关闭。</p>
 <p>打开 IDA 开始逆向，F5 出伪代码。</p>
 <p>先看一下 <code>_WinMain@16</code> 函数，把里面那些粉紫色的函数拿去搜一下，了解到这是个 WinAPI 程序。</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/10/29/pnazNBTuKCGqPQV.png" alt="20221027_13.png" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/10/29/pnazNBTuKCGqPQV.png" alt="20221027_13.png" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>再把那些 <code>sub</code> 函数挨个看一遍，找到一个可疑的函数 <code>sub_401510</code> ，里面写了个 <code>switch</code> 对传入的 <code>Msg</code> 进行处理。</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/10/29/NuaFLdS8xbr42zA.png" alt="20221027_14.png" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/10/29/NuaFLdS8xbr42zA.png" alt="20221027_14.png" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>当满足某些条件时，输出 <code>Congratulations</code> ，并把 flag 输出到 <code>flag_machine.txt</code> 中。</p>
 <p>直接把最外面这个跳转改到 <code>loc_401840</code> 的位置（即打印 flag 的位置），运行程序。</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/10/29/wn16qKQLYvhHzrO.png" alt="20221027_15.png" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/10/29/wn16qKQLYvhHzrO.png" alt="20221027_15.png" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>结果程序弹窗“恭喜获得 flag ”（并且弹窗关不掉），同时有一个 <code>flag_machine.txt</code> 文件出现。</p>
 <p>但是打开该文件后发现里面是乱码，只能依稀辨别出来 f l g { 这四个字符。</p>
@@ -743,16 +775,16 @@ document.addEventListener("visibilitychange", function () {
 <p>后面又进行了一些类似的操作，又都以失败告终了。</p>
 <p>笔者决定换换思路，就去找别的函数来看，发现了另外一个可疑的函数 <code>pfnSubclass</code> ，这个函数里有 <code>rand</code> ，而且这个函数明显是在调整按钮的位置（为什么没有早一点发现。。。）</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/10/29/yTS6DLu8znbWkvw.png" alt="20221027_16.png" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/10/29/yTS6DLu8znbWkvw.png" alt="20221027_16.png" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>把 <code>if</code> 的条件改成其他值，使其不能成功（其实最开始是想给 <code>SetWindowPos</code> 传固定值，但是又不知道为啥失败了）。</p>
 <p>终于，按钮不再乱动了，但是：</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/10/29/mbycOq8Dk43GQwU.png" alt="20221027_17.png" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/10/29/mbycOq8Dk43GQwU.png" alt="20221027_17.png" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>好吧，看来这个是和 <code>114514</code> 有关的，那就把 <code>sub_401510</code> 里对 <code>lParam == 114514</code> 的判断跳转从 <code>jz</code> 改为 <code>jnz</code> ，再运行程序，拿到 flag <code>flag{Y0u_rea1ly_kn0w_Win32API_...}</code> 。</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/10/29/HdnNql1T9jh2yrP.png" alt="20221027_18.png" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/10/29/HdnNql1T9jh2yrP.png" alt="20221027_18.png" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>题到这里是写完了，但是还有问题。</p>
 <p><code>sub_401F8A</code> 在解码 flag 的时候需要传入一个参数，在 <code>lParam == 114514</code> 的情况下，这个参数固然是 <code>114514</code> ，但是在修改了上述逻辑之后，传入的参数是不可知的。</p>
@@ -775,7 +807,7 @@ document.addEventListener("visibilitychange", function () {
 </span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">script</span><span style="color:#f92672">&gt;</span>
 </span></span></code></pre></div><p>提交之后看 F12 ，代码确实提交上去了，但是似乎没有运行，代码颜色是黑色的，可能甚至没有被解析。</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/10/29/z1LhkKUrVJbym6Q.png" alt="20221027_19.png" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/10/29/z1LhkKUrVJbym6Q.png" alt="20221027_19.png" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>去搜了一下“js注入，script没有被解析”，找到这一篇文章，提到前后端分离的方式可以避免这种注入。</p>
 <p><a href="https://blog.csdn.net/qq_41914181/article/details/109131138" target="_blank" rel="noopener">https://blog.csdn.net/qq_41914181/article/details/109131138</a></p>
@@ -1078,7 +1110,7 @@ $$</p>
 </span></span></code></pre></div><p>很容易联想到，这些 <code>SDF</code> 里面有一个是用来遮挡 flag 内容的。</p>
 <p>把五个 <code>SDF</code> 依次去掉测试，发现 <code>t5SDF</code> 即为遮挡物，得到 flag</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/10/29/wlM5IbyA69BKJGW.png" alt="20221027_20.png" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/10/29/wlM5IbyA69BKJGW.png" alt="20221027_20.png" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <h2 id="量子藏宝图">量子藏宝图</h2>
 <p>写完 WP 回来之后做的第一个 math 。</p>
@@ -1090,7 +1122,7 @@ $$</p>
 <p>得到测量基底后，统计测量基底中含有多少个 <code>+</code> ，就保留多少个 <code>0</code> 作为安全密钥。</p>
 <p>开启第二问，给出了一张量子电路图，提示是 Bernstein-Vazirani 算法，并且给出了一个参考链接。</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/10/29/xXsuOhEelR9P8q1.png" alt="20221027_21.png" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/10/29/xXsuOhEelR9P8q1.png" alt="20221027_21.png" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>去搜了一圈 Bernstein-Vazirani 算法，看到似乎可以直接使用 QPanda 或者 Qiskit 代码把电路图画出来然后运行得到结果。</p>
 <p>于是就开始了漫长的配环境之路，笔者最开始选择了 QPanda ，结果被 FreeStyle Matplot 等库橄榄了。</p>
@@ -1266,7 +1298,7 @@ $$</p>
 <p>感觉这次比赛的很多题目并不是在考察知识掌握程度，而是在考察搜索引擎熟练程度，很多知识现搜现用就能解题。</p>
 <p>另外前十合影留念：</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/10/29/WomhX65NVvC9gzU.png" alt="20221027_22.png" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/10/29/WomhX65NVvC9gzU.png" alt="20221027_22.png" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>（不过只坚持了俩小时就掉出去了，截至本文完成时 3650 分，组内 12 名）</p>
 <p>（写完 WP 又去做了两道 math ，结束时 4150 分，喜提组内 17 名）</p>
@@ -1424,7 +1456,11 @@ $$</p>
 
   </aside>
 </div>
-  </main><footer class="footer-container layout-block">
+  </main>
+
+  <div id="popup" onclick="hideBig(this)" onmousewheel="return wheelImg(this)">
+    <div class="bg"><img src="" alt="" /></div>
+  </div><footer class="footer-container layout-block">
   
   <div class="social-icons">
     

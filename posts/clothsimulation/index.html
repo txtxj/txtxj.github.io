@@ -8,16 +8,19 @@ jQuery(document).ready(function($) {
         var x = e.pageX, y = e.pageY;
         $text.css({
             "z-index": 1145141919810,
-            "top": y - 20,
+            "top": y,
             "left": x,
             "position": "absolute",
+            "pointer-events": "none",
+            "transform": "translate(-50%, -50%)",
             "font-weight": "bold",
             "color": "rgb("+~~(255 * Math.random())+","+~~(255 * Math.random())+","+~~(255 * Math.random())+")"
         });
         $("body").append($text);
         $text.animate({
             "top": y - 100,
-            "opacity": 0
+            "opacity": 0,
+            "fontSize": 0,
         },
         1500,
         function() {
@@ -30,6 +33,35 @@ document.addEventListener("visibilitychange", function () {
     if (document.title != "txtxj呼呼zzz") OriginTitile = document.title;
     document.title = document.hidden ? "txtxj呼呼zzz" : OriginTitile;
 });
+function showBig(obj) {
+  var popup = document.getElementById("popup");
+  var img = popup.children[0].children[0];
+  img.src = obj.src;
+  var scale = 2.0;
+  if (img.width * scale > window.innerWidth)
+  {
+    scale = window.innerWidth / img.width;
+  }
+  if (img.height * scale > window.innerHeight)
+  {
+    scale = window.innerHeight / img.height;
+  }
+  img.style.scale = scale;
+  popup.style.display = "block";
+}
+function hideBig(obj) {
+  obj.style.display = "none";
+}
+function wheelImg(obj) {
+  img = obj.children[0].children[0];
+  var scale = parseFloat(img.style.scale) || 1.0;
+    scale += event.wheelDelta / 5000;
+    if (scale > 0.9 && 
+      img.width * scale <= window.innerWidth && 
+      img.height * scale <= window.innerHeight)
+        img.style.scale = scale;
+    return false;
+}
 </script>
 <html><script>
   MathJax = {
@@ -109,7 +141,7 @@ a = F / m v(t &#43; 1) = v(t) &#43; a * dt x(t &#43; 1) = x(t) &#43; v(t &#43; 1
   
   
   
-  <link rel="stylesheet" href="https://txtxj.top/assets/css/style.min.f2838c815dae555621a1af5e12599139164f6748df5410c607cecca42f297b59.css" integrity="sha256-8oOMgV2uVVYhoa9eElmRORZPZ0jfVBDGB87MpC8pe1k=">
+  <link rel="stylesheet" href="https://txtxj.top/assets/css/style.min.d7be0f8fad7244473526cd277f8261515ff22b1d8040a21b197ae68da8db2de3.css" integrity="sha256-174Pj61yREc1Js0nf4JhUV/yKx2AQKIbGXrmjajbLeM=">
 
   <script src="https://txtxj.top/assets/js/main.min.597d9f5a80ce3137282a06b1b2cdbb5a481f3ae5ef0d0ba4265c177b6d788b36.js" integrity="sha256-WX2fWoDOMTcoKgaxss27WkgfOuXvDQukJlwXe214izY="></script>
   
@@ -193,7 +225,7 @@ a = F / m v(t &#43; 1) = v(t) &#43; a * dt x(t &#43; 1) = x(t) &#43; v(t &#43; 1
 <li>连接横向、纵向相隔一个位置的质点，这种弹簧称为弯曲弹簧，这种弹簧能抵抗使布料折叠的力。</li>
 </ol>
 <p>
-  <p><img src="https://s2.loli.net/2022/07/30/jY1Io8i6VHzBluX.jpg" alt="20220730_1.jpg" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/07/30/jY1Io8i6VHzBluX.jpg" alt="20220730_1.jpg" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>质点之间的弹簧力满足胡克定律</p>
 <p>$$
@@ -249,19 +281,19 @@ $$</p>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>然而当程序运行起来的时候，却得到了这样的效果</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/07/30/xuUHNEFcr25SjYz.gif" alt="20220730_2.gif" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/07/30/xuUHNEFcr25SjYz.gif" alt="20220730_2.gif" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>粒子满天飞。</p>
 <p>根据之前做弹簧模拟的经验，这是模拟步长 <code>dt</code> 过大和弹簧弹性系数 <code>ks</code> 过大导致的不稳定，进而失真。</p>
 <p>接下来就是漫长的调参过程，在调参过程中发现，质点数量太多严重影响了系统的稳定性，因此笔者使用了最简单的 2x2 系统进行模拟测试。</p>
 <p>如下图是一个比较合适的参数效果</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/07/30/wVFuonz8WeDZ3U9.gif" alt="20220730_3.gif" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/07/30/wVFuonz8WeDZ3U9.gif" alt="20220730_3.gif" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>可以看到，除了上方两个固定的粒子，下方粒子产生了明显偏移，且偏移方向为左侧（序号较小）的粒子。</p>
 <p>刚开始笔者认为这是因为重力太大，多个弹簧之间计算产生了不同的误差，误差逐渐积累导致粒子向左偏移，又进行了大量调参，但仍然得不到好的效果。</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/07/30/Gsl8yQ9KznRji2H.gif" alt="20220730_4.gif" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/07/30/Gsl8yQ9KznRji2H.gif" alt="20220730_4.gif" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>如上，将阻力调大、重力调小、弹性系数调大之后，整个系统很稳定，但粒子仍然会向左偏移。</p>
 <p>可以猜测是弹簧的某些 bug 导致了粒子左偏。</p>
@@ -269,7 +301,7 @@ $$</p>
 <p>但将粒子列数调多，制成布料，又出现了粒子满天飞的情况。</p>
 <p>若将剪切弹簧和弯曲弹簧删去，只保留结构弹簧，粒子变得稳定，得到了如下结果</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/07/30/6bi5eQWMgT9UldV.gif" alt="20220730_5.gif" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/07/30/6bi5eQWMgT9UldV.gif" alt="20220730_5.gif" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>所有粒子均向左偏，并最终稳定地保持在一条线上，而右上角的固定粒子似乎与其他所有粒子都毫无关系。</p>
 <p>自然可以推测，右方粒子没有给其下方粒子提供任何力，其弹簧实际上是无效的。</p>
@@ -315,7 +347,7 @@ $$</p>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>最终效果非常好</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/07/30/p1FMkSgHiEN65wa.gif" alt="20220730_6.gif" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/07/30/p1FMkSgHiEN65wa.gif" alt="20220730_6.gif" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>然而实际上笔者在实现过程中还遇到了一个离奇的 bug 。</p>
 <p>使用如下代码进行 <code>index</code> 和 <code>id</code> 的互相转化，会出现只有第一列粒子运动的情况（即只有第一列粒子被更新）。</p>
@@ -362,11 +394,11 @@ $$</p>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>对于除了第 0 行、第 0 列的顶点，将其左上方的两个三角形的六个顶点按逆时针（或顺时针）顺序输入数组中。</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/08/03/j5KcmWnYbEU7GeO.jpg" alt="20220730_7.jpg" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/08/03/j5KcmWnYbEU7GeO.jpg" alt="20220730_7.jpg" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 <p>再使用微表面 Blinn-Phone 模型着色，得到如下结果</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/07/30/ivF8Ump1dqKBDOT.gif" alt="20220730_8.gif" loading="lazy" /></p>
+  <p><img src="https://s2.loli.net/2022/07/30/ivF8Ump1dqKBDOT.gif" alt="20220730_8.gif" loading="lazy" onclick="showBig(this)"/></p>
 </p>
 
           </div>
@@ -521,7 +553,11 @@ $$</p>
 
   </aside>
 </div>
-  </main><footer class="footer-container layout-block">
+  </main>
+
+  <div id="popup" onclick="hideBig(this)" onmousewheel="return wheelImg(this)">
+    <div class="bg"><img src="" alt="" /></div>
+  </div><footer class="footer-container layout-block">
   
   <div class="social-icons">
     

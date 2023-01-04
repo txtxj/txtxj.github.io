@@ -8,19 +8,16 @@ jQuery(document).ready(function($) {
         var x = e.pageX, y = e.pageY;
         $text.css({
             "z-index": 1145141919810,
-            "top": y,
+            "top": y - 20,
             "left": x,
             "position": "absolute",
-            "pointer-events": "none",
-            "transform": "translate(-50%, -50%)",
             "font-weight": "bold",
             "color": "rgb("+~~(255 * Math.random())+","+~~(255 * Math.random())+","+~~(255 * Math.random())+")"
         });
         $("body").append($text);
         $text.animate({
             "top": y - 100,
-            "opacity": 0,
-            "fontSize": 0,
+            "opacity": 0
         },
         1500,
         function() {
@@ -33,35 +30,6 @@ document.addEventListener("visibilitychange", function () {
     if (document.title != "txtxj呼呼zzz") OriginTitile = document.title;
     document.title = document.hidden ? "txtxj呼呼zzz" : OriginTitile;
 });
-function showBig(obj) {
-  var popup = document.getElementById("popup");
-  var img = popup.children[0].children[0];
-  img.src = obj.src;
-  var scale = 2.0;
-  if (img.width * scale > window.innerWidth)
-  {
-    scale = window.innerWidth / img.width;
-  }
-  if (img.height * scale > window.innerHeight)
-  {
-    scale = window.innerHeight / img.height;
-  }
-  img.style.scale = scale;
-  popup.style.display = "block";
-}
-function hideBig(obj) {
-  obj.style.display = "none";
-}
-function wheelImg(obj) {
-  img = obj.children[0].children[0];
-  var scale = parseFloat(img.style.scale) || 1.0;
-    scale += event.wheelDelta / 5000;
-    if (scale > 0.9 && 
-      img.width * scale <= window.innerWidth && 
-      img.height * scale <= window.innerHeight)
-        img.style.scale = scale;
-    return false;
-}
 </script>
 <html><script>
   MathJax = {
@@ -102,40 +70,32 @@ function wheelImg(obj) {
   
   
   
-  <title>GAMES笔记03-光栅化 🌟 Txtxj</title>
+  <title>字节游戏客户端面经 🌟 Txtxj</title>
 
-  <meta property="og:title" content="GAMES笔记03-光栅化" />
-<meta property="og:description" content="在经过模型、视图、投影变换后，待显示的所有物体都处在了一个标准正方体内。
-而光栅化的目的，就是把这个标准正方体内的物体转化为一个个像素点显示在屏幕上。
-视口变换(Viewpoint Transformation) 屏幕中的每个像素点都可以使用一个整数坐标表示，每个像素点的边长为 1 ，
-需要注意，坐标 $(x, y)$ 表示的像素点的中心位置实际应为 $(x &#43; 0.5, y &#43; 0.5)$
-例如，坐标为 $(0, 0)$ 的像素点中心位于 $(0.5, 0.5)$ 。
-要将标准正方体变换到屏幕的矩形中，需要
-无视 Z 坐标 将坐标变换（缩放）到 $[0, \text{width}] \times [0, \text{height}]$ 的区域中 可以直接写出变换矩阵
-$$ \mathbf{M_{viewpoint}} = \begin{pmatrix} \frac{\text{width}}{2} &amp; 0 &amp; 0 &amp; \frac{\text{width}}{2} \\ 0 &amp; \frac{\text{height}}{2} &amp; 0 &amp; \frac{\text{height}}{2} \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \end{pmatrix} $$" />
+  <meta property="og:title" content="字节游戏客户端面经" />
+<meta property="og:description" content="字节跳动绿洲工作室，在做一款已经拿到版号，明年上线的游戏。
+第一次面试，面试前好紧张。面试过程心情逐渐放松了，但是回答不出来问题的时候还是好紧张。
+面试问题：
+自我介绍 选语言 C&#43;&#43; 或者 C# 。选了 C&#43;&#43; ，因为这两天看的面试题全是 C&#43;&#43; 。 static 的作用？静态全局变量，静态局部变量，静态函数，静态数据成员，静态成员函数。 静态局部变量是类的话，什么时候初始化？答了第一次运行到这里时初始化，面试官说可以，但是后来搜了一下疑似是根据编译器不同，初始化时机也不同。 inline 的作用？内联函数，暗示编译器内联，复杂结构不能内敛，有可能影响原函数性能。 推断变量类型的两个关键词？怎么使用？auto 和 decltype 。能举出一个场景，只能使用后者才能解决吗？不会。搜到的答案：const 类型的容器迭代器类型推断。 nullptr 和 NULL 的区别？前者的优点？NULL 是宏定义的 0 ，会被隐式转换为整数，不安全。 你怎么理解类的多态？不会八股文，就举了个自己写的例子。面试官说举的例子很好，但是能不能总结成一句话？有没有在网上搜过相关问题？有没有背过答案？我说不会，没背过。然后这个问题就过去了。 虚函数。虚表在内存的哪里？构造函数内可以调用虚函数吗，析构函数呢？虚表指针在实例首部。构造函数可以内调用虚函数，但只能调用基类虚函数。析构函数也是一样。但是析构函数本身往往是虚函数，被重写了就没影响。 堆是什么？用什么存？怎么建堆？怎么插入？怎么删除？ 反问环节。 " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://txtxj.top/posts/gamesnote03/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-12-30T03:13:15+08:00" />
-<meta property="article:modified_time" content="2021-12-30T03:13:15+08:00" />
+<meta property="og:url" content="https://txtxj.top/posts/interview/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-03T17:05:58+08:00" />
+<meta property="article:modified_time" content="2023-01-03T17:05:58+08:00" />
 
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="GAMES笔记03-光栅化"/>
-<meta name="twitter:description" content="在经过模型、视图、投影变换后，待显示的所有物体都处在了一个标准正方体内。
-而光栅化的目的，就是把这个标准正方体内的物体转化为一个个像素点显示在屏幕上。
-视口变换(Viewpoint Transformation) 屏幕中的每个像素点都可以使用一个整数坐标表示，每个像素点的边长为 1 ，
-需要注意，坐标 $(x, y)$ 表示的像素点的中心位置实际应为 $(x &#43; 0.5, y &#43; 0.5)$
-例如，坐标为 $(0, 0)$ 的像素点中心位于 $(0.5, 0.5)$ 。
-要将标准正方体变换到屏幕的矩形中，需要
-无视 Z 坐标 将坐标变换（缩放）到 $[0, \text{width}] \times [0, \text{height}]$ 的区域中 可以直接写出变换矩阵
-$$ \mathbf{M_{viewpoint}} = \begin{pmatrix} \frac{\text{width}}{2} &amp; 0 &amp; 0 &amp; \frac{\text{width}}{2} \\ 0 &amp; \frac{\text{height}}{2} &amp; 0 &amp; \frac{\text{height}}{2} \\ 0 &amp; 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 &amp; 1 \end{pmatrix} $$"/>
+<meta name="twitter:title" content="字节游戏客户端面经"/>
+<meta name="twitter:description" content="字节跳动绿洲工作室，在做一款已经拿到版号，明年上线的游戏。
+第一次面试，面试前好紧张。面试过程心情逐渐放松了，但是回答不出来问题的时候还是好紧张。
+面试问题：
+自我介绍 选语言 C&#43;&#43; 或者 C# 。选了 C&#43;&#43; ，因为这两天看的面试题全是 C&#43;&#43; 。 static 的作用？静态全局变量，静态局部变量，静态函数，静态数据成员，静态成员函数。 静态局部变量是类的话，什么时候初始化？答了第一次运行到这里时初始化，面试官说可以，但是后来搜了一下疑似是根据编译器不同，初始化时机也不同。 inline 的作用？内联函数，暗示编译器内联，复杂结构不能内敛，有可能影响原函数性能。 推断变量类型的两个关键词？怎么使用？auto 和 decltype 。能举出一个场景，只能使用后者才能解决吗？不会。搜到的答案：const 类型的容器迭代器类型推断。 nullptr 和 NULL 的区别？前者的优点？NULL 是宏定义的 0 ，会被隐式转换为整数，不安全。 你怎么理解类的多态？不会八股文，就举了个自己写的例子。面试官说举的例子很好，但是能不能总结成一句话？有没有在网上搜过相关问题？有没有背过答案？我说不会，没背过。然后这个问题就过去了。 虚函数。虚表在内存的哪里？构造函数内可以调用虚函数吗，析构函数呢？虚表指针在实例首部。构造函数可以内调用虚函数，但只能调用基类虚函数。析构函数也是一样。但是析构函数本身往往是虚函数，被重写了就没影响。 堆是什么？用什么存？怎么建堆？怎么插入？怎么删除？ 反问环节。 "/>
 
 
   
   
   
   
-  <link rel="stylesheet" href="https://txtxj.top/assets/css/style.min.d7be0f8fad7244473526cd277f8261515ff22b1d8040a21b197ae68da8db2de3.css" integrity="sha256-174Pj61yREc1Js0nf4JhUV/yKx2AQKIbGXrmjajbLeM=">
+  <link rel="stylesheet" href="https://txtxj.top/assets/css/style.min.f2838c815dae555621a1af5e12599139164f6748df5410c607cecca42f297b59.css" integrity="sha256-8oOMgV2uVVYhoa9eElmRORZPZ0jfVBDGB87MpC8pe1k=">
 
   <script src="https://txtxj.top/assets/js/main.min.597d9f5a80ce3137282a06b1b2cdbb5a481f3ae5ef0d0ba4265c177b6d788b36.js" integrity="sha256-WX2fWoDOMTcoKgaxss27WkgfOuXvDQukJlwXe214izY="></script>
   
@@ -173,28 +133,21 @@ $$ \mathbf{M_{viewpoint}} = \begin{pmatrix} \frac{\text{width}}{2} &amp; 0 &amp;
     <div class="single-container layout-block">
       <div class="article-info">
         <div class="article-header layout-padding">
-          <div class="article-cover card-container content-padding-large soft-size--large soft-style--box img">
+          <div class="article-cover card-container content-padding-large soft-size--large soft-style--box ">
 
   <div class="card-cover">
-    
-      <img src="https://s2.loli.net/2022/01/05/Lkz73Iro9D158ed.jpg" alt="https://s2.loli.net/2022/01/05/Lkz73Iro9D158ed.jpg" />
     
   </div>
 
   <div class="card-text">
-    <h1 class="card-text--title">GAMES笔记03-光栅化</h1>
+    <h1 class="card-text--title">字节游戏客户端面经</h1>
     
-      <p class="card-text--row">2021-12-30 03:13</p>
+      <p class="card-text--row">2023-01-03 17:05</p>
       
       
       
 
       
-      
-        <ul class="card-text--tag">
-          
-            <li><a href="https://txtxj.top/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a></li>
-            <li><a href="https://txtxj.top/tags/%E7%AC%94%E8%AE%B0/">笔记</a></li></ul>
       
     
   </div>
@@ -204,44 +157,25 @@ $$ \mathbf{M_{viewpoint}} = \begin{pmatrix} \frac{\text{width}}{2} &amp; 0 &amp;
 
         <div class="article-content">
           <div class="markdown-body content-padding-large soft-size--large soft-style--box">
-            <p>在经过模型、视图、投影变换后，待显示的所有物体都处在了一个标准正方体内。</p>
-<p>而光栅化的目的，就是把这个标准正方体内的物体转化为一个个像素点显示在屏幕上。</p>
-<h2 id="视口变换viewpoint-transformation">视口变换(Viewpoint Transformation)</h2>
-<p>屏幕中的每个像素点都可以使用一个整数坐标表示，每个像素点的边长为 1 ，</p>
-<p>
-  <p><img src="https://s2.loli.net/2022/01/04/nAB1h6CV97lvkNF.jpg" alt="" loading="lazy" onclick="showBig(this)"/></p>
-</p>
-<p>需要注意，坐标 $(x, y)$ 表示的像素点的中心位置实际应为 $(x + 0.5, y + 0.5)$</p>
-<p>例如，坐标为 $(0, 0)$ 的像素点中心位于 $(0.5, 0.5)$ 。</p>
-<p>要将标准正方体变换到屏幕的矩形中，需要</p>
+            <p>字节跳动绿洲工作室，在做一款已经拿到版号，明年上线的游戏。</p>
+<p>第一次面试，面试前好紧张。面试过程心情逐渐放松了，但是回答不出来问题的时候还是好紧张。</p>
+<p>面试问题：</p>
 <ul>
-<li>无视 Z 坐标</li>
-<li>将坐标变换（缩放）到 $[0, \text{width}] \times [0, \text{height}]$ 的区域中</li>
+<li>自我介绍</li>
+<li>选语言 C++ 或者 C# 。选了 C++ ，因为这两天看的面试题全是 C++ 。</li>
+<li>static 的作用？静态全局变量，静态局部变量，静态函数，静态数据成员，静态成员函数。
+<ul>
+<li>静态局部变量是类的话，什么时候初始化？答了第一次运行到这里时初始化，面试官说可以，但是后来搜了一下疑似是根据编译器不同，初始化时机也不同。</li>
 </ul>
-<p>可以直接写出变换矩阵</p>
-<p>$$
-\mathbf{M_{viewpoint}} = 
-\begin{pmatrix}
-\frac{\text{width}}{2} &amp; 0 &amp; 0 &amp; \frac{\text{width}}{2} \\
-0 &amp; \frac{\text{height}}{2} &amp; 0 &amp; \frac{\text{height}}{2} \\
-0 &amp; 0 &amp; 1 &amp; 0 \\
-0 &amp; 0 &amp; 0 &amp; 1
-\end{pmatrix}
-$$</p>
-<h2 id="三角形光栅化">三角形光栅化</h2>
-<p>由于三角形是最简单的多边形，任意的多边形也都可以拆分为若干个三角形，三角形光栅化也就是多边形光栅化的基础。</p>
-<p>考虑任意一个给定三顶点坐标的三角形，该三角形唯一确定。想要在屏幕上显示这个三角形，可以判断屏幕中每个像素点是否在该三角形内部，这种方法被称为采样法。</p>
-<p>
-  <p><img src="https://s2.loli.net/2022/01/04/OisGBj4mHNIUTX5.jpg" alt="" loading="lazy" onclick="showBig(this)"/></p>
-</p>
-<p>对于每个像素点，如果该像素点的中央位于三角形内部，那么这个点将被采用；如果位于外部，那么这个点不被采用。</p>
-<p>而判断一个像素点的中心是否在三角形内部，可以通过向量的叉积解决。</p>
-<p>
-  <p><img src="https://s2.loli.net/2022/01/04/yYsmfU59cOPCXTI.jpg" alt="" loading="lazy" onclick="showBig(this)"/></p>
-</p>
-<p>已知三角形的三顶点坐标 $P_0, P_1, P_2$ ，以及需要判断的像素点中心坐标 $Q$ ，</p>
-<p>可以通过计算 $P_0 P_1 \times P_0 Q, P_1 P_2 \times P_1 Q, P_2 P_0 \times P_2 Q$ ，判断三者结果是否同号，若结果同号，则 $Q$ 点一定位于三角形内部，否则 $Q$ 点位于三角形外部。</p>
-<p>特殊地，对于恰好落在三角形边界的像素点，可以统一规定采用或不采用，也可以设定更详细的规则来判断。</p>
+</li>
+<li>inline 的作用？内联函数，暗示编译器内联，复杂结构不能内敛，有可能影响原函数性能。</li>
+<li>推断变量类型的两个关键词？怎么使用？auto 和 decltype 。能举出一个场景，只能使用后者才能解决吗？不会。搜到的答案：const 类型的容器迭代器类型推断。</li>
+<li>nullptr 和 NULL 的区别？前者的优点？NULL 是宏定义的 0 ，会被隐式转换为整数，不安全。</li>
+<li>你怎么理解类的多态？不会八股文，就举了个自己写的例子。面试官说举的例子很好，但是能不能总结成一句话？有没有在网上搜过相关问题？有没有背过答案？我说不会，没背过。然后这个问题就过去了。</li>
+<li>虚函数。虚表在内存的哪里？构造函数内可以调用虚函数吗，析构函数呢？虚表指针在实例首部。构造函数可以内调用虚函数，但只能调用基类虚函数。析构函数也是一样。但是析构函数本身往往是虚函数，被重写了就没影响。</li>
+<li>堆是什么？用什么存？怎么建堆？怎么插入？怎么删除？</li>
+<li>反问环节。</li>
+</ul>
 
           </div>
         </div>
@@ -256,23 +190,13 @@ $$</p>
 
   <div class="article-paging">
     
-      <section class="post-paging--item card-container content-padding-primary soft-size--primary soft-style--box">
-  <a href="/posts/sublimemarkdown/">
-  <div class="card-cover" background-image-lazy data-img="https://s2.loli.net/2022/01/05/VXLbwvYEs3BFeAo.jpg"></div>
-  <div class="card-text">
-    <h4 class="card-text--title">快捷键 - MarkDown 插入代码块</h4>
-    <p class="card-text--row">2022-01-05 22:54</p>
-  </div>
-  </a>
-</section>
-    
     
       <section class="post-paging--item card-container content-padding-primary soft-size--primary soft-style--box">
-  <a href="/posts/gamesnote02/">
-  <div class="card-cover" background-image-lazy data-img="https://s2.loli.net/2021/12/24/fbnAEsC54U9DXmN.jpg"></div>
+  <a href="/posts/hackergame2022/">
+  <div class="card-cover" background-image-lazy data-img="https://s2.loli.net/2022/10/29/NjFDgTRwUaCiGQP.jpg"></div>
   <div class="card-text">
-    <h4 class="card-text--title">GAMES笔记02-模型、视图、投影变换</h4>
-    <p class="card-text--row">2021-12-23 20:18</p>
+    <h4 class="card-text--title">HackerGame2022 WriteUP</h4>
+    <p class="card-text--row">2022-10-27 19:48</p>
   </div>
   </a>
 </section>
@@ -305,17 +229,14 @@ $$</p>
     </div>
   </h2>
   <div class="widget-body">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#视口变换viewpoint-transformation">视口变换(Viewpoint Transformation)</a></li>
-    <li><a href="#三角形光栅化">三角形光栅化</a></li>
-  </ul>
-</nav>
+    <nav id="TableOfContents"></nav>
   </div>
 </section>
 
 
     
+
+
 
 
 
@@ -334,6 +255,8 @@ $$</p>
     <ul class="post-list">
       
       
+        <li class="post-item"><a href="/posts/hackergame2022/">HackerGame2022 WriteUP</a></li>
+      
         <li class="post-item"><a href="/posts/csharpclass/">C# 类的多态</a></li>
       
         <li class="post-item"><a href="/posts/clothsimulation/">布料模拟与渲染</a></li>
@@ -343,8 +266,6 @@ $$</p>
         <li class="post-item"><a href="/posts/objecttoworldnormal/">法线向量的模型-世界变换</a></li>
       
         <li class="post-item"><a href="/posts/treedebugger/">二叉树打印</a></li>
-      
-        <li class="post-item"><a href="/posts/gamesnote02/">GAMES笔记02-模型、视图、投影变换</a></li>
       
     </ul>
   </div>
@@ -393,11 +314,7 @@ $$</p>
 
   </aside>
 </div>
-  </main>
-
-  <div id="popup" onclick="hideBig(this)" onmousewheel="return wheelImg(this)">
-    <div class="bg"><img src="" alt="" /></div>
-  </div><footer class="footer-container layout-block">
+  </main><footer class="footer-container layout-block">
   
   <div class="social-icons">
     
