@@ -15,7 +15,9 @@
       <pubDate>Sat, 10 Sep 2022 16:16:23 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
       <guid>https://txtxj.top/posts/csharpclass/</guid>
-      <description>C# 类的多态性允许把不同的派生类用一个统一的基类接口来处理。
+      <description>面试被问到如何理解类的多态性了，没答出来呜呜呜。
+同一操作作用于不同的对象，可以有不同的解释，产生不同的执行结果，这就是多态性。
+C# 类的多态性允许把不同的派生类用一个统一的基类接口来处理。
 即一段代码可以同样地工作在所有这些具有同一个基类的不同派生类上。
 并且不同的派生类可以使用同一个接口实现不同的操作。
 在 C# 中提供了三种方法来实现类的多态：
