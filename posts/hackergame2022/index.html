@@ -810,8 +810,9 @@ function wheelImg(obj) {
 </p>
 <p>去搜了一下“js注入，script没有被解析”，找到这一篇文章，提到前后端分离的方式可以避免这种注入。</p>
 <p><a href="https://blog.csdn.net/qq_41914181/article/details/109131138" target="_blank" rel="noopener">https://blog.csdn.net/qq_41914181/article/details/109131138</a></p>
-<p>那还能怎么注入？又试了一下向后端提交链接 <code>javascript:{greeting=document.getElementById('greeting');greeting.innerHTML=`${document.cookie}`;}</code> 
-结果提示 <code>JavaScript Error: Did you give me correct URL?</code></p>
+<p>那还能怎么注入？又试了一下向后端提交链接</p>
+<pre tabindex="0"><code>javascript:{greeting=document.getElementById(&#39;greeting&#39;);greeting.innerHTML=`${document.cookie}`;}
+</code></pre><p>结果提示 <code>JavaScript Error: Did you give me correct URL?</code></p>
 <p>推测可能是刚开始访问的秘密链接里面没有 <code>greeting</code> 这个元素，就又尝试着在代码里创建这个元素，再把 cookie 写进去，也以失败告终。</p>
 <p>于是笔者去搞了个 chromedriver ，在本机试了一下。</p>
 <p>发现问题出在 webdriver 对 JS 命令进行 Get 操作的时候，浏览器会直接关闭，然后抛出异常。</p>
@@ -821,6 +822,7 @@ function wheelImg(obj) {
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">img</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#a6e22e">x</span> <span style="color:#a6e22e">onerror</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">greeting</span><span style="color:#f92672">=</span>document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;greeting&#39;</span>);<span style="color:#a6e22e">greeting</span>.<span style="color:#a6e22e">innerHTML</span><span style="color:#f92672">=</span><span style="color:#e6db74">`</span><span style="color:#e6db74">${</span>document.<span style="color:#a6e22e">cookie</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;}<span style="color:#f92672">&gt;</span>
 </span></span></code></pre></div><p>成功拿到 flag <code>flag{xS5_1OI_is_N0t_SOHARD_...}</code></p>
 <p>（又学到了新知识，准备去 xls 的博客上玩玩注入</p>
+<p>（玩完回来了，xls 的博客直接把 <code>onerror</code> 部分给删掉了</p>
 <h2 id="杯窗鹅影">杯窗鹅影</h2>
 <p>这个题题目那么长，又是纯纯的 nc 题目，还打着 binary 标签，看一眼就觉得劝退。</p>
 <p>但是试了一下第一题，意外的简单。</p>
