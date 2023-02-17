@@ -8,7 +8,30 @@
     <language>zh-cn</language>
     <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
     <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
-    <lastBuildDate>Thu, 27 Oct 2022 19:48:31 +0800</lastBuildDate><atom:link href="https://txtxj.top/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 03 Jan 2023 17:05:58 +0800</lastBuildDate><atom:link href="https://txtxj.top/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>游戏客户端开发日常实习面经</title>
+      <link>https://txtxj.top/posts/interview/</link>
+      <pubDate>Tue, 03 Jan 2023 17:05:58 +0800</pubDate>
+      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <guid>https://txtxj.top/posts/interview/</guid>
+      <description>字节绿洲-一面（40min） 字节跳动绿洲工作室，在做一款已经拿到版号，预计 23 年上线的游戏。用的是 UE4 。
+第一次面试，面试前好紧张。面试过程心情逐渐放松了，但是回答不出来问题的时候还是好紧张。
+面试问了挺多 C++ 11 的特性，今早刚好看了这篇文章，帮助很大。
+面试问题：
+自我介绍。 一句话说了一下学习情况，然后主要介绍自己的项目。我主要讲了 GMTK 2022 的作品。讲了万向锁和信号量。后面面试官也问了一下万向锁和信号量。
+会不会 Lua ？ 会一点。
+选语言 C++ 或者 C# 。 选了 C++ ，因为这两天看的面试题全是 C++ 。然后后面就完全没问 C# 。垃圾回收和 Monobehaviour 白看了。
+不过毕竟人家项目组用的是 UE ，可能也不怎么想问 Unity 相关。
+static 的作用？ 静态全局变量，静态局部变量，静态函数，静态数据成员，静态成员函数。
+静态全局变量存放在哪个区？ 静态存储区。
+静态局部变量是类的话，什么时候初始化？ 答了第一次运行到这里时初始化。面试官说可以，但是后来搜了一下疑似是根据编译器不同，初始化时机也不同。
+inline 的作用？ 内联函数，暗示编译器内联，复杂结构不能内敛，有可能影响原函数性能。
+推断变量类型的两个关键词？怎么使用？能举出一个场景，只能使用后者才能解决吗？ auto 和 decltype ，今早刚看过。又答了一个 typeof ，面试官说 C++ 没有，但是后来试了一下是有的。
+搜到的答案：容器迭代器类型推断必须用 decltype 。（因为容器传入的类型为 const 时，迭代器是 const_iterator 而非 iterator）
+nullptr 和 NULL 的区别？前者的优点？ NULL 是宏定义的 0 ，会被隐式转换为整数，不安全。</description>
+    </item>
+    
     <item>
       <title>HackerGame2022 WriteUP</title>
       <link>https://txtxj.top/posts/hackergame2022/</link>

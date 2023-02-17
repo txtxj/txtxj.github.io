@@ -2,19 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://txtxj.top/posts/hackergame2022/</loc>
-    <lastmod>2022-10-27T19:48:31+08:00</lastmod>
-  </url><url>
     <loc>https://txtxj.top/</loc>
+    <lastmod>2023-01-03T17:05:58+08:00</lastmod>
+  </url><url>
+    <loc>https://txtxj.top/posts/</loc>
+    <lastmod>2023-01-03T17:05:58+08:00</lastmod>
+  </url><url>
+    <loc>https://txtxj.top/posts/interview/</loc>
+    <lastmod>2023-01-03T17:05:58+08:00</lastmod>
+  </url><url>
+    <loc>https://txtxj.top/posts/hackergame2022/</loc>
     <lastmod>2022-10-27T19:48:31+08:00</lastmod>
   </url><url>
     <loc>https://txtxj.top/tags/</loc>
     <lastmod>2022-10-27T19:48:31+08:00</lastmod>
   </url><url>
     <loc>https://txtxj.top/tags/%E9%A2%98%E8%A7%A3/</loc>
-    <lastmod>2022-10-27T19:48:31+08:00</lastmod>
-  </url><url>
-    <loc>https://txtxj.top/posts/</loc>
     <lastmod>2022-10-27T19:48:31+08:00</lastmod>
   </url><url>
     <loc>https://txtxj.top/tags/c#/</loc>
