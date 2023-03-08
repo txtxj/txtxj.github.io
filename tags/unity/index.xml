@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Unity on Txtxj</title>
+    <title>Unity on Citrine</title>
     <link>https://txtxj.top/tags/unity/</link>
-    <description>Recent content in Unity on Txtxj</description>
+    <description>Recent content in Unity on Citrine</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
-    <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
+    <managingEditor>txtxj@mail.ustc.edu.cn (Citrine)</managingEditor>
+    <webMaster>txtxj@mail.ustc.edu.cn (Citrine)</webMaster>
     <lastBuildDate>Sat, 30 Jul 2022 15:50:01 +0800</lastBuildDate><atom:link href="https://txtxj.top/tags/unity/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>布料模拟与渲染</title>
       <link>https://txtxj.top/posts/clothsimulation/</link>
       <pubDate>Sat, 30 Jul 2022 15:50:01 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/clothsimulation/</guid>
       <description>仓库地址：https://github.com/txtxj/Cloth-Simulation
 本来上次的 SSAO 做完之后准备去做流体模拟的，结果因为完全不懂 GPU 编程，看不懂 compute shader ，并且以前没做过物理模拟而放弃了。
@@ -32,7 +32,7 @@ a = F / m v(t + 1) = v(t) + a * dt x(t + 1) = x(t) + v(t + 1) * dt 代码模拟�
       <title>屏幕空间环境光遮蔽（SSAO） Unity 实现</title>
       <link>https://txtxj.top/posts/ssaounity/</link>
       <pubDate>Tue, 12 Jul 2022 15:45:35 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/ssaounity/</guid>
       <description>Games 101 大作业 Screen Space Ambient Occlusion With Unity
 本文旨在记录大作业实现过程中遇到的各种问题与解决方案。
@@ -47,7 +47,7 @@ float3 sampling(float2 seed) { float4 r; r.</description>
       <title>法线向量的模型-世界变换</title>
       <link>https://txtxj.top/posts/objecttoworldnormal/</link>
       <pubDate>Mon, 16 May 2022 22:44:43 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/objecttoworldnormal/</guid>
       <description>为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵 在 《Unity ShaderLab 新手宝典》中 64 页给出了一个结论
 在顶点函数中，使用 Unity 提供的变换矩阵 unity_ObjectToWorld 将顶点坐标从模型空间变换到世界空间。为了避免非统一缩放的物体法线方向偏移，使用法线向量右乘逆矩阵的方式对其进行空间变换。
@@ -64,7 +64,7 @@ float3 sampling(float2 seed) { float4 r; r.</description>
       <title>Unity笔记03</title>
       <link>https://txtxj.top/posts/unityself03/</link>
       <pubDate>Mon, 06 Sep 2021 12:08:35 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/unityself03/</guid>
       <description>本篇记录了物体移动以及摄像机跟随防抖动的实现。
 键盘控制物体移动 使用 Input.GetAxis() 或 Input.GetAxisRaw() 获取 axisName 标识的虚拟轴的值。
@@ -87,7 +87,7 @@ if (rh &amp;lt; 0f) { dir.x = -1; animator.SetInteger(&amp;#34;Direction&amp;#34
       <title>Unity笔记02</title>
       <link>https://txtxj.top/posts/unityself02/</link>
       <pubDate>Mon, 03 May 2021 01:46:19 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/unityself02/</guid>
       <description>本篇笔记记录了后座力的实现。
 后座力（AddForce）与移动（velocity）不兼容 用 AddForce 给玩家添加一个反向的作用力后，
@@ -105,7 +105,7 @@ private float speed = 2f; private void FixedUpdate() { float rh = Input.GetAxisR
       <title>Unity笔记01</title>
       <link>https://txtxj.top/posts/unityself01/</link>
       <pubDate>Sat, 02 Jan 2021 18:08:34 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/unityself01/</guid>
       <description>本篇笔记记录了瞬移魔法的穿墙问题的解决问题。
 瞬移魔法穿墙问题 在 2021.1.1 的版本中，

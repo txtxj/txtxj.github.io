@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>C# on Txtxj</title>
+    <title>C# on Citrine</title>
     <link>https://txtxj.top/tags/c#/</link>
-    <description>Recent content in C# on Txtxj</description>
+    <description>Recent content in C# on Citrine</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
-    <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
+    <managingEditor>txtxj@mail.ustc.edu.cn (Citrine)</managingEditor>
+    <webMaster>txtxj@mail.ustc.edu.cn (Citrine)</webMaster>
     <lastBuildDate>Sat, 10 Sep 2022 16:16:23 +0800</lastBuildDate><atom:link href="https://txtxj.top/tags/c#/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>C# 类的多态</title>
       <link>https://txtxj.top/posts/csharpclass/</link>
       <pubDate>Sat, 10 Sep 2022 16:16:23 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/csharpclass/</guid>
       <description>面试被问到如何理解类的多态性了，没答出来呜呜呜。
 同一操作作用于不同的对象，可以有不同的解释，产生不同的执行结果，这就是多态性。

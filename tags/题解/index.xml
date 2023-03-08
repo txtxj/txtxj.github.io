@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>题解 on Txtxj</title>
+    <title>题解 on Citrine</title>
     <link>https://txtxj.top/tags/%E9%A2%98%E8%A7%A3/</link>
-    <description>Recent content in 题解 on Txtxj</description>
+    <description>Recent content in 题解 on Citrine</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
-    <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
+    <managingEditor>txtxj@mail.ustc.edu.cn (Citrine)</managingEditor>
+    <webMaster>txtxj@mail.ustc.edu.cn (Citrine)</webMaster>
     <lastBuildDate>Thu, 27 Oct 2022 19:48:31 +0800</lastBuildDate><atom:link href="https://txtxj.top/tags/%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>HackerGame2022 WriteUP</title>
       <link>https://txtxj.top/posts/hackergame2022/</link>
       <pubDate>Thu, 27 Oct 2022 19:48:31 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/hackergame2022/</guid>
       <description>笔者本来是不打算参加今年 HackerGame 的（因为去年感觉好累，然后混了个 33 名，错失纪念衫），但是周六晚上看见群里好多人查航班，抱着来看看题目的心态点开了比赛链接，然后就一发不可收拾了。
 笔者并没有网安、汇编方面的基础，数论更是一塌糊涂，只写了一部分题，在此记录一下写题过程中的思路。
@@ -36,7 +36,7 @@
       <title>题解 领奖台数</title>
       <link>https://txtxj.top/posts/solutionprize/</link>
       <pubDate>Fri, 13 May 2022 17:59:19 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/solutionprize/</guid>
       <description>这是陈雪老师《算法基础》课程中的一道作业题，似乎是老师原创的（在网上找题解没找到）。
 题面如下
@@ -58,7 +58,7 @@ $i &amp;lt; j \le mid &amp;lt; k$ $i \le mid &amp;lt; j &amp;lt; k$ 其中 $mid$
       <title>【题解】CF1452D Radio Towers</title>
       <link>https://txtxj.top/posts/solutioncf1452d/</link>
       <pubDate>Mon, 02 Aug 2021 06:37:00 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/solutioncf1452d/</guid>
       <description>cyz好兄弟上了大学一直在刷题打比赛，
 某日忘了概率怎么算了，半夜来问我这个题。
@@ -87,7 +87,7 @@ $$dp[2n] = dp[1] + dp[3] + dp[5] + &amp;hellip; + dp[2n - 1]$$</description>
       <title>题解 P5020 【货币系统】</title>
       <link>https://txtxj.top/posts/solutionp5020/</link>
       <pubDate>Thu, 07 Feb 2019 23:50:45 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/solutionp5020/</guid>
       <description>某凯的疑惑
 看样例：

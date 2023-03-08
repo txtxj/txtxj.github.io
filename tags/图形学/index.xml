@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>图形学 on Txtxj</title>
+    <title>图形学 on Citrine</title>
     <link>https://txtxj.top/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</link>
-    <description>Recent content in 图形学 on Txtxj</description>
+    <description>Recent content in 图形学 on Citrine</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
-    <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
+    <managingEditor>txtxj@mail.ustc.edu.cn (Citrine)</managingEditor>
+    <webMaster>txtxj@mail.ustc.edu.cn (Citrine)</webMaster>
     <lastBuildDate>Sat, 30 Jul 2022 15:50:01 +0800</lastBuildDate><atom:link href="https://txtxj.top/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>布料模拟与渲染</title>
       <link>https://txtxj.top/posts/clothsimulation/</link>
       <pubDate>Sat, 30 Jul 2022 15:50:01 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/clothsimulation/</guid>
       <description>仓库地址：https://github.com/txtxj/Cloth-Simulation
 本来上次的 SSAO 做完之后准备去做流体模拟的，结果因为完全不懂 GPU 编程，看不懂 compute shader ，并且以前没做过物理模拟而放弃了。
@@ -32,7 +32,7 @@ a = F / m v(t + 1) = v(t) + a * dt x(t + 1) = x(t) + v(t + 1) * dt 代码模拟�
       <title>屏幕空间环境光遮蔽（SSAO） Unity 实现</title>
       <link>https://txtxj.top/posts/ssaounity/</link>
       <pubDate>Tue, 12 Jul 2022 15:45:35 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/ssaounity/</guid>
       <description>Games 101 大作业 Screen Space Ambient Occlusion With Unity
 本文旨在记录大作业实现过程中遇到的各种问题与解决方案。
@@ -47,7 +47,7 @@ float3 sampling(float2 seed) { float4 r; r.</description>
       <title>法线向量的模型-世界变换</title>
       <link>https://txtxj.top/posts/objecttoworldnormal/</link>
       <pubDate>Mon, 16 May 2022 22:44:43 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/objecttoworldnormal/</guid>
       <description>为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵 在 《Unity ShaderLab 新手宝典》中 64 页给出了一个结论
 在顶点函数中，使用 Unity 提供的变换矩阵 unity_ObjectToWorld 将顶点坐标从模型空间变换到世界空间。为了避免非统一缩放的物体法线方向偏移，使用法线向量右乘逆矩阵的方式对其进行空间变换。
@@ -64,7 +64,7 @@ float3 sampling(float2 seed) { float4 r; r.</description>
       <title>GAMES笔记03-光栅化</title>
       <link>https://txtxj.top/posts/gamesnote03/</link>
       <pubDate>Thu, 30 Dec 2021 03:13:15 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/gamesnote03/</guid>
       <description>在经过模型、视图、投影变换后，待显示的所有物体都处在了一个标准正方体内。
 而光栅化的目的，就是把这个标准正方体内的物体转化为一个个像素点显示在屏幕上。
@@ -80,7 +80,7 @@ $$ \mathbf{M_{viewpoint}} = \begin{pmatrix} \frac{\text{width}}{2} &amp;amp; 0 &
       <title>GAMES笔记02-模型、视图、投影变换</title>
       <link>https://txtxj.top/posts/gamesnote02/</link>
       <pubDate>Thu, 23 Dec 2021 20:18:27 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/gamesnote02/</guid>
       <description>模型变换(Model Transformation) 通过缩放、旋转、平移，将物体变换到合适的位置。
 视图变换(Viewing Transformation) 视图变换是通过调整摄像机，得到物体与摄像机之间相对位置的变换。
@@ -105,7 +105,7 @@ $$ \mathbf{M_{viewpoint}} = \begin{pmatrix} \frac{\text{width}}{2} &amp;amp; 0 &
       <title>GAMES笔记01-线性代数基础</title>
       <link>https://txtxj.top/posts/gamesnote01/</link>
       <pubDate>Wed, 22 Dec 2021 16:01:30 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/gamesnote01/</guid>
       <description>2D 线性变换 缩放(Scale) $$ \mathbf{scale}(s_x, s_y) = \begin{pmatrix} s_x &amp;amp; 0 \\ 0 &amp;amp; s_y \\ \end{pmatrix} $$ $$x&amp;rsquo; = s_x x$$ $$y&amp;rsquo; = s_y y$$
 如上图所示，

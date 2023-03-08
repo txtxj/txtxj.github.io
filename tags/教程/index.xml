@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>教程 on Txtxj</title>
+    <title>教程 on Citrine</title>
     <link>https://txtxj.top/tags/%E6%95%99%E7%A8%8B/</link>
-    <description>Recent content in 教程 on Txtxj</description>
+    <description>Recent content in 教程 on Citrine</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
-    <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
+    <managingEditor>txtxj@mail.ustc.edu.cn (Citrine)</managingEditor>
+    <webMaster>txtxj@mail.ustc.edu.cn (Citrine)</webMaster>
     <lastBuildDate>Wed, 09 Feb 2022 20:27:03 +0800</lastBuildDate><atom:link href="https://txtxj.top/tags/%E6%95%99%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>配置 Clash for Linux</title>
       <link>https://txtxj.top/posts/clash4linux/</link>
       <pubDate>Wed, 09 Feb 2022 20:27:03 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/clash4linux/</guid>
       <description>在 Ubuntu 20.04 中配置 Clash for Linux 之前一直在用 Windows ，用的梯子是不需要自己配置的。装了双系统之后一直苦于 Ubuntu 中 Github 等网站速度过慢。尝试了使用 electron-ssr ，但没找到靠谱的机场，后来在一个看起来不错的 Trojan 机场下面看见能用 Clash 托管，就换用 Clash 了。
 下载 Clash Clash 仓库地址：https://github.com/Dreamacro/clash
@@ -29,7 +29,7 @@ cd ~/clash chmod +x clash clash 程序将会提示缺少 config.yaml 和 Country
       <title>快捷键 - MarkDown 插入代码块</title>
       <link>https://txtxj.top/posts/sublimemarkdown/</link>
       <pubDate>Wed, 05 Jan 2022 22:54:43 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/sublimemarkdown/</guid>
       <description>快捷键 [&amp;quot;alt+`&amp;quot;]
 由 sublime 默认的插入双引号快捷键修改而来。
@@ -40,7 +40,7 @@ Sublime 版本 [ { &amp;#34;keys&amp;#34;: [&amp;#34;alt+`&amp;#34;], &amp;#34;c
       <title>为Sublime搭建C&#43;&#43;环境</title>
       <link>https://txtxj.top/posts/sublimecpp/</link>
       <pubDate>Tue, 25 Aug 2020 22:03:36 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/sublimecpp/</guid>
       <description>Windows 下为 Sublime Text 3 搭建 C/C++环境 写这篇博客时，我正在为新电脑搭建 C/C++ 环境
 步骤：

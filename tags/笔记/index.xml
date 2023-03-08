@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>笔记 on Txtxj</title>
+    <title>笔记 on Citrine</title>
     <link>https://txtxj.top/tags/%E7%AC%94%E8%AE%B0/</link>
-    <description>Recent content in 笔记 on Txtxj</description>
+    <description>Recent content in 笔记 on Citrine</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <managingEditor>txtxj@mail.ustc.edu.cn (Txtxj)</managingEditor>
-    <webMaster>txtxj@mail.ustc.edu.cn (Txtxj)</webMaster>
+    <managingEditor>txtxj@mail.ustc.edu.cn (Citrine)</managingEditor>
+    <webMaster>txtxj@mail.ustc.edu.cn (Citrine)</webMaster>
     <lastBuildDate>Sat, 10 Sep 2022 16:16:23 +0800</lastBuildDate><atom:link href="https://txtxj.top/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>C# 类的多态</title>
       <link>https://txtxj.top/posts/csharpclass/</link>
       <pubDate>Sat, 10 Sep 2022 16:16:23 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/csharpclass/</guid>
       <description>面试被问到如何理解类的多态性了，没答出来呜呜呜。
 同一操作作用于不同的对象，可以有不同的解释，产生不同的执行结果，这就是多态性。
@@ -35,7 +35,7 @@ class Player : Character { public void GameOver() { Console.</description>
       <title>法线向量的模型-世界变换</title>
       <link>https://txtxj.top/posts/objecttoworldnormal/</link>
       <pubDate>Mon, 16 May 2022 22:44:43 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/objecttoworldnormal/</guid>
       <description>为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵 在 《Unity ShaderLab 新手宝典》中 64 页给出了一个结论
 在顶点函数中，使用 Unity 提供的变换矩阵 unity_ObjectToWorld 将顶点坐标从模型空间变换到世界空间。为了避免非统一缩放的物体法线方向偏移，使用法线向量右乘逆矩阵的方式对其进行空间变换。
@@ -52,7 +52,7 @@ class Player : Character { public void GameOver() { Console.</description>
       <title>二叉树打印</title>
       <link>https://txtxj.top/posts/treedebugger/</link>
       <pubDate>Sat, 14 May 2022 16:07:55 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/treedebugger/</guid>
       <description>之前调红黑树的时候写的一个二叉树打印方法。
 可以以如下图形式在控制台输出树的结构。
@@ -64,7 +64,7 @@ class Player : Character { public void GameOver() { Console.</description>
       <title>GAMES笔记03-光栅化</title>
       <link>https://txtxj.top/posts/gamesnote03/</link>
       <pubDate>Thu, 30 Dec 2021 03:13:15 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/gamesnote03/</guid>
       <description>在经过模型、视图、投影变换后，待显示的所有物体都处在了一个标准正方体内。
 而光栅化的目的，就是把这个标准正方体内的物体转化为一个个像素点显示在屏幕上。
@@ -80,7 +80,7 @@ $$ \mathbf{M_{viewpoint}} = \begin{pmatrix} \frac{\text{width}}{2} &amp;amp; 0 &
       <title>GAMES笔记02-模型、视图、投影变换</title>
       <link>https://txtxj.top/posts/gamesnote02/</link>
       <pubDate>Thu, 23 Dec 2021 20:18:27 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/gamesnote02/</guid>
       <description>模型变换(Model Transformation) 通过缩放、旋转、平移，将物体变换到合适的位置。
 视图变换(Viewing Transformation) 视图变换是通过调整摄像机，得到物体与摄像机之间相对位置的变换。
@@ -105,7 +105,7 @@ $$ \mathbf{M_{viewpoint}} = \begin{pmatrix} \frac{\text{width}}{2} &amp;amp; 0 &
       <title>GAMES笔记01-线性代数基础</title>
       <link>https://txtxj.top/posts/gamesnote01/</link>
       <pubDate>Wed, 22 Dec 2021 16:01:30 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/gamesnote01/</guid>
       <description>2D 线性变换 缩放(Scale) $$ \mathbf{scale}(s_x, s_y) = \begin{pmatrix} s_x &amp;amp; 0 \\ 0 &amp;amp; s_y \\ \end{pmatrix} $$ $$x&amp;rsquo; = s_x x$$ $$y&amp;rsquo; = s_y y$$
 如上图所示，
@@ -119,7 +119,7 @@ $$ \begin{pmatrix} x&amp;rsquo;	\\ y&amp;rsquo; \end{pmatrix} = \begin{pmatrix} 
       <title>Unity笔记03</title>
       <link>https://txtxj.top/posts/unityself03/</link>
       <pubDate>Mon, 06 Sep 2021 12:08:35 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/unityself03/</guid>
       <description>本篇记录了物体移动以及摄像机跟随防抖动的实现。
 键盘控制物体移动 使用 Input.GetAxis() 或 Input.GetAxisRaw() 获取 axisName 标识的虚拟轴的值。
@@ -142,7 +142,7 @@ if (rh &amp;lt; 0f) { dir.x = -1; animator.SetInteger(&amp;#34;Direction&amp;#34
       <title>Unity笔记02</title>
       <link>https://txtxj.top/posts/unityself02/</link>
       <pubDate>Mon, 03 May 2021 01:46:19 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/unityself02/</guid>
       <description>本篇笔记记录了后座力的实现。
 后座力（AddForce）与移动（velocity）不兼容 用 AddForce 给玩家添加一个反向的作用力后，
@@ -160,7 +160,7 @@ private float speed = 2f; private void FixedUpdate() { float rh = Input.GetAxisR
       <title>Unity笔记01</title>
       <link>https://txtxj.top/posts/unityself01/</link>
       <pubDate>Sat, 02 Jan 2021 18:08:34 +0800</pubDate>
-      <author>txtxj@mail.ustc.edu.cn (Txtxj)</author>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/unityself01/</guid>
       <description>本篇笔记记录了瞬移魔法的穿墙问题的解决问题。
 瞬移魔法穿墙问题 在 2021.1.1 的版本中，
