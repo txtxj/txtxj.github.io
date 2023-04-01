@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+      $("body").click(function(e) {
+          var $text = $("<span>❤</span>");
+          if (Math.random() <= 0.02) $text = $("<span>TX!</span>");
+          var x = e.pageX, y = e.pageY;
+          $text.css({
+              "z-index": 1145141919810,
+              "top": y,
+              "left": x,
+              "position": "absolute",
+              "pointer-events": "none",
+              "transform": "translate(-50%, -50%)",
+              "font-weight": "bold",
+              "color": "rgb("+~~(255 * Math.random())+","+~~(255 * Math.random())+","+~~(255 * Math.random())+")"
+          });
+          $("body").append($text);
+          $text.animate({
+              "top": y - 100,
+              "opacity": 0,
+              "fontSize": 0,
+          },
+          1500,
+          function() {
+              $text.remove();
+          });
+      });
+  });
+  var OriginTitile = document.title; 
+  document.addEventListener("visibilitychange", function () { 
+      if (document.title != "txtxj呼呼zzz") OriginTitile = document.title;
+      document.title = document.hidden ? "txtxj呼呼zzz" : OriginTitile;
+  });
+function showBig(obj) {
+  var popup = document.getElementById("popup");
+  var img = popup.children[0].children[0];
+  img.src = obj.src;
+  var scale = 2.0;
+  if (img.width * scale > window.innerWidth)
+    scale = window.innerWidth / img.width;
+  if (img.height * scale > window.innerHeight)
+    scale = window.innerHeight / img.height;
+  img.style.scale = scale;
+  popup.style.display = "block";
+}
+function hideBig(obj) {
+  obj.style.display = "none";
+}
+function wheelImg(obj) {
+  img = obj.children[0].children[0];
+  var scale = parseFloat(img.style.scale) || 1.0;
+    scale += event.wheelDelta / 1500;
+    if (scale < 0.9)
+      scale = 0.9;
+    if (img.width * scale > window.innerWidth)
+      scale = window.innerWidth / img.width;
+    if (img.height * scale > window.innerHeight)
+      scale = window.innerHeight / img.height;
+    img.style.scale = scale;
+    return false;
+}
+</script>
+<html><script>
+  MathJax = {
+    tex: {
+      inlineMath: [["$", "$"]],
+    },
+    displayMath: [
+      ["$$", "$$"],
+      ["\[\[", "\]\]"],
+    ],
+    svg: {
+      fontCache: "global",
+    },
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+></script><head>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   
+    <meta name="author" content="Citrine">
+  
+
+  
+
+  
+
+  <meta name="generator" content="Hugo 0.101.0" />
+  
+  
+  
+  
+  
+  
+  <title>VEG 拓展类型绑定 🌟 Citrine</title>
+
+  <meta property="og:title" content="VEG 拓展类型绑定" />
+<meta property="og:description" content="VFX Graph 中将变量设置为暴露（Exposed）后，可以在 Inspector 中查看、修改该变量。
+如需使用 C# 脚本控制暴露变量，需要为 VEG 特效物体挂载一个 VFX Property Binder 组件。
+VFX Graph 内置了许多常用的变量绑定类型，但官方文档并未详细说明如何对 VFX Property Binder 进行拓展，使其支持自定义类型的变量绑定。
+如需实现自定义类型的输入与处理，需要了解 VFXPropertyBinder 这一类的内部实现。
+VFXPropertyBinder 类继承自 MonoBehaviour ，其中最重要的成员为 List&lt;VFXBinderBase&gt; m_Bindings.
+该列表包含了当前物体上的 VisualEffect 的所有绑定，列表的所有成员都需要继承自 VFXBinderBase.
+VFXBinderBase 类有两个重要的抽象方法，分别为 IsValid 和 UpdateBinding.
+IsValid 方法用于判断当前绑定是否合法，只有当绑定合法的时候才会开始处理数据。
+UpdateBinding 方法用于在绑定合法的情况下任意地处理绑定数据，再将处理结果交给 VisualEffect. 如果需要对输入数据进行采样、计算等处理，需要重写该方法来完成。
+Unity 中对 Transform 类型实现绑定的方法是定义一个继承自 VFXBinderBase 的类 VFXTransformBinder.
+其结构大致如下，完整代码见 VFXTransformBinder.cs
+public class VFXTransformBinder : VFXBinderBase { protected ExposedParameter m_Parameter; public Transform Target; public string Parameter { get; set; } public override bool IsValid(VisualEffect component); protected override void OnEnable(); public override string ToString(); public override void UpdateBinding(VisualEffect component); } 该类中保存了需要被绑定的数据 Target 以及被绑定的参数名称 Parameter." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://txtxj.top/posts/vegextension/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-04-01T23:54:08+08:00" />
+<meta property="article:modified_time" content="2023-04-01T23:54:08+08:00" />
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="VEG 拓展类型绑定"/>
+<meta name="twitter:description" content="VFX Graph 中将变量设置为暴露（Exposed）后，可以在 Inspector 中查看、修改该变量。
+如需使用 C# 脚本控制暴露变量，需要为 VEG 特效物体挂载一个 VFX Property Binder 组件。
+VFX Graph 内置了许多常用的变量绑定类型，但官方文档并未详细说明如何对 VFX Property Binder 进行拓展，使其支持自定义类型的变量绑定。
+如需实现自定义类型的输入与处理，需要了解 VFXPropertyBinder 这一类的内部实现。
+VFXPropertyBinder 类继承自 MonoBehaviour ，其中最重要的成员为 List&lt;VFXBinderBase&gt; m_Bindings.
+该列表包含了当前物体上的 VisualEffect 的所有绑定，列表的所有成员都需要继承自 VFXBinderBase.
+VFXBinderBase 类有两个重要的抽象方法，分别为 IsValid 和 UpdateBinding.
+IsValid 方法用于判断当前绑定是否合法，只有当绑定合法的时候才会开始处理数据。
+UpdateBinding 方法用于在绑定合法的情况下任意地处理绑定数据，再将处理结果交给 VisualEffect. 如果需要对输入数据进行采样、计算等处理，需要重写该方法来完成。
+Unity 中对 Transform 类型实现绑定的方法是定义一个继承自 VFXBinderBase 的类 VFXTransformBinder.
+其结构大致如下，完整代码见 VFXTransformBinder.cs
+public class VFXTransformBinder : VFXBinderBase { protected ExposedParameter m_Parameter; public Transform Target; public string Parameter { get; set; } public override bool IsValid(VisualEffect component); protected override void OnEnable(); public override string ToString(); public override void UpdateBinding(VisualEffect component); } 该类中保存了需要被绑定的数据 Target 以及被绑定的参数名称 Parameter."/>
+
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://txtxj.top/assets/css/style.min.5d3812f436b20eb59317af27f9061715723ad68e874d199d8d4427212368b27b.css" integrity="sha256-XTgS9DayDrWTF68n&#43;QYXFXI61o6HTRmdjUQnISNosns=">
+
+  <script src="https://txtxj.top/assets/js/main.min.597d9f5a80ce3137282a06b1b2cdbb5a481f3ae5ef0d0ba4265c177b6d788b36.js" integrity="sha256-WX2fWoDOMTcoKgaxss27WkgfOuXvDQukJlwXe214izY="></script>
+  
+  </head><body><header class="header-container layout-block layout-padding">
+  <div class="header-inner content-padding-large soft-size--large soft-style--box">
+    <div class="header-logo">
+      <a href="https://txtxj.top"><h1><img class="author-avatar soft-size--round soft-style--box" src="https://avatars.githubusercontent.com/u/47293990?s=100">&nbspCitrine</h1></a>
+    </div>
+    <nav class="header-nav">
+      <div class="header-nav--btn">
+        <div class="btn-item"></div>
+        <div class="btn-item"></div>
+        <div class="btn-item"></div>
+      </div>
+      <div class="header-nav--list">
+        <div>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/" title="">🏠 主页</a>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/posts" title="">🗂️ 博客</a>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/games" title="">🎮 电动</a>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/tags" title="">🏷️ 标签</a>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/link" title="">🔗 友链</a>
+          
+        </div>
+      </div>
+    </nav>
+  </div>
+</header><main id="content">
+    
+
+    <div class="single-container layout-block">
+      <div class="article-info">
+        <div class="article-header layout-padding">
+          <div class="article-cover card-container content-padding-large soft-size--large soft-style--box img">
+
+  <div class="card-cover">
+    
+      <img src="https://s2.loli.net/2023/04/02/2GH39mEUs1iFVpu.png" alt="https://s2.loli.net/2023/04/02/2GH39mEUs1iFVpu.png" />
+    
+  </div>
+
+  <div class="card-text">
+    <h1 class="card-text--title">VEG 拓展类型绑定</h1>
+    
+      <p class="card-text--row">2023-04-01 23:54</p>
+      
+      
+      
+
+      
+      
+        <ul class="card-text--tag">
+          
+            <li><a href="https://txtxj.top/tags/%E7%AC%94%E8%AE%B0/">笔记</a></li></ul>
+      
+    
+  </div>
+
+</div>
+        </div>
+
+        <div class="article-content">
+          <div class="markdown-body content-padding-large soft-size--large soft-style--box">
+            <p>VFX Graph 中将变量设置为暴露（Exposed）后，可以在 Inspector 中查看、修改该变量。</p>
+<p>如需使用 C# 脚本控制暴露变量，需要为 VEG 特效物体挂载一个 VFX Property Binder 组件。</p>
+<p>VFX Graph 内置了许多常用的变量绑定类型，但官方文档并未详细说明如何对 VFX Property Binder 进行拓展，使其支持自定义类型的变量绑定。</p>
+<p>如需实现自定义类型的输入与处理，需要了解 <code>VFXPropertyBinder</code> 这一类的内部实现。</p>
+<p><code>VFXPropertyBinder</code> 类继承自 <code>MonoBehaviour</code> ，其中最重要的成员为 <code>List&lt;VFXBinderBase&gt; m_Bindings</code>.</p>
+<p>该列表包含了当前物体上的 <code>VisualEffect</code> 的所有绑定，列表的所有成员都需要继承自 <code>VFXBinderBase</code>.</p>
+<p><code>VFXBinderBase</code> 类有两个重要的抽象方法，分别为 <code>IsValid</code> 和 <code>UpdateBinding</code>.</p>
+<p><code>IsValid</code> 方法用于判断当前绑定是否合法，只有当绑定合法的时候才会开始处理数据。</p>
+<p><code>UpdateBinding</code> 方法用于在绑定合法的情况下任意地处理绑定数据，再将处理结果交给 <code>VisualEffect</code>. 如果需要对输入数据进行采样、计算等处理，需要重写该方法来完成。</p>
+<hr>
+<p>Unity 中对 <code>Transform</code> 类型实现绑定的方法是定义一个继承自 <code>VFXBinderBase</code> 的类 <code>VFXTransformBinder</code>.</p>
+<p>其结构大致如下，完整代码见 <a href="%22https://github.com/NavidK0/unity-visualeffectgraph-builtin/blob/main/Runtime/Utilities/PropertyBinding/Implementation/VFXTransformBinder.cs%22">VFXTransformBinder.cs</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">VFXTransformBinder</span> : VFXBinderBase
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> ExposedParameter m_Parameter;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Transform Target;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Parameter { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">bool</span> IsValid(VisualEffect component);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">void</span> OnEnable();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">string</span> ToString();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">void</span> UpdateBinding(VisualEffect component);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>该类中保存了需要被绑定的数据 <code>Target</code> 以及被绑定的参数名称 <code>Parameter</code>.</p>
+<p>效仿其做法，实现自定义 Serializable 类 MyDataType 的绑定，可以定义如下类</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#a6e22e">[VFXBinderAttribute(menuPath:&#34;MyBinder/MyDataType&#34;)]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyDataTypeBinder</span> : VFXBinderBase
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> PropertySpeed;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> PropertyColor;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> MyDataType Target;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">bool</span> IsValid(VisualEffect component)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Target <span style="color:#66d9ef">is</span> not <span style="color:#66d9ef">null</span> &amp;&amp; 
+</span></span><span style="display:flex;"><span>               component.HasInt(PropertySpeed) &amp;&amp;
+</span></span><span style="display:flex;"><span>               component.HasVector3(PropertyColor);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">void</span> UpdateBinding(VisualEffect component)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        component.SetInt(PropertySpeed, Target.speed);
+</span></span><span style="display:flex;"><span>        component.SetVector3(PropertyColor, Target.color);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">string</span> ToString()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">$&#34;MyDataType : &#39;{PropertySpeed}&#39;, &#39;{PropertyColor}&#39;-&gt;{Target}&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>其中 <code>[VFXBinderAttribute(menuPath:&quot;MyBinder/MyDataType&quot;)]</code> 用于向标准 VFX Property Binder 组件中注册该绑定，这样才能在 Inspector 中直接为物体添加该类型的绑定。</p>
+<p>
+  <p><img src="https://s2.loli.net/2023/04/02/gm5XRh3LCfT1JEq.png" alt="20230401_1.png" loading="lazy" onclick="showBig(this)"/></p>
+</p>
+<p>类似地，令 <code>Target</code> 的类型继承自 <code>Object</code> 即可实现将 prefab 等物体拖拽到 Inspector 上进行绑定等效果。</p>
+<p>
+  <p><img src="https://s2.loli.net/2023/04/02/gm5XRh3LCfT1JEq.png" alt="20230401_1.png" loading="lazy" onclick="showBig(this)"/></p>
+</p>
+
+          </div>
+        </div>
+                 
+      
+  
+  
+  
+  
+
+  
+
+  <div class="article-paging">
+    
+    
+      <section class="post-paging--item card-container content-padding-primary soft-size--primary soft-style--box">
+  <a href="/posts/interview/">
+  <div class="card-cover" background-image-lazy data-img="https://s2.loli.net/2023/01/17/tq9su6nQhEaZjMX.jpg"></div>
+  <div class="card-text">
+    <h4 class="card-text--title">游戏客户端开发日常实习面经</h4>
+    <p class="card-text--row">2023-01-03 17:05</p>
+  </div>
+  </a>
+</section>
+    
+  </div>
+</div>
+  <aside class="widget-info">
+    
+<section class="aside-widget widget-author content-padding-large soft-size--large soft-style--box">
+  <div class="widget-body">
+    <div class="author-box avatar">
+      
+      <img class="author-avatar soft-size--round soft-style--box" src="https://avatars.githubusercontent.com/u/47293990?s=100" alt="Citrine">
+      
+      <h2 class="author-name text-ellipsis">Citrine</h2>
+      
+      <p class="author-desc text-ellipsis">Txtxj</p>
+      
+    </div>
+  </div>
+</section>
+
+
+    
+
+
+    
+
+
+
+
+
+
+
+
+<section class="aside-widget widget-articles content-padding-large soft-size--large soft-style--box">
+  <h2 class="widget-header">
+    <div class="title">
+      <span>相关文章</span>
+    </div>
+  </h2>
+  <div class="widget-body">
+    <ul class="post-list">
+      
+      
+        <li class="post-item"><a href="/posts/csharpclass/">C# 类的多态</a></li>
+      
+        <li class="post-item"><a href="/posts/objecttoworldnormal/">法线向量的模型-世界变换</a></li>
+      
+        <li class="post-item"><a href="/posts/treedebugger/">二叉树打印</a></li>
+      
+        <li class="post-item"><a href="/posts/gamesnote03/">GAMES笔记03-光栅化</a></li>
+      
+        <li class="post-item"><a href="/posts/gamesnote02/">GAMES笔记02-模型、视图、投影变换</a></li>
+      
+        <li class="post-item"><a href="/posts/gamesnote01/">GAMES笔记01-线性代数基础</a></li>
+      
+    </ul>
+  </div>
+</section>
+
+
+    
+
+
+
+
+
+    
+
+
+
+
+<section class="aside-widget widget-tags content-padding-large soft-size--large soft-style--box">
+  <h2 class="widget-header">
+    <div class="title">
+      <span>聚合标签</span>
+    </div>
+  </h2>
+  <div class="widget-body">
+    <div class="tags-list">
+      
+        <a href="https://txtxj.top/tags/%E7%AC%94%E8%AE%B0/" data-count="10" class="soft-size--small soft-style--hover soft-style--active">笔记</a>
+      
+        <a href="https://txtxj.top/tags/unity/" data-count="6" class="soft-size--small soft-style--hover soft-style--active">Unity</a>
+      
+        <a href="https://txtxj.top/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" data-count="6" class="soft-size--small soft-style--hover soft-style--active">图形学</a>
+      
+        <a href="https://txtxj.top/tags/%E9%A2%98%E8%A7%A3/" data-count="4" class="soft-size--small soft-style--hover soft-style--active">题解</a>
+      
+        <a href="https://txtxj.top/tags/%E6%95%99%E7%A8%8B/" data-count="3" class="soft-size--small soft-style--hover soft-style--active">教程</a>
+      
+        <a href="https://txtxj.top/tags/c#/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">C#</a>
+      
+        <a href="https://txtxj.top/tags/%E7%81%AB%E7%84%B0%E7%BA%B9%E7%AB%A0/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">火焰纹章</a>
+      
+    </div>
+  </div>
+
+  
+</section>
+
+  </aside>
+</div>
+  </main>
+
+  <div id="popup" onclick="hideBig(this)" onmousewheel="return wheelImg(this)">
+    <div class="bg"><img src="" alt="" /></div>
+  </div><footer class="footer-container layout-block">
+  
+  <div class="social-icons">
+    
+      <a class="soft-size--primary soft-style--box" href="https://github.com/txtxj" target="_blank" rel="noopener noreferrer">
+          
+        <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+        </svg>
+        
+
+        
+
+        
+
+        
+
+        
+      </a>
+    
+  </div>
+  
+
+  <div class="colour-bar"></div>
+  
+  
+
+  
+
+  <p>
+    Copyright © 2021 2021 txtxj
+  </p>
+
+  <p>
+    Powered by
+    <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a>
+    Theme - 
+    <a href="https://github.com/txtxj/hugo-theme-kagome" target="_blank" rel="noopener noreferrer author">kagome</a>
+  </p>
+
+  <p>
+    <a href="javascript:;" id="theme-light">🌞 浅色</a>
+    <a href="javascript:;" id="theme-dark">🌛 深色</a>
+    <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+  </p>
+  <script src="/js/copy.js"></script>
+</footer>
+
+
+
+<script type="text/javascript" src="https://csdnimg.cn/release/blog_mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+</body>
+
+</html>
