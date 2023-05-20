@@ -8,7 +8,24 @@
     <language>zh-cn</language>
     <managingEditor>txtxj@mail.ustc.edu.cn (Citrine)</managingEditor>
     <webMaster>txtxj@mail.ustc.edu.cn (Citrine)</webMaster>
-    <lastBuildDate>Sat, 10 Sep 2022 16:16:23 +0800</lastBuildDate><atom:link href="https://txtxj.top/tags/c#/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 May 2023 00:46:58 +0800</lastBuildDate><atom:link href="https://txtxj.top/tags/c#/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unity Editor Window 修复报错后扔无法打开</title>
+      <link>https://txtxj.top/posts/unityeditorwindowbug/</link>
+      <pubDate>Sun, 21 May 2023 00:46:58 +0800</pubDate>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
+      <guid>https://txtxj.top/posts/unityeditorwindowbug/</guid>
+      <description>在 Unity 中编写自定义的 Editor Window 时，如果在窗口第一次 OnGUI() 调用前出现错误，则窗体无法被画出，并且无法关闭。
+并且，Unity 在编译过修改后的代码后，不会自动关闭已经打开的错误窗口，这会导致即使修改后的代码是正确的，仍然无法打开窗口。
+在这种情况下，可以观察到屏幕上有一个如下图所示的图标，无法交互、不随 Unity 主窗口移动、会随着 Unity 主窗口一起关闭。
+这个图标即为之前打开的错误窗口。
+此时需要在打开窗口之前先关闭一次窗口
+修改代码如下：
+[MenuItem(&amp;#34;MyTools/MyEditorWindow&amp;#34;)] public static void Init() { MyEditorWindow window = GetWindow&amp;lt;MyEditorWindow&amp;gt;(); window.Close(); // 关闭错误窗口 window.Show(); } 运行一次后，上图所示的图标消失，但窗口不会出现，再将代码中关闭窗口的操作删除，重新运行即可打开窗口。
+也可以单独为关闭窗口操作设置一个新的 Menu Item
+private static readonly Type[] WindowTypes = { typeof(Window1), typeof(Window2), typeof(Window3) }; [MenuItem(&amp;#34;MyTools/CloseAll&amp;#34;)] public static void CloseAll() { foreach (Type type in WindowTypes) { EditorWindow window = GetWindow(type); window.Close(); } } </description>
+    </item>
+    
     <item>
       <title>C# 类的多态</title>
       <link>https://txtxj.top/posts/csharpclass/</link>

@@ -101,35 +101,35 @@ function wheelImg(obj) {
   
   
   
-  <title>法线向量的模型-世界变换 🌟 Citrine</title>
+  <title>Unity Editor Window 修复报错后扔无法打开 🌟 Citrine</title>
 
-  <meta property="og:title" content="法线向量的模型-世界变换" />
-<meta property="og:description" content="为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵 在 《Unity ShaderLab 新手宝典》中 64 页给出了一个结论
-在顶点函数中，使用 Unity 提供的变换矩阵 unity_ObjectToWorld 将顶点坐标从模型空间变换到世界空间。为了避免非统一缩放的物体法线方向偏移，使用法线向量右乘逆矩阵的方式对其进行空间变换。
-即 worldNormal = mul(vertex， (float3x3)unity_WorldToObject) 。
-首先解释为什么对于非统一缩放的物体，左乘模型变换矩阵可能会导致法线方向偏移。
-考虑一个正方形，它的两条对角线是互相垂直的。
-但在将其 $x$ 方向变换为原来的 $\frac{1}{2}$ 之后，两条对角线不再互相垂直。
-将上述变换写为矩阵乘法的形式， $$ \text{令}\ \mathbf{n} = \overrightarrow{AC}, \mathbf{a} = \overrightarrow{BD} \ \text{为列向量}\\ \mathbf{n}^T \mathbf{a} = 0\\ \text{变换后}\ \mathbf{n&rsquo;} = \mathbf{Mn}, \mathbf{a&rsquo;} = \mathbf{Ma}\\ \mathbf{n&rsquo;}^T\mathbf{a&rsquo;} = \mathbf{n}^T \mathbf{M}^T \mathbf{Ma} $$
-由于模型变换矩阵 $\mathbf{M}$ 并不一定是正交矩阵，无法保证 $\mathbf{M}^T\mathbf{M} = \mathbf{I}$ ，因此也就无法保证 $\mathbf{n&rsquo;}^T\mathbf{a&rsquo;} = 0$ ，即 $\mathbf{n&rsquo;}$ 与 $\mathbf{a&rsquo;}$ 不一定垂直。
-从上式不难看出，如果想要变换后向量 $\mathbf{a&rsquo;}$ 与其法向量 $\mathbf{n&rsquo;}$ 仍保持垂直关系，那么一定有 $$ \mathbf{n&rsquo;}^T\mathbf{a&rsquo;} = \mathbf{n}^T \mathbf{M}^{-1} \mathbf{Ma} = \mathbf{n}^T \mathbf{a} = 0 $$ 故 $\mathbf{n&rsquo;}^T = \mathbf{n}^T \mathbf{M}^{-1}$ ，法向量需要右乘模型变换矩阵的逆变换矩阵。" />
+  <meta property="og:title" content="Unity Editor Window 修复报错后扔无法打开" />
+<meta property="og:description" content="在 Unity 中编写自定义的 Editor Window 时，如果在窗口第一次 OnGUI() 调用前出现错误，则窗体无法被画出，并且无法关闭。
+并且，Unity 在编译过修改后的代码后，不会自动关闭已经打开的错误窗口，这会导致即使修改后的代码是正确的，仍然无法打开窗口。
+在这种情况下，可以观察到屏幕上有一个如下图所示的图标，无法交互、不随 Unity 主窗口移动、会随着 Unity 主窗口一起关闭。
+这个图标即为之前打开的错误窗口。
+此时需要在打开窗口之前先关闭一次窗口
+修改代码如下：
+[MenuItem(&#34;MyTools/MyEditorWindow&#34;)] public static void Init() { MyEditorWindow window = GetWindow&lt;MyEditorWindow&gt;(); window.Close(); // 关闭错误窗口 window.Show(); } 运行一次后，上图所示的图标消失，但窗口不会出现，再将代码中关闭窗口的操作删除，重新运行即可打开窗口。
+也可以单独为关闭窗口操作设置一个新的 Menu Item
+private static readonly Type[] WindowTypes = { typeof(Window1), typeof(Window2), typeof(Window3) }; [MenuItem(&#34;MyTools/CloseAll&#34;)] public static void CloseAll() { foreach (Type type in WindowTypes) { EditorWindow window = GetWindow(type); window.Close(); } } " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://txtxj.top/posts/objecttoworldnormal/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-05-16T22:44:43+08:00" />
-<meta property="article:modified_time" content="2022-05-16T22:44:43+08:00" />
+<meta property="og:url" content="https://txtxj.top/posts/unityeditorwindowbug/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-21T00:46:58+08:00" />
+<meta property="article:modified_time" content="2023-05-21T00:46:58+08:00" />
 
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="法线向量的模型-世界变换"/>
-<meta name="twitter:description" content="为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵 在 《Unity ShaderLab 新手宝典》中 64 页给出了一个结论
-在顶点函数中，使用 Unity 提供的变换矩阵 unity_ObjectToWorld 将顶点坐标从模型空间变换到世界空间。为了避免非统一缩放的物体法线方向偏移，使用法线向量右乘逆矩阵的方式对其进行空间变换。
-即 worldNormal = mul(vertex， (float3x3)unity_WorldToObject) 。
-首先解释为什么对于非统一缩放的物体，左乘模型变换矩阵可能会导致法线方向偏移。
-考虑一个正方形，它的两条对角线是互相垂直的。
-但在将其 $x$ 方向变换为原来的 $\frac{1}{2}$ 之后，两条对角线不再互相垂直。
-将上述变换写为矩阵乘法的形式， $$ \text{令}\ \mathbf{n} = \overrightarrow{AC}, \mathbf{a} = \overrightarrow{BD} \ \text{为列向量}\\ \mathbf{n}^T \mathbf{a} = 0\\ \text{变换后}\ \mathbf{n&rsquo;} = \mathbf{Mn}, \mathbf{a&rsquo;} = \mathbf{Ma}\\ \mathbf{n&rsquo;}^T\mathbf{a&rsquo;} = \mathbf{n}^T \mathbf{M}^T \mathbf{Ma} $$
-由于模型变换矩阵 $\mathbf{M}$ 并不一定是正交矩阵，无法保证 $\mathbf{M}^T\mathbf{M} = \mathbf{I}$ ，因此也就无法保证 $\mathbf{n&rsquo;}^T\mathbf{a&rsquo;} = 0$ ，即 $\mathbf{n&rsquo;}$ 与 $\mathbf{a&rsquo;}$ 不一定垂直。
-从上式不难看出，如果想要变换后向量 $\mathbf{a&rsquo;}$ 与其法向量 $\mathbf{n&rsquo;}$ 仍保持垂直关系，那么一定有 $$ \mathbf{n&rsquo;}^T\mathbf{a&rsquo;} = \mathbf{n}^T \mathbf{M}^{-1} \mathbf{Ma} = \mathbf{n}^T \mathbf{a} = 0 $$ 故 $\mathbf{n&rsquo;}^T = \mathbf{n}^T \mathbf{M}^{-1}$ ，法向量需要右乘模型变换矩阵的逆变换矩阵。"/>
+<meta name="twitter:title" content="Unity Editor Window 修复报错后扔无法打开"/>
+<meta name="twitter:description" content="在 Unity 中编写自定义的 Editor Window 时，如果在窗口第一次 OnGUI() 调用前出现错误，则窗体无法被画出，并且无法关闭。
+并且，Unity 在编译过修改后的代码后，不会自动关闭已经打开的错误窗口，这会导致即使修改后的代码是正确的，仍然无法打开窗口。
+在这种情况下，可以观察到屏幕上有一个如下图所示的图标，无法交互、不随 Unity 主窗口移动、会随着 Unity 主窗口一起关闭。
+这个图标即为之前打开的错误窗口。
+此时需要在打开窗口之前先关闭一次窗口
+修改代码如下：
+[MenuItem(&#34;MyTools/MyEditorWindow&#34;)] public static void Init() { MyEditorWindow window = GetWindow&lt;MyEditorWindow&gt;(); window.Close(); // 关闭错误窗口 window.Show(); } 运行一次后，上图所示的图标消失，但窗口不会出现，再将代码中关闭窗口的操作删除，重新运行即可打开窗口。
+也可以单独为关闭窗口操作设置一个新的 Menu Item
+private static readonly Type[] WindowTypes = { typeof(Window1), typeof(Window2), typeof(Window3) }; [MenuItem(&#34;MyTools/CloseAll&#34;)] public static void CloseAll() { foreach (Type type in WindowTypes) { EditorWindow window = GetWindow(type); window.Close(); } } "/>
 
 
   
@@ -178,14 +178,14 @@ function wheelImg(obj) {
 
   <div class="card-cover">
     
-      <img src="https://s2.loli.net/2022/05/16/Um8rKAjiHdPbhLM.jpg" alt="https://s2.loli.net/2022/05/16/Um8rKAjiHdPbhLM.jpg" />
+      <img src="https://s2.loli.net/2023/05/21/ml9HEgeWIbG6fQz.jpg" alt="https://s2.loli.net/2023/05/21/ml9HEgeWIbG6fQz.jpg" />
     
   </div>
 
   <div class="card-text">
-    <h1 class="card-text--title">法线向量的模型-世界变换</h1>
+    <h1 class="card-text--title">Unity Editor Window 修复报错后扔无法打开</h1>
     
-      <p class="card-text--row">2022-05-16 22:44</p>
+      <p class="card-text--row">2023-05-21 00:46</p>
       
       
       
@@ -194,9 +194,9 @@ function wheelImg(obj) {
       
         <ul class="card-text--tag">
           
+            <li><a href="https://txtxj.top/tags/%E7%AC%94%E8%AE%B0/">笔记</a></li>
             <li><a href="https://txtxj.top/tags/unity/">Unity</a></li>
-            <li><a href="https://txtxj.top/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a></li>
-            <li><a href="https://txtxj.top/tags/%E7%AC%94%E8%AE%B0/">笔记</a></li></ul>
+            <li><a href="https://txtxj.top/tags/c#/">C#</a></li></ul>
       
     
   </div>
@@ -206,45 +206,35 @@ function wheelImg(obj) {
 
         <div class="article-content">
           <div class="markdown-body content-padding-large soft-size--large soft-style--box">
-            <h2 id="为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵">为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵</h2>
-<p>在 《Unity ShaderLab 新手宝典》中 64 页给出了一个结论</p>
-<blockquote>
-<p>在顶点函数中，使用 Unity 提供的变换矩阵 <code>unity_ObjectToWorld</code> 将顶点坐标从模型空间变换到世界空间。为了避免非统一缩放的物体法线方向偏移，使用法线向量右乘逆矩阵的方式对其进行空间变换。</p>
-</blockquote>
-<p>即 <code>worldNormal = mul(vertex， (float3x3)unity_WorldToObject)</code> 。</p>
-<p>首先解释为什么对于非统一缩放的物体，左乘模型变换矩阵可能会导致法线方向偏移。</p>
-<p>考虑一个正方形，它的两条对角线是互相垂直的。</p>
+            <p>在 Unity 中编写自定义的 Editor Window 时，如果在窗口第一次 <code>OnGUI()</code> 调用前出现错误，则窗体无法被画出，并且无法关闭。</p>
+<p>并且，Unity 在编译过修改后的代码后，不会自动关闭已经打开的错误窗口，这会导致即使修改后的代码是正确的，仍然无法打开窗口。</p>
+<p>在这种情况下，可以观察到屏幕上有一个如下图所示的图标，无法交互、不随 Unity 主窗口移动、会随着 Unity 主窗口一起关闭。</p>
 <p>
-  <p><img src="https://s2.loli.net/2022/05/16/fgJo7bsYwK53uRd.jpg" alt="20220516_1.jpg" loading="lazy" onclick="showBig(this)"/></p>
+  <p><img src="https://s2.loli.net/2023/05/21/1fxkaRLdJXs2z64.jpg" alt="20230521_1.jpg" loading="lazy" onclick="showBig(this)"/></p>
 </p>
-<p>但在将其 $x$ 方向变换为原来的 $\frac{1}{2}$ 之后，两条对角线不再互相垂直。</p>
-<p>
-  <p><img src="https://s2.loli.net/2022/05/16/PlUB19D8XnEmFof.jpg" alt="20220516_2.jpg" loading="lazy" onclick="showBig(this)"/></p>
-</p>
-<p>将上述变换写为矩阵乘法的形式，
-$$
-\text{令}\  \mathbf{n} = \overrightarrow{AC}, \mathbf{a} = \overrightarrow{BD} \ \text{为列向量}\\
-\mathbf{n}^T \mathbf{a} = 0\\
-\text{变换后}\ \mathbf{n&rsquo;} = \mathbf{Mn}, \mathbf{a&rsquo;} = \mathbf{Ma}\\
-\mathbf{n&rsquo;}^T\mathbf{a&rsquo;} = \mathbf{n}^T \mathbf{M}^T \mathbf{Ma}
-$$</p>
-<p>由于模型变换矩阵 $\mathbf{M}$ 并不一定是正交矩阵，无法保证 $\mathbf{M}^T\mathbf{M} = \mathbf{I}$ ，因此也就无法保证 $\mathbf{n&rsquo;}^T\mathbf{a&rsquo;} = 0$ ，即 $\mathbf{n&rsquo;}$ 与 $\mathbf{a&rsquo;}$ 不一定垂直。</p>
-<p>从上式不难看出，如果想要变换后向量 $\mathbf{a&rsquo;}$ 与其法向量 $\mathbf{n&rsquo;}$ 仍保持垂直关系，那么一定有
-$$
-\mathbf{n&rsquo;}^T\mathbf{a&rsquo;} = \mathbf{n}^T \mathbf{M}^{-1} \mathbf{Ma} = \mathbf{n}^T \mathbf{a} = 0
-$$
-故 $\mathbf{n&rsquo;}^T = \mathbf{n}^T \mathbf{M}^{-1}$ ，法向量需要右乘模型变换矩阵的逆变换矩阵。</p>
-<p>以下为 <code>UnityCG.cginc</code> 中的法向量模型-世界变换函数原型。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// Transforms normal from object to world space
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">inline</span> float3 <span style="color:#a6e22e">UnityObjectToWorldNormal</span>( in float3 norm )
+<p>这个图标即为之前打开的错误窗口。</p>
+<p>此时需要在打开窗口之前先关闭一次窗口</p>
+<p>修改代码如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#a6e22e">[MenuItem(&#34;MyTools/MyEditorWindow&#34;)]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> Init()
 </span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#ifdef UNITY_ASSUME_UNIFORM_SCALING
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> UnityObjectToWorldDir(norm);
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#else
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// mul(IT_M, norm) =&gt; mul(norm, I_M) =&gt; {dot(norm, I_M.col0), dot(norm, I_M.col1), dot(norm, I_M.col2)}
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> normalize(mul(norm, (float3x3)unity_WorldToObject));
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#endif
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>    MyEditorWindow window = GetWindow&lt;MyEditorWindow&gt;();
+</span></span><span style="display:flex;"><span>    window.Close(); <span style="color:#75715e">// 关闭错误窗口</span>
+</span></span><span style="display:flex;"><span>    window.Show();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>运行一次后，上图所示的图标消失，但窗口不会出现，再将代码中关闭窗口的操作删除，重新运行即可打开窗口。</p>
+<p>也可以单独为关闭窗口操作设置一个新的 Menu Item</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cs" data-lang="cs"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">readonly</span> Type[] WindowTypes = { <span style="color:#66d9ef">typeof</span>(Window1), <span style="color:#66d9ef">typeof</span>(Window2), <span style="color:#66d9ef">typeof</span>(Window3) };
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">[MenuItem(&#34;MyTools/CloseAll&#34;)]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> CloseAll()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">foreach</span> (Type type <span style="color:#66d9ef">in</span> WindowTypes)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            EditorWindow window = GetWindow(type);
+</span></span><span style="display:flex;"><span>            window.Close();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
 </span></span></code></pre></div>
           </div>
         </div>
@@ -259,23 +249,13 @@ $$
 
   <div class="article-paging">
     
-      <section class="post-paging--item card-container content-padding-primary soft-size--primary soft-style--box">
-  <a href="/posts/ssaounity/">
-  <div class="card-cover" background-image-lazy data-img="https://s2.loli.net/2022/07/12/AGCIRLr9XN8Ksn7.jpg"></div>
-  <div class="card-text">
-    <h4 class="card-text--title">屏幕空间环境光遮蔽（SSAO） Unity 实现</h4>
-    <p class="card-text--row">2022-07-12 15:45</p>
-  </div>
-  </a>
-</section>
-    
     
       <section class="post-paging--item card-container content-padding-primary soft-size--primary soft-style--box">
-  <a href="/posts/treedebugger/">
-  <div class="card-cover" background-image-lazy data-img="https://s2.loli.net/2022/05/14/inBpH1FlPMfgOxd.jpg"></div>
+  <a href="/posts/vegextension/">
+  <div class="card-cover" background-image-lazy data-img="https://s2.loli.net/2023/04/02/2GH39mEUs1iFVpu.png"></div>
   <div class="card-text">
-    <h4 class="card-text--title">二叉树打印</h4>
-    <p class="card-text--row">2022-05-14 16:07</p>
+    <h4 class="card-text--title">VEG 拓展类型绑定</h4>
+    <p class="card-text--row">2023-04-01 23:54</p>
   </div>
   </a>
 </section>
@@ -301,21 +281,6 @@ $$
 
     
 
-<section class="aside-widget widget-toc content-padding-large soft-size--large soft-style--scrollbox">
-  <h2 class="widget-header">
-    <div class="title">
-      <span>目录</span>
-    </div>
-  </h2>
-  <div class="widget-body">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵">为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵</a></li>
-  </ul>
-</nav>
-  </div>
-</section>
-
 
     
 
@@ -336,8 +301,6 @@ $$
     <ul class="post-list">
       
       
-        <li class="post-item"><a href="/posts/unityeditorwindowbug/">Unity Editor Window 修复报错后扔无法打开</a></li>
-      
         <li class="post-item"><a href="/posts/vegextension/">VEG 拓展类型绑定</a></li>
       
         <li class="post-item"><a href="/posts/csharpclass/">C# 类的多态</a></li>
@@ -345,6 +308,8 @@ $$
         <li class="post-item"><a href="/posts/clothsimulation/">布料模拟与渲染</a></li>
       
         <li class="post-item"><a href="/posts/ssaounity/">屏幕空间环境光遮蔽（SSAO） Unity 实现</a></li>
+      
+        <li class="post-item"><a href="/posts/objecttoworldnormal/">法线向量的模型-世界变换</a></li>
       
         <li class="post-item"><a href="/posts/treedebugger/">二叉树打印</a></li>
       
