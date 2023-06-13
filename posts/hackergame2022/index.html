@@ -94,7 +94,7 @@ function wheelImg(obj) {
 
   
 
-  <meta name="generator" content="Hugo 0.101.0" />
+  <meta name="generator" content="Hugo 0.113.0">
   
   
   
@@ -123,7 +123,6 @@ function wheelImg(obj) {
 <meta property="og:url" content="https://txtxj.top/posts/hackergame2022/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-10-27T19:48:31+08:00" />
 <meta property="article:modified_time" content="2022-10-27T19:48:31+08:00" />
-
 
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="HackerGame2022 WriteUP"/>
@@ -400,8 +399,8 @@ function wheelImg(obj) {
 </span></span><span style="display:flex;"><span>	<span style="color:#75715e">// &lt;guess&gt;
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	var previous <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">previous</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getAsDouble</span><span style="color:#f92672">();</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	var isLess <span style="color:#f92672">=</span> previous <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">number</span> <span style="color:#f92672">-</span> 1e<span style="color:#f92672">-</span>6 <span style="color:#f92672">/</span> 2<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>	var isMore <span style="color:#f92672">=</span> previous <span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">number</span> <span style="color:#f92672">+</span> 1e<span style="color:#f92672">-</span>6 <span style="color:#f92672">/</span> 2<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	var isLess <span style="color:#f92672">=</span> previous <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">number</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1e-6</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	var isMore <span style="color:#f92672">=</span> previous <span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">number</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1e-6</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	writer<span style="color:#f92672">.</span><span style="color:#a6e22e">writeStartElement</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;guess&#34;</span><span style="color:#f92672">);</span>
 </span></span><span style="display:flex;"><span>	writer<span style="color:#f92672">.</span><span style="color:#a6e22e">writeAttribute</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;less&#34;</span><span style="color:#f92672">,</span> Boolean<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span>isLess<span style="color:#f92672">));</span>
@@ -410,7 +409,7 @@ function wheelImg(obj) {
 </span></span><span style="display:flex;"><span>	writer<span style="color:#f92672">.</span><span style="color:#a6e22e">writeEndElement</span><span style="color:#f92672">();</span>
 </span></span><span style="display:flex;"><span>	<span style="color:#75715e">// &lt;/guess&gt;
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">talented</span> <span style="color:#f92672">&gt;</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">talented</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>	<span style="color:#75715e">// &lt;flag&gt;
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	writer<span style="color:#f92672">.</span><span style="color:#a6e22e">writeStartElement</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;flag&#34;</span><span style="color:#f92672">);</span>
 </span></span><span style="display:flex;"><span>	writer<span style="color:#f92672">.</span><span style="color:#a6e22e">writeCharacters</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">token</span><span style="color:#f92672">.</span><span style="color:#a6e22e">flag</span><span style="color:#f92672">());</span>
@@ -423,20 +422,20 @@ function wheelImg(obj) {
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>var guess <span style="color:#f92672">=</span> Double<span style="color:#f92672">.</span><span style="color:#a6e22e">parseDouble</span><span style="color:#f92672">(</span>event<span style="color:#f92672">.</span><span style="color:#a6e22e">asCharacters</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getData</span><span style="color:#f92672">());</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>var isLess <span style="color:#f92672">=</span> guess <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">number</span> <span style="color:#f92672">-</span> 1e<span style="color:#f92672">-</span>6 <span style="color:#f92672">/</span> 2<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>var isMore <span style="color:#f92672">=</span> guess <span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">number</span> <span style="color:#f92672">+</span> 1e<span style="color:#f92672">-</span>6 <span style="color:#f92672">/</span> 2<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>var isLess <span style="color:#f92672">=</span> guess <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">number</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1e-6</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>var isMore <span style="color:#f92672">=</span> guess <span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">number</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1e-6</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>var isPassed <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>isLess <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>isMore<span style="color:#f92672">;</span>
 </span></span><span style="display:flex;"><span>var isTalented <span style="color:#f92672">=</span> isPassed <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">previous</span><span style="color:#f92672">.</span><span style="color:#a6e22e">isEmpty</span><span style="color:#f92672">();</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>var newPassed <span style="color:#f92672">=</span> isPassed <span style="color:#f92672">?</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">passed</span> <span style="color:#f92672">+</span> 1 <span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">passed</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>var newTalented <span style="color:#f92672">=</span> isTalented <span style="color:#f92672">?</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">talented</span> <span style="color:#f92672">+</span> 1 <span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">talented</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>var newNumber <span style="color:#f92672">=</span> isPassed <span style="color:#f92672">?</span> RNG<span style="color:#f92672">.</span><span style="color:#a6e22e">nextInt</span><span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> 1000000<span style="color:#f92672">)</span> <span style="color:#f92672">*</span> 1e<span style="color:#f92672">-</span>6 <span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">number</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>var newPassed <span style="color:#f92672">=</span> isPassed <span style="color:#f92672">?</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">passed</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">passed</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>var newTalented <span style="color:#f92672">=</span> isTalented <span style="color:#f92672">?</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">talented</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">talented</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>var newNumber <span style="color:#f92672">=</span> isPassed <span style="color:#f92672">?</span> RNG<span style="color:#f92672">.</span><span style="color:#a6e22e">nextInt</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span><span style="color:#f92672">,</span> <span style="color:#ae81ff">1000000</span><span style="color:#f92672">)</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1e-6</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">number</span><span style="color:#f92672">;</span>
 </span></span><span style="display:flex;"><span>var newPrevious <span style="color:#f92672">=</span> isPassed <span style="color:#f92672">?</span> OptionalDouble<span style="color:#f92672">.</span><span style="color:#a6e22e">empty</span><span style="color:#f92672">()</span> <span style="color:#f92672">:</span> OptionalDouble<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span>guess<span style="color:#f92672">);</span>
 </span></span></code></pre></div><p>用的是 <code>SecureRandom</code> ，看起来似乎很安全，没法预测。</p>
 <p>这个时候注意到，上面两处的代码，都使用了一种奇怪的方式比较大小</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>var isLess <span style="color:#f92672">=</span> guess <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">number</span> <span style="color:#f92672">-</span> 1e<span style="color:#f92672">-</span>6 <span style="color:#f92672">/</span> 2<span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>var isMore <span style="color:#f92672">=</span> guess <span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">number</span> <span style="color:#f92672">+</span> 1e<span style="color:#f92672">-</span>6 <span style="color:#f92672">/</span> 2<span style="color:#f92672">;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>var isLess <span style="color:#f92672">=</span> guess <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">number</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1e-6</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>var isMore <span style="color:#f92672">=</span> guess <span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">number</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1e-6</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">;</span>
 </span></span><span style="display:flex;"><span>var isPassed <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>isLess <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>isMore<span style="color:#f92672">;</span>
 </span></span></code></pre></div><p>为什么不直接 <code>var isPassed = guess == this.number * 1e6</code> 呢？</p>
 <p>难道是因为精度？可是这个程序读入用户输入的时候是直接把输入的小数当成字符串，截取了小数部分当作一个整数来处理的，这里却用小数难道不是很可疑吗？</p>
@@ -562,12 +561,12 @@ function wheelImg(obj) {
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 </span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>	freopen(<span style="color:#e6db74">&#34;./data/static.out&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> c <span style="color:#f92672">=</span> getchar();
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">freopen</span>(<span style="color:#e6db74">&#34;./data/static.out&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> c <span style="color:#f92672">=</span> <span style="color:#a6e22e">getchar</span>();
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (c <span style="color:#f92672">!=</span> EOF)
 </span></span><span style="display:flex;"><span>	{
-</span></span><span style="display:flex;"><span>		putchar(c);
-</span></span><span style="display:flex;"><span>		c <span style="color:#f92672">=</span> getchar();
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">putchar</span>(c);
+</span></span><span style="display:flex;"><span>		c <span style="color:#f92672">=</span> <span style="color:#a6e22e">getchar</span>();
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>}
@@ -617,18 +616,18 @@ function wheelImg(obj) {
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">	  &#34;.byte 0\n&#34;                            \
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">	  &#34;.previous\n&#34;);
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>EMBED_STR(static_out, <span style="color:#e6db74">&#34;./data/static.out&#34;</span>);
-</span></span><span style="display:flex;"><span>EMBED_STR(dynamic0_out, <span style="color:#e6db74">&#34;./data/dynamic0.out&#34;</span>);
-</span></span><span style="display:flex;"><span>EMBED_STR(dynamic1_out, <span style="color:#e6db74">&#34;./data/dynamic1.out&#34;</span>);
-</span></span><span style="display:flex;"><span>EMBED_STR(dynamic2_out, <span style="color:#e6db74">&#34;./data/dynamic2.out&#34;</span>);
-</span></span><span style="display:flex;"><span>EMBED_STR(dynamic3_out, <span style="color:#e6db74">&#34;./data/dynamic3.out&#34;</span>);
-</span></span><span style="display:flex;"><span>EMBED_STR(dynamic4_out, <span style="color:#e6db74">&#34;./data/dynamic4.out&#34;</span>);
-</span></span><span style="display:flex;"><span>EMBED_STR(static_in, <span style="color:#e6db74">&#34;./data/static.in&#34;</span>);
-</span></span><span style="display:flex;"><span>EMBED_STR(dynamic0_in, <span style="color:#e6db74">&#34;./data/dynamic0.in&#34;</span>);
-</span></span><span style="display:flex;"><span>EMBED_STR(dynamic1_in, <span style="color:#e6db74">&#34;./data/dynamic1.in&#34;</span>);
-</span></span><span style="display:flex;"><span>EMBED_STR(dynamic2_in, <span style="color:#e6db74">&#34;./data/dynamic2.in&#34;</span>);
-</span></span><span style="display:flex;"><span>EMBED_STR(dynamic3_in, <span style="color:#e6db74">&#34;./data/dynamic3.in&#34;</span>);
-</span></span><span style="display:flex;"><span>EMBED_STR(dynamic4_in, <span style="color:#e6db74">&#34;./data/dynamic4.in&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">EMBED_STR</span>(static_out, <span style="color:#e6db74">&#34;./data/static.out&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">EMBED_STR</span>(dynamic0_out, <span style="color:#e6db74">&#34;./data/dynamic0.out&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">EMBED_STR</span>(dynamic1_out, <span style="color:#e6db74">&#34;./data/dynamic1.out&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">EMBED_STR</span>(dynamic2_out, <span style="color:#e6db74">&#34;./data/dynamic2.out&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">EMBED_STR</span>(dynamic3_out, <span style="color:#e6db74">&#34;./data/dynamic3.out&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">EMBED_STR</span>(dynamic4_out, <span style="color:#e6db74">&#34;./data/dynamic4.out&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">EMBED_STR</span>(static_in, <span style="color:#e6db74">&#34;./data/static.in&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">EMBED_STR</span>(dynamic0_in, <span style="color:#e6db74">&#34;./data/dynamic0.in&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">EMBED_STR</span>(dynamic1_in, <span style="color:#e6db74">&#34;./data/dynamic1.in&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">EMBED_STR</span>(dynamic2_in, <span style="color:#e6db74">&#34;./data/dynamic2.in&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">EMBED_STR</span>(dynamic3_in, <span style="color:#e6db74">&#34;./data/dynamic3.in&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">EMBED_STR</span>(dynamic4_in, <span style="color:#e6db74">&#34;./data/dynamic4.in&#34;</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> loong{
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> arr[<span style="color:#ae81ff">3600</span>];
@@ -648,12 +647,12 @@ function wheelImg(obj) {
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>loong <span style="color:#a6e22e">scan</span>()
 </span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> c <span style="color:#f92672">=</span> getchar();
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> c <span style="color:#f92672">=</span> <span style="color:#a6e22e">getchar</span>();
 </span></span><span style="display:flex;"><span>	loong ret <span style="color:#f92672">=</span> CONST0;
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (c <span style="color:#f92672">&gt;=</span> <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">&amp;&amp;</span> c <span style="color:#f92672">&lt;=</span> <span style="color:#e6db74">&#39;9&#39;</span>)
 </span></span><span style="display:flex;"><span>	{
 </span></span><span style="display:flex;"><span>		ret.arr[ret.length] <span style="color:#f92672">=</span> c <span style="color:#f92672">-</span> <span style="color:#e6db74">&#39;0&#39;</span>;
-</span></span><span style="display:flex;"><span>		c <span style="color:#f92672">=</span> getchar();
+</span></span><span style="display:flex;"><span>		c <span style="color:#f92672">=</span> <span style="color:#a6e22e">getchar</span>();
 </span></span><span style="display:flex;"><span>		ret.length <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, j <span style="color:#f92672">=</span> ret.length <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i <span style="color:#f92672">&lt;</span> j; i<span style="color:#f92672">++</span>, j<span style="color:#f92672">--</span>)
@@ -700,36 +699,36 @@ function wheelImg(obj) {
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 </span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>	loong input <span style="color:#f92672">=</span> scan();
-</span></span><span style="display:flex;"><span>	loong s <span style="color:#f92672">=</span> scan_from_str(static_in);
-</span></span><span style="display:flex;"><span>	loong d0 <span style="color:#f92672">=</span> scan_from_str(dynamic0_in);
-</span></span><span style="display:flex;"><span>	loong d1 <span style="color:#f92672">=</span> scan_from_str(dynamic1_in);
-</span></span><span style="display:flex;"><span>	loong d2 <span style="color:#f92672">=</span> scan_from_str(dynamic2_in);
-</span></span><span style="display:flex;"><span>	loong d3 <span style="color:#f92672">=</span> scan_from_str(dynamic3_in);
-</span></span><span style="display:flex;"><span>	loong d4 <span style="color:#f92672">=</span> scan_from_str(dynamic4_in);
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (eq(input, s))
+</span></span><span style="display:flex;"><span>	loong input <span style="color:#f92672">=</span> <span style="color:#a6e22e">scan</span>();
+</span></span><span style="display:flex;"><span>	loong s <span style="color:#f92672">=</span> <span style="color:#a6e22e">scan_from_str</span>(static_in);
+</span></span><span style="display:flex;"><span>	loong d0 <span style="color:#f92672">=</span> <span style="color:#a6e22e">scan_from_str</span>(dynamic0_in);
+</span></span><span style="display:flex;"><span>	loong d1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">scan_from_str</span>(dynamic1_in);
+</span></span><span style="display:flex;"><span>	loong d2 <span style="color:#f92672">=</span> <span style="color:#a6e22e">scan_from_str</span>(dynamic2_in);
+</span></span><span style="display:flex;"><span>	loong d3 <span style="color:#f92672">=</span> <span style="color:#a6e22e">scan_from_str</span>(dynamic3_in);
+</span></span><span style="display:flex;"><span>	loong d4 <span style="color:#f92672">=</span> <span style="color:#a6e22e">scan_from_str</span>(dynamic4_in);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">eq</span>(input, s))
 </span></span><span style="display:flex;"><span>	{
-</span></span><span style="display:flex;"><span>		puts(static_out);
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">puts</span>(static_out);
 </span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (eq(input, d0))
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">eq</span>(input, d0))
 </span></span><span style="display:flex;"><span>	{
-</span></span><span style="display:flex;"><span>		puts(dynamic0_out);
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">puts</span>(dynamic0_out);
 </span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (eq(input, d1))
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">eq</span>(input, d1))
 </span></span><span style="display:flex;"><span>	{
-</span></span><span style="display:flex;"><span>		puts(dynamic1_out);
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">puts</span>(dynamic1_out);
 </span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (eq(input, d2))
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">eq</span>(input, d2))
 </span></span><span style="display:flex;"><span>	{
-</span></span><span style="display:flex;"><span>		puts(dynamic2_out);
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">puts</span>(dynamic2_out);
 </span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (eq(input, d3))
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">eq</span>(input, d3))
 </span></span><span style="display:flex;"><span>	{
-</span></span><span style="display:flex;"><span>		puts(dynamic3_out);
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">puts</span>(dynamic3_out);
 </span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (eq(input, d4))
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">eq</span>(input, d4))
 </span></span><span style="display:flex;"><span>	{
-</span></span><span style="display:flex;"><span>		puts(dynamic4_out);
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">puts</span>(dynamic4_out);
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>}
@@ -829,12 +828,12 @@ function wheelImg(obj) {
 <p>第一个 flag 位于 <code>/flag1</code> ，直接 <code>freopen</code> 打开输出，拿到第一个 flag <code>flag{Surprise_you_can_directory_traversal_1n_WINE_...}</code></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">**</span> argv)
 </span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>	freopen(<span style="color:#e6db74">&#34;/flag1&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> c <span style="color:#f92672">=</span> getchar();
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">freopen</span>(<span style="color:#e6db74">&#34;/flag1&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, stdin);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">char</span> c <span style="color:#f92672">=</span> <span style="color:#a6e22e">getchar</span>();
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span> (c <span style="color:#f92672">!=</span> EOF)
 </span></span><span style="display:flex;"><span>	{
-</span></span><span style="display:flex;"><span>		putchar(c);
-</span></span><span style="display:flex;"><span>		c <span style="color:#f92672">=</span> getchar();
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">putchar</span>(c);
+</span></span><span style="display:flex;"><span>		c <span style="color:#f92672">=</span> <span style="color:#a6e22e">getchar</span>();
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>}
@@ -842,17 +841,17 @@ function wheelImg(obj) {
 <p>用 <code>access</code> 测试了一下文件存在状态与权限，发现 <code>/flag2</code> <code>/readflag</code> 都是可读且可执行，很奇怪。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test_file</span>(<span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> str)
 </span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>access(str, F_OK))
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">access</span>(str, F_OK))
 </span></span><span style="display:flex;"><span>	{
-</span></span><span style="display:flex;"><span>		printf(<span style="color:#e6db74">&#34;%s exist!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, str);
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%s exist!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, str);
 </span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>access(str, R_OK))
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">access</span>(str, R_OK))
 </span></span><span style="display:flex;"><span>	{
-</span></span><span style="display:flex;"><span>		printf(<span style="color:#e6db74">&#34;%s can read!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, str);
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%s can read!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, str);
 </span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>access(str, X_OK))
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">access</span>(str, X_OK))
 </span></span><span style="display:flex;"><span>	{
-</span></span><span style="display:flex;"><span>		printf(<span style="color:#e6db74">&#34;%s can exec!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, str);
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%s can exec!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, str);
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>用二进制方式读取 <code>/flag2</code> 输出还是空，怀疑这个文件里根本没有东西，第二个 flag 是写死在 <code>/readflag</code> 里面的。</p>
@@ -861,14 +860,14 @@ function wheelImg(obj) {
 <p>推测这个程序比提供的输出长度最大值要大，没法完整输出，这条路走不通。</p>
 <p>既然 <code>/readflag</code> 可执行，那就用 <code>execl</code> 执行试一下，</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> ret <span style="color:#f92672">=</span> execl(<span style="color:#e6db74">&#34;/readflag&#34;</span>, NULL);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> ret <span style="color:#f92672">=</span> <span style="color:#a6e22e">execl</span>(<span style="color:#e6db74">&#34;/readflag&#34;</span>, NULL);
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (ret <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>)
 </span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>	printf(<span style="color:#e6db74">&#34;%d: %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ret, strerror(errno));
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d: %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, ret, <span style="color:#a6e22e">strerror</span>(errno));
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>结果输出 <code>No such file or directory</code> ，把地址换成 <code>./readflag</code> <code>readflag</code> 等等，都找不到文件。</p>
 <p>搞不懂 <code>execl</code> 的寻址究竟是怎么回事（也可能是 Wine 的问题？），试着输出了一下当前程序的路径，</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>printf(<span style="color:#e6db74">&#34;%s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, argv[<span style="color:#ae81ff">0</span>]);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, argv[<span style="color:#ae81ff">0</span>]);
 </span></span></code></pre></div><p>结果出来了 <code>\\?\unix\dev\shm\a.exe</code></p>
 <p>鉴于在程序内可以使用 <code>access</code> 测试文件权限，推测 <code>a.exe</code> 和 <code>readflag</code> 位于相同目录下，因此做如下修改</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">**</span> argv)
@@ -882,10 +881,10 @@ function wheelImg(obj) {
 </span></span><span style="display:flex;"><span>	argv[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">15</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;a&#39;</span>;
 </span></span><span style="display:flex;"><span>	argv[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">16</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;g&#39;</span>;
 </span></span><span style="display:flex;"><span>	argv[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">17</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> ret <span style="color:#f92672">=</span> execl(argv[<span style="color:#ae81ff">0</span>], NULL);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> ret <span style="color:#f92672">=</span> <span style="color:#a6e22e">execl</span>(argv[<span style="color:#ae81ff">0</span>], NULL);
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (ret <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>)
 </span></span><span style="display:flex;"><span>	{
-</span></span><span style="display:flex;"><span>		printf(<span style="color:#e6db74">&#34;%d: %s&#34;</span>, ret, strerror(errno));
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d: %s&#34;</span>, ret, <span style="color:#a6e22e">strerror</span>(errno));
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>}
@@ -894,11 +893,11 @@ function wheelImg(obj) {
 <p>可能大家都是被题面吓到了罢。。。</p>
 <h2 id="蒙特卡罗轮盘赌">蒙特卡罗轮盘赌</h2>
 <p>又是猜数字，先看看代码</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>srand((<span style="color:#66d9ef">unsigned</span>)time(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">+</span> clock());
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#a6e22e">srand</span>((<span style="color:#66d9ef">unsigned</span>)<span style="color:#a6e22e">time</span>(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">clock</span>());
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> N; j<span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">double</span> x <span style="color:#f92672">=</span> rand01();
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">double</span> y <span style="color:#f92672">=</span> rand01();
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">double</span> x <span style="color:#f92672">=</span> <span style="color:#a6e22e">rand01</span>();
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">double</span> y <span style="color:#f92672">=</span> <span style="color:#a6e22e">rand01</span>();
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (x<span style="color:#f92672">*</span>x <span style="color:#f92672">+</span> y<span style="color:#f92672">*</span>y <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span>) M<span style="color:#f92672">++</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>好家伙，直接不用 <code>SecureRandom</code> 了（C 应该也没有这玩意），那这不直接预测一手？</p>
@@ -914,11 +913,11 @@ function wheelImg(obj) {
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> SEED_MAX; i<span style="color:#f92672">++</span>)
 </span></span><span style="display:flex;"><span>	{
-</span></span><span style="display:flex;"><span>		srand(i);
-</span></span><span style="display:flex;"><span>		map[i] <span style="color:#f92672">=</span> rand(i);
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">srand</span>(i);
+</span></span><span style="display:flex;"><span>		map[i] <span style="color:#f92672">=</span> <span style="color:#a6e22e">rand</span>(i);
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (i <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> map[i] <span style="color:#f92672">==</span> map[<span style="color:#ae81ff">0</span>])
 </span></span><span style="display:flex;"><span>		{
-</span></span><span style="display:flex;"><span>			printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i);
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">break</span>;
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>	}
@@ -932,32 +931,32 @@ function wheelImg(obj) {
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">double</span> <span style="color:#a6e22e">rand01</span>()
 </span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> (<span style="color:#66d9ef">double</span>)rand() <span style="color:#f92672">/</span> RAND_MAX;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> (<span style="color:#66d9ef">double</span>)<span style="color:#a6e22e">rand</span>() <span style="color:#f92672">/</span> RAND_MAX;
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 </span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>	FILE<span style="color:#f92672">*</span> f <span style="color:#f92672">=</span> fopen(<span style="color:#e6db74">&#34;../ans.txt&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>);
+</span></span><span style="display:flex;"><span>	FILE<span style="color:#f92672">*</span> f <span style="color:#f92672">=</span> <span style="color:#a6e22e">fopen</span>(<span style="color:#e6db74">&#34;../ans.txt&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>);
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> games <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> SEED_MAX; i<span style="color:#f92672">++</span>)
 </span></span><span style="display:flex;"><span>	{
-</span></span><span style="display:flex;"><span>		srand(i);
-</span></span><span style="display:flex;"><span>		printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i);
-</span></span><span style="display:flex;"><span>		fprintf(f, <span style="color:#e6db74">&#34;%d: &#34;</span>, i);
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">srand</span>(i);
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i);
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fprintf</span>(f, <span style="color:#e6db74">&#34;%d: &#34;</span>, i);
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> games; j<span style="color:#f92672">++</span>)
 </span></span><span style="display:flex;"><span>		{
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">int</span> M <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">int</span> N <span style="color:#f92672">=</span> <span style="color:#ae81ff">400000</span>;
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> k <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; k <span style="color:#f92672">&lt;</span> N; k<span style="color:#f92672">++</span>)
 </span></span><span style="display:flex;"><span>			{
-</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">double</span> x <span style="color:#f92672">=</span> rand01();
-</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">double</span> y <span style="color:#f92672">=</span> rand01();
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">double</span> x <span style="color:#f92672">=</span> <span style="color:#a6e22e">rand01</span>();
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">double</span> y <span style="color:#f92672">=</span> <span style="color:#a6e22e">rand01</span>();
 </span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (x<span style="color:#f92672">*</span>x <span style="color:#f92672">+</span> y<span style="color:#f92672">*</span>y <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span>) M<span style="color:#f92672">++</span>;
 </span></span><span style="display:flex;"><span>			}
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">double</span> pi <span style="color:#f92672">=</span> (<span style="color:#66d9ef">double</span>)M <span style="color:#f92672">/</span> N <span style="color:#f92672">*</span> <span style="color:#ae81ff">4</span>;
-</span></span><span style="display:flex;"><span>			fprintf(f, <span style="color:#e6db74">&#34;%1.5f &#34;</span>, pi);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">fprintf</span>(f, <span style="color:#e6db74">&#34;%1.5f &#34;</span>, pi);
 </span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>		fprintf(f, <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fprintf</span>(f, <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>}
@@ -969,7 +968,7 @@ function wheelImg(obj) {
 <p>果然，<code>rand</code> 在两平台上执行结果是不一样的，而且 <code>rand</code> 在 Debian:11 上究竟有没有周期都难说。</p>
 <p>输出一下 <code>RAND_MAX</code> 竟然是 <code>0x7fffffff</code> ，这下无论如何都跑不完所有情况了。</p>
 <p>重新看猜数字程序。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>srand((<span style="color:#66d9ef">unsigned</span>)time(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">+</span> clock());
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#a6e22e">srand</span>((<span style="color:#66d9ef">unsigned</span>)<span style="color:#a6e22e">time</span>(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">clock</span>());
 </span></span></code></pre></div><p><code>time(0)</code> 是从 Unix 标准时间戳到现在的时间，这个在不同机器上都一样，<code>clock()</code> 是程序开始到执行这条语句时的用时，单位是毫秒，这个值应该不大。</p>
 <p>所以只要输出 <code>time(0)</code> 附近的随机数种子跑出来的结果，就能预测答案了。</p>
 <p>把上面的程序稍作修改</p>
@@ -978,36 +977,36 @@ function wheelImg(obj) {
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">double</span> <span style="color:#a6e22e">rand01</span>()
 </span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> (<span style="color:#66d9ef">double</span>)rand() <span style="color:#f92672">/</span> RAND_MAX;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> (<span style="color:#66d9ef">double</span>)<span style="color:#a6e22e">rand</span>() <span style="color:#f92672">/</span> RAND_MAX;
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
 </span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>	FILE<span style="color:#f92672">*</span> f <span style="color:#f92672">=</span> fopen(<span style="color:#e6db74">&#34;../ans.txt&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>);
+</span></span><span style="display:flex;"><span>	FILE<span style="color:#f92672">*</span> f <span style="color:#f92672">=</span> <span style="color:#a6e22e">fopen</span>(<span style="color:#e6db74">&#34;../ans.txt&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>);
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> games <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>, SEED_MIN, SEED_MAX;
-</span></span><span style="display:flex;"><span>	printf(<span style="color:#e6db74">&#34;Input seed min:&#34;</span>);
-</span></span><span style="display:flex;"><span>	scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>SEED_MIN);
-</span></span><span style="display:flex;"><span>	printf(<span style="color:#e6db74">&#34;Input seed max:&#34;</span>);
-</span></span><span style="display:flex;"><span>	scanf(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>SEED_MAX);
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Input seed min:&#34;</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">scanf</span>(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>SEED_MIN);
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Input seed max:&#34;</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">scanf</span>(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>SEED_MAX);
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> SEED_MIN; i <span style="color:#f92672">&lt;</span> SEED_MAX; i<span style="color:#f92672">++</span>)
 </span></span><span style="display:flex;"><span>	{
-</span></span><span style="display:flex;"><span>		srand(i);
-</span></span><span style="display:flex;"><span>		printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i);
-</span></span><span style="display:flex;"><span>		fprintf(f, <span style="color:#e6db74">&#34;%d: &#34;</span>, i);
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">srand</span>(i);
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, i);
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fprintf</span>(f, <span style="color:#e6db74">&#34;%d: &#34;</span>, i);
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> games; j<span style="color:#f92672">++</span>)
 </span></span><span style="display:flex;"><span>		{
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">int</span> M <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">int</span> N <span style="color:#f92672">=</span> <span style="color:#ae81ff">400000</span>;
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> k <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; k <span style="color:#f92672">&lt;</span> N; k<span style="color:#f92672">++</span>)
 </span></span><span style="display:flex;"><span>			{
-</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">double</span> x <span style="color:#f92672">=</span> rand01();
-</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">double</span> y <span style="color:#f92672">=</span> rand01();
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">double</span> x <span style="color:#f92672">=</span> <span style="color:#a6e22e">rand01</span>();
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">double</span> y <span style="color:#f92672">=</span> <span style="color:#a6e22e">rand01</span>();
 </span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> (x<span style="color:#f92672">*</span>x <span style="color:#f92672">+</span> y<span style="color:#f92672">*</span>y <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1</span>) M<span style="color:#f92672">++</span>;
 </span></span><span style="display:flex;"><span>			}
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">double</span> pi <span style="color:#f92672">=</span> (<span style="color:#66d9ef">double</span>)M <span style="color:#f92672">/</span> N <span style="color:#f92672">*</span> <span style="color:#ae81ff">4</span>;
-</span></span><span style="display:flex;"><span>			fprintf(f, <span style="color:#e6db74">&#34;%1.5f &#34;</span>, pi);
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">fprintf</span>(f, <span style="color:#e6db74">&#34;%1.5f &#34;</span>, pi);
 </span></span><span style="display:flex;"><span>		}
-</span></span><span style="display:flex;"><span>		fprintf(f, <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fprintf</span>(f, <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>}
@@ -1094,18 +1093,18 @@ $$</p>
 <p>先看看两个 Shader ，<code>vertexShader</code> 里没什么好看的，跳过。</p>
 <p><code>fragmentShader</code> 里面有好几个非常可疑的 <code>SDF</code> 函数，并且在 <code>sceneSDF</code> 函数中看到这些 <code>SDF</code> 函数被调用，</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">float</span> <span style="color:#a6e22e">sceneSDF</span>(vec3 p, out vec3 pColor) {
-</span></span><span style="display:flex;"><span>	pColor <span style="color:#f92672">=</span> vec3(<span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">1.0</span>);
+</span></span><span style="display:flex;"><span>	pColor <span style="color:#f92672">=</span> <span style="color:#a6e22e">vec3</span>(<span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">1.0</span>);
 </span></span><span style="display:flex;"><span>	
-</span></span><span style="display:flex;"><span>	vec4 pH <span style="color:#f92672">=</span> mk_homo(p);
-</span></span><span style="display:flex;"><span>	vec4 pTO <span style="color:#f92672">=</span> mk_trans(<span style="color:#ae81ff">35.0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">5.0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">20.0</span>) <span style="color:#f92672">*</span> mk_scale(<span style="color:#ae81ff">1.5</span>, <span style="color:#ae81ff">1.5</span>, <span style="color:#ae81ff">1.0</span>) <span style="color:#f92672">*</span> pH;
+</span></span><span style="display:flex;"><span>	vec4 pH <span style="color:#f92672">=</span> <span style="color:#a6e22e">mk_homo</span>(p);
+</span></span><span style="display:flex;"><span>	vec4 pTO <span style="color:#f92672">=</span> <span style="color:#a6e22e">mk_trans</span>(<span style="color:#ae81ff">35.0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">5.0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">20.0</span>) <span style="color:#f92672">*</span> <span style="color:#a6e22e">mk_scale</span>(<span style="color:#ae81ff">1.5</span>, <span style="color:#ae81ff">1.5</span>, <span style="color:#ae81ff">1.0</span>) <span style="color:#f92672">*</span> pH;
 </span></span><span style="display:flex;"><span>	
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">float</span> t1 <span style="color:#f92672">=</span> t1SDF(pTO.xyz);
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">float</span> t2 <span style="color:#f92672">=</span> t2SDF((mk_trans(<span style="color:#f92672">-</span><span style="color:#ae81ff">45.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>) <span style="color:#f92672">*</span> pTO).xyz);
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">float</span> t3 <span style="color:#f92672">=</span> t3SDF((mk_trans(<span style="color:#f92672">-</span><span style="color:#ae81ff">80.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>) <span style="color:#f92672">*</span> pTO).xyz);
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">float</span> t4 <span style="color:#f92672">=</span> t4SDF((mk_trans(<span style="color:#f92672">-</span><span style="color:#ae81ff">106.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>) <span style="color:#f92672">*</span> pTO).xyz);
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">float</span> t5 <span style="color:#f92672">=</span> t5SDF(p <span style="color:#f92672">-</span> vec3(<span style="color:#ae81ff">36.0</span>, <span style="color:#ae81ff">10.0</span>, <span style="color:#ae81ff">15.0</span>), vec3(<span style="color:#ae81ff">30.0</span>, <span style="color:#ae81ff">5.0</span>, <span style="color:#ae81ff">5.0</span>), <span style="color:#ae81ff">2.0</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">float</span> t1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">t1SDF</span>(pTO.xyz);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">float</span> t2 <span style="color:#f92672">=</span> <span style="color:#a6e22e">t2SDF</span>((<span style="color:#a6e22e">mk_trans</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">45.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>) <span style="color:#f92672">*</span> pTO).xyz);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">float</span> t3 <span style="color:#f92672">=</span> <span style="color:#a6e22e">t3SDF</span>((<span style="color:#a6e22e">mk_trans</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">80.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>) <span style="color:#f92672">*</span> pTO).xyz);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">float</span> t4 <span style="color:#f92672">=</span> <span style="color:#a6e22e">t4SDF</span>((<span style="color:#a6e22e">mk_trans</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">106.0</span>, <span style="color:#ae81ff">0.0</span>, <span style="color:#ae81ff">0.0</span>) <span style="color:#f92672">*</span> pTO).xyz);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">float</span> t5 <span style="color:#f92672">=</span> <span style="color:#a6e22e">t5SDF</span>(p <span style="color:#f92672">-</span> <span style="color:#a6e22e">vec3</span>(<span style="color:#ae81ff">36.0</span>, <span style="color:#ae81ff">10.0</span>, <span style="color:#ae81ff">15.0</span>), <span style="color:#a6e22e">vec3</span>(<span style="color:#ae81ff">30.0</span>, <span style="color:#ae81ff">5.0</span>, <span style="color:#ae81ff">5.0</span>), <span style="color:#ae81ff">2.0</span>);
 </span></span><span style="display:flex;"><span>	
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">float</span> tmin <span style="color:#f92672">=</span> min(min(min(min(t1, t2), t3), t4), t5);
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">float</span> tmin <span style="color:#f92672">=</span> <span style="color:#a6e22e">min</span>(<span style="color:#a6e22e">min</span>(<span style="color:#a6e22e">min</span>(<span style="color:#a6e22e">min</span>(t1, t2), t3), t4), t5);
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> tmin;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>很容易联想到，这些 <code>SDF</code> 里面有一个是用来遮挡 flag 内容的。</p>
@@ -1447,9 +1446,9 @@ $$</p>
       
         <a href="https://txtxj.top/tags/%E7%AC%94%E8%AE%B0/" data-count="11" class="soft-size--small soft-style--hover soft-style--active">笔记</a>
       
-        <a href="https://txtxj.top/tags/unity/" data-count="7" class="soft-size--small soft-style--hover soft-style--active">Unity</a>
+        <a href="https://txtxj.top/tags/unity/" data-count="8" class="soft-size--small soft-style--hover soft-style--active">Unity</a>
       
-        <a href="https://txtxj.top/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" data-count="6" class="soft-size--small soft-style--hover soft-style--active">图形学</a>
+        <a href="https://txtxj.top/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" data-count="7" class="soft-size--small soft-style--hover soft-style--active">图形学</a>
       
         <a href="https://txtxj.top/tags/%E9%A2%98%E8%A7%A3/" data-count="4" class="soft-size--small soft-style--hover soft-style--active">题解</a>
       

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+      $("body").click(function(e) {
+          var $text = $("<span>❤</span>");
+          if (Math.random() <= 0.02) $text = $("<span>TX!</span>");
+          var x = e.pageX, y = e.pageY;
+          $text.css({
+              "z-index": 1145141919810,
+              "top": y,
+              "left": x,
+              "position": "absolute",
+              "pointer-events": "none",
+              "transform": "translate(-50%, -50%)",
+              "font-weight": "bold",
+              "color": "rgb("+~~(255 * Math.random())+","+~~(255 * Math.random())+","+~~(255 * Math.random())+")"
+          });
+          $("body").append($text);
+          $text.animate({
+              "top": y - 100,
+              "opacity": 0,
+              "fontSize": 0,
+          },
+          1500,
+          function() {
+              $text.remove();
+          });
+      });
+  });
+  var OriginTitile = document.title; 
+  document.addEventListener("visibilitychange", function () { 
+      if (document.title != "txtxj呼呼zzz") OriginTitile = document.title;
+      document.title = document.hidden ? "txtxj呼呼zzz" : OriginTitile;
+  });
+function showBig(obj) {
+  var popup = document.getElementById("popup");
+  var img = popup.children[0].children[0];
+  img.src = obj.src;
+  var scale = 2.0;
+  if (img.width * scale > window.innerWidth)
+    scale = window.innerWidth / img.width;
+  if (img.height * scale > window.innerHeight)
+    scale = window.innerHeight / img.height;
+  img.style.scale = scale;
+  popup.style.display = "block";
+}
+function hideBig(obj) {
+  obj.style.display = "none";
+}
+function wheelImg(obj) {
+  img = obj.children[0].children[0];
+  var scale = parseFloat(img.style.scale) || 1.0;
+    scale += event.wheelDelta / 1500;
+    if (scale < 0.9)
+      scale = 0.9;
+    if (img.width * scale > window.innerWidth)
+      scale = window.innerWidth / img.width;
+    if (img.height * scale > window.innerHeight)
+      scale = window.innerHeight / img.height;
+    img.style.scale = scale;
+    return false;
+}
+</script>
+<html><script>
+  MathJax = {
+    tex: {
+      inlineMath: [["$", "$"]],
+    },
+    displayMath: [
+      ["$$", "$$"],
+      ["\[\[", "\]\]"],
+    ],
+    svg: {
+      fontCache: "global",
+    },
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+></script><head>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   
+    <meta name="author" content="Citrine">
+  
+
+  
+
+  
+
+  <meta name="generator" content="Hugo 0.113.0">
+  
+  
+  
+  
+  
+  
+  <title>宝石光线追踪 🌟 Citrine</title>
+
+  <meta property="og:title" content="宝石光线追踪" />
+<meta property="og:description" content="最近看到了一个很惊艳的宝石光追的项目 Sorumi/UnityRayTracingGem.
+原宝石光追的实现使用了 Compute Buffer 来向着色器传递模型数据。光线在每个 Mesh 内独立地反射与折射，不能在不同 Mesh 间互相传递。
+在 2018 年微软发布了 DXR API 后，Unity 2019.3 加入了实验性的 Ray Tracing Shader，支持更方便地实现光追。
+于是笔者就用 SlightlyMad/SimpleDxrPathTracer 的框架复刻了一下这个宝石光追。
+原项目的介绍已经在 Sorumi 的博客 上写的很详细了，相同的部分就不再赘述。
+递归改迭代 SlightlyMad/SimpleDxrPathTracer 中提供了一个蒙特卡洛路径追踪算法。
+由于宝石渲染中，所有物体都较为光滑，因此可以几乎不考虑漫反射，进而可以使用更简单的 Whitted-Style Ray Tracing.
+Unity Ray Tracing Shader 递归层数有上限，考虑不使用在 Closest Hit Shader 中重新发射光线的递归写法，而是改为 Closest Hit Shader 修改 payload 后，回到 Ray Generate Shader 继续迭代生成光线。
+for (uint i = 0; i &lt; gMaxDepth; i&#43;&#43;) { TraceRay(sceneAccelStruct, RAY_FLAG_NONE, 0xff, hitGroup, numHitGroups, missShader, ray, payload); if (payload." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://txtxj.top/posts/raytracinggem/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-06-12T17:09:01+08:00" />
+<meta property="article:modified_time" content="2023-06-12T17:09:01+08:00" />
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="宝石光线追踪"/>
+<meta name="twitter:description" content="最近看到了一个很惊艳的宝石光追的项目 Sorumi/UnityRayTracingGem.
+原宝石光追的实现使用了 Compute Buffer 来向着色器传递模型数据。光线在每个 Mesh 内独立地反射与折射，不能在不同 Mesh 间互相传递。
+在 2018 年微软发布了 DXR API 后，Unity 2019.3 加入了实验性的 Ray Tracing Shader，支持更方便地实现光追。
+于是笔者就用 SlightlyMad/SimpleDxrPathTracer 的框架复刻了一下这个宝石光追。
+原项目的介绍已经在 Sorumi 的博客 上写的很详细了，相同的部分就不再赘述。
+递归改迭代 SlightlyMad/SimpleDxrPathTracer 中提供了一个蒙特卡洛路径追踪算法。
+由于宝石渲染中，所有物体都较为光滑，因此可以几乎不考虑漫反射，进而可以使用更简单的 Whitted-Style Ray Tracing.
+Unity Ray Tracing Shader 递归层数有上限，考虑不使用在 Closest Hit Shader 中重新发射光线的递归写法，而是改为 Closest Hit Shader 修改 payload 后，回到 Ray Generate Shader 继续迭代生成光线。
+for (uint i = 0; i &lt; gMaxDepth; i&#43;&#43;) { TraceRay(sceneAccelStruct, RAY_FLAG_NONE, 0xff, hitGroup, numHitGroups, missShader, ray, payload); if (payload."/>
+
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="https://txtxj.top/assets/css/style.min.6e3ac0eda5e29b4defbb8703b907761f5bd385b098d693edcdae4acfac2039fe.css" integrity="sha256-bjrA7aXim03vu4cDuQd2H1vThbCY1pPtza5Kz6wgOf4=">
+
+  <script src="https://txtxj.top/assets/js/main.min.597d9f5a80ce3137282a06b1b2cdbb5a481f3ae5ef0d0ba4265c177b6d788b36.js" integrity="sha256-WX2fWoDOMTcoKgaxss27WkgfOuXvDQukJlwXe214izY="></script>
+  
+  </head><body><header class="header-container layout-block layout-padding">
+  <div class="header-inner content-padding-large soft-size--large soft-style--box">
+    <div class="header-logo">
+      <a href="https://txtxj.top"><h1><img class="author-avatar soft-size--round soft-style--box" src="https://avatars.githubusercontent.com/u/47293990?s=100">&nbspCitrine</h1></a>
+    </div>
+    <nav class="header-nav">
+      <div class="header-nav--btn">
+        <div class="btn-item"></div>
+        <div class="btn-item"></div>
+        <div class="btn-item"></div>
+      </div>
+      <div class="header-nav--list">
+        <div>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/" title="">🏠 主页</a>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/posts" title="">🗂️ 博客</a>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/games" title="">🎮 电动</a>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/tags" title="">🏷️ 标签</a>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/link" title="">🔗 友链</a>
+          
+        </div>
+      </div>
+    </nav>
+  </div>
+</header><main id="content">
+    
+
+    <div class="single-container layout-block">
+      <div class="article-info">
+        <div class="article-header layout-padding">
+          <div class="article-cover card-container content-padding-large soft-size--large soft-style--box img">
+
+  <div class="card-cover">
+    
+      <img src="https://s2.loli.net/2023/06/13/NvPCgpLJaoFdt3V.jpg" alt="https://s2.loli.net/2023/06/13/NvPCgpLJaoFdt3V.jpg" />
+    
+  </div>
+
+  <div class="card-text">
+    <h1 class="card-text--title">宝石光线追踪</h1>
+    
+      <p class="card-text--row">2023-06-12 17:09</p>
+      
+      
+      
+
+      
+      
+        <ul class="card-text--tag">
+          
+            <li><a href="https://txtxj.top/tags/unity/">Unity</a></li>
+            <li><a href="https://txtxj.top/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a></li></ul>
+      
+    
+  </div>
+
+</div>
+        </div>
+
+        <div class="article-content">
+          <div class="markdown-body content-padding-large soft-size--large soft-style--box">
+            <p>最近看到了一个很惊艳的宝石光追的项目 <a href="https://github.com/Sorumi/UnityRayTracingGem" target="_blank" rel="noopener">Sorumi/UnityRayTracingGem</a>.</p>
+<p>原宝石光追的实现使用了 Compute Buffer 来向着色器传递模型数据。光线在每个 Mesh 内独立地反射与折射，不能在不同 Mesh 间互相传递。</p>
+<p>在 2018 年微软发布了 DXR API 后，Unity 2019.3 加入了实验性的 Ray Tracing Shader，支持更方便地实现光追。</p>
+<p>于是笔者就用 <a href="https://github.com/SlightlyMad/SimpleDxrPathTracer" target="_blank" rel="noopener">SlightlyMad/SimpleDxrPathTracer</a> 的框架复刻了一下这个宝石光追。</p>
+<p>原项目的介绍已经在 <a href="http://sorumi.xyz/posts/unity-ray-tracing-gem-shader/" target="_blank" rel="noopener">Sorumi 的博客</a> 上写的很详细了，相同的部分就不再赘述。</p>
+<h2 id="递归改迭代">递归改迭代</h2>
+<p><a href="https://github.com/SlightlyMad/SimpleDxrPathTracer" target="_blank" rel="noopener">SlightlyMad/SimpleDxrPathTracer</a> 中提供了一个蒙特卡洛路径追踪算法。</p>
+<p>由于宝石渲染中，所有物体都较为光滑，因此可以几乎不考虑漫反射，进而可以使用更简单的 Whitted-Style Ray Tracing.</p>
+<p>Unity Ray Tracing Shader 递归层数有上限，考虑不使用在 Closest Hit Shader 中重新发射光线的递归写法，而是改为 Closest Hit Shader 修改 <code>payload</code> 后，回到 Ray Generate Shader 继续迭代生成光线。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (uint i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> gMaxDepth; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    TraceRay(sceneAccelStruct, RAY_FLAG_NONE, <span style="color:#ae81ff">0xff</span>, hitGroup, numHitGroups, missShader, ray, payload);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (payload.color <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    ray.Origin <span style="color:#f92672">=</span> payload.origin;
+</span></span><span style="display:flex;"><span>    ray.Direction <span style="color:#f92672">=</span> payload.direction;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>RenderTarget[curPixel] <span style="color:#f92672">=</span> float4(payload.color, <span style="color:#ae81ff">1</span>);
+</span></span></code></pre></div><h2 id="beer-lambert-光线吸收">Beer-Lambert 光线吸收</h2>
+<p>原项目中，光线只在单个 Mesh 内传播，且 Mesh 均为凸多面体，一旦光线射入 Mesh 内，就可以直接逐渐累加吸收距离（原文中 <code>ray.absorbDistance</code>）。</p>
+<p>使用 Ray Tracing Shader，光线在到达 Miss Shader 之后或携带的能量为 $0$ 时才停止继续传播，即光线有可能通过多个吸收颜色不同的物体，故不能简单地累加吸收距离的做法模拟光线的吸收。</p>
+<p>根据 Beer-Lambert 定律，透光度 $T_r(x_a, x_b)$ 表示光强在 $x_a, x_b$ 处的比值，有</p>
+<p>$$
+T_r(\mathbf{x}_a, \mathbf{x}<em>b) = e^{-\tau}, {\rm where} \tau = \int</em>{\mathbf{x} = \mathbf{x}_a}^{\mathbf{x}_b} \mathbf{\sigma}_t(\mathbf{x}) ||{\rm d}\mathbf{x}||
+$$</p>
+<p>其中 $\mathbf{\sigma}_t$ 为消光系数，$\mathbf{\sigma}_t = (1, 0, 0)$ 表明该物质仅以 $1$ 的强度吸收红色光。对于均匀介质，其值为常数。</p>
+<p>Bavoil 提出，设目标距离 $D$ 处的目标光强为 $\mathbf{t}_c$，则消光系数为</p>
+<p>$$
+\mathbf{\sigma}_t = \frac{-\log(\mathbf{t}_c)}{D}
+$$</p>
+<p>剩余能量为</p>
+<p>$$
+\mathbf{remain}(d) = e^{\log(\mathbf{t}_c) \cdot d/D} = \mathbf{t}_c^{d/D}
+$$</p>
+<p>在 Shader 中暴露参数 <code>_ExtinctionColor</code> 和 <code>_ExtinctionDistance</code> 用于控制消光强度。</p>
+<p>在 Closest Hit Shader 中，判断当前光线是否出射光，若是出射光，则降低剩余能量强度。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">bool</span> isOutgoing <span style="color:#f92672">=</span> step(<span style="color:#ae81ff">0</span>, dot(WorldRayDirection(), vertexNormal));
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (isOutgoing <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> float3 remainRate <span style="color:#f92672">=</span> pow(_ExtinctionColor, RayTCurrent() <span style="color:#f92672">*</span> rcp(_ExtinctionDistance));
+</span></span><span style="display:flex;"><span>    payload.energy <span style="color:#f92672">*=</span> remainRate;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>新建一个极长的长方体，效果如下</p>
+<p>
+  <p><img src="https://s2.loli.net/2023/06/13/Qzdws9P24NZ3agE.png" alt="20230612_1.png" loading="lazy" onclick="showBig(this)"/></p>
+</p>
+<p>可以看到，在较深的位置，显示的颜色接近黑色。这是由于上述代码仅降低了剩余能量，并没有提供颜色。图中呈现出的蓝色仅为反射光</p>
+<p>考虑入射能量为 $\mathbf{E}$，剩余比例为 $\mathbf{R}(d) = \mathbf{t}_c^{\frac{d}{D}}$，目标颜色为 $\mathbf{t}_c$</p>
+<p>可以认为该物质在距离 $d$ 处完全反射了一部分光，这部分光在经过一个 $d$ 的距离后回到入射面，最终传递回相机，则其提供的颜色为</p>
+<p>$$
+\mathbf{color} = \int_0^d \mathbf{E} \mathbf{R}^2(d) \mathbf{t}_c {\rm d}d = \frac{\mathbf{E} \mathbf{t}_c D (1 - \mathbf{R}^2(D))}{2\log(\mathbf{t}_c)}
+$$</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (isOutgoing <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> float3 remainRate <span style="color:#f92672">=</span> pow(_ExtinctionColor, RayTCurrent() <span style="color:#f92672">*</span> rcp(_ExtinctionDistance));
+</span></span><span style="display:flex;"><span>	payload.color <span style="color:#f92672">-=</span> <span style="color:#ae81ff">0.5</span> <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> remainRate <span style="color:#f92672">*</span> remainRate) <span style="color:#f92672">*</span> payload.energy <span style="color:#f92672">*</span> _ExtinctionColor <span style="color:#f92672">*</span> _ExtinctionDistance <span style="color:#f92672">*</span> rcp(log(_ExtinctionColor <span style="color:#f92672">+</span> epsilon));
+</span></span><span style="display:flex;"><span>	payload.energy <span style="color:#f92672">*=</span> remainRate;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>修正后效果如下</p>
+<p>
+  <p><img src="https://s2.loli.net/2023/06/13/NWBTdA1CyzagU7Z.png" alt="20230612_2.png" loading="lazy" onclick="showBig(this)"/></p>
+</p>
+<p>可以看到，当吸收距离足够长时，其呈现的颜色不再趋近于黑色。</p>
+<h2 id="色散">色散</h2>
+<p>对于使用 RGB 存储的混合光照，并不能很方便地将其中每种频率的光拆分出来分别折射。</p>
+<p>采用一个比较偷懒的方法，直接将光照拆分为 RGB 三种颜色，分别进行折射。</p>
+<p>为 <code>RayPayload</code> 添加字段 <code>channel</code> 用于区分当前正在处理哪种颜色的光，Ray Generate Shader 迭代生成光线的部分修改如下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>RayDesc ray;
+</span></span><span style="display:flex;"><span>RayPayload payload;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (payload.channel <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; payload.channel <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; payload.channel<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* Initialize payload here */</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (uint i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> gMaxDepth; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        TraceRay(sceneAccelStruct, RAY_FLAG_NONE, <span style="color:#ae81ff">0xff</span>, hitGroup, numHitGroups, missShader, ray, payload);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (payload.color <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        ray.Origin <span style="color:#f92672">=</span> payload.origin;
+</span></span><span style="display:flex;"><span>        ray.Direction <span style="color:#f92672">=</span> payload.direction;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    RenderTarget[curPixel][payload.channel] <span style="color:#f92672">=</span> payload.color;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>RenderTarget[curPixel].a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><p>设置一个全局数组 <code>refractionIndex[3]</code> 用于控制三种光线的折射率的扩大系数，并在 Shader 中暴露一个色散度系数 <code>_Dispersion</code> 。在折射时使用扩大系数的色散度次幂来扩大基础折射率。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">float</span> eta <span style="color:#f92672">=</span> lerp(rcp(_IOR <span style="color:#f92672">*</span> pow(refractionIndex[payload.channel], _Dispersion)), _IOR <span style="color:#f92672">*</span> pow(refractionIndex[payload.channel], _Dispersion), isOutgoing);
+</span></span></code></pre></div><p>最终效果</p>
+<p>
+  <p><img src="https://s2.loli.net/2023/06/13/gDbplW3k7UuFS1d.png" alt="20230612_3.png" loading="lazy" onclick="showBig(this)"/></p>
+</p>
+<p>桌面的反射效果是通过将其折射率设置为小于 $1$ 来实现的。</p>
+
+          </div>
+        </div>
+                 
+      
+  
+  
+  
+  
+
+  
+
+  <div class="article-paging">
+    
+    
+      <section class="post-paging--item card-container content-padding-primary soft-size--primary soft-style--box">
+  <a href="/posts/unityeditorwindowbug/">
+  <div class="card-cover" background-image-lazy data-img="https://s2.loli.net/2023/05/21/ml9HEgeWIbG6fQz.jpg"></div>
+  <div class="card-text">
+    <h4 class="card-text--title">Unity Editor Window 修复报错后扔无法打开</h4>
+    <p class="card-text--row">2023-05-21 00:46</p>
+  </div>
+  </a>
+</section>
+    
+  </div>
+</div>
+  <aside class="widget-info">
+    
+<section class="aside-widget widget-author content-padding-large soft-size--large soft-style--box">
+  <div class="widget-body">
+    <div class="author-box avatar">
+      
+      <img class="author-avatar soft-size--round soft-style--box" src="https://avatars.githubusercontent.com/u/47293990?s=100" alt="Citrine">
+      
+      <h2 class="author-name text-ellipsis">Citrine</h2>
+      
+      <p class="author-desc text-ellipsis">Txtxj</p>
+      
+    </div>
+  </div>
+</section>
+
+
+    
+
+<section class="aside-widget widget-toc content-padding-large soft-size--large soft-style--scrollbox">
+  <h2 class="widget-header">
+    <div class="title">
+      <span>目录</span>
+    </div>
+  </h2>
+  <div class="widget-body">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#递归改迭代">递归改迭代</a></li>
+    <li><a href="#beer-lambert-光线吸收">Beer-Lambert 光线吸收</a></li>
+    <li><a href="#色散">色散</a></li>
+  </ul>
+</nav>
+  </div>
+</section>
+
+
+    
+
+
+
+
+
+
+
+
+<section class="aside-widget widget-articles content-padding-large soft-size--large soft-style--box">
+  <h2 class="widget-header">
+    <div class="title">
+      <span>相关文章</span>
+    </div>
+  </h2>
+  <div class="widget-body">
+    <ul class="post-list">
+      
+      
+        <li class="post-item"><a href="/posts/unityeditorwindowbug/">Unity Editor Window 修复报错后扔无法打开</a></li>
+      
+        <li class="post-item"><a href="/posts/clothsimulation/">布料模拟与渲染</a></li>
+      
+        <li class="post-item"><a href="/posts/ssaounity/">屏幕空间环境光遮蔽（SSAO） Unity 实现</a></li>
+      
+        <li class="post-item"><a href="/posts/objecttoworldnormal/">法线向量的模型-世界变换</a></li>
+      
+        <li class="post-item"><a href="/posts/gamesnote03/">GAMES笔记03-光栅化</a></li>
+      
+        <li class="post-item"><a href="/posts/gamesnote02/">GAMES笔记02-模型、视图、投影变换</a></li>
+      
+    </ul>
+  </div>
+</section>
+
+
+    
+
+
+
+
+
+    
+
+
+
+
+<section class="aside-widget widget-tags content-padding-large soft-size--large soft-style--box">
+  <h2 class="widget-header">
+    <div class="title">
+      <span>聚合标签</span>
+    </div>
+  </h2>
+  <div class="widget-body">
+    <div class="tags-list">
+      
+        <a href="https://txtxj.top/tags/%E7%AC%94%E8%AE%B0/" data-count="11" class="soft-size--small soft-style--hover soft-style--active">笔记</a>
+      
+        <a href="https://txtxj.top/tags/unity/" data-count="8" class="soft-size--small soft-style--hover soft-style--active">Unity</a>
+      
+        <a href="https://txtxj.top/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" data-count="7" class="soft-size--small soft-style--hover soft-style--active">图形学</a>
+      
+        <a href="https://txtxj.top/tags/%E9%A2%98%E8%A7%A3/" data-count="4" class="soft-size--small soft-style--hover soft-style--active">题解</a>
+      
+        <a href="https://txtxj.top/tags/%E6%95%99%E7%A8%8B/" data-count="3" class="soft-size--small soft-style--hover soft-style--active">教程</a>
+      
+        <a href="https://txtxj.top/tags/c#/" data-count="2" class="soft-size--small soft-style--hover soft-style--active">C#</a>
+      
+        <a href="https://txtxj.top/tags/%E7%81%AB%E7%84%B0%E7%BA%B9%E7%AB%A0/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">火焰纹章</a>
+      
+    </div>
+  </div>
+
+  
+</section>
+
+  </aside>
+</div>
+  </main>
+
+  <div id="popup" onclick="hideBig(this)" onmousewheel="return wheelImg(this)">
+    <div class="bg"><img src="" alt="" /></div>
+  </div><footer class="footer-container layout-block">
+  
+  <div class="social-icons">
+    
+      <a class="soft-size--primary soft-style--box" href="https://github.com/txtxj" target="_blank" rel="noopener noreferrer">
+          
+        <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+        </svg>
+        
+
+        
+
+        
+
+        
+
+        
+      </a>
+    
+  </div>
+  
+
+  <div class="colour-bar"></div>
+  
+  
+
+  
+
+  <p>
+    Copyright © 2021 2021 txtxj
+  </p>
+
+  <p>
+    Powered by
+    <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a>
+    Theme - 
+    <a href="https://github.com/txtxj/hugo-theme-kagome" target="_blank" rel="noopener noreferrer author">kagome</a>
+  </p>
+
+  <p>
+    <a href="javascript:;" id="theme-light">🌞 浅色</a>
+    <a href="javascript:;" id="theme-dark">🌛 深色</a>
+    <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+  </p>
+  <script src="/js/copy.js"></script>
+</footer>
+
+
+
+<script type="text/javascript" src="https://csdnimg.cn/release/blog_mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+
+
+</body>
+
+</html>
