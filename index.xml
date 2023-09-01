@@ -8,7 +8,24 @@
     <language>zh-cn</language>
     <managingEditor>txtxj@mail.ustc.edu.cn (Citrine)</managingEditor>
     <webMaster>txtxj@mail.ustc.edu.cn (Citrine)</webMaster>
-    <lastBuildDate>Sun, 21 May 2023 00:46:58 +0800</lastBuildDate><atom:link href="https://txtxj.top/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 12 Jun 2023 17:09:01 +0800</lastBuildDate><atom:link href="https://txtxj.top/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>宝石光线追踪</title>
+      <link>https://txtxj.top/posts/raytracinggem/</link>
+      <pubDate>Mon, 12 Jun 2023 17:09:01 +0800</pubDate>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
+      <guid>https://txtxj.top/posts/raytracinggem/</guid>
+      <description>最近看到了一个很惊艳的宝石光追的项目 Sorumi/UnityRayTracingGem.
+原宝石光追的实现使用了 Compute Buffer 来向着色器传递模型数据。光线在每个 Mesh 内独立地反射与折射，不能在不同 Mesh 间互相传递。
+在 2018 年微软发布了 DXR API 后，Unity 2019.3 加入了实验性的 Ray Tracing Shader，支持更方便地实现光追。
+于是笔者就用 SlightlyMad/SimpleDxrPathTracer 的框架复刻了一下这个宝石光追。
+原项目的介绍已经在 Sorumi 的博客 上写的很详细了，相同的部分就不再赘述。
+递归改迭代 SlightlyMad/SimpleDxrPathTracer 中提供了一个蒙特卡洛路径追踪算法。
+由于宝石渲染中，所有物体都较为光滑，因此可以几乎不考虑漫反射，进而可以使用更简单的 Whitted-Style Ray Tracing.
+Unity Ray Tracing Shader 递归层数有上限，考虑不使用在 Closest Hit Shader 中重新发射光线的递归写法，而是改为 Closest Hit Shader 修改 payload 后，回到 Ray Generate Shader 继续迭代生成光线。
+for (uint i = 0; i &amp;lt; gMaxDepth; i++) { TraceRay(sceneAccelStruct, RAY_FLAG_NONE, 0xff, hitGroup, numHitGroups, missShader, ray, payload); if (payload.</description>
+    </item>
+    
     <item>
       <title>Unity Editor Window 修复报错后仍无法打开</title>
       <link>https://txtxj.top/posts/unityeditorwindowbug/</link>
