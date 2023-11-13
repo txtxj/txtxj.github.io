@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CTF on Citrine</title>
+    <link>https://txtxj.top/tags/ctf/</link>
+    <description>Recent content in CTF on Citrine</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <managingEditor>txtxj@mail.ustc.edu.cn (Citrine)</managingEditor>
+    <webMaster>txtxj@mail.ustc.edu.cn (Citrine)</webMaster>
+    <lastBuildDate>Sun, 05 Nov 2023 19:45:29 +0800</lastBuildDate><atom:link href="https://txtxj.top/tags/ctf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HackerGame2023 WriteUP</title>
+      <link>https://txtxj.top/posts/hackergame2023/</link>
+      <pubDate>Sun, 05 Nov 2023 19:45:29 +0800</pubDate>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
+      <guid>https://txtxj.top/posts/hackergame2023/</guid>
+      <description>奶奶的睡前 flag 故事 题目中提到 谷歌的『亲儿子』 连系统都没心思升级 推测可能是 pixel 老系统的一个 bug。
+搜索一圈，搜到 Windows 11 同样有这个 bug ，屏幕截图后剪切其中一部分，被剪切的数据仍保存在文件中，位于 IEND 标签后。
+使用 010 Editor 检查，发现图片 IEND 后仍有大量 IDAT 和一个 IEND，符合 aCropalypse 漏洞，在 acropalypse.app 上恢复即可 。
+组委会模拟器 直接写个脚本跑就完了
+(function() { &amp;#39;use strict&amp;#39;; setTimeout(()=&amp;gt;{ var container = document.getElementsByClassName(&amp;#39;fakeqq-container&amp;#39;)[0]; container.addEventListener(&amp;#39;DOMSubtreeModified&amp;#39;, function (e) { var bubble = e.target.children[e.target.children.length - 1].children[0].children[1].children[1]; var txt = bubble.children[1].innerHTML; var re = /hack\[[a-z]+\]/; var pos = txt.search(re); if (pos &amp;gt;= 0) { const event = new MouseEvent(&amp;#39;click&amp;#39;, { view: window, bubbles: true, cancelable: true }); bubble.</description>
+    </item>
+    
+    <item>
+      <title>HackerGame2022 WriteUP</title>
+      <link>https://txtxj.top/posts/hackergame2022/</link>
+      <pubDate>Thu, 27 Oct 2022 19:48:31 +0800</pubDate>
+      <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
+      <guid>https://txtxj.top/posts/hackergame2022/</guid>
+      <description>笔者本来是不打算参加今年 HackerGame 的（因为去年感觉好累，然后混了个 33 名，错失纪念衫），但是周六晚上看见群里好多人查航班，抱着来看看题目的心态点开了比赛链接，然后就一发不可收拾了。
+笔者并没有网安、汇编方面的基础，数论更是一塌糊涂，只写了一部分题，在此记录一下写题过程中的思路。
+签到 题目让签一个 2022 ，试了一下，第三个数字来不及画就结束了。
+去看看网页源码，想着改一下时间限制，把时间放宽点再签。
+但结果是不行的，时间限制还是没变，应该是因为四个画板的时间限制是在下面 new Vue 的时候设置的， TIME_LIMIT 数组只是个临时变量。
+后来点了一下提交，看见 url 是 http://202.38.93.111:12022/?result=2??? ，那就给他改成 http://202.38.93.111:12022/?result=2022 试试，成功拿到 flag。
+看来是和去年一样的类型，直接在 url 上做手脚。
+猫咪问答 考察搜索引擎使用能力的题目喵。
+去年的猫咪问答让人答吐了喵，今年的猫咪问答要良心不少喵，甚至还有部分分喵。
+中国科学技术大学 NEBULA 战队（USTC NEBULA）是于何时成立的喵？
+直接必应搜索“中国科学技术大学 NEBULA 战队（USTC NEBULA）是于何时成立的喵？”
+第一条结果就是喵
+2022 年 9 月，中国科学技术大学学生 Linux 用户协会（LUG @ USTC）在科大校内承办了软件自由日活动。除了专注于自由撸猫的主会场之外，还有一些和技术相关的分会场（如闪电演讲 Lightning Talk）。其中在第一个闪电演讲主题里，主讲人于 slides 中展示了一张在 GNOME Wayland 下使用 Wayland 后端会出现显示问题的 KDE 程序截图，请问这个 KDE 程序的名字是什么？
+搜索“LUG @ USTC 闪电演讲 2022”喵，找到 lug 主页上的一篇新闻稿喵，但是里面没有提到题目问的信息喵。
+继续在 lug 主页上搜索喵，找到“自由软件日”子页面喵，记录了历年的活动详情喵，包含 Slides 和回放喵。</description>
+    </item>
+    
+  </channel>
+</rss>

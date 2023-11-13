@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>学习 on Citrine</title>
+    <title>POSTS on Citrine</title>
     <link>https://txtxj.top/posts/</link>
-    <description>Recent content in 学习 on Citrine</description>
+    <description>Recent content in POSTS on Citrine</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <managingEditor>txtxj@mail.ustc.edu.cn (Citrine)</managingEditor>
@@ -211,7 +211,7 @@ float3 sampling(float2 seed) { float4 r; r.</description>
       <pubDate>Mon, 16 May 2022 22:44:43 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
       <guid>https://txtxj.top/posts/objecttoworldnormal/</guid>
-      <description>为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵 在 《Unity ShaderLab 新手宝典》中 64 页给出了一个结论
+      <description>为什么法线向量变换到世界坐标下需要右乘模型变换矩阵的逆矩阵 在 《Unity ShaderLab 新手宝典》 中 64 页给出了一个结论
 在顶点函数中，使用 Unity 提供的变换矩阵 unity_ObjectToWorld 将顶点坐标从模型空间变换到世界空间。为了避免非统一缩放的物体法线方向偏移，使用法线向量右乘逆矩阵的方式对其进行空间变换。
 即 worldNormal = mul(vertex， (float3x3)unity_WorldToObject) 。
 首先解释为什么对于非统一缩放的物体，左乘模型变换矩阵可能会导致法线方向偏移。
@@ -235,7 +235,7 @@ float3 sampling(float2 seed) { float4 r; r.</description>
     </item>
     
     <item>
-      <title>题解 领奖台数</title>
+      <title>【题解】 领奖台数</title>
       <link>https://txtxj.top/posts/solutionprize/</link>
       <pubDate>Fri, 13 May 2022 17:59:19 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
@@ -362,7 +362,7 @@ if (rh &amp;lt; 0f) { dir.x = -1; animator.SetInteger(&amp;#34;Direction&amp;#34
     </item>
     
     <item>
-      <title>【题解】CF1452D Radio Towers</title>
+      <title>【题解】 CF1452D Radio Towers</title>
       <link>https://txtxj.top/posts/solutioncf1452d/</link>
       <pubDate>Mon, 02 Aug 2021 06:37:00 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
@@ -474,7 +474,7 @@ if (fr == 1f &amp;amp;&amp;amp; isfire == false &amp;amp;&amp;amp; isinterval ==
     </item>
     
     <item>
-      <title>题解 P5020 【货币系统】</title>
+      <title>【题解】 P5020 【货币系统】</title>
       <link>https://txtxj.top/posts/solutionp5020/</link>
       <pubDate>Thu, 07 Feb 2019 23:50:45 +0800</pubDate>
       <author>txtxj@mail.ustc.edu.cn (Citrine)</author>
