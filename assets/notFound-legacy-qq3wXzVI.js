@@ -1,1 +1,0 @@
-System.register(["./index-legacy-1btCkmdW.js"],(function(e,t){"use strict";var r,n,u,i;return{setters:[function(e){r=e.X,n=e.aa,u=e.L,i=e.J}],execute:function(){e("default",r({},[["render",function(e,t){var r=n("router-view");return i(),u(r)}]]))}}}));
