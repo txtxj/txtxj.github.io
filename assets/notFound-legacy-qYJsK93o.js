@@ -1,1 +1,0 @@
-System.register(["./index-legacy-XuNBSaRB.js"],(function(e,t){"use strict";var r,n,u,i;return{setters:[function(e){r=e.a2,n=e.aa,u=e.X,i=e.P}],execute:function(){e("default",r({},[["render",function(e,t){var r=n("router-view");return i(),u(r)}]]))}}}));
