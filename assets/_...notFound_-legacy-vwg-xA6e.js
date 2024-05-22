@@ -1,1 +1,0 @@
-System.register(["./_...notFound_.vue_vue_type_script_setup_true_lang-legacy-CMuQ9Ba3.js","./index-legacy-fCf8STu8.js"],(function(e,t){"use strict";return{setters:[function(t){t._,e("default",t._)},null],execute:function(){}}}));
